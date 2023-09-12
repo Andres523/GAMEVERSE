@@ -134,6 +134,6 @@
 body{
   background-color: #383c41;
 }
-.Inicio {background-color: #1877f2; color: #fff; border: none; border-radius: 5px; 
-padding: 10px 20px; font-size: 16px; cursor: pointer; }
-.boton-iniciar-sesion:hover{background-color: #1566d0;}
+.boton-inicio-sesion { background-color: #1877f2; color: #fff; border: none; border-radius: 5px; Padding: 10px 20px; font-size: 16px; cursor: pointer; }
+.boton-inicio-sesion:hover { background-color: #1566d0; }
+.derecha {text-align: right;margin-right: 50px;}
