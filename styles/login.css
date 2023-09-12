@@ -167,3 +167,69 @@ html {
   }
   .footer {background-color: #333;color: white;text-align: center;padding: 10px 0;}
   
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+  }
+  .one {
+    grid-column: 1/ 2;
+    grid-row: 1;
+  }
+  .two {
+    grid-column: 2/3;
+    grid-row: 1;
+  }
+  .three {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  *{
+    box-sizing: border-box;
+  }
+
+  body{
+    background: #383c41;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+
+  }
+
+.one{
+  display: flex;
+}
+.card{
+  border-radius: 20px;
+  margin-left: 10px;
+  height: 200px;
+  background-color: #fff;
+  flex: 1;
+  transition: .3s all ease;
+
+}
+
+.card:hover{
+  flex: 2;
+  background-color: rgb(207, 207, 207);
+}
+
+section{
+  display: flex;
+  width: 400px;
+  height: 550px;
+}
+section img {
+  width: 0;
+  flex-grow: 1;
+  object-fit: cover;
+  opacity: .8;
+  transition: .5 ease;
+}
+section img:hover{
+  cursor: crosshair;
+  width: 300px;
+  opacity: 1;
+  filter: contrast(120%);
+}
