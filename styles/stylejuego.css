@@ -1,0 +1,212 @@
+
+.footer {background-color: #333;color: white;text-align: center;padding: 10px 0;}
+
+:root{
+    --main-color:#fff;
+  }
+  
+  *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  body{
+    font-family:'Roboto' , 'sans-serif';
+    overflow:scroll;
+  }
+  
+  .main-header{
+    background: #383c41;
+    width: 100%;
+    height:50px;
+  }
+  
+  nav{
+    position: absolute;
+    left:0;
+    top:0;
+    width: 200px;
+    top:50px;
+    height:calc(100vh - 50px);
+    background:#000000;
+    transform:translateX(-100%);
+    transition:.4s ease;
+  }
+  
+  .navigation li{
+    list-style:none;
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,.5);
+  }
+  
+  .navigation a{
+    color:var(--main-color);
+    display: block;
+    line-height:3.5;
+    padding: 0 10px;
+    text-decoration:none;
+    transition:.4s ease;
+    color: #fff;
+  }
+  
+  .navigation a:hover{
+    transform:translateX(10%);
+  }
+  
+  #btn-nav{
+    display: none;
+  }
+  
+  #btn-nav:checked ~ nav{
+    transform:translateX(0);
+  }
+  
+  .btn-nav{
+    color:var(--main-color);
+    font-size:30px;
+    position: absolute;
+    left:0;
+    top:0;
+    cursor:pointer;
+    padding:6.5px 15px;
+    transition:.2s ease;
+    background:rgba(0,0,0,.1);
+  }
+  
+  .btn-nav:hover{
+    background:rgba(0,0,0,.3);
+  }
+  
+
+.btn-nav {
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.5s ease-in-out;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  background: #040f16;
+  color: #f5f5f5;
+}
+
+.btn-nav:hover {
+  box-shadow: 0 0 20px 0px #2e2e2e3a;
+}
+
+.btn-nav .icon {
+  position: absolute;
+  height: 40px;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+}
+
+.btn-nav .text {
+  transform: translateX(55px);
+}
+
+.btn-nav:hover .icon {
+  width: 175px;
+}
+
+.btn-nav:hover .text {
+  transition: all 0.5s;
+  opacity: 0;
+}
+
+.btn-nav:focus {
+  outline: none;
+}
+
+.btn-nav:active .icon {
+  transform: scale(0.85);
+}
+body{
+  background-color: #383c41;
+}
+#home {
+    background-color: #141e30;
+    background-image: url('/img/LEAGUE-OF-LEGENDS-WILD-RIFT.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+    text-align: center;
+    padding: 100px 0;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #00aaff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+#campeones1 {
+    background-image: url(/img/img-juegos/yasuo_skin01.jpg);
+    padding: 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: cornflowerblue;
+    text-align: left;
+}
+
+.campeon1 {padding: 20px;margin: 10px;}
+.campeon1:hover { border-color: #ff6600;}
+.campeon1 img {max-width: 100px;border: 2px solid #00aaff;}
+.campeon1 img:hover {border-color: #ff6600;}
+.campeon1 h3 { margin-top: 10px;font-size: 18px;}
+.campeon1 p {font-size: 14px;}
+
+.campeon2 {padding: 20px;margin: 10px;}
+.campeon2:hover { border-color: #ff6600;}
+.campeon2 img {max-width: 100px;border: 2px solid #00aaff;}
+.campeon2 img:hover {border-color: #ff6600;}
+.campeon2 h3 { margin-top: 10px;font-size: 18px;}
+.campeon2 p {font-size: 14px;}
+
+.campeon3 {padding: 20px;margin: 10px;}
+.campeon3:hover { border-color: #ff6600;}
+.campeon3 img {max-width: 100px;border: 2px solid #00aaff;}
+.campeon3 img:hover {border-color: #ff6600;}
+.campeon3 h3 { margin-top: 10px;font-size: 18px;}
+.campeon3 p {font-size: 14px;}
+
+
+footer {
+    background-color: #f2f2f2;
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+footer li {
+    display: inline;
+    margin-right: 10px;
+}
+
+footer a {
+    text-decoration: none;
+    color: #333;
+}
