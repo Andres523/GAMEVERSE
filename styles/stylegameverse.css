@@ -16,7 +16,7 @@
   
   body{
     font-family:'Roboto' , 'sans-serif';
-    overflow:hidden;
+    overflow:scroll;
   }
   
   .main-header{
@@ -152,4 +152,7 @@ body{
 
 .video{
   position: center;
+}
+#header {
+  z-index: -1;
 }
