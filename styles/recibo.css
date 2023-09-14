@@ -1,8 +1,8 @@
 body{
     background-color:#383c41;
-    background-image: url(/img/LOL.jpeg);
-background-repeat: repeat-x;
-    margin: 0 16px;
+    background-size: cover;
+    background-position: center;
+    background-image: url(/img/juegos/lolr.jpg);
 }
 *{
     padding: 0;
