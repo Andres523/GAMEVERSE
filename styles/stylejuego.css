@@ -133,7 +133,7 @@ body{
 }
 #home {
     background-color: #141e30;
-    background-image: url('/img/LEAGUE-OF-LEGENDS-WILD-RIFT.jpg');
+    background-image: url('/img/juegos/wallpaperflare.com_wallpaper.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -156,37 +156,73 @@ h1 {
     margin-top: 20px;
     font-weight: bold;
 }
+.contenedor {
+  display: flex;
+  justify-content:center;
+align-items:center;}
 
-#campeones1 {
-    background-image: url(/img/img-juegos/yasuo_skin01.jpg);
+.game-bar {
+  width: 350px;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+.game-image {
+  max-width: 100%;
+  height: auto;
+}
+.game-info {
+  margin-top: 20px;
+}
+
+button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #555;
+}
+
+#campeones1 {background-image: url(/img/juegos/wallpaperbetter.com_1280x720.jpg);
     padding: 20px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    color: cornflowerblue;
+    color: black;
     text-align: left;
 }
+#campeones2 {background-image: url(/img/juegos/jinx2.jpg);
+  padding: 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  text-align: left;
+}
+#campeones3 {background-image: url(/img/juegos/wallpaperbetter.com_1280x720.jpg);
+  padding: 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: black;
+  text-align: left;
+}
 
-.campeon1 {padding: 20px;margin: 10px;}
-.campeon1:hover { border-color: #ff6600;}
-.campeon1 img {max-width: 100px;border: 2px solid #00aaff;}
-.campeon1 img:hover {border-color: #ff6600;}
-.campeon1 h3 { margin-top: 10px;font-size: 18px;}
-.campeon1 p {font-size: 14px;}
+.campeon { padding: 20px;margin: 10px;}
+.campeon:hover { border-color: #ff6600;}
+.campeon img {max-width: 100px;border: 2px solid #00aaff;}
+.campeon img:hover {border-color: #ff6600;}
+.campeon h3 { margin-top: 10px;font-size: 18px;}
+.campeon p {font-size: 14px;}
 
-.campeon2 {padding: 20px;margin: 10px;}
-.campeon2:hover { border-color: #ff6600;}
-.campeon2 img {max-width: 100px;border: 2px solid #00aaff;}
-.campeon2 img:hover {border-color: #ff6600;}
-.campeon2 h3 { margin-top: 10px;font-size: 18px;}
-.campeon2 p {font-size: 14px;}
-
-.campeon3 {padding: 20px;margin: 10px;}
-.campeon3:hover { border-color: #ff6600;}
-.campeon3 img {max-width: 100px;border: 2px solid #00aaff;}
-.campeon3 img:hover {border-color: #ff6600;}
-.campeon3 h3 { margin-top: 10px;font-size: 18px;}
-.campeon3 p {font-size: 14px;}
 
 
 footer {

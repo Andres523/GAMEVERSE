@@ -1,3 +1,4 @@
+/*MENU*/
 *{
     padding: 0;
     margin: 0;
@@ -124,6 +125,7 @@
 .btn-nav:active .icon {
   transform: scale(0.85);
 }
+/*MENU*/
 body{
   background-color: #383c41;}
   .footer {background-color: #333;color: white;text-align: center;padding: 10px 0;}
