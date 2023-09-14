@@ -11,17 +11,29 @@
     box-sizing: border-box;
   }
   
-  body{
+  body{background-image: url('/img/juegos/lolr.jpg');
+    background-size: cover;
+    position: relative;
     font-family:'Roboto' , 'sans-serif';
     overflow:scroll;
   }
-  
+  body::before {
+    content: "";
+    background-image: inherit;
+    filter: blur(10px);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
   .main-header{
     background: #383c41;
     width: 100%;
     height:50px;
   }
-  
+  /*MENU*/
   nav{
     position: absolute;
     left:0;
@@ -128,9 +140,11 @@
 .btn-nav:active .icon {
   transform: scale(0.85);
 }
+/*MENU*/
 body{
   background-color: #383c41;
 }
+/*IMAGEN COMPRA*/
 #home {
     background-color: #141e30;
     background-image: url('/img/juegos/wallpaperflare.com_wallpaper.jpg');
@@ -141,6 +155,7 @@ body{
     text-align: center;
     padding: 100px 0;
 }
+/*IMAGEN COMPRA*/
 
 h1 {
     font-size: 36px;
@@ -161,6 +176,7 @@ h1 {
   justify-content:center;
 align-items:center;}
 
+/* DESCRIPCION*/
 .game-bar {
   width: 350px;
   background-color: #333;
@@ -170,6 +186,7 @@ align-items:center;}
   top: 0;
   right: 0;
   bottom: 0;
+  overflow-y: auto;
 }
 .game-image {
   max-width: 100%;
@@ -178,6 +195,11 @@ align-items:center;}
 .game-info {
   margin-top: 20px;
 }
+.main-content {
+  margin-right: 320px;
+  padding: 20px;
+}
+/* DESCRIPCION*/
 
 button {
   background-color: #333;
@@ -190,7 +212,7 @@ button {
 button:hover {
   background-color: #555;
 }
-
+/* PERSONAJES*/
 #campeones1 {background-image: url(/img/juegos/wallpaperbetter.com_1280x720.jpg);
     padding: 20px;
     background-size: cover;
@@ -207,7 +229,7 @@ button:hover {
   color: white;
   text-align: left;
 }
-#campeones3 {background-image: url(/img/juegos/wallpaperbetter.com_1280x720.jpg);
+#campeones3 {background-image: url(/img/juegos/lux.jpg);
   padding: 20px;
   background-size: cover;
   background-position: center;
@@ -215,14 +237,15 @@ button:hover {
   color: black;
   text-align: left;
 }
-
+/* PERSONAJES*/
+/* FOTOS PERSONAJES*/
 .campeon { padding: 20px;margin: 10px;}
 .campeon:hover { border-color: #ff6600;}
 .campeon img {max-width: 100px;border: 2px solid #00aaff;}
 .campeon img:hover {border-color: #ff6600;}
 .campeon h3 { margin-top: 10px;font-size: 18px;}
 .campeon p {font-size: 14px;}
-
+/* FOTOS PERSONAJES*/
 
 
 footer {
