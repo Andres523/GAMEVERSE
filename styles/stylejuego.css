@@ -11,7 +11,7 @@
     box-sizing: border-box;
   }
   
-  body{background-image: url('/img/juegos/lolr.jpg');
+  body{
     background-size: cover;
     position: relative;
     font-family:'Roboto' , 'sans-serif';
@@ -147,7 +147,6 @@ body{
 /*IMAGEN COMPRA*/
 #home {
     background-color: #141e30;
-    background-image: url('/img/juegos/wallpaperflare.com_wallpaper.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -213,7 +212,7 @@ button:hover {
   background-color: #555;
 }
 /* PERSONAJES*/
-#campeones1 {background-image: url(/img/juegos/wallpaperbetter.com_1280x720.jpg);
+#campeones1 {
     padding: 20px;
     background-size: cover;
     background-position: center;
@@ -221,7 +220,7 @@ button:hover {
     color: black;
     text-align: left;
 }
-#campeones2 {background-image: url(/img/juegos/jinx2.jpg);
+#campeones2 {
   padding: 20px;
   background-size: cover;
   background-position: center;
@@ -229,7 +228,7 @@ button:hover {
   color: white;
   text-align: left;
 }
-#campeones3 {background-image: url(/img/juegos/lux.jpg);
+#campeones3 {
   padding: 20px;
   background-size: cover;
   background-position: center;
