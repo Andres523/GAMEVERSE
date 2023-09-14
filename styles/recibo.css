@@ -133,6 +133,7 @@ background-repeat: repeat-x;
 
 .footer {background-color: #333;color: white;text-align: center;padding: 10px 0;}
 
+/*resivo inicio*/
 .papa{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -152,11 +153,8 @@ background-repeat: repeat-x;
     opacity: 1;
     color: #fff;
     text-decoration: dashed;
-    text-shadow: #000000;
+    text-shadow: 0 0 30px;
     text-decoration-color: #f5f5f5;
-
-    
-
 }
 .recibo2{
     background-color: #383c41;
@@ -166,10 +164,10 @@ background-repeat: repeat-x;
     grid-column: 2/4;
     grid-row: 1;
     opacity:0.9;
-color: #fff;
+    color:#fff;
+
  
     
-
 }
 .recibo3{
     background-color:  #383c41;
@@ -180,8 +178,88 @@ color: #fff;
     grid-row: 1;
     opacity: 1;
     color: #fff;
-    font: oblique bold 90% cursive;
+
 
     
 
 }
+.container {
+    cursor: pointer;
+    margin: 20px;
+  }
+  
+  .container input {
+    display: none;
+  }
+  
+  .container svg {
+    overflow: visible;
+  }
+  
+  .path {
+    fill: none;
+    stroke: white;
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+    stroke-dasharray: 241 9999999;
+    stroke-dashoffset: 0;
+  }
+  
+  .container input:checked ~ svg .path {
+    stroke-dasharray: 70.5096664428711 9999999;
+    stroke-dashoffset: -262.2723388671875;
+  }
+  button {
+    position: relative;
+    overflow: hidden;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50px;
+    background-color: hsl(255deg 50% 40%);
+    border: solid 4px hsl(50deg 100% 50%);
+    font-family: inherit;
+   }
+   
+   .default-btn,.hover-btn {
+    background-color: hsl(255deg 50% 40%);
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    border-radius: 50px;
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: all .3s ease;
+   }
+   
+   .hover-btn {
+    position: absolute;
+    inset: 0;
+    background-color: hsl(255deg 50% 49%);
+    transform: translate(0%,100%);
+   }
+   
+   .default-btn span {
+    color: hsl(0, 0%, 100%);
+   }
+   
+   .hover-btn span {
+    color: hsl(50deg 100% 50%);
+   }
+   
+   button:hover .default-btn {
+    transform: translate(0%,-100%);
+   }
+   
+   button:hover .hover-btn {
+    transform: translate(0%,0%);
+   }
+  
+/*resivo fin*/
