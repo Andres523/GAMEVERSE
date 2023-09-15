@@ -1,0 +1,26 @@
+.container{
+    display: flex;
+    background-color: rgba(90, 78, 102, 0.733);
+    justify-content: center;
+    display: flex;
+    justify-content: center;
+    padding: 25px;
+}
+
+.imag{
+
+margin: 0 5px;
+}
+
+
+
+.container2{
+    
+    background-color: rgba(90, 78, 102, 0.411);
+   
+}
+
+.pac{
+background-size: cover;
+
+}
