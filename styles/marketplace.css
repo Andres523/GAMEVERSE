@@ -730,7 +730,7 @@ body{
     width: 100px;
     height: 50px;
     left: 40%;
-    top: 87%;
+    top: 50%;
     z-index: 2;
     margin-left: -50px;
     margin-top: -50px;
@@ -739,6 +739,7 @@ body{
     -moz-animation: up 0.4s infinite;
     -o-animation: up 0.4s infinite;
     animation: up 0.4s infinite;
+
   }
   body .pacman:after {
     margin-top: -1px;
@@ -751,7 +752,7 @@ body{
   body .dot {
     position: absolute;
     left: 40%;
-    top: 87%;
+    top: 50%;
     width: 20px;
     height: 20px;
     margin-top: -5px;
@@ -766,3 +767,6 @@ body{
     animation: r-to-l 0.4s infinite;
 
   }
+
+  /*PAGINAS COPATIBLES*/
+
