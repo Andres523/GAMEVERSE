@@ -306,7 +306,7 @@ body{
     width: 180px;
     height: 270px;
     overflow: hidden;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.8);
+    box-shadow: 0 0 80px red;
     transform-origin: center top;
     transform-style: preserve-3d;
     transform: translateZ(0);
@@ -444,6 +444,7 @@ body{
     top: 15%;
     transform: translate(0,-20px);
     right: 49%;
+    box-shadow: 0 0 100px gold;
   }
   
   .mario {
@@ -633,4 +634,135 @@ body{
     100% {
       transform: translate(20px,200px);
     }
+  }
+/*PACMAN*/
+
+@-webkit-keyframes up {
+    0%, 100% {
+      transform: rotate(0);
+    }
+    50% {
+      transform: rotate(-30deg);
+    }
+  }
+  @-moz-keyframes up {
+    0%, 100% {
+      transform: rotate(0);
+    }
+    50% {
+      transform: rotate(-30deg);
+    }
+  }
+  @-o-keyframes up {
+    0%, 100% {
+      transform: rotate(0);
+    }
+    50% {
+      transform: rotate(-30deg);
+    }
+  }
+  @keyframes up {
+    0%, 100% {
+      transform: rotate(0);
+    }
+    50% {
+      transform: rotate(-30deg);
+    }
+  }
+  @-webkit-keyframes down {
+    0%, 100% {
+      transform: rotate(0);
+    }
+    50% {
+      transform: rotate(30deg);
+    }
+  }
+  @-moz-keyframes down {
+    0%, 100% {
+      transform: rotate(0);
+    }
+    50% {
+      transform: rotate(30deg);
+    }
+  }
+  @-o-keyframes down {
+    0%, 100% {
+      transform: rotate(0);
+    }
+    50% {
+      transform: rotate(30deg);
+    }
+  }
+  @keyframes down {
+    0%, 100% {
+      transform: rotate(0);
+    }
+    50% {
+      transform: rotate(30deg);
+    }
+  }
+  @-webkit-keyframes r-to-l {
+    100% {
+      margin-left: -1px;
+    }
+  }
+  @-moz-keyframes r-to-l {
+    100% {
+      margin-left: -1px;
+    }
+  }
+  @-o-keyframes r-to-l {
+    100% {
+      margin-left: -1px;
+    }
+  }
+  @keyframes r-to-l {
+    100% {
+      margin-left: -1px;
+    }
+  }
+  body .pacman:before,
+  body .pacman:after {
+    content: "";
+    position: absolute;
+    background: #ffc107;
+    box-shadow: 0 0 80px gold;
+    width: 100px;
+    height: 50px;
+    left: 40%;
+    top: 87%;
+    z-index: 2;
+    margin-left: -50px;
+    margin-top: -50px;
+    border-radius: 50px 50px 0 0;
+    -webkit-animation: up 0.4s infinite;
+    -moz-animation: up 0.4s infinite;
+    -o-animation: up 0.4s infinite;
+    animation: up 0.4s infinite;
+  }
+  body .pacman:after {
+    margin-top: -1px;
+    border-radius: 0 0 50px 50px;
+    -webkit-animation: down 0.4s infinite;
+    -moz-animation: down 0.4s infinite;
+    -o-animation: down 0.4s infinite;
+    animation: down 0.4s infinite;
+  }
+  body .dot {
+    position: absolute;
+    left: 40%;
+    top: 87%;
+    width: 20px;
+    height: 20px;
+    margin-top: -5px;
+    margin-left: 30px;
+    border-radius: 50%;
+    background: #ccc;
+    z-index: 1;
+    box-shadow: 30px 0 0 #ccc, 60px 0 0 #ccc, 90px 0 0 #ccc, 120px 0 0 #ccc, 150px 0 0 #ccc;
+    -webkit-animation: r-to-l 0.4s infinite;
+    -moz-animation: r-to-l 0.4s infinite;
+    -o-animation: r-to-l 0.4s infinite;
+    animation: r-to-l 0.4s infinite;
+
   }

@@ -230,7 +230,7 @@ h2:after {
   width: 180px;
   height: 270px;
   overflow: hidden;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.8);
+  box-shadow: 0 0 60px purple;
   transform-origin: center top;
   transform-style: preserve-3d;
   transform: translateZ(0);
