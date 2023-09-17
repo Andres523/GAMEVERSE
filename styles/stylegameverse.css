@@ -447,7 +447,7 @@ button:hover {
 button:before {
   content: "";
   position: absolute;
-  left: -4em;
+  left: -0em;
   width: 4em;
   height: 100%;
   top: 0;

@@ -165,7 +165,7 @@ html {
       bottom: 100%;
     }
   }
-  .footer {background-color: #333;color: white;text-align: center;padding: 10px 0;}
+  .footer {background-color: #333;color: white;text-align: center;padding: 10px 0; z-index: -1;}
   
   .wrapper {
     display: grid;
@@ -233,3 +233,6 @@ section img:hover{
   opacity: 1;
   filter: contrast(120%);
 }
+
+
+
