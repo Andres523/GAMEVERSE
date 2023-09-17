@@ -248,7 +248,10 @@ button:hover {
 .campeon h3 { margin-top: 10px;font-size: 18px;}
 .campeon p {font-size: 14px;}
 /* FOTOS PERSONAJES*/
-
+.campeons { padding: 20px;margin: 10px;}
+.campeons img {max-width: 200px}
+.campeons h3 { margin-top: 10px;font-size: 18px;}
+.campeons p {font-size: 14px;}
 
 footer {
     background-color: #f2f2f2;
