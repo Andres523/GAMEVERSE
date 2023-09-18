@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/login.css">
     <title>login</title>
-    <a href="./GAMEVERSE.html"><img src="./img/logo.png" alt="logo" width="80px"  ></a>
+    <a href="./GAMEVERSE.php"><img src="./img/logo.png" alt="logo" width="80px"  ></a>
 </head>
 <body>
   <br>
@@ -34,7 +34,7 @@
     </div>
     <div class="login-box">
       <h2>Login</h2>
-      <form action="conexion.php" method="post">
+      <form action="index.php" method="post">
         <div class="user-box">
           <input type="text" name="nombre" required="">
           <label>nombre de usuario</label>
@@ -44,13 +44,71 @@
           <label>contraseña</label>
         </div>
         <a href="./register.html">¿no tienes cuenta?</a>
+
+
         
 <center><button class="btn4" type="submit">Enviar</button></center>
 
        <a href="https://www.facebook.com/"><img src="./img/facebook-logo-3-1.png" alt="facebook" width="40px"></a>
         <a href="https://mail.google.com/"><img src="./img/logo-Gmail-1.png" alt="logo-Gmail-1" width="60px"></a>
+      <br>
+      <br>
+      <?php
+
+if (isset($_POST['nombre']) && isset($_POST['password'])) {
+    // Recuperar datos del formulario
+    $nombre = $_POST['nombre'];
+    $password = $_POST['password'];
+
+   
+    $conexion = mysqli_connect("127.0.0.1", "samuel", "samux523", "gameverse");
+
+    
+    if (!$conexion) {
+        die("Error de conexión: " . mysqli_connect_error());
+    }
+
+
+    $sql = "SELECT * FROM usuarios WHERE nombre='$nombre'";
+
+    // Después de verificar las credenciales y antes de redirigir
+setcookie("nombreUsuario", $nombre, time() + 3600, "/"); // La cookie expirará en una hora
+
+
+    // Ejecutar la consulta
+    $resultado = mysqli_query($conexion, $sql);
+
+    if ($resultado && mysqli_num_rows($resultado) == 1) {
+        // El nombre de usuario existe, ahora verifica la contraseña
+        $fila = mysqli_fetch_assoc($resultado);
+        if ($fila['password'] == $password) {
+          session_start();
+            header("Location: GAMEVERSE.php");
+            exit;
+        } else {
+          
+            echo "<p class='mensaje-error'>Contraseña incorrecta. Intenta de nuevo.</p>";
+        }
+    } else {
+       
+        echo "<p class='mensaje-error'>Nombre de usuario incorrecto. Intenta de nuevo.</p>";
+    }
+
+    mysqli_close($conexion);
+}
+?>
+
+
+<style>
+
+        .mensaje-error {
+            color: red; 
+        }
+    </style>  
+      
+      
       </form>
-    </div>
+
 
 
     <br>
@@ -180,6 +238,13 @@
 <footer class="footer">
   <p>&copy; 2023 Todos los derechos reservados.</p>
 </footer>
+
+
+
+
+
+
+
 </body>
 
 </html>

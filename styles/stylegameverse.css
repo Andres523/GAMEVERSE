@@ -99,7 +99,7 @@
   }
   
   .btn-nav:hover {
-    box-shadow: 0 0 20px 0px #2e2e2e3a;
+    box-shadow: 0 0 80px red;
   }
   
   .btn-nav .icon {
@@ -458,3 +458,7 @@ button:before {
 button:hover:before {
   transform: translateX(15em);
 }
+
+
+/*usuario*/
+
