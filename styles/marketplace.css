@@ -216,7 +216,7 @@ body{
   .news .card figcaption,
   .news .card:after,
   .news .article figcaption {
-    position: relative;
+    position: absolute;
   }
   .rel,
   h2,
@@ -768,5 +768,30 @@ body{
 
   }
 
-  /*PAGINAS COPATIBLES*/
+ 
+/*sonic*/
+
+
+.moving-image {
+  width: 80px; 
+  height: 80px;
+  animation: move 4s linear infinite; 
+}
+
+@keyframes move {
+  0% {
+      transform: translateX(0) scaleX(1); 
+  }
+  50% {
+      transform: translateX(4000px) scaleX(1);
+  }
+  100% {
+      transform: translateX(0) scaleX(-1); 
+  }
+}
+
+
+
+
+
 

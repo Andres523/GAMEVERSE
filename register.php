@@ -34,6 +34,7 @@ $sql = "INSERT INTO usuarios (nombre, password, correo) VALUES ('$nombreUsuario'
 // Ejecuta la consulta
 if (mysqli_query($conexion, $sql)) {
     echo "Registro exitoso. Ahora puedes iniciar sesión.";
+    header("Location: GAMEVERSE.html");
 } else {
     echo "Error al registrar el usuario: " . mysqli_error($conexion);
 }

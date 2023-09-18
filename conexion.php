@@ -43,5 +43,6 @@ if (isset($_POST['nombre']) && isset($_POST['password'])) {
 
 
 ?>
+
 </body>
 </html>
