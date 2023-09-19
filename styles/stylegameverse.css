@@ -462,3 +462,13 @@ button:hover:before {
 
 /*usuario*/
 
+
+a {
+  text-decoration: none; /* Quita el subrayado de los enlaces */
+  color: #007bff; /* Puedes definir un color de texto personalizado para los enlaces si lo deseas */
+}
+
+/* Estilo para los enlaces cuando se encuentren en estado hover (al pasar el mouse) */
+a:hover {
+  text-decoration: underline; /* Puedes subrayar los enlaces cuando el mouse está sobre ellos */
+}
