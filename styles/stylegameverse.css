@@ -11,17 +11,19 @@
       padding: 0;
       margin: 0;
       box-sizing: border-box;
+    
     }
     
     body{
       font-family:'Roboto' , 'sans-serif';
-      overflow:scroll;
+      overflow:scroll; color: #000;
     }
     
     .main-header{
       width: 100%;
       height:50px;
       z-index: 999;
+      
     }
     
     nav{
@@ -35,6 +37,9 @@
       transform:translateX(-100%);
       transition:.4s ease;
       z-index: 999;
+      border-radius: 50px;
+      opacity: 0.8;
+      
     }
     
     .navigation li{
@@ -43,6 +48,7 @@
       border-bottom: 1px solid rgba(226, 226, 226, 0.5);
       color: #fff;
       z-index: 999;
+     
     }
     
     .navigation a{
@@ -52,6 +58,7 @@
       padding: 0 10px;
       text-decoration:none;
       transition:.4s ease;
+
     }
     
     .navigation a:hover{

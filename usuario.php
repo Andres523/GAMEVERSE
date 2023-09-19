@@ -90,16 +90,31 @@ if (isset($_COOKIE['nombreUsuario'])) {
 
             <!-- Aquí muestra  nombre, correo, edad, género y fecha de nacimiento del usuario -->
             <p class="genero"><?php echo $datosUsuario['genero']; ?></p>
-            <p class="profile-email">Correo: <?php echo $datosUsuario['correo']; ?></p>
             <p class="edad">Edad: <?php echo $datosUsuario['edad']; ?></p>
             <p class="fechaNacimiento">Fecha de Nacimiento: <?php echo $datosUsuario['fechaNacimiento']; ?></p>
             <p class="ubicacion">Pais: <?php echo $datosUsuario['ubicacion']; ?></p>
+            <p class="profile-email">Correo: <?php echo $datosUsuario['correo']; ?></p>
+            
+            
+            
         
     
             <div class="action-buttons">
 
-                <a href="./editarusuario.php" class="edit-link">Editar Información</a>
-                <a href="./index.php">Cerrar sesión</a>
+                <a href="./editarusuario.php" class="edit-link">
+                    <button class="btn" type="button">
+                         Editar informacion
+                    </button>
+                </a>
+                <br>
+                <a href="./index.php" class="edit-link">
+                    <button class="btn" type="button">
+                         Cerrar Sesion
+                    </button>
+                </a>
+
+
+                
             </div>
         </div>
     
@@ -107,12 +122,14 @@ if (isset($_COOKIE['nombreUsuario'])) {
  
     <div class="profile-container3" >
         <h1>tus ultimas publicaciones</h1>
+        <hr>
     </div>
 
 </div>
 
 
 
-
+<img src="./img marketplace/SONIC.gif" alt="sonic" class="moving-image">
+    <hr size="5" width="150%">
 </body>
 </html>

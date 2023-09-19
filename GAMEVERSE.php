@@ -394,11 +394,11 @@ No cabe duda de que Hollow Knight es uno de los juegos de tipo metroidvania que 
         <button class="btn" style="box-shadow: 0 0 80px red;text-decoration: none;"> tel:13498647
         </button>
     
-    <button class="btn" style="box-shadow: 0 0 80px red; text-decoration: none;"> <a href="https://www.google.com/maps/place/Parque+San+Antonio/@6.2455975,-75.5708185,16.25z/data=!4m15!1m8!3m7!1s0x8e4428dfb80fad05:0x42137cfcc7b53b56!2sMedell%C3%ADn,+Antioquia!3b1!8m2!3d6.2476376!4d-75.5658153!16zL20vMDF4XzZz!3m5!1s0x8e44285682622b25:0x549026acddaebe34!8m2!3d6.245725!4d-75.5681414!16s%2Fg%2F121rjknb?entry=ttu">ubicanos</a>
+        <a href="https://www.google.com/maps/place/Parque+San+Antonio/@6.2455975,-75.5708185,16.25z/data=!4m15!1m8!3m7!1s0x8e4428dfb80fad05:0x42137cfcc7b53b56!2sMedell%C3%ADn,+Antioquia!3b1!8m2!3d6.2476376!4d-75.5658153!16zL20vMDF4XzZz!3m5!1s0x8e44285682622b25:0x549026acddaebe34!8m2!3d6.245725!4d-75.5681414!16s%2Fg%2F121rjknb?entry=ttu"><button class="btn" style="box-shadow: 0 0 80px red; text-decoration: none;"> ubicanos</a></button>
         
     <button class="btn" style="box-shadow: 0 0 80px red; text-decoration: none;"> correo
     </button>
-    </button>
+    
 </center>
 
 

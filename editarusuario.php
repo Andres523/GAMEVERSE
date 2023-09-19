@@ -65,14 +65,17 @@ if (isset($_POST['editarPerfil'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/stylegameverse.css">
+    <link rel="stylesheet" href="./styles/usuario.css">
     <title>Editar Perfil</title>
 </head>
 <body>
 
     <center>
-        <div>
+        <div class="cajita">
             <form action="" method="post" enctype="multipart/form-data">
+                <br>
+                <center><h2>Editar Perfil</h2></center>
+                <br>
                 <label for="imagen">Cambiar Imagen de Perfil:</label>
                 <input type="file" name="imagen" id="imagen">
                 <br><br>
@@ -95,7 +98,10 @@ if (isset($_POST['editarPerfil'])) {
                 <label for="direccion">Cambiar Dirección:</label>
                 <input type="text" name="direccion" id="direccion" value="<?php echo $datosUsuario['direccion']; ?>">
                 <br><br>
-                <a href="./usuario.php"><input type="submit" value="Guardar Cambios" name="editarPerfil"></a>
+                <center><form action="./usuario.php" method="post">
+                    <button type="submit" name="editarPerfil">Guardar Cambios</button>
+                </form>
+                </center>
             </form>
         </div>
     </center>
