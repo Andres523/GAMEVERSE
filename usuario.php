@@ -49,10 +49,10 @@ if (isset($_COOKIE['nombreUsuario'])) {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: #380c41;
             border: 1px solid #ddd;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 100px blue;
         }
 
         h1 {
@@ -71,7 +71,7 @@ if (isset($_COOKIE['nombreUsuario'])) {
         .button {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #383c41;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -80,7 +80,7 @@ if (isset($_COOKIE['nombreUsuario'])) {
         }
 
         .button:hover {
-            background-color: #0056b3;
+            background-color: #383c41;
         }
 
         /* Perfil */
@@ -100,7 +100,7 @@ if (isset($_COOKIE['nombreUsuario'])) {
         .profile-name {
             font-size: 24px;
             font-weight: bold;
-            color: #333;
+            color: #fff;
         }
 
         .profile-email {
@@ -130,6 +130,11 @@ if (isset($_COOKIE['nombreUsuario'])) {
 </head>
 <body>
 
+<style>
+    body{
+    background:#383c41;
+    }
+</style>
 <header class="main-header"></header>
 
 <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
