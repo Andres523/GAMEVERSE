@@ -48,6 +48,7 @@
                     <input type="email" name="correo"required="">
                     <label for="">correo</label>
                   </div>
+                 <center><a href="./index.php">iniciar sesion</a></center> 
                   <center><button class="btn4" type="submit" value="registrarse">Enviar</button></center>
 
                   <a href="https://www.facebook.com/"><img src="./img/facebook-logo-3-1.png" alt="facebook" width="40px"></a>
