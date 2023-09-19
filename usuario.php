@@ -33,75 +33,10 @@ if (isset($_COOKIE['nombreUsuario'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/stylegameverse.css">
+    <link rel="stylesheet" href="./styles/usuario.css">
     <link rel="shortcut icon" href="./img/logo.png">
     <title>Perfil de Usuario</title>
-    <style>
-        /* Estilos para el perfil */
-        .profile-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .profile-header {
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .profile-picture {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 3px solid #007bff;
-            margin-bottom: 20px;
-        }
-
-        .profile-name {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .genero {
-            font-size: 16px;
-            color: #555;
-            margin-top: 10px;
-        }
-
-        .profile-email {
-            font-size: 16px;
-            color: #555;
-            margin-top: 10px;
-        }
-
-        .edad {
-            font-size: 16px;
-            color: #555;
-            margin-top: 10px;
-        }
-
-        .fechaNacimiento {
-            font-size: 16px;
-            color: #555;
-            margin-top: 10px;
-        }
-
-        .action-buttons {
-            text-align: center;
-        }
-
-        .action-buttons a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: #007bff;
-            font-weight: bold;
-        }
-    </style>
+ 
 </head>
 <body>
     <header class="main-header"></header>
@@ -139,28 +74,45 @@ if (isset($_COOKIE['nombreUsuario'])) {
             <a href="https://www.instagram.com/?hl=en"><img src="./img/Instagram-Logosu.png" alt="Instagram-Logosu" width="80px"></a>
         </aside>
     </nav>
+
+<div class="padre">
+
+
+        <div class="profile-container" >
+            <img src="<?php echo $datosUsuario['imagenPerfil']; ?>" alt="Foto de perfil" class="profile-picture">
+            <h1 class="profile-name"><?php echo $datosUsuario['nombre']; ?></h1>
+        </div>
+
+
+    <div class="profile-container2" >
+
+        <div class="profile-header">
+
+            <!-- Aquí muestra  nombre, correo, edad, género y fecha de nacimiento del usuario -->
+            <p class="genero"><?php echo $datosUsuario['genero']; ?></p>
+            <p class="profile-email">Correo: <?php echo $datosUsuario['correo']; ?></p>
+            <p class="edad">Edad: <?php echo $datosUsuario['edad']; ?></p>
+            <p class="fechaNacimiento">Fecha de Nacimiento: <?php echo $datosUsuario['fechaNacimiento']; ?></p>
+            <p class="ubicacion">Pais: <?php echo $datosUsuario['ubicacion']; ?></p>
+        
     
-    <div class="profile-container">
-    <div class="profile-header">
-        <!-- Aquí muestra la imagen de perfil, nombre, correo, edad, género y fecha de nacimiento del usuario -->
-        <img src="<?php echo $datosUsuario['imagenPerfil']; ?>" alt="Foto de perfil" class="profile-picture">
-        <h1 class="profile-name"><?php echo $datosUsuario['nombre']; ?></h1>
-        <p class="genero"><?php echo $datosUsuario['genero']; ?></p>
-        <p class="profile-email">Correo: <?php echo $datosUsuario['correo']; ?></p>
-        <p class="edad">Edad: <?php echo $datosUsuario['edad']; ?></p>
-        <p class="fechaNacimiento">Fecha de Nacimiento: <?php echo $datosUsuario['fechaNacimiento']; ?></p>
+            <div class="action-buttons">
 
-        <!-- Mostrar Ubicación -->
-        <p class="ubicacion">Pais: <?php echo $datosUsuario['ubicacion']; ?></p>
-
-        <!-- Mostrar Dirección -->
-
-    </div>
+                <a href="./editarusuario.php" class="edit-link">Editar Información</a>
+                <a href="./index.php">Cerrar sesión</a>
+            </div>
+        </div>
     
-    <div class="action-buttons">
-        <a href="./editarusuario.php" class="edit-link">Editar Información</a>
-        <a href="./index.php">Cerrar sesión</a>
     </div>
+ 
+    <div class="profile-container3" >
+        <h1>tus ultimas publicaciones</h1>
+    </div>
+
 </div>
+
+
+
+
 </body>
 </html>
