@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -28,8 +27,6 @@ if (isset($_COOKIE['nombreUsuario'])) {
     echo "Bienvenido, invitado";
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -133,10 +130,7 @@ if (isset($_COOKIE['nombreUsuario'])) {
 </head>
 <body>
 
-
 <header class="main-header"></header>
-
-
 
 <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
     <span class="icon">
@@ -172,12 +166,48 @@ if (isset($_COOKIE['nombreUsuario'])) {
 </nav>
 </header>
     <div class="container">
-        <div class="profile-header">
-            <img src="imagen_de_perfil.jpg" alt="Foto de perfil" class="profile-picture">
-            <h1 class="profile-name"><?php echo $datosUsuario['nombre']; ?></h1>
-            <p class="profile-email"><?php echo $datosUsuario['correo']; ?></p>
-        </div>
+    <div class="profile-header">
+
+    <h1 class="profile-name"><?php echo $datosUsuario['nombre']; ?></h1>
+    <p class="profile-email"><?php echo $datosUsuario['correo']; ?></p>
+</div>
+
+
+        <form action="./usuario.php" method="post" enctype="multipart/form-data">
+            <input type="file" name="imagen" id="imagen">
+            <input type="submit" value="Subir Imagen" name="submit">
+        </form>
+
+        <?php
+        if (isset($_POST['submit'])) {
+            $nombreArchivo = $_FILES['imagen']['name'];
+            $tipoArchivo = $_FILES['imagen']['type'];
+            $tamanoArchivo = $_FILES['imagen']['size'];
+            $archivoTemporal = $_FILES['imagen']['tmp_name'];
+            
+            // Verifica que sea una imagen
+            $permitidos = array("image/jpg", "image/jpeg", "image/png");
+            if (in_array($tipoArchivo, $permitidos)) {
+                // Define la ruta de destino para guardar la imagen
+                $rutaDestino = "./img/" . $nombreArchivo;
+                move_uploaded_file($archivoTemporal, $rutaDestino);
+                
+
+
+                
         
+                
+                // Puedes guardar la ruta de la imagen en la base de datos si es necesario
+                // ...
+                
+                echo "Imagen subida con éxito.";
+            } else {
+                echo "Solo se permiten archivos JPG, JPEG y PNG.";
+            }
+        }
+        ?>
+       <center><img src="<?php echo isset($rutaDestino) ? $rutaDestino : ''; ?>" alt="Foto de perfil" class="profile-picture"></center> 
+
         <div class="link-container">
             <a href="#" class="link">Editar Perfil</a>
             <a href="./index.php" class="link">Cerrar Sesión</a>
