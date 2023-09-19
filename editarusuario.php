@@ -31,6 +31,7 @@ if (isset($_POST['editarPerfil'])) {
     $nuevaEdad = $_POST['edad'];
     $nuevaFechaNacimiento = $_POST['fechaNacimiento'];
     $nuevoGenero = $_POST['genero'];
+    
 
     // Actualizar la imagen de perfil si se seleccionó una nueva
     if ($_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
@@ -39,7 +40,7 @@ if (isset($_POST['editarPerfil'])) {
 
         // Aquí debes mover la imagen a una ubicación permanente y actualizar la ruta en la base de datos
         // Por ejemplo:
-        $rutaDestino = "C:\xampp\htdocs\GAMEVERSE\img" . $nombreArchivo;
+        $rutaDestino = "./img/perfiles/" . $nombreArchivo;
         move_uploaded_file($archivoTemporal, $rutaDestino);
 
         // Luego, actualiza la ruta de la imagen en la base de datos
@@ -57,8 +58,6 @@ if (isset($_POST['editarPerfil'])) {
         echo "Error al actualizar el perfil: " . mysqli_error($conexion);
     }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -73,11 +72,9 @@ if (isset($_POST['editarPerfil'])) {
 
     <center>
         <div>
-                <form action="" method="post" enctype="multipart/form-data">
-
+            <form action="" method="post" enctype="multipart/form-data">
                 <label for="imagen">Cambiar Imagen de Perfil:</label>
                 <input type="file" name="imagen" id="imagen">
-
                 <br><br>
                 <label for="edad">Edad:</label>
                 <input type="number" name="edad" id="edad" value="<?php echo $datosUsuario['edad']; ?>">
@@ -85,22 +82,21 @@ if (isset($_POST['editarPerfil'])) {
                 <label for="fechaNacimiento">Cambiar Fecha de Nacimiento:</label>
                 <input type="date" name="fechaNacimiento" id="fechaNacimiento" value="<?php echo $datosUsuario['fechaNacimiento']; ?>">
                 <br><br>
-
                 <label for="genero">Género:</label>
-    <select name="genero" id="genero">
-    <option value="hombre" <?php if ($datosUsuario['genero'] === 'hombre') echo 'selected'; ?>>Hombre</option>
-    <option value="mujer" <?php if ($datosUsuario['genero'] === 'mujer') echo 'selected'; ?>>Mujer</option>
-    </select>
-    <br>
-    <br>
-    <br>
-    <br>
+                <select name="genero" id="genero">
+                    <option value="hombre" <?php if ($datosUsuario['genero'] === 'hombre') echo 'selected'; ?>>Hombre</option>
+                    <option value="mujer" <?php if ($datosUsuario['genero'] === 'mujer') echo 'selected'; ?>>Mujer</option>
+                </select>
+                <br><br>
+                <!-- ... otros campos ... -->
+                <label for="ubicacion">Cambiar Pais</label>
+                <input type="text" name="ubicacion" id="ubicacion" value="<?php echo $datosUsuario['ubicacion']; ?>">
+                <br><br>
+                <label for="direccion">Cambiar Dirección:</label>
+                <input type="text" name="direccion" id="direccion" value="<?php echo $datosUsuario['direccion']; ?>">
+                <br><br>
                 <a href="./usuario.php"><input type="submit" value="Guardar Cambios" name="editarPerfil"></a>
             </form>
-
-
-<br><br>
-
         </div>
     </center>
 </body>

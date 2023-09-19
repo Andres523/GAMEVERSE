@@ -67,6 +67,12 @@ if (isset($_COOKIE['nombreUsuario'])) {
             color: #333;
         }
 
+        .genero {
+            font-size: 16px;
+            color: #555;
+            margin-top: 10px;
+        }
+
         .profile-email {
             font-size: 16px;
             color: #555;
@@ -85,7 +91,16 @@ if (isset($_COOKIE['nombreUsuario'])) {
             margin-top: 10px;
         }
 
+        .action-buttons {
+            text-align: center;
+        }
 
+        .action-buttons a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -126,19 +141,20 @@ if (isset($_COOKIE['nombreUsuario'])) {
     </nav>
     
     <div class="profile-container">
-        <div class="profile-header">
-            <!-- Aquí muestra la imagen de perfil, nombre, correo, edad y fecha de nacimiento del usuario -->
-            <img src="<?php echo $datosUsuario['imagenPerfil']; ?>" alt="Foto de perfil" class="profile-picture">
-            <h1 class="profile-name"><?php echo $datosUsuario['nombre']; ?></h1>
-            <br>
-            <p class="genero"><?php echo $datosUsuario['genero']; ?></p>
-            <p class="profile-email"><?php echo $datosUsuario['correo']; ?></p>
-            <p class="edad">Edad: <?php echo $datosUsuario['edad']; ?></p>
-            <p class="fechaNacimiento">Fecha de Nacimiento: <?php echo $datosUsuario['fechaNacimiento']; ?></p>
-        
-            <div class="profile-container">
     <div class="profile-header">
-        <!-- ... -->
+        <!-- Aquí muestra la imagen de perfil, nombre, correo, edad, género y fecha de nacimiento del usuario -->
+        <img src="<?php echo $datosUsuario['imagenPerfil']; ?>" alt="Foto de perfil" class="profile-picture">
+        <h1 class="profile-name"><?php echo $datosUsuario['nombre']; ?></h1>
+        <p class="genero"><?php echo $datosUsuario['genero']; ?></p>
+        <p class="profile-email">Correo: <?php echo $datosUsuario['correo']; ?></p>
+        <p class="edad">Edad: <?php echo $datosUsuario['edad']; ?></p>
+        <p class="fechaNacimiento">Fecha de Nacimiento: <?php echo $datosUsuario['fechaNacimiento']; ?></p>
+
+        <!-- Mostrar Ubicación -->
+        <p class="ubicacion">Pais: <?php echo $datosUsuario['ubicacion']; ?></p>
+
+        <!-- Mostrar Dirección -->
+
     </div>
     
     <div class="action-buttons">
@@ -146,27 +162,5 @@ if (isset($_COOKIE['nombreUsuario'])) {
         <a href="./index.php">Cerrar sesión</a>
     </div>
 </div>
-
-
-
-<style>
-    .profile-container {
-    /* coloquen lo que quieran pa editar*/
-}
-
-.profile-header {
-
-}
-
-.action-buttons {
-    text-align: center; 
-
-}
-
-.action-buttons a {
-    margin-left: 200px; 
-    
-}
-</style>
 </body>
 </html>
