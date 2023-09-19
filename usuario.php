@@ -37,53 +37,17 @@ if (isset($_COOKIE['nombreUsuario'])) {
     <link rel="shortcut icon" href="./img/logo.png">
     <title>Perfil de Usuario</title>
     <style>
-        /* Estilo CSS aquí */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
+        /* Estilos para el perfil */
+        .profile-container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #380c41;
+            background-color: #fff;
             border: 1px solid #ddd;
             border-radius: 5px;
-            box-shadow: 0 0 100px blue;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
-            font-size: 24px;
-            color: #333;
-            margin-top: 0;
-        }
-
-        p {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 10px;
-        }
-
-        /* Botones */
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #383c41;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .button:hover {
-            background-color: #383c41;
-        }
-
-        /* Perfil */
         .profile-header {
             text-align: center;
             padding: 20px 0;
@@ -100,7 +64,7 @@ if (isset($_COOKIE['nombreUsuario'])) {
         .profile-name {
             font-size: 24px;
             font-weight: bold;
-            color: #fff;
+            color: #333;
         }
 
         .profile-email {
@@ -109,114 +73,100 @@ if (isset($_COOKIE['nombreUsuario'])) {
             margin-top: 10px;
         }
 
-        /* Enlaces */
-        .link-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .link {
-            text-decoration: none;
-            color: #007bff;
-            margin: 0 20px;
-            font-weight: bold;
+        .edad {
             font-size: 16px;
+            color: #555;
+            margin-top: 10px;
         }
 
-        .link:hover {
-            text-decoration: underline;
+        .fechaNacimiento {
+            font-size: 16px;
+            color: #555;
+            margin-top: 10px;
         }
+
+
     </style>
 </head>
 <body>
-
-<style>
-    body{
-    background:#383c41;
-    }
-</style>
-<header class="main-header"></header>
-
-<label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
-    <span class="icon">
-        <svg viewBox="0 0 175 80" width="60" height="40">
-            <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-            <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-            <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-        </svg>
-    </span>
-    <span class="text">MENU</span></label>
-<input type="checkbox" id="btn-nav"> 
+    <header class="main-header"></header>
     
-<nav>
-  <ul class="navigation">
-    <li><a href="./GAMEVERSE.php">HOME</a></li>
-    <li><a href="./tienda.html">TIENDA</a></li>
-    <li><a href="">FANDOM</a></li>
-    <li><a href="./marketplace.html">MARKETPLACE</a></li>
-  </ul>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <aside>
-   <a href="https://www.facebook.com/"><img src="./img/facebook-logo-3-1.png" alt="facebook-logo-3-1" width="50px"></a>
-   <a href="https://twitter.com/"><img src="./img/Logo_of_Twitter.svg.png" alt="Logo_of_Twitter" width="70px"></a>
-   <a href="https://www.instagram.com/?hl=en"><img src="./img/Instagram-Logosu.png" alt="Instagram-Logosu" width="80px"></a>
-  </aside>
-</nav>
-</header>
-    <div class="container">
+    <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
+        <span class="icon">
+            <svg viewBox="0 0 175 80" width="60" height="40">
+                <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+            </svg>
+        </span>
+        <span class="text">MENU</span>
+    </label>
+    <input type="checkbox" id="btn-nav"> 
+            
+    <nav>
+        <ul class="navigation">
+            <li><a href="./GAMEVERSE.php">HOME</a></li>
+            <li><a href="./tienda.html">TIENDA</a></li>
+            <li><a href="">FANDOM</a></li>
+            <li><a href="./marketplace.html">MARKETPLACE</a></li>
+        </ul>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <aside>
+            <a href="https://www.facebook.com/"><img src="./img/facebook-logo-3-1.png" alt="facebook-logo-3-1" width="50px"></a>
+            <a href="https://twitter.com/"><img src="./img/Logo_of_Twitter.svg.png" alt="Logo_of_Twitter" width="70px"></a>
+            <a href="https://www.instagram.com/?hl=en"><img src="./img/Instagram-Logosu.png" alt="Instagram-Logosu" width="80px"></a>
+        </aside>
+    </nav>
+    
+    <div class="profile-container">
+        <div class="profile-header">
+            <!-- Aquí muestra la imagen de perfil, nombre, correo, edad y fecha de nacimiento del usuario -->
+            <img src="<?php echo $datosUsuario['imagenPerfil']; ?>" alt="Foto de perfil" class="profile-picture">
+            <h1 class="profile-name"><?php echo $datosUsuario['nombre']; ?></h1>
+            <br>
+            <p class="genero"><?php echo $datosUsuario['genero']; ?></p>
+            <p class="profile-email"><?php echo $datosUsuario['correo']; ?></p>
+            <p class="edad">Edad: <?php echo $datosUsuario['edad']; ?></p>
+            <p class="fechaNacimiento">Fecha de Nacimiento: <?php echo $datosUsuario['fechaNacimiento']; ?></p>
+        
+            <div class="profile-container">
     <div class="profile-header">
-
-    <h1 class="profile-name"><?php echo $datosUsuario['nombre']; ?></h1>
-    <p class="profile-email"><?php echo $datosUsuario['correo']; ?></p>
+        <!-- ... -->
+    </div>
+    
+    <div class="action-buttons">
+        <a href="./editarusuario.php" class="edit-link">Editar Información</a>
+        <a href="./index.php">Cerrar sesión</a>
+    </div>
 </div>
 
 
-        <form action="./usuario.php" method="post" enctype="multipart/form-data">
-            <input type="file" name="imagen" id="imagen">
-            <input type="submit" value="Subir Imagen" name="submit">
-        </form>
 
-        <?php
-        if (isset($_POST['submit'])) {
-            $nombreArchivo = $_FILES['imagen']['name'];
-            $tipoArchivo = $_FILES['imagen']['type'];
-            $tamanoArchivo = $_FILES['imagen']['size'];
-            $archivoTemporal = $_FILES['imagen']['tmp_name'];
-            
-            // Verifica que sea una imagen
-            $permitidos = array("image/jpg", "image/jpeg", "image/png");
-            if (in_array($tipoArchivo, $permitidos)) {
-                // Define la ruta de destino para guardar la imagen
-                $rutaDestino = "./img/" . $nombreArchivo;
-                move_uploaded_file($archivoTemporal, $rutaDestino);
-                
+<style>
+    .profile-container {
+    /* coloquen lo que quieran pa editar*/
+}
 
+.profile-header {
 
-                
-        
-                
-                // Puedes guardar la ruta de la imagen en la base de datos si es necesario
-                // ...
-                
-                echo "Imagen subida con éxito.";
-            } else {
-                echo "Solo se permiten archivos JPG, JPEG y PNG.";
-            }
-        }
-        ?>
-       <center><img src="<?php echo isset($rutaDestino) ? $rutaDestino : ''; ?>" alt="Foto de perfil" class="profile-picture"></center> 
+}
 
-        <div class="link-container">
-            <a href="#" class="link">Editar Perfil</a>
-            <a href="./index.php" class="link">Cerrar Sesión</a>
-        </div>
-    </div>
+.action-buttons {
+    text-align: center; 
+
+}
+
+.action-buttons a {
+    margin-left: 200px; 
+    
+}
+</style>
 </body>
 </html>
