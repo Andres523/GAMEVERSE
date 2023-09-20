@@ -22,7 +22,7 @@
                     <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
                 </svg>
             </span>
-            <span class="text">MENU</span></label>
+            <span class="text">MENU </span></label>
         <input type="checkbox" id="btn-nav"> 
             
         <nav>

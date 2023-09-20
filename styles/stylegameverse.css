@@ -37,8 +37,8 @@
       transform:translateX(-100%);
       transition:.4s ease;
       z-index: 999;
-      border-radius: 50px;
-      opacity: 0.8;
+     
+      opacity: 0.9;
       
     }
     
