@@ -218,3 +218,7 @@ nav {
 .reply-form button:hover {
     background-color: #003356;
 }
+.content-column {
+    float: left;
+    width: 70%; 
+}
