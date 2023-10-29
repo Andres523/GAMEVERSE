@@ -11,11 +11,11 @@
     <header class="main-header"></header>
     <header class="main-header">
         <div style="position: absolute; top: 10px; right: 10px;">
-            <button style="margin-right: 10px;">Iniciar Sesión</button>
-            <button>Registrarse</button>
-            <button style="position: absolute; top: 60px; right: 10px;">Configuración</button>
+            <button style="margin-right: 10px;"><a href="./login.html">Iniciar Sesion</a></button>
+            <button><a href="./register.php">Registrarse</a></button>
 
         </div>
+
 
         <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
             <span class="icon">
