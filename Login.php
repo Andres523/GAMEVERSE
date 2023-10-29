@@ -202,9 +202,7 @@ setcookie("nombreUsuario", $nombre, time() + 3600, "/"); // La cookie expirará 
   color: #fff;
 }
     </style>
-<footer class="footer">
-  <p>&copy; 2023 Todos los derechos reservados.</p>
-</footer>
+
 
 
 
@@ -213,5 +211,7 @@ setcookie("nombreUsuario", $nombre, time() + 3600, "/"); // La cookie expirará 
 
 
 </body>
-
+<footer class="footer">
+  <p>&copy; 2023 Todos los derechos reservados.</p>
+</footer>
 </html>
