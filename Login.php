@@ -11,25 +11,6 @@
   <br>
   <br>
   <br>
-  <div class="wrapper">
-    <div class="one">
-        <section>
-            <img src="./img/terraria.jpg" alt="terraria">
-            <img src="./img/wow.jpg" alt="wow">
-            <img src="./img/pubg.jpg" alt="pubg">
-            <img src="./img/minecraft.jpeg" alt="minecraft">
-            <img src="./img/fornite.jpg" alt="fornite">
-        </section>
-    </div>
-    <div class="three">
-        <section>
-            <img src="./img/mario.jpg" alt="mario">
-            <img src="./img/pokemon.jfif" alt="pokemon">
-            <img src="./img/animal-crossing-new-horizons---button-fin-1588641487551.jpg" alt="animalcrosing">
-            <img src="./img/The_Legend_of_Zelda_Breath_of_the_Wild.jpg" alt="zelda">
-            <img src="./img/super smash bros.jpg" alt="smash">
-        </section>
-        <hr>
 
     </div>
     <div class="login-box">
@@ -46,34 +27,24 @@
 <br>
 
 
-        
+<br>     
 <center><button class="btn4" type="submit">Enviar</button></center>
+<center><a href="./register.html">¿no tienes cuenta?</a></center>
 
-<br>
-<br>
-<a href="./register.html">¿no tienes cuenta?</a>
-
-      <?php
-
+<?php
 if (isset($_POST['nombre']) && isset($_POST['password'])) {
     // Recuperar datos del formulario
     $nombre = $_POST['nombre'];
     $password = $_POST['password'];
-
-   
     $conexion = mysqli_connect("127.0.0.1", "samuel", "samux523", "gameverse");
 
-    
     if (!$conexion) {
         die("Error de conexión: " . mysqli_connect_error());
     }
-
-
     $sql = "SELECT * FROM usuarios WHERE nombre='$nombre'";
 
     // Después de verificar las credenciales y antes de redirigir
 setcookie("nombreUsuario", $nombre, time() + 3600, "/"); // La cookie expirará en una hora
-
 
     // Ejecutar la consulta
     $resultado = mysqli_query($conexion, $sql);
@@ -98,16 +69,12 @@ setcookie("nombreUsuario", $nombre, time() + 3600, "/"); // La cookie expirará 
 }
 ?>
 
-
 <style>
-
-        .mensaje-error {
-            color: red; 
-        }
-    </style>  
-      
-      
-      </form>
+  .mensaje-error {
+      color: red; 
+  }
+</style>  
+</form>
 
 
 
