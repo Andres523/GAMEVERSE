@@ -43,16 +43,16 @@
           <input type="password" name="password" required="">
           <label>contraseña</label>
         </div>
-        <a href="./register.html">¿no tienes cuenta?</a>
+<br>
 
 
         
 <center><button class="btn4" type="submit">Enviar</button></center>
 
-       <a href="https://www.facebook.com/"><img src="./img/facebook-logo-3-1.png" alt="facebook" width="40px"></a>
-        <a href="https://mail.google.com/"><img src="./img/logo-Gmail-1.png" alt="logo-Gmail-1" width="60px"></a>
-      <br>
-      <br>
+<br>
+<br>
+<a href="./register.html">¿no tienes cuenta?</a>
+
       <?php
 
 if (isset($_POST['nombre']) && isset($_POST['password'])) {
