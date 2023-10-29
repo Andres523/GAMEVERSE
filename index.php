@@ -11,8 +11,10 @@
     <header class="main-header"></header>
     <header class="main-header">
         <div style="position: absolute; top: 10px; right: 10px;">
-            <button style="margin-right: 10px;"><a href="./login.html">Iniciar Sesion</a></button>
-            <button><a href="./register.php">Registrarse</a></button>
+
+        <a href="./login.php"><button style="margin-right: 10px;">Iniciar Sesion</button></a>
+
+        <a href="./register.html"><button>Registrarse</button></a>
 
             <label for="btn-cog" class="btn-cog"><i class="fas fa-bars"></i>
             <span class="icon">
