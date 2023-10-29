@@ -31,9 +31,8 @@
             
         <nav>
           <ul class="navigation">
-            <li><a href="./GAMEVERSE.php">HOME</a></li>
+            <li><a href="./index.php">HOME</a></li>
             <li><a href="./tienda.html">TIENDA</a></li>
-            <li><a href="./Fandom.html">FANDOM</a></li>
             <li><a href="./marketplace.html">MARKETPLACE</a></li>
           </ul>
           <br>
@@ -206,18 +205,6 @@ No cabe duda de que Hollow Knight es uno de los juegos de tipo metroidvania que 
     </button>
     
 </center>
-
-
-
-<br>
-<br>
-<center>
-    <footer class="footer">
-        <p>&copy; 2023 Todos los derechos reservados.</p>
-    </footer>
-</center>
-
-
 
 </style>
 </body>
