@@ -12,7 +12,7 @@
     <header class="main-header">
         <div style="position: absolute; top: 10px; right: 10px;">
             <button style="margin-right: 10px;"><a href="./login.html">Iniciar Sesion</a></button>
-            <button><a href="./register.php">Registrarse</a></button>
+            <button><a href="./register.html">Registrarse</a></button>
 
         </div>
 
