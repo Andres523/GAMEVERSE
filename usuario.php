@@ -57,7 +57,6 @@ if (isset($_COOKIE['nombreUsuario'])) {
         <ul class="navigation">
             <li><a href="./GAMEVERSE.php">HOME</a></li>
             <li><a href="./tienda.html">TIENDA</a></li>
-            <li><a href="">FANDOM</a></li>
             <li><a href="./marketplace.html">MARKETPLACE</a></li>
         </ul>
         <br>

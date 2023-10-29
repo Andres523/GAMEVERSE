@@ -220,7 +220,5 @@ mysqli_close($conexion);
  </form>
 
 </body>
-<footer class="footer">
-        <p>&copy; 2023 Todos los derechos reservados.</p>
-      </footer>
+
 </html>

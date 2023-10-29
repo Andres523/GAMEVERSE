@@ -203,15 +203,6 @@ setcookie("nombreUsuario", $nombre, time() + 3600, "/"); // La cookie expirará 
 }
     </style>
 
-
-
-
-
-
-
-
 </body>
-<footer class="footer">
-  <p>&copy; 2023 Todos los derechos reservados.</p>
-</footer>
+
 </html>
