@@ -11,11 +11,38 @@
     <header class="main-header"></header>
     <header class="main-header">
         <div style="position: absolute; top: 10px; right: 10px;">
-            <button style="margin-right: 10px;">Iniciar Sesión</button>
-            <button>Registrarse</button>
-            <button style="position: absolute; top: 60px; right: 10px;">Configuración</button>
+            <button style="margin-right: 10px;"><a href="./login.html">Iniciar Sesion</a></button>
+            <button><a href="./register.php">Registrarse</a></button>
 
+            <label for="btn-cog" class="btn-cog"><i class="fas fa-bars"></i>
+            <span class="icon">
+                </svg>
+            </span>
+
+            <span class="text">Configuracion </span></label>
+        <input type="checkbox" id="btn-cog"> 
+            
+        <nav>
+          <ul class="navigation">
+            <li><a href="./GAMEVERSE.php">Perfil</a></li>
+            <li><a href="./tienda.html">Ajustes de perfil</a></li>
+          </ul>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <aside>
+          <li><a href="">Reporte bugs </a></li>
+          </aside>
+        </nav>
+    </header>
         </div>
+        
+
 
         <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
             <span class="icon">
@@ -187,6 +214,7 @@ No cabe duda de que Hollow Knight es uno de los juegos de tipo metroidvania que 
 <center>
 
 
+<<<<<<< HEAD
 
 <h1 class="titulo">
     contactanos 
@@ -206,6 +234,18 @@ No cabe duda de que Hollow Knight es uno de los juegos de tipo metroidvania que 
     
 </center>
 
+=======
+<br>
+<br>
+<center>
+    <footer class="footer">
+        <p>&copy; 2023 Todos los derechos reservados.</p>
+    </footer>
+</center>
+
+
+
+>>>>>>> 431feefc5678d8991c17ad660342396a57de7bd5
 </style>
 </body>
 </html>
