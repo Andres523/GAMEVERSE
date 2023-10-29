@@ -50,19 +50,7 @@
 
     <a href="./usuario.php">
     <button class="btn" type="button">
- <strong>
-  <?php
-  session_start();
-if (isset($_COOKIE['nombreUsuario'])) {
-    $nombreUsuario = $_COOKIE['nombreUsuario'];
-    echo "Bienvenido, $nombreUsuario";
-} else {
-    echo "Bienvenido, invitado";
-}
-?>
 
-  </strong>
- 
   <div id="container-stars">
     <div id="stars"></div>
   </div>
