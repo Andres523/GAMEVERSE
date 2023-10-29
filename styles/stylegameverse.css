@@ -468,8 +468,18 @@ a:hover {
   top: 10px; 
 }
 
+
+
+#btn-cog {
+  display: none;
+  position: absolute;
+  right: 10px; 
+  top: 10px; 
+}
+
 #btn-cog:checked ~ nav {
-  transform: translateX(0);
+  transform: translateX(100%);
+
 }
 
 .btn-cog {
@@ -483,6 +493,8 @@ a:hover {
   transition: 0.2s ease;
   background: rgba(0, 0, 0, 0.1);
 }
+
+
 
 .btn-cog:hover {
   background: rgba(0, 0, 0, 0.3);

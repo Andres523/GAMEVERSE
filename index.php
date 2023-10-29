@@ -11,7 +11,7 @@
     <header class="main-header"></header>
     <header class="main-header">
         <div style="position: absolute; top: 10px; right: 10px;">
-            <button style="margin-right: 10px;"><a href="./Login.html">Iniciar Sesion</a></button>
+            <button style="margin-right: 10px;"><a href="./login.html">Iniciar Sesion</a></button>
             <button><a href="./register.php">Registrarse</a></button>
 
             <label for="btn-cog" class="btn-cog"><i class="fas fa-bars"></i>
@@ -225,6 +225,6 @@ No cabe duda de que Hollow Knight es uno de los juegos de tipo metroidvania que 
 
 
 
-</style>
+
 </body>
 </html>
