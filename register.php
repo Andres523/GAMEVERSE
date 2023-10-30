@@ -26,7 +26,6 @@
                     <input type="email" name="correo"required="">
                     <label for="">correo</label>
                   </div>
-                 <center><a href="./index.php">iniciar sesion</a></center> 
                   <center><button class="btn4" type="submit" value="registrarse">Enviar</button></center>
 
                <br>
@@ -154,73 +153,73 @@
                </style>
       <br>
       <br>
-
-<?php
-// Establece la conexión a la base de datos
+      <?php
 $conexion = mysqli_connect("127.0.0.1", "samuel", "samux523", "gameverse");
 
-// Verifica si la conexión fue exitosa
 if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
-// Recupera los datos del formulario
 $nombreUsuario = $_POST['nombre'];
 $password = $_POST['password'];
 $passwordRepetida = $_POST['password_repetida'];
 $correo = $_POST['correo'];
 
-// Verifica que las contraseñas coincidan
 if ($password != $passwordRepetida) {
     echo "<p style='color: red;'>Las contraseñas no coinciden. Intenta de nuevo.</p>";
     mysqli_close($conexion);
     exit;
 }
 
-// Verifica si el nombre de usuario ya existe en la base de datos
 $consultaUsuario = "SELECT * FROM usuarios WHERE nombre = '$nombreUsuario'";
 $resultadoUsuario = mysqli_query($conexion, $consultaUsuario);
 
-
-
 if (mysqli_num_rows($resultadoUsuario) > 0) {
-    // El nombre de usuario ya existe, muestra un mensaje de error en rojo
     echo "<p style='color: red;'>El nombre de usuario ya está registrado. Por favor, elige otro nombre.</p>";
     mysqli_close($conexion);
     exit;
 }
 
-// Verifica si el correo ya existe en la base de datos
 $consultaCorreo = "SELECT * FROM usuarios WHERE correo = '$correo'";
 $resultadoCorreo = mysqli_query($conexion, $consultaCorreo);
 
 if (mysqli_num_rows($resultadoCorreo) > 0) {
-    // El correo ya existe, muestra un mensaje de error en rojo
     echo "<p style='color: red;'>El correo ya está registrado. Por favor, utiliza otro correo.</p>";
     mysqli_close($conexion);
     exit;
 }
 
-// Si llegamos a este punto, el nombre de usuario y el correo no existen, por lo que podemos insertar el nuevo usuario en la base de datos
-$sql = "INSERT INTO usuarios (nombre, password, correo) VALUES ('$nombreUsuario', '$password', '$correo')";
-error_reporting(E_ERROR | E_PARSE);
+$codigoVerificacion = md5(uniqid(rand(), true));
+
+$sql = "INSERT INTO usuarios (nombre, password, correo, codigo_verificacion) VALUES ('$nombreUsuario', '$password', '$correo', '$codigoVerificacion')";
+
 if (mysqli_query($conexion, $sql)) {
-  echo " <p style='color: green;'>Registro exitoso. Ahora puedes iniciar sesión.</p>";
-  header("Location: GAMEVERSE.php");
-  exit;
+    $asunto = "Verificación Gameverse";
+    $mensaje = "Si deseas activar tu cuenta, haz clic en el siguiente enlace:\n";
+    $mensaje .= "https://tu-sitio-web.com/activar.php?codigo=$codigoVerificacion";
+
+    $cabeceras = "From: Gameverse@gmail.com" . "\r\n";
+    $cabeceras .= "Reply-To: Gameverse@gmail.com" . "\r\n";
+    $cabeceras .= "X-Mailer: PHP/" . phpversion();
+
+    if (mail($correo, $asunto, $mensaje, $cabeceras)) {
+        echo "<p style='color: green;'>Registro exitoso. Revisa tu correo para la verificación.</p>";
+        header("Location: GAMEVERSE.php");
+        exit;
+    } else {
+        echo "<p style='color: red;'>Error al enviar el correo de verificación.</p>";
+    }
 } else {
-echo "<p style='color: red;'>Error al registrar el usuario: </p>" . mysqli_error($conexion);
-  header("Location: ./register.html");
-  exit; 
+    echo "<p style='color: red;'>Error al registrar el usuario: " . mysqli_error($conexion) . "</p>";
+    header("Location: ./register.html");
+    exit;
 }
 
-// Cierra la conexión a la base de datos
 mysqli_close($conexion);
 ?>
+
  </form>
 
 </body>
-<footer class="footer">
-        <p>&copy; 2023 Todos los derechos reservados.</p>
-      </footer>
+
 </html>
