@@ -20,12 +20,12 @@
             </span>
 
             <span class="text">Configuracion </span></label>
-        <input type="checkbox" id="btn-cog"> 
+        <input class="config-nav" type="checkbox" id="btn-cog"> 
             
-        <nav>
-          <ul class="navigation">
-            <li><a href="./GAMEVERSE.php">Perfil</a></li>
-            <li><a href="./tienda.html">Ajustes de perfil</a></li>
+        <nav class="config-nav">
+          <ul class="navigation2">
+            <li><a href="./usuario.php">Perfil</a></li>
+            <li><a href="./editarusuario.html">Ajustes de perfil</a></li>
           </ul>
           <br>
           <br>
@@ -38,7 +38,7 @@
           <aside>
           <li><a href="">Reporte bugs </a></li>
           </aside>
-        </nav>
+</nav>
     </header>
         </div>
         
