@@ -21,7 +21,7 @@ if (isset($_COOKIE["nombreUsuario"])) {
 <body>    
 <header class="main-header">
     <div class="button-container">
-        <button class="btn-login"><a href="./Login.html">Iniciar Sesión</a></button>
+        <button class="btn-login"><a href="./Login.php">Iniciar Sesión</a></button>
         <button class="btn-register"><a href="./register.php">Registrarse</a></button>
 
         <div class="button" id="settingsBtn">
@@ -38,6 +38,10 @@ if (isset($_COOKIE["nombreUsuario"])) {
                 <a href=""><button>Reporte bugs</button></a>
             </div>
         </div>
+    </div>
+
+
+
         
 
 
