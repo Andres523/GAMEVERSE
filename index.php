@@ -22,7 +22,7 @@ if (isset($_COOKIE["nombreUsuario"])) {
 <header class="main-header">
     <div class="button-container">
         <button class="btn-login"><a href="./Login.php">Iniciar Sesión</a></button>
-        <button class="btn-register"><a href="./register.php">Registrarse</a></button>
+        <button class="btn-register"><a href="./register.html">Registrarse</a></button>
 
         <div class="button" id="settingsBtn">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 20 20" height="20" fill="none" class="svg-icon">
