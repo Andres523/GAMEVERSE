@@ -26,7 +26,7 @@
                 <input type="email" name="correo" required="">
                 <label for="">correo</label>
             </div>
-            <center><a href="./index.php">iniciar sesion</a></center>
+            <center><a href="./login.php">iniciar sesion</a></center>
             <center><button class="btn4" type="submit" value="registrarse">Enviar</button></center>
             <br>
             <style>
@@ -147,7 +147,7 @@
             if (mysqli_query($conexion, $sql)) {
                 $to = $correo;
                 $subject = 'Verificación de registro en Tu Sitio Web';
-                $message = 'buenas bienvenido a Gameverse <br> Por favor, haga clic en el siguiente enlace para verificar su registro: ' . 'http://localhost/GAMEVERSE/login.php?token=' . $token;
+                $message = 'buenas bienvenido a Gameverse  Por favor, haga clic en el siguiente enlace para verificar su registro: ' . 'http://localhost/GAMEVERSE/verificacion.php?token=' . $token;
                 $headers = 'From: tu_correo@gmail.com' . "\r\n" .
                            'Reply-To: tu_correo@gmail.com' . "\r\n" .
                            'X-Mailer: PHP/' . phpversion();

@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Verificar si la cookie "nombreUsuario" está configurada
+if (isset($_COOKIE["nombreUsuario"])) {
+    $nombreUsuario = $_COOKIE["nombreUsuario"];
+} else {
+    $nombreUsuario = "Invitado"; // Establecer un valor predeterminado si la cookie no está configurada
+}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,8 +22,8 @@
     <header class="main-header"></header>
     <header class="main-header">
         <div style="position: absolute; top: 10px; right: 10px;">
-            <button style="margin-right: 10px;"><a href="./login.html">Iniciar Sesion</a></button>
-            <button><a href="./register.php">Registrarse</a></button>
+            <button style="margin-right: 10px;"><a href="./login.php">Iniciar Sesion</a></button>
+            <button><a href="./register.html">Registrarse</a></button>
 
             <label for="btn-cog" class="btn-cog"><i class="fas fa-bars"></i>
             <span class="icon">
@@ -39,8 +50,11 @@
           <li><a href="">Reporte bugs </a></li>
           </aside>
 </nav>
-    </header>
+    </header class="main-header">
         </div>
+        <center>
+        <h1 style="font-size:45px">Bienvenido, <?php echo $nombreUsuario; ?></h1>
+        </center>
         
 
 
@@ -214,7 +228,7 @@ No cabe duda de que Hollow Knight es uno de los juegos de tipo metroidvania que 
 <center>
 
 
-<<<<<<< HEAD
+
 
 <h1 class="titulo">
     contactanos 
