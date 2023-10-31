@@ -8,7 +8,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/login.css">
     <title>login</title>
-    <a href="./GAMEVERSE.php"><img src="./img/logo.png" alt="logo" width="80px"  ></a>
+    <a href="./index.php"><img src="./img/logo.png" alt="logo" width="80px"  ></a>
 </head>
 <body>
   <br>
@@ -47,24 +47,21 @@ if (isset($_POST['nombre']) && isset($_POST['password'])) {
     $sql = "SELECT * FROM usuarios WHERE nombre='$nombre'";
 
 
-setcookie("nombreUsuario", $nombre, time() + 3600, "/"); 
-
     // Ejecutar la consulta
     $resultado = mysqli_query($conexion, $sql);
 
     if ($resultado && mysqli_num_rows($resultado) == 1) {
-        // El nombre de usuario existe, ahora verifica la contraseña
         $fila = mysqli_fetch_assoc($resultado);
         if ($fila['password'] == $password) {
+          setcookie("nombreUsuario", $nombre, time() + 3600, "/");
           session_start();
-            header("Location: GAMEVERSE.php");
+          header("Location: index.php");
+ 
             exit;
         } else {
-          
             echo "<p class='mensaje-error'>Contraseña incorrecta. Intenta de nuevo.</p>";
         }
     } else {
-       
         echo "<p class='mensaje-error'>Nombre de usuario incorrecto. Intenta de nuevo.</p>";
     }
 

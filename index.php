@@ -1,13 +1,14 @@
 <?php
 session_start();
 
-if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
-    $showRegistration = false;
+// Verificar si la cookie "nombreUsuario" está configurada
+if (isset($_COOKIE["nombreUsuario"])) {
+    $nombreUsuario = $_COOKIE["nombreUsuario"];
 } else {
-    $showRegistration = true;
+    $nombreUsuario = "Invitado"; // Establecer un valor predeterminado si la cookie no está configurada
 }
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,10 +16,48 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/stylegameverse.css">
     <link rel="shortcut icon" href="./img/logo.png">
-    <title>Inicio</title>
+    <title>inicio</title>
 </head>
-<body>
+<body>    
+    <header class="main-header"></header>
     <header class="main-header">
+        <div style="position: absolute; top: 10px; right: 10px;">
+            <button style="margin-right: 10px;"><a href="./login.php">Iniciar Sesion</a></button>
+            <button><a href="./register.html">Registrarse</a></button>
+
+            <label for="btn-cog" class="btn-cog"><i class="fas fa-bars"></i>
+            <span class="icon">
+                </svg>
+            </span>
+
+            <span class="text">Configuracion </span></label>
+        <input class="config-nav" type="checkbox" id="btn-cog"> 
+            
+        <nav class="config-nav">
+          <ul class="navigation2">
+            <li><a href="./usuario.php">Perfil</a></li>
+            <li><a href="./editarusuario.html">Ajustes de perfil</a></li>
+          </ul>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <aside>
+          <li><a href="">Reporte bugs </a></li>
+          </aside>
+</nav>
+    </header class="main-header">
+        </div>
+        <center>
+        <h1 style="font-size:45px">Bienvenido, <?php echo $nombreUsuario; ?></h1>
+        </center>
+        
+
+
         <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
             <span class="icon">
                 <svg viewBox="0 0 175 80" width="60" height="40">
@@ -27,78 +66,31 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                     <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
                 </svg>
             </span>
-            <span class="text">MENU </span>
-        </label>
-        <input type="checkbox" id="btn-nav">
+
+            <span class="text">MENU </span></label>
+        <input type="checkbox" id="btn-nav"> 
+            
         <nav>
-            <ul class="navigation">
-                <li><a href="./index.php">HOME</a></li>
-                <li><a href="./tienda.html">TIENDA</a></li>
-                <li><a href="./marketplace.html">MARKETPLACE</a></li>
-            </ul>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <aside>
-                <a href="https://www.facebook.com/"><img src="./img/facebook-logo-3-1.png" alt="facebook-logo-3-1" width="50px"></a>
-                <a href="https://twitter.com/"><img src="./img/Logo_of_Twitter.svg.png" alt="Logo_of_Twitter" width="70px"></a>
-                <a href="https://www.instagram.com/?hl=en"><img src="./img/Instagram-Logosu.png" alt="Instagram-Logosu" width="80px"></a>
-            </aside>
+          <ul class="navigation">
+            <li><a href="./index.php">HOME</a></li>
+            <li><a href="./tienda.html">TIENDA</a></li>
+            <li><a href="./marketplace.html">MARKETPLACE</a></li>
+          </ul>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <aside>
+           <a href="https://www.facebook.com/"><img src="./img/facebook-logo-3-1.png" alt="facebook-logo-3-1" width="50px"></a>
+           <a href="https://twitter.com/"><img src="./img/Logo_of_Twitter.svg.png" alt="Logo_of_Twitter" width="70px"></a>
+           <a href="https://www.instagram.com/?hl=en"><img src="./img/Instagram-Logosu.png" alt="Instagram-Logosu" width="80px"></a>
+          </aside>
         </nav>
     </header>
-
-    <?php if ($showRegistration): ?>
-        <header class="main-header">
-  
-            <div style="position: absolute; top: 10px; right: 10px;">
-                <button style="margin-right: 10px; z-index: 10;"><a href="./login.php">Iniciar Sesión</a></button>
-                <button><a href="./register.php">Registrarse</a></button>
-            </div>
-        </header>
-    <?php elseif (isset($_COOKIE['nombreUsuario'])): ?>
-
-            
-            <center><h1>Bienvenido, <?php echo $_COOKIE['nombreUsuario']; ?></h1></center>
-            <br>
-            <br>
-            
-    <?php endif; ?>
-
-<div>
-        <header class="main-header">
-
-            <label for="btn-cog" class="btn-cog"><i class="fas fa-bars"></i>
-                <span class="icon">
-                    </svg>
-                </span>
-            <span class="text">Configuracion </span></label>
-            <input class="config-nav" type="checkbox" id="btn-cog"> 
-
-                    <nav class="config-nav">
-                      <ul class="navigation2">
-                        <li><a href="./usuario.php">Perfil</a></li>
-                        <li><a href="./editarusuario.html">Ajustes de perfil</a></li>
-                      </ul>
-                      <br>
-                      <br>
-                      <br>
-                      <br>
-                      <br>
-                      <br>
-                      <br>
-                      <br>
-                      <aside>
-                      <li><a href="">Reporte bugs </a></li>
-                      </aside>
-                    </nav>
-        </header>
-</div>
-
 
 
 <center>
@@ -234,6 +226,8 @@ No cabe duda de que Hollow Knight es uno de los juegos de tipo metroidvania que 
 <br>
 
 <center>
+
+
 
 
 <h1 class="titulo">
