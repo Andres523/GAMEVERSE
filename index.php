@@ -14,8 +14,10 @@ if (isset($_COOKIE["nombreUsuario"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/stylegameverse.css">
     <link rel="shortcut icon" href="./img/logo.png">
+    <link rel="stylesheet" type="text/css" href="./normalize.css">
+    <link rel="stylesheet" href="./styles/stylegameverse.css">
+
     <title>inicio</title>
 </head>
 <body>    
@@ -40,6 +42,8 @@ if (isset($_COOKIE["nombreUsuario"])) {
             </div>
         </div>
     </div>
+
+
 
         <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
             <span class="icon">
@@ -74,6 +78,12 @@ if (isset($_COOKIE["nombreUsuario"])) {
           </aside>
         </nav>
     </header>
+
+
+    <?php if (isset($_SESSION['nombreUsuario'])): ?>
+ 
+        <center><h1>Bienvenido, <?php echo $_SESSION['nombreUsuario']; ?></h1></center>
+    <?php endif; ?>
 
 
 <center>
