@@ -1,25 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Editar Perfil del Estudiante</title>
-    <link rel="stylesheet" href="./styles/perfil.css">
-    <element class="body">
+    <title>Mi Página con CSS Grid</title>
+    <link rel="stylesheet" href="./styles/perfil.CSS">
 </head>
 <body>
-    <h1>Editar Perfil</h1>
-    
-<form action="">
-        <label for="nombre">Nombre de usuario</label>
-        <input type="text" id="name" name="name" required>
+    <div class="grid-container">
+        <div class="item1">Elemento 1 <img src="./imgandresimg.jpg" alt=""></div>
+        <div class="item2">Elemento 2</div>
+        <div class="item3">Elemento 3</div>
 
-        <label for="edad">Edad</label>
-        <input type="number" name="edad" required>
-
-        <label for="info">info</label>
-        <input type="text"  name="info" required>
-
-        <button type="submit">Guardar Cambios</button>
-    </form>
-
+    </div>
 </body>
 </html>
