@@ -167,6 +167,20 @@ margin-top:  5%;
 margin-left: 17%;
 }
 
+.deceados{
+  border-color: #000000;
+  box-shadow: 0 0 75px black;
+  width: 300px;
+  height: 300px;
+  text-shadow: #040f16;
+  opacity:0.9;
+  color:#fff;
+  background-color: #2b2e31;
+  border-radius: 50px;
+  margin-top:  5%;
+  margin-left: 17%;
+  }
+
 .profile-picture {
 width: 200px;
 height: 200px;
@@ -179,6 +193,10 @@ z-index: 1;
 .text {
 margin-top: 3%;
 margin-left: 2%;
+}
+
+h1{
+  
 }
 
 @keyframes changeColor {
