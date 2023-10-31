@@ -183,7 +183,7 @@
   content: "";
   position: absolute;
   width: 400px;
-  height: 120%;
+
   background-color: #ff6700;
   top: 50%;
   transform: skewX(30deg) translate(-150%, -50%);
