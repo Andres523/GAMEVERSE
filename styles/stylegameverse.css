@@ -6,7 +6,7 @@
 :root{
     --main-color:#fff;
   }
-    /* MENU*/
+  /* MENU*/
     *{
       padding: 0;
       margin: 0;
@@ -458,106 +458,113 @@ a {
 
 
 
-.config-nav nav {
-  position: absolute;
-  top: 0;
-  right: 0; 
-  width: 200px;
-  height: 100vh;
-  background: #000000;
-  transition: 0.4s ease;
-  z-index: 999;
-  opacity: 0.9;
-}
-
-.navigation2 {
-  padding: 0;
-  list-style: none;
-}
-
-.navigation2 li {
-  border-bottom: 1px solid rgba(226, 226, 226, 0.5);
-}
-
-.navigation2 a {
-  color: #fff;
-  display: block;
-  padding: 15px 20px;
-  text-decoration: none;
-  transition: 0.4s ease;
-}
-
-.navigation2 a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-#btn-cog {
-  display: none;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-
-}
-
-
-
-#btn-cog {
-  display: none;
-  position: absolute;
-  right: 10px; 
-  top: 10px; 
-}
-
-#btn-cog:checked ~ nav {
-  transform: translateX(100%);
-
-}
-
-.btn-cog {
-  color: var(--main-color);
-  font-size: 30px;
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  padding: 6.5px 15px;
-  transition: 0.2s ease;
-  background: rgba(0, 0, 0, 0.1);
-}
-
-
-
-.btn-cog:hover {
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.btn-cog .icon {
-  position: absolute;
-  height: 40px;
-  width: 70px;
+.button-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  transition: all 0.5s;
+  gap: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
-.btn-cog .text {
-  transform: translateX(55px);
+.button-container button {
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 6px 12px;
 }
 
-.btn-cog:hover .icon {
-  width: 175px;
+.button-container button a {
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 17px;
+  letter-spacing: 1px;
 }
 
-.btn-cog:hover .text {
-  transition: all 0.5s;
-  opacity: 0;
+.btn-login {
+  background: #5e41de33;
+  color: #5D41DE;
 }
 
-.btn-cog:focus {
-  outline: none;
+.btn-register {
+  background: #5e41de33;
+  color: #5D41DE;
 }
 
-.btn-cog:active .icon {
-  transform: scale(0.85);
+.button {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  border-radius: 20px;
+}
+
+.button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.label {
+  line-height: 20px;
+  font-size: 17px;
+  color: #5D41DE;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+}
+
+.button:hover {
+  background: #5e41de4d;
+}
+
+.button:hover .svg-icon {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.settings-popup {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #ffffff0e;
+  border: 1px solid #ffffff0e;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover .settings-popup {
+  display: block;
+}
+
+.settings-popup a {
+  display: block;
+  margin-bottom: 5px;
+  text-decoration: none;
+}
+
+.settings-popup button {
+  width: 100%;
+  border: none;
+  background: none;
+  color: #5D41DE;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+.settings-popup button:hover {
+  text-decoration: underline;
 }
