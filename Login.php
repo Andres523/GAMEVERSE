@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,8 +46,8 @@ if (isset($_POST['nombre']) && isset($_POST['password'])) {
     }
     $sql = "SELECT * FROM usuarios WHERE nombre='$nombre'";
 
-    // Después de verificar las credenciales y antes de redirigir
-setcookie("nombreUsuario", $nombre, time() + 3600, "/"); // La cookie expirará en una hora
+
+setcookie("nombreUsuario", $nombre, time() + 3600, "/"); 
 
     // Ejecutar la consulta
     $resultado = mysqli_query($conexion, $sql);
@@ -65,8 +68,64 @@ setcookie("nombreUsuario", $nombre, time() + 3600, "/"); // La cookie expirará 
         echo "<p class='mensaje-error'>Nombre de usuario incorrecto. Intenta de nuevo.</p>";
     }
 
-    mysqli_close($conexion);
+    if ($fila['verificado'] == 0 && $_GET['token'] == $fila['token_verificacion']) {
+        // El token es válido y el usuario no está verificado
+        $updateSql = "UPDATE usuarios SET verificado = 1 WHERE nombre = '$nombre'";
+        if (mysqli_query($conexion, $updateSql)) {
+            // Redirige al usuario a la página de verificación exitosa
+            header("Location: index.php");
+            exit;
+        } else {
+            echo "<p class='mensaje-error'>Error al verificar la cuenta.</p>";
+        }
+    } else {
+        echo "<p class='mensaje-error'>Nombre de usuario incorrecto o cuenta ya verificada. Intenta de nuevo.</p>";
+    }
+    session_start();
+if (isset($_SESSION['logged_in'])) {
+    // Si la sesión está iniciada, verifica si la cuenta está verificada
+    $nombreUsuario = $_SESSION['nombreUsuario'];
+    $consulta = "SELECT verificado FROM usuarios WHERE nombre = '$nombreUsuario'";
+    $resultado = mysqli_query($conexion, $consulta);
+    $fila = mysqli_fetch_assoc($resultado);
+
+    if ($fila['verificado'] == 1) {
+        // El usuario está verificado, muestra el contenido de "verificacion.php"
+        // ...
+    } else {
+        // El usuario no está verificado, redirige a "login.php" u otra página
+        header("Location: login.php");
+        exit;
+    }
+} else {
+    // Si la sesión no está iniciada, redirige a "login.php" u otra página
+    header("Location: login.php");
+    exit;
 }
+
+if ($resultado && mysqli_num_rows($resultado) == 1) {
+    $fila = mysqli_fetch_assoc($resultado);
+
+    if ($fila['verificado'] == 1) {
+        if ($fila['password'] == $password) {
+            $_SESSION['logged_in'] = true;
+            $_SESSION['nombreUsuario'] = $nombre;
+            header("Location: index.php");
+            exit;
+        } else {
+            echo "<p class='mensaje-error'>Contraseña incorrecta. Intenta de nuevo.</p>";
+        }
+    } else {
+        echo "<p class='mensaje-error'>Tu cuenta no ha sido verificada. Verifica tu correo antes de iniciar sesión.</p>";
+    }
+} else {
+    echo "<p class='mensaje-error'>Nombre de usuario incorrecto. Intenta de nuevo.</p>";
+}
+
+mysqli_close($conexion);
+}
+
+
 ?>
 
 <style>
@@ -81,7 +140,15 @@ setcookie("nombreUsuario", $nombre, time() + 3600, "/"); // La cookie expirará 
     <br>
 
 
-    <style>
+
+
+</body>
+
+</html>
+
+
+
+<style>
       .btn4 {
   --border-color: linear-gradient(-45deg, #ffae00, #7e03aa, #00fffb);
   --border-width: .125em;
@@ -202,7 +269,3 @@ setcookie("nombreUsuario", $nombre, time() + 3600, "/"); // La cookie expirará 
   color: #fff;
 }
     </style>
-
-</body>
-
-</html>
