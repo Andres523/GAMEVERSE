@@ -41,11 +41,6 @@ if (isset($_COOKIE["nombreUsuario"])) {
         </div>
     </div>
 
-
-
-        
-
-
         <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
             <span class="icon">
                 <svg viewBox="0 0 175 80" width="60" height="40">
