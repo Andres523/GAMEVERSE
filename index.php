@@ -36,14 +36,10 @@ if (isset($_COOKIE["nombreUsuario"])) {
                 <a href="./usuario.php"><button>Perfil</button></a>
                 <a href=""><button>Ajustes</button></a>
                 <a href=""><button>Reporte bugs</button></a>
+                <a href=""><button>Cerrar sesion</button></a>
             </div>
         </div>
     </div>
-
-
-
-        
-
 
         <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
             <span class="icon">
