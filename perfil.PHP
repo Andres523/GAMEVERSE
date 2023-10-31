@@ -6,8 +6,11 @@
     <link rel="shortcut icon" href="./img/logo.png">
 </head>
 <body>
+    <br>
+    <a href="./index.php"><button>ATRAS</button></a>
+    <br>
     <div class="info">
-        <div class="item">        
+        <div class="item">      
             <h2>PERFIL</h2> 
             <hr>
             <br>
