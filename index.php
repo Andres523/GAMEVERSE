@@ -11,7 +11,7 @@
     <header class="main-header"></header>
     <header class="main-header">
         <div style="position: absolute; top: 10px; right: 10px;">
-            <button style="margin-right: 10px;"><a href="./Login.html">Iniciar Sesion</a></button>
+            <button style="margin-right: 10px;"><a href="./login.html">Iniciar Sesion</a></button>
             <button><a href="./register.php">Registrarse</a></button>
 
             <label for="btn-cog" class="btn-cog"><i class="fas fa-bars"></i>
@@ -20,12 +20,12 @@
             </span>
 
             <span class="text">Configuracion </span></label>
-        <input type="checkbox" id="btn-cog"> 
+        <input class="config-nav" type="checkbox" id="btn-cog"> 
             
-        <nav>
-          <ul class="navigation">
-            <li><a href="./GAMEVERSE.php">Perfil</a></li>
-            <li><a href="./tienda.html">Ajustes de perfil</a></li>
+        <nav class="config-nav">
+          <ul class="navigation2">
+            <li><a href="./usuario.php">Perfil</a></li>
+            <li><a href="./editarusuario.html">Ajustes de perfil</a></li>
           </ul>
           <br>
           <br>
@@ -38,7 +38,7 @@
           <aside>
           <li><a href="">Reporte bugs </a></li>
           </aside>
-        </nav>
+</nav>
     </header>
         </div>
         
@@ -245,7 +245,6 @@ No cabe duda de que Hollow Knight es uno de los juegos de tipo metroidvania que 
 
 
 
->>>>>>> 431feefc5678d8991c17ad660342396a57de7bd5
 </style>
 </body>
 </html>
