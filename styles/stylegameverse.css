@@ -292,6 +292,7 @@ body {
   padding: 15px;
 }
 h2 {
+  z-index: 10;
   padding: 10px;
   padding-left: 25px;
   color: #ccc;
@@ -308,9 +309,8 @@ h2 span {
   margin-left: 10px;
 }
 h2:after {
-  content: '';
+ 
   z-index: 0;
-  bottom: 50%;
   margin-bottom: -2px;
   height: 2px;
   left: 0;
@@ -456,10 +456,7 @@ a {
   color: #007bff; /* Puedes definir un color de texto personalizado para los enlaces si lo deseas */
 }
 
-/* Estilo para los enlaces cuando se encuentren en estado hover (al pasar el mouse) */
-a:hover {
-  text-decoration: underline; /* Puedes subrayar los enlaces cuando el mouse está sobre ellos */
-}
+
 
 .button-container {
   display: flex;
