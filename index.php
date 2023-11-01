@@ -1,11 +1,10 @@
 <?php
 session_start();
 
-// Verificar si la cookie "nombreUsuario" está configurada
 if (isset($_COOKIE["nombreUsuario"])) {
     $nombreUsuario = $_COOKIE["nombreUsuario"];
 } else {
-    $nombreUsuario = "Invitado"; // Establecer un valor predeterminado si la cookie no está configurada
+    $nombreUsuario = "Invitado"; 
 }
 
 ?>
