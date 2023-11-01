@@ -6,25 +6,36 @@
     <link rel="shortcut icon" href="./img/logo.png">
 </head>
 <body>
+    <br>
+    <a href="./index.php"><button>ATRAS</button></a>
+    <br>
     <div class="info">
-        <div class="item">        
+        <div class="item">      
             <h2>PERFIL</h2> 
-    
-            <label for="edad">Edad</label>
-            <input type="number" name="edad" required>
+            <hr>
             <br>
-            <button type="submit">Guardar Cambios</button></div>
+            <label for="edad">Edad</label>
+            <br>
+            <br>
+            <label for="correo">correo</label>
+            <br>
+            <br>
+            <label for="localidad">localidad</label>
 
-        <div class="item">
-        <img class="profile-picture" src="./imgandresimg.jpg" alt="imagen de perfil">
-        <label for="cambiar" name="perfil"></label>
-        <center><label for="usuario">nombre usuario</label>
+            </div>
 
-        </div>
+            <div class="perfil">
+                <div class="item">
+                <img class="profile-picture" src="./imgandresimg.jpg" alt="imagen de perfil">
+                <label for="cambiar" name="perfil"></label>
+                <center><h1><label for="usuario">nombre usuario</label></h1></center>
+                </div>
+            </div>
 
-        <div class="item">
-        <label for=""><h2>DECEADOS</h2></label>
-        </div>
+            <div class="deceados">
+            <label for=""><h2>DECEADOS</h2></label>
+            <hr>
+            </div>
 
     </div>
 </body>
