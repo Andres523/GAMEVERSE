@@ -113,6 +113,8 @@
             </style>
             <br>
             <br>
+
+            
             <?php
             $conexion = mysqli_connect("127.0.0.1", "samuel", "samux523", "gameverse");
             if (!$conexion) {

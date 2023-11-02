@@ -21,8 +21,14 @@ session_start();
                 <input type="password" name="password" required="">
                 <label>Contraseña</label>
             </div>
+            <a href="./Recuperacion.php" style="font-size: 9px;letter-spacing: 1px;padding: 0px 0px;">¿olvidaste la Contraseña o el usuario?</a>
+            <br>
+            <br>
             <center><button class="btn4" type="submit">Enviar</button></center>
-            <center><a href="./register.html">¿No tienes cuenta?</a></center>
+
+
+            <center><a href="./register.html" style="letter-spacing: 4px;padding: 10px 20px;">¿No tienes cuenta?</a></center>
+            
         </form>
 
         <?php

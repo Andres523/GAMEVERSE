@@ -65,15 +65,13 @@ html {
   .login-box form a {
     position: relative;
     display: inline-block;
-    padding: 10px 20px;
     color: #8803f4;
-    font-size: 16px;
+    font-size: 12px;
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
     transition: .5s;
     margin-top: 40px;
-    letter-spacing: 4px
   }
   
   .login-box a:hover {
@@ -172,3 +170,4 @@ html {
   right: 0;
   z-index: -1;
 }
+
