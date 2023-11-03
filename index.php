@@ -8,6 +8,12 @@ if (isset($_COOKIE["nombreUsuario"])) {
 }
 
 $loggedIn = isset($_SESSION['nombreUsuario']);
+
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header("Location: index.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -23,11 +29,10 @@ $loggedIn = isset($_SESSION['nombreUsuario']);
 <body>    
 <header class="main-header">
     <div class="button-container">
-    <?php if (!$loggedIn): ?>
-
+        <?php if (!$loggedIn): ?>
         <button class="btn-login"><a href="./Login.php">Iniciar Sesión</a></button>
         <button class="btn-register"><a href="./register.html">Registrarse</a></button>
-        <?php endif; ?>
+        <?php else: ?>
         <div class="button" id="settingsBtn">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 20 20" height="20" fill="none" class="svg-icon">
                 <g stroke-width="1.5" stroke="#5d41de">
@@ -40,60 +45,59 @@ $loggedIn = isset($_SESSION['nombreUsuario']);
                 <a href="./usuario.php"><button>Perfil</button></a>
                 <a href=""><button>Editar perfil</button></a>
                 <a href=""><button>Reporte bugs</button></a>
-                <a href=""><button>Cerrar sesion</button></a>
+                <form method="post">
+                    <button type="submit" name="logout">Cerrar sesión</button>
+                </form>
             </div>
         </div>
+        <?php endif; ?>
     </div>
 
+    <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
+        <span class="icon">
+            <svg viewBox="0 0 175 80" width="60" height="40">
+                <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+            </svg>
+        </span>
+        <span class="text">MENU </span>
+    </label>
+    <input type="checkbox" id="btn-nav"> 
 
-
-        <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
-            <span class="icon">
-                <svg viewBox="0 0 175 80" width="60" height="40">
-                    <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                    <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                    <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                </svg>
-            </span>
-
-            <span class="text">MENU </span></label>
-        <input type="checkbox" id="btn-nav"> 
-            
-        <nav>
-          <ul class="navigation">
+    <nav>
+        <ul class="navigation">
             <li><a href="./index.php">HOME</a></li>
             <li><a href="./tienda.html">TIENDA</a></li>
             <li><a href="./marketplace.html">MARKETPLACE</a></li>
-          </ul>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <aside>
-           <a href="https://www.facebook.com/"><img src="./img/facebook-logo-3-1.png" alt="facebook-logo-3-1" width="50px"></a>
-           <a href="https://twitter.com/"><img src="./img/Logo_of_Twitter.svg.png" alt="Logo_of_Twitter" width="70px"></a>
-           <a href="https://www.instagram.com/?hl=en"><img src="./img/Instagram-Logosu.png" alt="Instagram-Logosu" width="80px"></a>
-          </aside>
-        </nav>
-    </header>
+        </ul>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <aside>
+            <a href="https://www.facebook.com/"><img src="./img/facebook-logo-3-1.png" alt="facebook-logo-3-1" width="50px"></a>
+            <a href="https://twitter.com/"><img src="./img/Logo_of_Twitter.svg.png" alt="Logo_of_Twitter" width="70px"></a>
+            <a href="https://www.instagram.com/?hl=en"><img src="./img/Instagram-Logosu.png" alt="Instagram-Logosu" width="80px"></a>
+        </aside>
+    </nav>
+</header>
 
-
-    <?php if (isset($_SESSION['nombreUsuario'])): ?>
- 
-        <center><h1>Bienvenido, <?php echo $_SESSION['nombreUsuario']; ?></h1></center>
-    <?php endif; ?>
-
+<?php if (isset($_SESSION['nombreUsuario'])): ?>
+    <center><h1>Bienvenido, <?php echo $_SESSION['nombreUsuario']; ?></h1></center>
+<?php endif; ?>
 
 <center>
-    <video src="./vid/y2mate.com - Marvels SpiderMan 2  Limited Edition PS5 Bundle  DualSense Wireless Controller_720p.mp4" width="600px"controls autoplay loop="1"></video> 
+    <video src="./vid/y2mate.com - Marvels SpiderMan 2  Limited Edition PS5 Bundle  DualSense Wireless Controller_720p.mp4" width="600px" controls autoplay loop="1"></video>
 </center>
 <br>
 <br>
 <br>
+
 
 <div class="wrapper">
     <div class="cards">
