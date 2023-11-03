@@ -195,50 +195,6 @@ margin-top: 3%;
 margin-left: 2%;
 }
 
-@keyframes changeColor {
-    0% {
-        color: blue;
-    }
-    50% {
-        color: pink;
-    }
-    100% {
-        color: blue;
-    }
-}
-
-.genero {
-    font-size: 20px;
-    margin-top: 10px;
-    animation: changeColor 4s linear infinite;
-}
-
-
-.profile-email {
-    font-size: 16px;
-    color: #555;
-    margin-top: 10px;
-}
-
-.ubicacion{
-    font-size: 16px;
-    color: #555;
-    margin-top: 10px;
-
-}
-.edad {
-    font-size: 16px;
-    color: #555;
-    margin-top: 10px;
-}
-
-.fechaNacimiento {
-    font-size: 16px;
-    color: #555;
-    margin-top: 10px;
-}
-
-
 .profile-picture{
     box-shadow: 0 0 55px rgb(15, 15, 15);
     background-color: #383c41;
@@ -289,31 +245,12 @@ button {
    /*otra vez sonic*/
 
    .moving-image {
-    width: 80px; 
-    height: 80px;
-    animation: move 4s linear infinite; 
+    width: 5%; 
+    height: 5%;
+    animation: move 4s linear infinite;
+    z-index: 1;
   }
   
-  @keyframes move {
-    0% {
-        transform: translateX(0) scaleX(1); 
-    }
-    50% {
-        transform: translateX(4000px) scaleX(1);
-    }
-    100% {
-        transform: translateX(0) scaleX(-1); 
-    }
-  }
-  .cajita{
-    background-color:#2b2e31;
-    border-color: #000000;
-    box-shadow: 0 0 75px black;
-   text-align: left;
-   color: #fff;
-   font-size: large;
-margin-top: 130px;
-  }
   h2{
     animation: changeColor 4s linear infinite;
   }
