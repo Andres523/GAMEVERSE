@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="./styles/login.css">
     <title>Recuperación de Cuenta</title>
 </head>
 <body>
     <div class="login-box">
         <h2>Recuperación de Cuenta</h2>
+        <br>
         <form action="" method="post">
+            <div class="user-box">
             <label for="email">Correo Electrónico:</label>
             <input type="email" name="email" required><br><br>
-            <input type="submit" value="Recuperar Cuenta">
-            <link rel="stylesheet" href="./styles/login.css">
+            </div>
+            <br>
+            <center><button class="btn4" type="submit" value="Recuperar Cuenta"></button></center>
+              
+            
 
 
         <?php
