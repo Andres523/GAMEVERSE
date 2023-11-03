@@ -10,11 +10,19 @@ if (isset($_COOKIE["nombreUsuario"])) {
 $loggedIn = isset($_SESSION['nombreUsuario']);
 
 if (isset($_POST['logout'])) {
+    echo '<script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function() {
+                document.getElementById("confirmation-popup").style.display = "block";
+            });
+          </script>';
+}
+
+if (isset($_POST['confirm-logout'])) {
     session_destroy();
     header("Location: index.php");
     exit();
 }
-?>
+?>  
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,10 +31,23 @@ if (isset($_POST['logout'])) {
     <link rel="shortcut icon" href="./img/logo.png">
     <link rel="stylesheet" type="text/css" href="./normalize.css">
     <link rel="stylesheet" href="./styles/stylegameverse.css">
+    <script src="./javascript.js"></script>
 
     <title>inicio</title>
 </head>
-<body>    
+<body>
+    
+<div class="modal" id="confirmation-popup">
+        <div class="modal-content">
+            <p>¿Estás seguro de que deseas cerrar sesión?</p>
+            <form method="post">
+                <button type="submit" name="confirm-logout" id="confirm-button">Sí</button>
+                <button type="button" id="cancel-button" onclick="hideConfirmationModal();">No</button>
+            </form>
+        </div>
+    </div>
+
+
 <header class="main-header">
     <div class="button-container">
         <?php if (!$loggedIn): ?>
@@ -45,9 +66,13 @@ if (isset($_POST['logout'])) {
                 <a href="./usuario.php"><button>Perfil</button></a>
                 <a href=""><button>Editar perfil</button></a>
                 <a href=""><button>Reporte bugs</button></a>
+                <?php if ($_SESSION['nombreUsuario'] === 'admin'): ?>
+                <a href="admin.php"><button>Administrador</button></a>
+                <?php endif; ?>
                 <form method="post">
-                    <button type="submit" name="logout">Cerrar sesión</button>
+                    <button type="submit" name="logout" onclick="showConfirmationModal();">Cerrar sesión</button>
                 </form>
+ 
             </div>
         </div>
         <?php endif; ?>

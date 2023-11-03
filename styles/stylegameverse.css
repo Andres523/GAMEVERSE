@@ -568,3 +568,41 @@ a {
 .settings-popup button:hover {
   text-decoration: underline;
 }
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #2e2c2c;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 20px;
+}
+
+.modal button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  background: rgb(80, 1, 90);
+  color: #f3e8e8;
+  cursor: pointer;
+  border-radius: 35px;
+  box-shadow: 0 0 35px rgb(17, 15, 15);
+}
+
+.modal button:hover {
+  background: #0056b3;
+}
