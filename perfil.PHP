@@ -6,7 +6,7 @@
     <link rel="shortcut icon" href="./img/logo.png">
 </head>
 <body>
-    <br>
+<div class="moving-image"><img src="./img marketplace/SONIC.gif" alt=""></div>
     <a href="./index.php"><button>ATRAS</button></a>
     <br>
     <div class="info">
@@ -15,6 +15,9 @@
             <hr>
             <br>
             <label for="edad">Edad</label>
+            <br>
+            <br>
+            <label for="genero">Genero</label>
             <br>
             <br>
             <label for="correo">correo</label>
