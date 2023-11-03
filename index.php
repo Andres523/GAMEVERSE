@@ -7,6 +7,7 @@ if (isset($_COOKIE["nombreUsuario"])) {
     $nombreUsuario = "Invitado"; 
 }
 
+$loggedIn = isset($_SESSION['nombreUsuario']);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -22,9 +23,11 @@ if (isset($_COOKIE["nombreUsuario"])) {
 <body>    
 <header class="main-header">
     <div class="button-container">
+    <?php if (!$loggedIn): ?>
+
         <button class="btn-login"><a href="./Login.php">Iniciar Sesión</a></button>
         <button class="btn-register"><a href="./register.html">Registrarse</a></button>
-
+        <?php endif; ?>
         <div class="button" id="settingsBtn">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 20 20" height="20" fill="none" class="svg-icon">
                 <g stroke-width="1.5" stroke="#5d41de">
