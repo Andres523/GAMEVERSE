@@ -4,12 +4,15 @@
     <title>Recuperación de Cuenta</title>
 </head>
 <body>
-    <h2>Recuperación de Cuenta</h2>
-    <form action="" method="post">
-        <label for="email">Correo Electrónico:</label>
-        <input type="email" name="email" required><br><br>
-        <input type="submit" value="Recuperar Cuenta">
-    </form>
+    <div class="login-box">
+        <h2>Recuperación de Cuenta</h2>
+        <form action="" method="post">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" name="email" required><br><br>
+            <input type="submit" value="Recuperar Cuenta">
+            <link rel="stylesheet" href="./styles/login.css">
+        </form>
+    </div>
 </body>
 </html>
 

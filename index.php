@@ -35,7 +35,7 @@ if (isset($_COOKIE["nombreUsuario"])) {
             <span class="label">Configuracion</span>
             <div class="settings-popup" id="settingsPopup">
                 <a href="./usuario.php"><button>Perfil</button></a>
-                <a href=""><button>Ajustes</button></a>
+                <a href=""><button>Editar perfil</button></a>
                 <a href=""><button>Reporte bugs</button></a>
                 <a href=""><button>Cerrar sesion</button></a>
             </div>

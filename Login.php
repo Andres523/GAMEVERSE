@@ -12,7 +12,7 @@ session_start();
 <body>
     <div class="login-box">
         <h2>Login</h2>
-        <form action="login.php" method="post">
+        <form action="" method="post">
             <div class="user-box">
                 <input type="text" name="nombre" required="">
                 <label>Nombre de usuario</label>
