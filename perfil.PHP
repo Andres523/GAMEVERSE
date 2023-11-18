@@ -6,9 +6,9 @@
     <link rel="shortcut icon" href="./img/logo.png">
 </head>
 <body>
-<div class="moving-image"><img src="./img marketplace/SONIC.gif" alt=""></div>
-    <a href="./index.php"><button>ATRAS</button></a>
-    <br>
+
+<a href="./index.php"><button>ATRAS</button></a>
+<img src="./img marketplace/SONIC.gif" alt="sonic" class="moving-image">
     <div class="info">
         <div class="item">      
             <h2>PERFIL</h2> 

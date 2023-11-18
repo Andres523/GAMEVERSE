@@ -141,7 +141,7 @@ padding: 20px;
 border-color: #000000;
 box-shadow: 0 0 75px black;
 width: 1400px;
-height: 200px;
+height: 400px;
 text-shadow: #040f16;
 opacity: 1;
 color: #fff;
@@ -245,10 +245,9 @@ button {
    /*otra vez sonic*/
 
    .moving-image {
-    width: 5%; 
-    height: 5%;
-    animation: move 4s linear infinite;
-    z-index: 1;
+    width: 60px; 
+    height: 60px;
+    animation: move 1s linear;
   }
   
   h2{
