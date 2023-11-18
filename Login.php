@@ -12,7 +12,7 @@ session_start();
 <body>
     <div class="login-box">
         <h2>Login</h2>
-        <form action="login.php" method="post">
+        <form action="" method="post">
             <div class="user-box">
                 <input type="text" name="nombre" required="">
                 <label>Nombre de usuario</label>
@@ -21,7 +21,7 @@ session_start();
                 <input type="password" name="password" required="">
                 <label>Contraseña</label>
             </div>
-            <a href="./Recuperacion.php" style="font-size: 9px;letter-spacing: 1px;padding: 0px 0px;">¿olvidaste la Contraseña o el usuario?</a>
+            <a href="./Recuperacion.php" style="font-size: 9px;letter-spacing: 1px;padding: 0px 0px;">¿olvidaste la Contraseña ?</a>
             <br>
             <br>
             <center><button class="btn4" type="submit">Enviar</button></center>
@@ -35,7 +35,8 @@ session_start();
         if (isset($_POST['nombre']) && isset($_POST['password'])) {
             $nombre = $_POST['nombre'];
             $password = $_POST['password'];
-            $conexion = mysqli_connect("127.0.0.1", "samuel", "samux523", "gameverse");
+            $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
+
 
             if (!$conexion) {
                 die("Error de conexión: " . mysqli_connect_error());

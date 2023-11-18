@@ -7,24 +7,53 @@ if (isset($_COOKIE["nombreUsuario"])) {
     $nombreUsuario = "Invitado"; 
 }
 
-?>
+$loggedIn = isset($_SESSION['nombreUsuario']);
+
+if (isset($_POST['logout'])) {
+    echo '<script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function() {
+                document.getElementById("confirmation-popup").style.display = "block";
+            });
+          </script>';
+}
+
+if (isset($_POST['confirm-logout'])) {
+    session_destroy();
+    header("Location: index.php");
+    exit();
+}
+?>  
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./img/logo.png">
-    <link rel="stylesheet" type="text/css" href="./normalize.css">
+
     <link rel="stylesheet" href="./styles/stylegameverse.css">
+    <script src="./javascript.js"></script>
 
     <title>inicio</title>
 </head>
-<body>    
+<body>
+    
+<div class="modal" id="confirmation-popup">
+        <div class="modal-content">
+            <p>¿Estás seguro de que deseas cerrar sesión?</p>
+            <form method="post">
+                <button type="submit" name="confirm-logout" id="confirm-button">Sí</button>
+                <button type="button" id="cancel-button" onclick="hideConfirmationModal();">No</button>
+            </form>
+        </div>
+    </div>
+
+
 <header class="main-header">
     <div class="button-container">
+        <?php if (!$loggedIn): ?>
         <button class="btn-login"><a href="./Login.php">Iniciar Sesión</a></button>
         <button class="btn-register"><a href="./register.html">Registrarse</a></button>
-
+        <?php else: ?>
         <div class="button" id="settingsBtn">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 20 20" height="20" fill="none" class="svg-icon">
                 <g stroke-width="1.5" stroke="#5d41de">
@@ -34,63 +63,66 @@ if (isset($_COOKIE["nombreUsuario"])) {
             </svg>
             <span class="label">Configuracion</span>
             <div class="settings-popup" id="settingsPopup">
-                <a href="./usuario.php"><button>Perfil</button></a>
-                <a href=""><button>Ajustes</button></a>
+                <a href="./perfil.php"><button>Perfil</button></a>
+                <a href="./perfilajus.php"><button>Editar perfil</button></a>
                 <a href=""><button>Reporte bugs</button></a>
-                <a href=""><button>Cerrar sesion</button></a>
+                <?php if ($_SESSION['nombreUsuario'] === 'admin'): ?>
+                <a href="admin.php"><button>Administrador</button></a>
+                <?php endif; ?>
+                <form method="post">
+                    <button type="submit" name="logout" onclick="showConfirmationModal();">Cerrar sesión</button>
+                </form>
+ 
             </div>
         </div>
+        <?php endif; ?>
     </div>
 
+    <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
+        <span class="icon">
+            <svg viewBox="0 0 175 80" width="60" height="40">
+                <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+            </svg>
+        </span>
+        <span class="text">MENU </span>
+    </label>
+    <input type="checkbox" id="btn-nav"> 
 
-
-        <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
-            <span class="icon">
-                <svg viewBox="0 0 175 80" width="60" height="40">
-                    <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                    <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                    <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                </svg>
-            </span>
-
-            <span class="text">MENU </span></label>
-        <input type="checkbox" id="btn-nav"> 
-            
-        <nav>
-          <ul class="navigation">
+    <nav>
+        <ul class="navigation">
             <li><a href="./index.php">HOME</a></li>
             <li><a href="./tienda.html">TIENDA</a></li>
             <li><a href="./marketplace.html">MARKETPLACE</a></li>
-          </ul>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <aside>
-           <a href="https://www.facebook.com/"><img src="./img/facebook-logo-3-1.png" alt="facebook-logo-3-1" width="50px"></a>
-           <a href="https://twitter.com/"><img src="./img/Logo_of_Twitter.svg.png" alt="Logo_of_Twitter" width="70px"></a>
-           <a href="https://www.instagram.com/?hl=en"><img src="./img/Instagram-Logosu.png" alt="Instagram-Logosu" width="80px"></a>
-          </aside>
-        </nav>
-    </header>
+        </ul>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <aside>
+            <a href="https://www.facebook.com/"><img src="./img/facebook-logo-3-1.png" alt="facebook-logo-3-1" width="50px"></a>
+            <a href="https://twitter.com/"><img src="./img/Logo_of_Twitter.svg.png" alt="Logo_of_Twitter" width="70px"></a>
+            <a href="https://www.instagram.com/?hl=en"><img src="./img/Instagram-Logosu.png" alt="Instagram-Logosu" width="80px"></a>
+        </aside>
+    </nav>
+</header>
 
-
-    <?php if (isset($_SESSION['nombreUsuario'])): ?>
- 
-        <center><h1>Bienvenido, <?php echo $_SESSION['nombreUsuario']; ?></h1></center>
-    <?php endif; ?>
-
+<?php if (isset($_SESSION['nombreUsuario'])): ?>
+    <center><h1 style="color: #fff;">Bienvenido, <?php echo $_SESSION['nombreUsuario']; ?></h1></center>
+<?php endif; ?>
 
 <center>
-    <video src="./vid/y2mate.com - Marvels SpiderMan 2  Limited Edition PS5 Bundle  DualSense Wireless Controller_720p.mp4" width="600px"controls autoplay loop="1"></video> 
+    <video src="./vid/y2mate.com - Marvels SpiderMan 2  Limited Edition PS5 Bundle  DualSense Wireless Controller_720p.mp4" width="600px" controls autoplay loop="1"></video>
 </center>
 <br>
 <br>
 <br>
+
 
 <div class="wrapper">
     <div class="cards">
