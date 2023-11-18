@@ -80,21 +80,7 @@ session_start();
   .mensaje-error {
       color: red; 
   }
-</style>  
-</form>
-
-
-
-    <br>
-
-
-
-
-</body>
-
-</html>
-
-
+</style>
 
 <style>
       .btn4 {

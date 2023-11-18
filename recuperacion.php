@@ -10,18 +10,17 @@
         <br>
         <form action="" method="post">
             <div class="user-box">
+                <input type="email" name="email" required="">
             <label for="email">Correo Electrónico:</label>
-            <input type="email" name="email" required><br><br>
             </div>
-            <br>
-            <center><button class="btn4" type="submit" value="Recuperar Cuenta"></button></center>
-              
-            
-
+        
+            <center><button class="btn4" type="submit">Recuperar Cuenta</button></center>
+        </form>
+    
 
             <?php
             error_reporting(E_ALL);
-                $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
+                $conexion = mysqli_connect("127.0.0.1", "samuel", "samux523", "gameverse");
             if (!$conexion) {
                 die("Error de conexión: " . mysqli_connect_error());
             }

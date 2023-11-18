@@ -22,8 +22,7 @@ if ($resultadoDatos) {
         $correo = !empty($fila['correo']) ? $fila['correo'] : 'Por completar';
         $localidad = !empty($fila['ubicacion']) ? $fila['ubicacion'] : 'Por completar';
         $edad = !empty($fila['edad']) ? $fila['edad'] : 'Por completar'; 
-        $genero = !empty($fila['genero']) ? $fila['genero'] : 'Por completar';
-        $imagenPerfil = !empty($fila['imagenPerfil']) ? $fila['imagenPerfil'] : null; 
+        $genero = !empty($fila['genero']) ? $fila['genero'] : 'Por completar'; 
     } else {
         $correo = 'Por completar';
         $localidad = 'Por completar';
@@ -107,12 +106,7 @@ mysqli_close($conexion);
 
             <div class="perfil">
                 <div class="item">
-                <?php if ($imagenPerfil): ?>
-                <img class="profile-picture" src="data:image/jpeg;base64,<?php echo base64_encode($imagenPerfil); ?>" alt="imagen de perfil">
-                <?php else: ?>
-                <img class="profile-picture" src="./img/logo.png" alt="imagen de perfil predeterminada">
-                <?php endif; ?>
-                
+                <img class="profile-picture" src="./imgandresimg.jpg" alt="imagen de perfil">
                 <label for="cambiar" name="perfil"></label>
                 <center><h1><label for="usuario"><?php echo $nombreUsuario; ?></label></h1></center>
                 </div>

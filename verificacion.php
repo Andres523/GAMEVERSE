@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/verifi.css">
+    <link rel="shortcut icon" href="./img/logo.png">
     <title>Verificación Exitosa</title>
 </head>
 <body>
-    <h1>Tu cuenta ahora está verificada</h1>
-    <p>Puedes <a href="login.php">iniciar sesión</a> con tu cuenta verificada.</p>
+
+    <div class="container">
+        <div class="info">
+        <big><center><h1>Tu cuenta ahora está verificada</h1>
+        <p>Puedes <a href="login.php">iniciar sesión</a> con tu cuenta verificada.</p></center></big>
+        </div>
+    </div>
 </body>
 </html>
 
@@ -41,4 +48,3 @@ if (isset($_GET['token'])) {
     mysqli_close($conexion);
 }
 ?>
-
