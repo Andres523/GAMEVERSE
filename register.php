@@ -26,7 +26,7 @@
                 <input type="email" name="correo" required="">
                 <label for="">correo</label>
             </div>
-            <center><a href="./login.php">iniciar sesion</a></center>
+            
             <center><button class="btn4" type="submit" value="registrarse">Enviar</button></center>
             <br>
             <style>
@@ -117,8 +117,16 @@
             
             <?php
             $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
-            if (!$conexion) {
-                die("Error de conexión: " . mysqli_connect_error());
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $nombreUsuario = $_POST['nombre'];
+                $nombreUsuarioSinEspacios = trim($nombreUsuario);
+            
+                
+                if (empty($nombreUsuarioSinEspacios)) {
+                    echo "<p style='color: red;'>El nombre de usuario no puede consistir solo en espacios en blanco.</p>";
+                    mysqli_close($conexion);
+                    exit;
+                }
             }
             $nombreUsuario = $_POST['nombre'];
             $password = $_POST['password'];
@@ -162,10 +170,24 @@
                     header("Location: ./register.html");
                     exit;
                 }
+
+
             } else {
                 echo "<p style='color: red;'>Error al registrar el usuario: </p>" . mysqli_error($conexion);
                 header("Location: ./register.html");
                 exit;
+            }
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $nombreUsuario = $_POST['nombre'];
+                $nombreUsuarioSinEspacios = trim($nombreUsuario);
+            
+                // Verificar si el nombre de usuario contiene solo espacios en blanco
+                if (empty($nombreUsuarioSinEspacios)) {
+                    echo "<p style='color: red;'>El nombre de usuario no puede consistir solo en espacios en blanco.</p>";
+                    mysqli_close($conexion);
+                    exit;
+                }
             }
             mysqli_close($conexion);
             ?>
