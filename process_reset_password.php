@@ -10,7 +10,7 @@
 </body>
 </html>
 <?php
-$conexion = mysqli_connect("127.0.0.1", "samuel", "samux523", "gameverse");
+$conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
 if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }
