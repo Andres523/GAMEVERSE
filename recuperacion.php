@@ -19,14 +19,14 @@
             
 
 
-        <?php
-        error_reporting(E_ALL);
-        $conexion = mysqli_connect("127.0.0.1", "samuel", "samux523", "gameverse");
-        if (!$conexion) {
-            die("Error de conexión: " . mysqli_connect_error());
-        }
+            <?php
+            error_reporting(E_ALL);
+                $conexion = mysqli_connect("127.0.0.1", "samuel", "samux523", "gameverse");
+            if (!$conexion) {
+                die("Error de conexión: " . mysqli_connect_error());
+            }
         
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $correo = $_POST['email']; 
         
             if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
