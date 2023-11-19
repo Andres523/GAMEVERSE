@@ -36,3 +36,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 mysqli_close($conexion);
 ?>
+
+<style>
+    /*esto es para que la pagina sea responsive en pocas palabras se acomode al tamaño de la ventana coloquenlo donde puedan */
+    @media only screen and (max-width: 1200px) {
+            body {
+                width: 100%; 
+                margin: 5px; 
+                text-align: center;
+            }
+        }
+
+</style>

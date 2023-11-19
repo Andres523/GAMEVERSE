@@ -206,6 +206,26 @@ animation: changeColor 4s linear infinite;
   .modal button:hover {
     background: #0056b3;
   }
+ /* Estilos para tamaños de pantalla pequeños */
+@media only screen and (max-width: 768px) {
+  .info,
+  .perfil,
+  .deceados {
+      width: 100%; 
+      margin: 5px; 
+      text-align: center;
+  }
 
+  .perfil {
+      margin-left: auto; 
+      margin-right: auto;
+  }
+
+  .perfil img {
+      width: 100%; 
+      height: auto; 
+      border-radius: 0; 
+  }
+}
 
 

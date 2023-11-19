@@ -14,7 +14,7 @@ if (!$conexion) {
 
 $nombreUsuario = $_SESSION['nombreUsuario'];
 
-$consultaDatos = "SELECT correo, ubicacion, edad, genero FROM usuarios WHERE nombre = '$nombreUsuario'";
+$consultaDatos = "SELECT correo, ubicacion, edad, genero, imagenPerfil FROM usuarios WHERE nombre = '$nombreUsuario'";
 $resultadoDatos = mysqli_query($conexion, $consultaDatos);
 
 if ($resultadoDatos) {
@@ -22,12 +22,14 @@ if ($resultadoDatos) {
         $correo = !empty($fila['correo']) ? $fila['correo'] : 'Por completar';
         $localidad = !empty($fila['ubicacion']) ? $fila['ubicacion'] : 'Por completar';
         $edad = !empty($fila['edad']) ? $fila['edad'] : 'Por completar'; 
-        $genero = !empty($fila['genero']) ? $fila['genero'] : 'Por completar'; 
+        $genero = !empty($fila['genero']) ? $fila['genero'] : 'Por completar';
+        $imagenPerfil = !empty($fila['imagenPerfil']) ? $fila['imagenPerfil'] : null; 
     } else {
         $correo = 'Por completar';
         $localidad = 'Por completar';
         $edad = 'Por completar';
         $genero = 'Por completar';
+        $imagenPerfil = null;
         echo "No se encontraron resultados para el usuario '$nombreUsuario'.";
     }
 } else {
@@ -35,6 +37,7 @@ if ($resultadoDatos) {
     $localidad = 'Por completar';
     $edad = 'Por completar';
     $genero = 'Por completar';
+    $imagenPerfil = null;
     echo "Error en la consulta: " . mysqli_error($conexion);
 }
 
@@ -54,8 +57,6 @@ if (isset($_POST['confirm-logout'])) {
 
 mysqli_close($conexion);
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -79,12 +80,10 @@ mysqli_close($conexion);
     </style>
 </head>
 <body>
-<a href="././index.php" style="display: inline-block;"><button>ATRAS</button></a>
-</a>
-<div class="moving-image" style="display: inline-block; vertical-align: top;">
-    <img src="./img marketplace/SONIC.gif" alt="" width="80px">
-</div>
-
+    <a href="./index.php" style="display: inline-block;"><button>ATRAS</button></a>
+    <div class="moving-image" style="display: inline-block; vertical-align: top;">
+        <img src="./img marketplace/SONIC.gif" alt="" width="80px">
+    </div>
     <br>
     <div class="info">
         <div class="item">      
@@ -94,35 +93,41 @@ mysqli_close($conexion);
             <label for="edad"><h2>Edad: </h2><?php echo $edad; ?></label>
             <br>
             <br>
-            <label for="genero"><h2>Genero: </h2><?php echo $genero; ?></label>
+            <label for="genero"><h2>Género: </h2><?php echo $genero; ?></label>
             <br>
             <br>
-            <label for="correo"><h2>correo: </h2><?php echo $correo; ?></label>
+            <label for="correo"><h2>Correo: </h2><?php echo $correo; ?></label>
             <br>
             <br>
-            <label for="localidad"><h2>localidad: </h2><?php echo $localidad; ?></label>
+            <label for="localidad"><h2>Localidad: </h2><?php echo $localidad; ?></label>
+        </div>
 
-            </div>
-
-            <div class="perfil">
-                <div class="item">
-                <img class="profile-picture" src="./imgandresimg.jpg" alt="imagen de perfil">
+        <div class="perfil">
+            <div class="item">
+                <?php if ($imagenPerfil): ?>
+                    <img class="profile-picture" src="<?php echo $imagenPerfil; ?>" alt="imagen de perfil">
+                <?php else: ?>
+                    <img class="profile-picture" src="./img/logo.png" alt="imagen de perfil predeterminada">
+                <?php endif; ?>
+                
                 <label for="cambiar" name="perfil"></label>
                 <center><h1><label for="usuario"><?php echo $nombreUsuario; ?></label></h1></center>
-                </div>
-                <br>
-                <center><a href="./perfilajus.php" style="display: inline-block;"><button>EDITAR PERFIL</button></a></center>
             </div>
+            <br>
+            <center><a href="./perfilajus.php" style="display: inline-block;"><button>EDITAR PERFIL</button></a></center>
+        </div>
 
-            <div class="deceados">
+        <div class="deseados">
             <label for=""><h1 style="text-align: center;">DESEADOS</h1></label>
             <hr>
-            </div>
-
+        </div>
     </div>
-</body>
 
-<div class="modal" id="confirmation-popup">
+    <form method="post">
+        <button type="submit" name="logout" onclick="showConfirmationModal();">CERRAR SESIÓN</button>
+    </form>
+
+    <div class="modal" id="confirmation-popup">
         <div class="modal-content">
             <p>¿Estás seguro de que deseas cerrar sesión?</p>
             <form method="post">
@@ -131,15 +136,21 @@ mysqli_close($conexion);
             </form>
         </div>
     </div>
-    <form method="post">
-                    <button type="submit" name="logout" onclick="showConfirmationModal();">CERRAR SESION</button>
-    </form>
-
-
-
-</form>
-
-
-    
-
+</body>
 </html>
+
+<style>
+    /*esto es para que la pagina sea responsive en pocas palabras se acomode al tamaño de la ventana coloquenlo donde puedan */
+    @media only screen and (max-width: 1200px) {
+  .info,
+  .perfil,
+  .deceados {
+      width: 100%; 
+      margin: 5px; 
+      text-align: center;
+  }
+
+
+  }
+
+</style>

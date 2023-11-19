@@ -117,7 +117,8 @@ if (isset($_POST['confirm-logout'])) {
 <?php endif; ?>
 
 <center>
-    <video src="./vid/y2mate.com - Marvels SpiderMan 2  Limited Edition PS5 Bundle  DualSense Wireless Controller_720p.mp4" width="600px" controls autoplay loop="1"></video>
+    <video src="./vid/y2mate.com - Marvels SpiderMan 2  Limited Edition PS5 Bundle  DualSense Wireless Controller_720p.mp4" width="600px" controls autoplay loop muted></video>
+
 </center>
 <br>
 <br>
