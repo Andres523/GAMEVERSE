@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="./styles/login.css">
+    <link rel="stylesheet" href="./styles/recuper.css">
     <title>Recuperación de Cuenta</title>
 </head>
 <body>
@@ -11,7 +11,7 @@
         <form action="" method="post">
             <div class="user-box">
                 <input type="email" name="email" required="">
-            <label for="email">Correo Electrónico:</label>
+                <label for="email">Correo Electrónico:</label>
             </div>
         
             <center><button class="btn4" type="submit">Recuperar Cuenta</button></center>

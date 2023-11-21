@@ -85,56 +85,75 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-
+  
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/perfilajus.css">
     <title>Editar Perfil</title>
 </head>
 <body>
+
+<div class="login-box">
+  
     <h1>Editar Perfil</h1>
     <form method="post" enctype="multipart/form-data">
-        <label for="nuevoCorreo">Correo electrónico:</label>
-        <input type="email" id="nuevoCorreo" name="nuevoCorreo" value="<?php echo $correoActual; ?>">
-        <br>
-        <label for="nuevaEdad">Edad:</label>
-        <input type="number" id="nuevaEdad" name="nuevaEdad" value="<?php echo $edadActual; ?>">
-        <br>
-        <label for="nuevaLocalidad">Localidad:</label>
-        <select id="nuevaLocalidad" name="nuevaLocalidad">
-            <?php foreach ($ciudadesAntioquia as $ciudad) : ?>
-                <option value="<?php echo $ciudad; ?>" <?php if ($ciudad === $ubicacionActual) echo 'selected'; ?>>
-                    <?php echo $ciudad; ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-        <br>
-        <label for="nuevoGenero">Género:</label>
-        <select id="nuevoGenero" name="nuevoGenero">
-            <option value="Hombre" <?php if ($generoActual === 'Hombre') echo 'selected'; ?>>Hombre</option>
-            <option value="Mujer" <?php if ($generoActual === 'Mujer') echo 'selected'; ?>>Mujer</option>
-            <option value="Otro" <?php if ($generoActual === 'Otro') echo 'selected'; ?>>39 tipos de gay</option>
-        </select>
-        <br>
-        <label for="nuevaDireccion">Dirección:</label>
-        <input type="text" id="nuevaDireccion" name="nuevaDireccion" value="<?php echo $direccionActual; ?>">
-        <br>
-        <label for="nuevaImagen">Imagen de perfil:</label>
-        <input type="file" id="nuevaImagen" name="nuevaImagen">
         
-        <div class="perfil">
-            <div class="item">
-                <?php if (!empty($imagenPerfil)) : ?>
-                    <img class="profile-picture" src="<?php echo $imagenPerfil; ?>" alt="imagen de perfil">
-                <?php else : ?>
-                    <img class="profile-picture" src="./img/logo.png" alt="imagen de perfil predeterminada">
-                <?php endif; ?>
-            </div>
+        <center>
+        <div class="item">
+            <label for="nuevaImagen"><h3>Imagen de perfil:</h3></label>
+            <?php if (!empty($imagenPerfil)) : ?>
+                <img class="profile-picture" src="<?php echo $imagenPerfil; ?>" alt="imagen de perfil">
+            <?php else : ?>
+                <img class="profile-picture" src="./img/logo.png" alt="imagen de perfil predeterminada">
+            <?php endif; ?>
         </div>
-        <button type="submit">Guardar cambios</button>
+            
+        <label for="nuevaImagen" class="upload-button">Seleccionar archivo</label>
+        <input type="file" id="nuevaImagen" name="nuevaImagen" style="display: none;">
+            </center>
+            
+        <hr>
+            
+            <label for="nuevaLocalidad"><h3>Localidad:</h3></label>
+            <select id="nuevaLocalidad" name="nuevaLocalidad">
+                <?php foreach ($ciudadesAntioquia as $ciudad) : ?>
+                    <option value="<?php echo $ciudad; ?>" <?php if ($ciudad === $ubicacionActual) echo 'selected'; ?>>
+                        <?php echo $ciudad; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+            <br>
+            <label for="nuevoGenero"><h3>Género:</h3></label>
+            <select id="nuevoGenero" name="nuevoGenero">
+                <option value="Hombre" <?php if ($generoActual === 'Hombre') echo 'selected'; ?>>Hombre</option>
+                <option value="Mujer" <?php if ($generoActual === 'Mujer') echo 'selected'; ?>>Mujer</option>
+                <option value="Otro" <?php if ($generoActual === 'Otro') echo 'selected'; ?>>39 tipos de gay</option>
+            </select>
+            <label for="nuevaEdad"><h3>Edad:</h3></label>
+            <div class="user-box">
+            <input type="number" id="nuevaEdad" name="nuevaEdad" value="<?php echo $edadActual; ?>">
+        </div>
+        <div class="user-box">
+            <input type="email" id="nuevoCorreo" name="nuevoCorreo" value="<?php echo $correoActual; ?>">
+            <label for="nuevoCorreo">Correo electrónico:</label>
+        </div>
+        <div class="user-box">
+            <input type="text" id="nuevaDireccion" name="nuevaDireccion" value="<?php echo $direccionActual; ?>">
+            <label for="nuevaDireccion">Dirección:</label>
+        </div>
+        <center><button class="btn4" type="submit">Guardar cambios</button></center>
+                
     </form>
+
+</div>
+
+   
+
+    <br>
+    <br>
 
 </body>
 </html>

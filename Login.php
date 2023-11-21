@@ -26,7 +26,6 @@ session_start();
             <br>
             <center><button class="btn4" type="submit">Enviar</button></center>
 
-
             <center><a href="./register.html" style="letter-spacing: 4px;padding: 10px 20px;">¿No tienes cuenta?</a></center>
             
         </form>
