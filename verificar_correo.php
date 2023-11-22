@@ -52,9 +52,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 <div class="login-box">
-    <h1>Verificar Correo Electrónico</h1>
-    <p>Se ha enviado un código de verificación a <?php echo $correoUsuario; ?>.</p>
+    <h2>Verificar Correo Electrónico</h2>
+    <div class="p"><center>Se ha enviado un código de verificación a <?php echo $correoUsuario; ?>.</center></div>
     <form method="post">
+    <br>
+    <br>
     <div class="user-box">
     <input type="text" id="codigoVerificacion" name="codigoVerificacion" required>
         <label for="codigoVerificacion">Ingresa el código de verificación:</label>
