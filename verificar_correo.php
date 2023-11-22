@@ -47,15 +47,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/VC.css">
     <title>Verificar Correo Electrónico</title>
 </head>
 <body>
+<div class="login-box">
     <h1>Verificar Correo Electrónico</h1>
     <p>Se ha enviado un código de verificación a <?php echo $correoUsuario; ?>.</p>
     <form method="post">
+    <div class="user-box">
+    <input type="text" id="codigoVerificacion" name="codigoVerificacion" required>
         <label for="codigoVerificacion">Ingresa el código de verificación:</label>
-        <input type="text" id="codigoVerificacion" name="codigoVerificacion" required>
-        <button type="submit">Verificar</button>
+    </div>
+    <center><button class="btn4" type="submit">Verificar</button></center>
     </form>
+</div>
+</div>
 </body>
 </html>
