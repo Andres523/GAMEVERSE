@@ -71,7 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $headers = "From: tuemail@dominio.com";
                 mail($nuevoCorreo, $asunto, $mensaje, $headers);
 
-                // Redirigir a la página de verificación de correo
                 mysqli_close($conexion);
                 header("Location: verificar_correo.php");
                 exit();
