@@ -1,4 +1,25 @@
-<?php
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/VC.css">
+    <title>Verificar Correo Electrónico</title>
+</head>
+<body>
+<div class="login-box">
+    <h2>Verificar Correo Electrónico</h2>
+    <div class="p"><center>Se ha enviado un código de verificación a <?php echo $correoUsuario; ?>.</center></div>
+    <form method="post">
+    <br>
+    <br>
+    <div class="user-box">
+    <input type="text" id="codigoVerificacion" name="codigoVerificacion" required>
+        <label for="codigoVerificacion">Ingresa el código de verificación:</label>
+    </div>
+    <center><button class="btn4" type="submit">Verificar</button></center>
+    <?php
 session_start();
 
 if (!isset($_SESSION['nombreUsuario'])) {
@@ -26,7 +47,7 @@ if ($resultadoDatos) {
         $codigoVerificacion = !empty($fila['codigo_verificacion']) ? $fila['codigo_verificacion'] : '';
     }
 }
-
+ 
 mysqli_close($conexion);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -41,25 +62,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/VC.css">
-    <title>Verificar Correo Electrónico</title>
-</head>
-<body>
-<div class="login-box">
-    <h1>Verificar Correo Electrónico</h1>
-    <p>Se ha enviado un código de verificación a <?php echo $correoUsuario; ?>.</p>
-    <form method="post">
-    <div class="user-box">
-    <input type="text" id="codigoVerificacion" name="codigoVerificacion" required>
-        <label for="codigoVerificacion">Ingresa el código de verificación:</label>
-    </div>
-    <center><button class="btn4" type="submit">Verificar</button></center>
     </form>
 </div>
 </div>
