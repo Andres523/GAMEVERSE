@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="./styles/recuper.css">
     <title>Restablecer Contraseña</title>
 </head>
 <body>
-    <h2>Restablecer Contraseña</h2>
+    
 
     <div class="login-box">
-       
+       <h2>Restablecer Contraseña</h2>
        <?php
        $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
        if (!$conexion) {
@@ -22,12 +23,17 @@
        
            if ($resultadoToken && mysqli_num_rows($resultadoToken) == 1) {
                echo "<form action='process_reset_password.php' method='post'>";
+
                echo "<label for='password'>Nueva Contraseña:</label>";
+
                echo "<input type='password' name='password' required><br><br>";
+
                echo "<label for='password_repeated'>Repetir Nueva Contraseña:</label>";
+               
                echo "<input type='password' name='password_repeated' required><br><br>";
                echo "<input type='hidden' name='token' value='$token'>";
-               echo "<input type='submit' value='Restablecer Contraseña'>";
+
+               echo "<input type='submit' value='Restablecer Contraseña' class='btn4'>";
                echo "</form>";
            } else {
                echo "<p style='color: red;'>El enlace de restablecimiento de contraseña no es válido o ha expirado. Por favor, solicita un nuevo enlace de recuperación.</p>";
