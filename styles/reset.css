@@ -58,8 +58,10 @@
       color: #8803f4;
       font-size: 12px;
     }
-
-    .login-box.btn4 {
+    #token {
+      display: none;
+    }
+    .btn4 {
         --border-color: linear-gradient(-45deg, #ffae00, #7e03aa, #00fffb);
         --border-width: .125em;
         --curve-size: .5em;
@@ -93,14 +95,14 @@
         transition: color 250ms;
       }
       
-      .login-box.btn4::after,
-      .login-box.btn4::before {
+      .btn4::after,
+      .btn4::before {
         content: '';
         position: absolute;
         inset: 0;
       }
       
-      .login-box.btn4::before {
+      .btn4::before {
         background: var(--border-color);
         background-size: 300% 300%;
         animation: move-bg7234 5s ease infinite;
@@ -121,7 +123,7 @@
         }
       }
       
-      .login-box.btn4::after {
+      .btn4::after {
         background: var(--bg);
         z-index: -1;
         clip-path: polygon(
@@ -145,7 +147,7 @@
         transition: clip-path 500ms;
       }
       
-      .login-box.btn4:where(:hover, :focus)::after {
+      .btn4:where(:hover, :focus)::after {
         clip-path: polygon(
                       /* Top-left */
                       calc(100% - var(--border-width)) 
@@ -175,7 +177,7 @@
         transition: 200ms;
       }
       
-      .login-box.btn4:where(:hover, :focus) {
+      .btn4:where(:hover, :focus) {
         color: #fff;
       }
         p.error-message {

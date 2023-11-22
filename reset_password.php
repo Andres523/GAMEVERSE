@@ -37,8 +37,9 @@
                 </div>
 
                 <?php echo "<input type='hidden' name='token' value='$token'>"; ?>
-                <button class='btn4'><input type='submit' value='Restablecer Contraseña'></button>
+                <button class='btn4'><input type='submit'onclick='submitForm()' style='display: none;', style="position: relative;">Restablecer Contraseña</button> 
                 </form>
+
                 <?php
             } else {
                 echo "<p class='error-message'>El enlace de restablecimiento de contraseña no es válido o ha expirado. Por favor, solicita un nuevo enlace de recuperación.</p>";
