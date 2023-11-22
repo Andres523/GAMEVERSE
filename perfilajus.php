@@ -6,7 +6,6 @@ if (!isset($_SESSION['nombreUsuario'])) {
     exit();
 }
 
-// Conexión a la base de datos
 $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
 
 if (!$conexion) {
@@ -15,7 +14,6 @@ if (!$conexion) {
 
 $nombreUsuario = $_SESSION['nombreUsuario'];
 
-// Obtener datos del usuario
 $consultaDatos = "SELECT correo, edad, ubicacion, genero, direccion, imagenPerfil FROM usuarios WHERE nombre = '$nombreUsuario'";
 $resultadoDatos = mysqli_query($conexion, $consultaDatos);
 
@@ -53,39 +51,73 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nuevoGenero = $_POST['nuevoGenero'];
     $nuevaDireccion = $_POST['nuevaDireccion'];
 
-    // Actualización de datos del perfil
-    $actualizarDatos = "UPDATE usuarios SET correo='$nuevoCorreo', edad='$nuevaEdad', ubicacion='$nuevaLocalidad', genero='$nuevoGenero', direccion='$nuevaDireccion' WHERE nombre='$nombreUsuario'";
-    
-    if (mysqli_query($conexion, $actualizarDatos)) {
-        if ($_FILES['nuevaImagen']['error'] === UPLOAD_ERR_OK) {
-            $directorioImagenes = './img/perfiles'; 
-            $nombreArchivo = $_FILES['nuevaImagen']['name'];
-            $rutaArchivo = $directorioImagenes . $nombreArchivo;
+    $consultaCorreo = "SELECT correo FROM usuarios WHERE nombre = '$nombreUsuario'";
+    $resultadoCorreo = mysqli_query($conexion, $consultaCorreo);
 
-            if (move_uploaded_file($_FILES['nuevaImagen']['tmp_name'], $rutaArchivo)) {
-                $actualizarImagen = "UPDATE usuarios SET imagenPerfil='$rutaArchivo' WHERE nombre='$nombreUsuario'";
-                if (mysqli_query($conexion, $actualizarImagen)) {
-                    mysqli_close($conexion);
-                    header("Location: perfil.php"); 
-                    exit();
-                } else {
-                    echo "Error al actualizar la imagen de perfil: " . mysqli_error($conexion);
-                }
+    if ($resultadoCorreo && mysqli_num_rows($resultadoCorreo) > 0) {
+        $filaCorreo = mysqli_fetch_assoc($resultadoCorreo);
+        $correoActualBD = $filaCorreo['correo'];
+
+        if ($nuevoCorreo !== $correoActualBD) {
+            $codigoVerificacion = substr(md5(rand()), 0, 10);
+
+        
+            $actualizarCodigo = "UPDATE usuarios SET correo='$nuevoCorreo', codigo_verificacion='$codigoVerificacion', edad='$nuevaEdad', ubicacion='$nuevaLocalidad', genero='$nuevoGenero', direccion='$nuevaDireccion' WHERE nombre='$nombreUsuario'";
+            
+            if (mysqli_query($conexion, $actualizarCodigo)) {
+               
+                $asunto = "Código de verificación para cambio de correo";
+                $mensaje = "Su código de verificación es: " . $codigoVerificacion;
+                $headers = "From: tuemail@dominio.com";
+                mail($nuevoCorreo, $asunto, $mensaje, $headers);
+
+                mysqli_close($conexion);
+                header("Location: verificar_correo.php");
+                exit();
             } else {
-                echo "Error al subir la imagen de perfil.";
+                echo "Error al actualizar los datos: " . mysqli_error($conexion);
             }
         } else {
-            mysqli_close($conexion);
-            header("Location: perfil.php");
-            exit();
+         
+            $actualizarDatos = "UPDATE usuarios SET correo='$nuevoCorreo', edad='$nuevaEdad', ubicacion='$nuevaLocalidad', genero='$nuevoGenero', direccion='$nuevaDireccion' WHERE nombre='$nombreUsuario'";
+            
+       
+            if (mysqli_query($conexion, $actualizarDatos)) {
+            
+                if ($_FILES['nuevaImagen']['error'] === UPLOAD_ERR_OK) {
+                  
+                    $directorioImagenes = './img/perfiles'; 
+                    $nombreArchivo = $_FILES['nuevaImagen']['name'];
+                    $rutaArchivo = $directorioImagenes . $nombreArchivo;
+
+              
+                    if (move_uploaded_file($_FILES['nuevaImagen']['tmp_name'], $rutaArchivo)) {
+                     
+                        $actualizarImagen = "UPDATE usuarios SET imagenPerfil='$rutaArchivo' WHERE nombre='$nombreUsuario'";
+                        if (mysqli_query($conexion, $actualizarImagen)) {
+                           
+                            mysqli_close($conexion);
+                            header("Location: perfil.php"); 
+                            exit();
+                        } else {
+                            echo "Error al actualizar la imagen de perfil: " . mysqli_error($conexion);
+                        }
+                    } else {
+                        echo "Error al subir la imagen de perfil.";
+                    }
+                } else {
+                    
+                    mysqli_close($conexion);
+                    header("Location: perfil.php");
+                    exit();
+                }
+            } else {
+                echo "Error al actualizar los datos: " . mysqli_error($conexion);
+            }
         }
-    } else {
-        echo "Error al actualizar los datos: " . mysqli_error($conexion);
     }
 }
-
 ?>
-  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -134,7 +166,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </select>
             <label for="nuevaEdad"><h3>Edad:</h3></label>
             <div class="user-box">
-            <input type="number" id="nuevaEdad" name="nuevaEdad" value="<?php echo $edadActual; ?>">
+            <input type="number" id="nuevaEdad" name="nuevaEdad" value="<?php echo $edadActual; ?>" min="18" max="100">
+        
         </div>
         <div class="user-box">
             <input type="email" id="nuevoCorreo" name="nuevoCorreo" value="<?php echo $correoActual; ?>">
@@ -147,6 +180,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <center><button class="btn4" type="submit">Guardar cambios</button></center>
                 
     </form>
+
 
 </div>
 
