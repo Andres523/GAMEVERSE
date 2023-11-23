@@ -173,10 +173,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="email" id="nuevoCorreo" name="nuevoCorreo" value="<?php echo $correoActual; ?>">
             <label for="nuevoCorreo">Correo electrónico:</label>
         </div>
+
         <div class="user-box">
             <input type="text" id="nuevaDireccion" name="nuevaDireccion" value="<?php echo $direccionActual; ?>">
             <label for="nuevaDireccion">Dirección:</label>
         </div>
+
+        <a href="./reset_password.php"><button class="btn4" style="font-size: 10px;">cambiar contraseña</button></a>
+
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+
         <center><button class="btn4" type="submit">Guardar cambios</button></center>
                 
     </form>
