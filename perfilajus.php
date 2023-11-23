@@ -14,7 +14,7 @@ if (!$conexion) {
 
 $nombreUsuario = $_SESSION['nombreUsuario'];
 
-$consultaDatos = "SELECT correo, edad, ubicacion, genero, direccion, imagenPerfil FROM usuarios WHERE nombre = '$nombreUsuario'";
+$consultaDatos = "SELECT correo, edad, ubicacion, genero, direccion, imagenPerfil, password FROM usuarios WHERE nombre = '$nombreUsuario'";
 $resultadoDatos = mysqli_query($conexion, $consultaDatos);
 
 $correoActual = '';
@@ -23,6 +23,7 @@ $ubicacionActual = '';
 $generoActual = '';
 $direccionActual = '';
 $imagenPerfil = '';
+$password = '';
 
 if ($resultadoDatos && mysqli_num_rows($resultadoDatos) > 0) {
     $fila = mysqli_fetch_assoc($resultadoDatos);
@@ -32,91 +33,13 @@ if ($resultadoDatos && mysqli_num_rows($resultadoDatos) > 0) {
     $generoActual = !empty($fila['genero']) ? $fila['genero'] : '';
     $direccionActual = !empty($fila['direccion']) ? $fila['direccion'] : '';
     $imagenPerfil = !empty($fila['imagenPerfil']) ? $fila['imagenPerfil'] : '';
+    $password = !empty($fila['password']) ? $fila['password'] : '';
 }
 
 $ciudadesAntioquia = array('Medellín', 'Envigado', 'Itagüí', 'Bello', 'Sabaneta', 'Rionegro', 'La Estrella', 'Caldas', 'Copacabana', 'Girardota', 'Barbosa', 'Otra Ciudad');
 
 mysqli_close($conexion);
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
-
-    if (!$conexion) {
-        die("Error de conexión: " . mysqli_connect_error());
-    }
-    
-    $nuevoCorreo = $_POST['nuevoCorreo'];
-    $nuevaEdad = $_POST['nuevaEdad'];
-    $nuevaLocalidad = $_POST['nuevaLocalidad'];
-    $nuevoGenero = $_POST['nuevoGenero'];
-    $nuevaDireccion = $_POST['nuevaDireccion'];
-
-    $consultaCorreo = "SELECT correo FROM usuarios WHERE nombre = '$nombreUsuario'";
-    $resultadoCorreo = mysqli_query($conexion, $consultaCorreo);
-
-    if ($resultadoCorreo && mysqli_num_rows($resultadoCorreo) > 0) {
-        $filaCorreo = mysqli_fetch_assoc($resultadoCorreo);
-        $correoActualBD = $filaCorreo['correo'];
-
-        if ($nuevoCorreo !== $correoActualBD) {
-            $codigoVerificacion = substr(md5(rand()), 0, 10);
-
-        
-            $actualizarCodigo = "UPDATE usuarios SET correo='$nuevoCorreo', codigo_verificacion='$codigoVerificacion', edad='$nuevaEdad', ubicacion='$nuevaLocalidad', genero='$nuevoGenero', direccion='$nuevaDireccion' WHERE nombre='$nombreUsuario'";
-            
-            if (mysqli_query($conexion, $actualizarCodigo)) {
-               
-                $asunto = "Código de verificación para cambio de correo";
-                $mensaje = "Su código de verificación es: " . $codigoVerificacion;
-                $headers = "From: tuemail@dominio.com";
-                mail($nuevoCorreo, $asunto, $mensaje, $headers);
-
-                mysqli_close($conexion);
-                header("Location: verificar_correo.php");
-                exit();
-            } else {
-                echo "Error al actualizar los datos: " . mysqli_error($conexion);
-            }
-        } else {
-         
-            $actualizarDatos = "UPDATE usuarios SET correo='$nuevoCorreo', edad='$nuevaEdad', ubicacion='$nuevaLocalidad', genero='$nuevoGenero', direccion='$nuevaDireccion' WHERE nombre='$nombreUsuario'";
-            
-       
-            if (mysqli_query($conexion, $actualizarDatos)) {
-            
-                if ($_FILES['nuevaImagen']['error'] === UPLOAD_ERR_OK) {
-                  
-                    $directorioImagenes = './img/perfiles/'; 
-                    $nombreArchivo = $_FILES['nuevaImagen']['name'];
-                    $rutaArchivo = $directorioImagenes . $nombreArchivo;
-
-              
-                    if (move_uploaded_file($_FILES['nuevaImagen']['tmp_name'], $rutaArchivo)) {
-                     
-                        $actualizarImagen = "UPDATE usuarios SET imagenPerfil='$rutaArchivo' WHERE nombre='$nombreUsuario'";
-                        if (mysqli_query($conexion, $actualizarImagen)) {
-                           
-                            mysqli_close($conexion);
-                            header("Location: perfil.php"); 
-                            exit();
-                        } else {
-                            echo "Error al actualizar la imagen de perfil: " . mysqli_error($conexion);
-                        }
-                    } else {
-                        echo "Error al subir la imagen de perfil.";
-                    }
-                } else {
-                    
-                    mysqli_close($conexion);
-                    header("Location: perfil.php");
-                    exit();
-                }
-            } else {
-                echo "Error al actualizar los datos: " . mysqli_error($conexion);
-            }
-        }
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -179,10 +102,89 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="nuevaDireccion">Dirección:</label>
         </div>
 
-        <a href="./reset_password.php" class="btn4" style="font-size: 10px; text-decoration: none;">cambiar contraseña</a>
+        
+       <center> <h3>Restablecer Contraseña</h3> </center>
+       <br>
+       <br>
+        <div class='user-box'>
+            <input type='password' name='password' >
+            <label for='password'>Nueva Contraseña:</label>
+        </div>
+
+        <div class='user-box'>
+            <input type='password' name='password_repeated' >
+            <label for='password_repeated'>Repetir Nueva Contraseña:</label>
+        </div>
 
         <br>
-        <br>
+        <?php
+
+        
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
+
+    if (!$conexion) {
+        die("Error de conexión: " . mysqli_connect_error());
+    }
+
+    $nuevoCorreo = $_POST['nuevoCorreo'];
+    $nuevaEdad = $_POST['nuevaEdad'];
+    $nuevaLocalidad = $_POST['nuevaLocalidad'];
+    $nuevoGenero = $_POST['nuevoGenero'];
+    $nuevaDireccion = $_POST['nuevaDireccion'];
+    $contrasenaNueva = trim($_POST['password']);
+    $contrasenaRepetida = trim($_POST['password_repeated']);
+
+    if (empty($contrasenaNueva) && empty($contrasenaRepetida)) {
+        mysqli_close($conexion);
+        header("Location: perfil.php");
+        exit();
+    }
+
+    if (!empty($contrasenaNueva) && $contrasenaNueva === $contrasenaRepetida) {
+        $actualizarContrasena = "UPDATE usuarios SET password='$contrasenaNueva' WHERE nombre='$nombreUsuario'";
+        
+        if (mysqli_query($conexion, $actualizarContrasena)) {
+            $actualizarDatos = "UPDATE usuarios SET correo='$nuevoCorreo', edad='$nuevaEdad', ubicacion='$nuevaLocalidad', genero='$nuevoGenero', direccion='$nuevaDireccion' WHERE nombre='$nombreUsuario'";
+            
+            if (mysqli_query($conexion, $actualizarDatos)) {
+                if ($_FILES['nuevaImagen']['error'] === UPLOAD_ERR_OK) {
+                    $directorioImagenes = './img/perfiles/'; 
+                    $nombreArchivo = $_FILES['nuevaImagen']['name'];
+                    $rutaArchivo = $directorioImagenes . $nombreArchivo;
+
+                    if (move_uploaded_file($_FILES['nuevaImagen']['tmp_name'], $rutaArchivo)) {
+                        $actualizarImagen = "UPDATE usuarios SET imagenPerfil='$rutaArchivo' WHERE nombre='$nombreUsuario'";
+                        if (mysqli_query($conexion, $actualizarImagen)) {
+                            mysqli_close($conexion);
+                            header("Location: perfil.php"); 
+                            exit();
+                        } else {
+                            echo "Error al actualizar la imagen de perfil: " . mysqli_error($conexion);
+                        }
+                    } else {
+                        echo "Error al subir la imagen de perfil.";
+                    }
+                } else {
+                    mysqli_close($conexion);
+                    header("Location: perfil.php");
+                    exit();
+                }
+            } else {
+                echo "Error al actualizar los datos: " . mysqli_error($conexion);
+            }
+        } else {
+            echo "Error al actualizar la contraseña: " . mysqli_error($conexion);
+        }
+    } else {
+        echo "<p style='color: red;'>Las contraseñas no coinciden o están vacías.</p>";
+    }
+}
+
+        ?>
+    
+
+
         <br>
         <br>
 
