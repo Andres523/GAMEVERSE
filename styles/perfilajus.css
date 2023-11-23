@@ -237,6 +237,31 @@ body {
 }
 
 
+/*input*/
+
+select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  appearance: none; 
+  outline: none; 
+  background-color: #f7f7f7; 
+  width: 200px; 
+}
+
+
+option {
+  padding: 5px;
+  font-size: 14px;
+  border-bottom: 1px solid #ddd;
+}
+
+
+option:hover {
+  background-color: #e0e0e0;
+}
+
 
 
 

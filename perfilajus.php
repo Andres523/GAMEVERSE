@@ -166,16 +166,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </select>
             <label for="nuevaEdad"><h3>Edad:</h3></label>
             <div class="user-box">
-            <input type="number" id="nuevaEdad" name="nuevaEdad" value="<?php echo $edadActual; ?>" min="18" max="100">
+            <input class="input" type="number" id="nuevaEdad" name="nuevaEdad" value="<?php echo $edadActual; ?>" min="18" max="100">
         
         </div>
         <div class="user-box">
-            <input type="email" id="nuevoCorreo" name="nuevoCorreo" value="<?php echo $correoActual; ?>">
+            <input class="input" type="email" id="nuevoCorreo" name="nuevoCorreo" value="<?php echo $correoActual; ?>">
             <label for="nuevoCorreo">Correo electrónico:</label>
         </div>
 
         <div class="user-box">
-            <input type="text" id="nuevaDireccion" name="nuevaDireccion" value="<?php echo $direccionActual; ?>">
+            <input class="input" type="text" id="nuevaDireccion" name="nuevaDireccion" value="<?php echo $direccionActual; ?>">
             <label for="nuevaDireccion">Dirección:</label>
         </div>
 
@@ -212,5 +212,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 text-align: center;
             }
         }
+
+
+
+        .input {
+  color: #8707ff;
+  border: 2px solid #8707ff;
+  border-radius: 10px;
+  padding: 10px 25px;
+  background: transparent;
+  max-width: 500px;
+ }
+ 
+ .input:active {
+  box-shadow: 2px 2px 15px #8707ff inset;
+ }
+
+
 
 </style>
