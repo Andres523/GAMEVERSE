@@ -127,8 +127,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Editar Perfil</title>
 </head>
 <body>
+<a href="./index.php" ><button class="btn4">Atrás</button></a>
 
 <div class="login-box">
+
+ 
   
     <h1>Editar Perfil</h1>
     <form method="post" enctype="multipart/form-data">
