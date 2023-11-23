@@ -8,6 +8,7 @@ body {
 
 main {
 	max-width: 800px;
+	height: 600px;
 	margin: 30px auto;
 	background: #2d2f33;
 	padding: 30px;
@@ -210,7 +211,7 @@ footer {
 	padding: 20px;
 	border: 1px solid rgb(226, 12, 12)515;
 	width: 50%;
-	text-align: center;
+	text-align: center; 
 }
 
 .close {
