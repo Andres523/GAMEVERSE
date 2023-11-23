@@ -168,3 +168,15 @@
         document.getElementById('modal').style.display = 'none';
     }
 </script>
+
+<style>
+    
+main {
+	max-width: 800px;
+	height: 600px;
+	margin: 30px auto;
+	background: #2d2f33;
+	padding: 30px;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}	
+</style>
