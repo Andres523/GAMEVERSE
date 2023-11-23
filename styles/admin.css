@@ -3,7 +3,7 @@
 body {
 	background-color: #383c41;
 	color: #fcf9f4;
-	font-family: "Open Sans", "Arial";
+	font-family: "Open Sans", "Arial";;
 }
 
 main {
@@ -26,7 +26,7 @@ input[name="css-tabs"] {
 	background: #2b2a28;
 	height: 80px;
 	border-bottom: 5px solid #8201eb;
-	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2); 
 }
 #tabs::before {
 	content: "";
