@@ -132,6 +132,14 @@
             $password = $_POST['password'];
             $passwordRepetida = $_POST['password_repetida'];
             $correo = $_POST['correo'];
+
+
+            if (ctype_space($password)) {
+                echo "<p style='color: red;'>La contraseña no puede consistir solo en espacios en blanco.</p>";
+                mysqli_close($conexion);
+                exit;
+            }
+
             if ($password != $passwordRepetida) {
                 echo "<p style='color: red;'>Las contraseñas no coinciden. Intenta de nuevo.</p>";
                 mysqli_close($conexion);

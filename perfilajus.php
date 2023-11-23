@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
                 if ($_FILES['nuevaImagen']['error'] === UPLOAD_ERR_OK) {
                   
-                    $directorioImagenes = './img/perfiles'; 
+                    $directorioImagenes = './img/perfiles/'; 
                     $nombreArchivo = $_FILES['nuevaImagen']['name'];
                     $rutaArchivo = $directorioImagenes . $nombreArchivo;
 
