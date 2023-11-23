@@ -80,23 +80,10 @@
     <h2>Bandeja de reportes</h2>
     <div class="user-box">
     <textarea id="bug-description" name="bug-description" required></textarea>
-    
     </div>
-</form>
     <center><button class="btn4" type="submit">Enviar</button></center>
+</form>
 
-
-    <?php
-
-
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $codigoIngresado = trim($_POST['codigoVerificacion']); 
-
-    if ($codigoIngresado === $codigoVerificacion) {
-     
-}}
-?>
 
     </form>
 
@@ -111,6 +98,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     });
 </script>
+
+<?php
+    error_reporting(E_ALL);
+
+    $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
+    
+    if (!$conexion) {
+        die("Error de conexión: " . mysqli_connect_error());
+    }
+    
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $nombreUsuario = $_POST['nombre'];
+        $email = $_POST['email'];
+        $descripcionBug = $_POST['bug-description'];
+    
+        // Realizar validaciones si es necesario
+    
+        // Insertar el reporte de bug en la base de datos
+        $sql = "INSERT INTO reportes_bugs (nombre_usuario, email, descripcion_bug) VALUES ('$nombreUsuario', '$email', '$descripcionBug')";
+    
+        if (mysqli_query($conexion, $sql)) {
+            echo "<p style='color: green;'>Reporte de bug enviado con éxito.</p>";
+    
+            // Envío de notificación por correo electrónico (simulación)
+            $to = 'correo_administrador@gmail.com';
+            $subject = 'Nuevo Reporte de Bug';
+            $message = "Se ha recibido un nuevo reporte de bug.\n\n";
+            $message .= "Nombre de Usuario: $nombreUsuario\n";
+            $message .= "Correo Electrónico: $email\n";
+            $message .= "Descripción del Bug:\n$descripcionBug";
+    
+            $headers = 'From: tu_correo@gmail.com' . "\r\n" .
+                       'Reply-To: tu_correo@gmail.com' . "\r\n" .
+                       'X-Mailer: PHP/' . phpversion();
+    
+            mail($to, $subject, $message, $headers);
+        } else {
+            echo "<p style='color: red;'>Error al enviar el reporte de bug: " . mysqli_error($conexion) . "</p>";
+        }
+    }
+    
+    mysqli_close($conexion);
+    ?>
 
 </div>
 </div>
