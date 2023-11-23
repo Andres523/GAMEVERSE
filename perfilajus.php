@@ -179,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="nuevaDireccion">Dirección:</label>
         </div>
 
-        <a href="./reset_password.php"><button class="btn4" style="font-size: 10px;">cambiar contraseña</button></a>
+        <a href="./reset_password.php" class="btn4" style="font-size: 10px; text-decoration: none;">cambiar contraseña</a>
 
         <br>
         <br>
