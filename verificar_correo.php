@@ -1,25 +1,4 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/VC.css">
-    <title>Verificar Correo Electrónico</title>
-</head>
-<body>
-<div class="login-box">
-    <h2>Verificar Correo Electrónico</h2>
-    <div class="p"><center>Se ha enviado un código de verificación a <?php echo $correoUsuario; ?>.</center></div>
-    <form method="post">
-    <br>
-    <br>
-    <div class="user-box">
-    <input type="text" id="codigoVerificacion" name="codigoVerificacion" required>
-        <label for="codigoVerificacion">Ingresa el código de verificación:</label>
-    </div>
-    <center><button class="btn4" type="submit">Verificar</button></center>
-    <?php
+<?php
 session_start();
 
 if (!isset($_SESSION['nombreUsuario'])) {
@@ -50,6 +29,32 @@ if ($resultadoDatos) {
  
 mysqli_close($conexion);
 
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/VC.css">
+    <title>Verificar Correo Electrónico</title>
+</head>
+<body>
+<div class="login-box">
+    <h2>Verificar Correo Electrónico</h2>
+    <div style="text-align: center; color: green;">Se ha enviado un código de verificación a <?php echo $correoUsuario; ?>.</div>
+
+    <form method="post">
+    <br>
+    <br>
+    <div class="user-box">
+    <input type="text" id="codigoVerificacion" name="codigoVerificacion" required>
+        <label for="codigoVerificacion">Ingresa el código de verificación:</label>
+    </div>
+    <center><button class="btn4" type="submit">Verificar</button></center>
+    <?php
+
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $codigoIngresado = trim($_POST['codigoVerificacion']); 
 
@@ -58,7 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: perfil.php");
         exit();
     } else {
-        echo "Código de verificación incorrecto. Inténtalo de nuevo.";
+        echo '<p style="color: red;">Código de verificación incorrecto. Inténtalo de nuevo.</p>';
+
     }
 }
 ?>
