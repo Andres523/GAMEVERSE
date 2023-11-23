@@ -8,12 +8,14 @@
 </head>
 <body>
     <main>
-        <a href="./index.php">Atrás</a>
+        <div class="login-box">
+        <button class="btn4"><a href="./index.php" style="display: none"></a>Atrás</button>
         <br>
         <center><h1>Panel de Administración</h1></center>
+        
         <input id="radio1" type="radio" name="css-tabs" checked>
         <input id="radio2" type="radio" name="css-tabs">
-
+        
         <div id="tabs">
             <label id="tab4" for="radio1">Usuarios</label>
             <label id="tab2" for="radio2">Productos</label>
@@ -21,16 +23,19 @@
 
         <div id="content">
             <section id="content1">
-                <h2>Usuarios Registrados</h2>
                 <h2>Buscar Usuarios</h2>
                 <form method="GET">
-                    <label for="buscarNombre">Buscar por Nombre:</label>
+                <div class='user-box'>
+                    <label for="buscarNombre" >Buscar por Nombre:</label>
                     <input type="text" id="buscarNombre" name="buscarNombre">
+
                     <label for="buscarID">Buscar por ID:</label>
                     <input type="number" id="buscarID" name="buscarID">
-                    <button type="submit">Buscar</button>
+                
+                    <button type="submit" class="btn4">Buscar</button>
+                </div>
                 </form>
-  
+                </div>
 
                 <?php
                 session_start();
@@ -87,14 +92,14 @@
 
 
 
-
-<table>
+                <div class="tab">
+<table >
     <?php while ($usuario = mysqli_fetch_assoc($resultadoUsuarios)) : ?>
                         <tr>
                             <td>ID: <?php echo $usuario['id']; ?></td>
-                            <td>Nombre: <?php echo $usuario['nombre']; ?></td>
-                            <td>Correo: <?php echo $usuario['correo']; ?></td>
-                            <td>Contraseña: <?php echo $usuario['password']; ?></td>
+                            <td>Nombre: <br><?php echo $usuario['nombre']; ?></td>
+                            <td>Correo: <br><?php echo $usuario['correo']; ?></td>
+                            <td>Contraseña: <br><?php echo $usuario['password']; ?></td>
                             <td>
                                 <?php if ($usuario['imagenPerfil']): ?>
                                     <img class="profile-picture" src="<?php echo $usuario['imagenPerfil']; ?>" alt="imagen de perfil">
@@ -113,6 +118,7 @@
         <tr><td colspan="6"><hr></td></tr>
     <?php endwhile; ?>
 </table>
+                </div>
             </section>
             
             <section id="content2">
