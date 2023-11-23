@@ -5,7 +5,7 @@ session_start();
 if (isset($_COOKIE['nombreUsuario'])) {
     $nombreUsuario = $_COOKIE['nombreUsuario'];
 
-    // Conectar a la base de datos y obtener los datos del usuario
+    // Conectar a la base de datos y obtener los 
     $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
 
     if (!$conexion) {
@@ -16,10 +16,10 @@ if (isset($_COOKIE['nombreUsuario'])) {
     $resultado = mysqli_query($conexion, $sql);
 
     if ($resultado && mysqli_num_rows($resultado) == 1) {
-        // Obtiene los datos del usuario
+        // Obtiene los 
         $datosUsuario = mysqli_fetch_assoc($resultado);
     } else {
-        echo "Error al obtener los datos del usuario.";
+        echo "Error al obtener los .";
     }
 
     mysqli_close($conexion);
