@@ -37,20 +37,21 @@ margin-top:  5%;
 margin-left: 17%;
 }
 
-.deceados{
+.deseados{
   border-color: #000000;
-  box-shadow: 0 0 75px black;
-  width: 350px;
+  box-shadow: 0 0 40px black;
+  width: 425px;
   height: 550px;
   text-shadow: #040f16;
   opacity:0.9;
   color:#ffffff;
   background-color: #2b2e31;
-  margin-top:  5%;
-  margin-left: 17%;
-  overflow: auto; 
+  overflow: auto;
+  padding-left: 20px;
   }
-
+  .deseados::-webkit-scrollbar {
+    width: 12px;
+  }
 
 
 /* perfil*/
