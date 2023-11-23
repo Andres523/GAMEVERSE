@@ -75,15 +75,26 @@ if (!$conexion) {
                     }
                 }
             }
-            ?>
-            
-            <center><button class="btn4"><a href="./perfilajus.php" style="text-decoration: none;">Volver</a></button></center>    
-            <br>
-            <br>
-
-        
-
+            ?>   
         </form>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="./perfilajus.php" style="text-decoration: none;"><center><button class="btn4">Volver</button></center></a>
     </div>
 </body>
 </html>
