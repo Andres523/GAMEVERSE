@@ -29,7 +29,6 @@ if (isset($_POST['confirm-logout'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./img/logo.png">
-
     <link rel="stylesheet" href="./styles/stylegameverse.css">
     <script src="./javascript.js"></script>
 
@@ -65,7 +64,7 @@ if (isset($_POST['confirm-logout'])) {
             <div class="settings-popup" id="settingsPopup">
                 <a href="./perfil.php"><button>Perfil</button></a>
                 <a href="./perfilajus.php"><button>Editar perfil</button></a>
-                <a href=""><button>Reporte bugs</button></a>
+                <a href="./Report.php"><button>Reporte bugs</button></a>
                 <?php if ($_SESSION['nombreUsuario'] === 'admin'): ?>
                 <a href="admin.php"><button>Administrador</button></a>
                 <?php endif; ?>
