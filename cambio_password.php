@@ -66,8 +66,8 @@ if (!$conexion) {
                             $actualizarContrasena = "UPDATE usuarios SET password='$password' WHERE nombre='$nombreUsuario'";
                     
                             if (mysqli_query($conexion, $actualizarContrasena)) {
-                                echo "<p class='success-message' style='color: red;'>Contraseña actualizada exitosamente.</p>";
-                                echo "<p class='error-message'>Error al actualizar la contraseña: " . mysqli_error($conexion) . "</p>";
+                                echo "<p class='success-message' style='color: green;'>Contraseña actualizada exitosamente.</p>";
+
                             }
                         }
                     } else {
