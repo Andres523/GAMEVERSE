@@ -1,6 +1,10 @@
 html {
   height: 170%;
 } 
+
+.info{
+  width: 80px;
+}
 body {
   margin: 0;
   padding:0;
