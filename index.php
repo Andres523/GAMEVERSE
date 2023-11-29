@@ -40,7 +40,7 @@ if ($resultado) {
 
     if ($fila) {
         $rol = $fila['Rol'];
-        echo $rol;
+        
     } 
 
     mysqli_free_result($resultado);
