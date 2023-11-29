@@ -1,11 +1,6 @@
 <?php
 session_start();
 
-if (isset($_COOKIE["nombreUsuario"])) {
-    $nombreUsuario = $_COOKIE["nombreUsuario"];
-} else {
-    $nombreUsuario = "Invitado"; 
-}
 
 $loggedIn = isset($_SESSION['nombreUsuario']);
 
@@ -22,6 +17,37 @@ if (isset($_POST['confirm-logout'])) {
     header("Location: index.php");
     exit();
 }
+
+?>  
+<?php
+error_reporting (0);
+
+$conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
+
+
+
+
+$nombreUsuario = $_SESSION['nombreUsuario'];
+
+
+$consulta = "SELECT Rol FROM usuarios WHERE nombre = '$nombreUsuario'";
+
+$resultado = mysqli_query($conexion, $consulta);
+
+if ($resultado) {
+   
+    $fila = mysqli_fetch_assoc($resultado);
+
+    if ($fila) {
+        $rol = $fila['Rol'];
+        echo $rol;
+    } 
+
+    mysqli_free_result($resultado);
+} else {
+    echo "Error en la consulta: " . mysqli_error($conexion);
+}
+
 ?>  
 <!DOCTYPE html>
 <html lang="es">
@@ -65,7 +91,8 @@ if (isset($_POST['confirm-logout'])) {
                 <a href="./perfil.php"><button>Perfil</button></a>
                 <a href="./perfilajus.php"><button>Editar perfil</button></a>
                 <a href="./Report.php"><button>Reporte bugs</button></a>
-                <?php if ($_SESSION['nombreUsuario'] === 'admin'): ?>
+
+                <?php if ($rol === 'Admin'): ?>
                 <a href="admin.php"><button>Administrador</button></a>
                 <?php endif; ?>
                 <form method="post">
@@ -145,10 +172,8 @@ if (isset($_POST['confirm-logout'])) {
 <?php endif; ?>
 <br>
 
-<center>
-    <video src="./vid/y2mate.com - Marvels SpiderMan 2  Limited Edition PS5 Bundle  DualSense Wireless Controller_720p.mp4" width="600px" controls autoplay loop muted></video>
 
-</center>
+<!---   carrusel--->
 <br>
 <br>
 <br>

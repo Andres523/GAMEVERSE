@@ -128,6 +128,8 @@
                     exit;
                 }
             }
+
+
             $nombreUsuario = $_POST['nombre'];
             $password = $_POST['password'];
             $passwordRepetida = $_POST['password_repetida'];
@@ -159,8 +161,9 @@
                 mysqli_close($conexion);
                 exit;
             }
+
             $token = bin2hex(random_bytes(32));
-            $sql = "INSERT INTO usuarios (nombre, password, correo, token_verificacion) VALUES ('$nombreUsuario', '$password', '$correo', '$token')";
+            $sql = "INSERT INTO usuarios (nombre, password, correo, token_verificacion, Rol) VALUES ('$nombreUsuario', '$password', '$correo', '$token', 'Usuario')";
             error_reporting(E_ERROR | E_PARSE);
             if (mysqli_query($conexion, $sql)) {
                 $to = $correo;
@@ -190,13 +193,17 @@
                 $nombreUsuario = $_POST['nombre'];
                 $nombreUsuarioSinEspacios = trim($nombreUsuario);
             
-                // Verificar si el nombre de usuario contiene solo espacios en blanco
                 if (empty($nombreUsuarioSinEspacios)) {
                     echo "<p style='color: red;'>El nombre de usuario no puede consistir solo en espacios en blanco.</p>";
                     mysqli_close($conexion);
                     exit;
                 }
             }
+
+
+            
+
+
             mysqli_close($conexion);
             ?>
         </form>

@@ -14,7 +14,7 @@ if (!$conexion) {
 
 $nombreUsuario = $_SESSION['nombreUsuario'];
 
-$consultaDatos = "SELECT correo, ubicacion, edad, genero, imagenPerfil FROM usuarios WHERE nombre = '$nombreUsuario'";
+$consultaDatos = "SELECT correo, ubicacion, edad, genero, imagenPerfil, Rol FROM usuarios WHERE nombre = '$nombreUsuario'";
 $resultadoDatos = mysqli_query($conexion, $consultaDatos);
 
 if ($resultadoDatos) {
@@ -23,6 +23,7 @@ if ($resultadoDatos) {
         $localidad = !empty($fila['ubicacion']) ? $fila['ubicacion'] : 'Por completar';
         $edad = !empty($fila['edad']) ? $fila['edad'] : 'Por completar'; 
         $genero = !empty($fila['genero']) ? $fila['genero'] : 'Por completar';
+        $rol = $fila['Rol'];
         $imagenPerfil = !empty($fila['imagenPerfil']) ? $fila['imagenPerfil'] : null; 
     } else {
         $correo = 'Por completar';
@@ -103,7 +104,9 @@ mysqli_close($conexion);
         </div>
 
         <div class="perfil">
+        <?php  echo $rol /*////////////falta por style //////////////////////////////*/?> 
             <div class="item">
+                
                 <?php if ($imagenPerfil): ?>
                     <img class="profile-picture" src="<?php echo $imagenPerfil; ?>" alt="imagen de perfil">
                 <?php else: ?>
