@@ -236,7 +236,7 @@
             <a href="./index.php" ><button class="btn4">Atrás</button></a>
             <section class="tabs-wrapper">
                 
-                <div class="tabs-container">
+                <center><div class="tabs-container">
                     <div class="tabs-block">
                         
                         <div id="tabs-section" class="tabs">
@@ -420,6 +420,7 @@
                         </div>
                     </div>
                 </div>
+                </center>
             </section>
         </div>
 </body>

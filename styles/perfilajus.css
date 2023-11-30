@@ -572,7 +572,6 @@ option:hover {
  }
 
 
- /* Estilos para las imágenes predeterminadas */
  .image-selection {
      display: flex;
      justify-content: center;
@@ -587,9 +586,9 @@ option:hover {
  }
 
  .image-selection label img {
-     width: 100px; /* Ancho deseado para las imágenes */
-     height: 100px; /* Alto deseado para las imágenes */
-     border-radius: 50%; /* Forma de círculo */
+     width: 100px; 
+     height: 100px; 
+     border-radius: 50%; 
      object-fit: cover;
      border: 2px solid transparent;
      transition: border-color 0.3s ease-in-out;
@@ -597,14 +596,26 @@ option:hover {
  }
 
  .image-selection label img:hover {
-     border-color: #000; /* Color del borde al pasar el ratón */
+     border-color: #000; 
  }
 
  .image-selection label input {
-     display: none; /* Oculta los botones de selección */
+     display: none; 
  }
 
- /* Estilos para el botón seleccionado */
+ 
  .image-selection label input:checked + img {
-     border-color: #00f; /* Color del borde cuando está seleccionado */
+     border-color: #00f; 
+ }
+
+
+ .tabs-container {
+  width: 50%;
+  min-height: 700px;
+
+ }
+ .tab-body{
+
+  box-shadow: 0 0 20px black;
+
  }
