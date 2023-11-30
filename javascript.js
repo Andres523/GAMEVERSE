@@ -11,3 +11,5 @@ function hideConfirmationModal() {
 document.getElementById("cancel-button").addEventListener("click", function() {
     hideConfirmationModal();
 });
+
+

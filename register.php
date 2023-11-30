@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="login-box">
-        <h2>register</h2>
+        <h2>Registro</h2>
         <form action="./register.php" method="post">
             <div class="user-box">
                 <input type="text" name="nombre" required="">

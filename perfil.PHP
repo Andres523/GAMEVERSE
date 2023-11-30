@@ -14,7 +14,7 @@ if (!$conexion) {
 
 $nombreUsuario = $_SESSION['nombreUsuario'];
 
-$consultaDatos = "SELECT correo, ubicacion, edad, genero, imagenPerfil, Rol FROM usuarios WHERE nombre = '$nombreUsuario'";
+$consultaDatos = "SELECT correo, ubicacion, edad, genero, imagenPerfil, Rol , color, fondo FROM usuarios WHERE nombre = '$nombreUsuario'";
 $resultadoDatos = mysqli_query($conexion, $consultaDatos);
 
 if ($resultadoDatos) {
@@ -25,6 +25,8 @@ if ($resultadoDatos) {
         $genero = !empty($fila['genero']) ? $fila['genero'] : 'Por completar';
         $rol = $fila['Rol'];
         $imagenPerfil = !empty($fila['imagenPerfil']) ? $fila['imagenPerfil'] : null; 
+        $colorFondo = $fila['color'];
+        $fondo = $fila['fondo'];
     } else {
         $correo = 'Por completar';
         $localidad = 'Por completar';
@@ -80,7 +82,7 @@ mysqli_close($conexion);
         }
     </style>
 </head>
-<body>
+<body id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>');">
     <a href="./index.php" style="display: inline-block;"><button>ATRAS</button></a>
     <div class="moving-image" style="display: inline-block; vertical-align: top;">
         <img src="./img marketplace/SONIC.gif" alt="" width="80px">
