@@ -1,11 +1,6 @@
 <?php
 session_start();
 
-if (isset($_COOKIE["nombreUsuario"])) {
-    $nombreUsuario = $_COOKIE["nombreUsuario"];
-} else {
-    $nombreUsuario = "Invitado"; 
-}
 
 $loggedIn = isset($_SESSION['nombreUsuario']);
 
@@ -22,6 +17,37 @@ if (isset($_POST['confirm-logout'])) {
     header("Location: index.php");
     exit();
 }
+
+?>  
+<?php
+error_reporting (0);
+
+$conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
+
+
+
+
+$nombreUsuario = $_SESSION['nombreUsuario'];
+
+
+$consulta = "SELECT Rol FROM usuarios WHERE nombre = '$nombreUsuario'";
+
+$resultado = mysqli_query($conexion, $consulta);
+
+if ($resultado) {
+   
+    $fila = mysqli_fetch_assoc($resultado);
+
+    if ($fila) {
+        $rol = $fila['Rol'];
+        
+    } 
+
+    mysqli_free_result($resultado);
+} else {
+    echo "Error en la consulta: " . mysqli_error($conexion);
+}
+
 ?>  
 <!DOCTYPE html>
 <html lang="es">
@@ -35,7 +61,107 @@ if (isset($_POST['confirm-logout'])) {
     <title>inicio</title>
 </head>
 <body>
-    
+    <!--carga-->
+<div class="spinner-overlay">
+    <div class="spinner">
+     
+
+
+        <style>
+
+        .spinner:before {
+          transform: rotateX(60deg) rotateY(45deg) rotateZ(45deg);
+          animation: 750ms rotateBefore infinite linear reverse;
+        }
+
+        .spinner:after {
+          transform: rotateX(240deg) rotateY(45deg) rotateZ(45deg);
+          animation: 750ms rotateAfter infinite linear;
+        }
+
+        .spinner:before,
+        .spinner:after {
+          box-sizing: border-box;
+          content: '';
+          display: block;
+          position: absolute;
+          margin-top: -5em;
+          margin-left: -5em;
+          width: 10em;
+          height: 10em;
+          transform-style: preserve-3d;
+          transform-origin: 50%;
+          transform: rotateY(50%);
+          perspective-origin: 50% 50%;
+          perspective: 300px;
+          background-size: 10em 10em;
+          background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjI2NnB4IiBoZWlnaHQ9IjI5N3B4IiB2aWV3Qm94PSIwIDAgMjY2IDI5NyIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWxuczpza2V0Y2g9Imh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaC9ucyI+CiAgICA8dGl0bGU+c3Bpbm5lcjwvdGl0bGU+CiAgICA8ZGVzY3JpcHRpb24+Q3JlYXRlZCB3aXRoIFNrZXRjaCAoaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoKTwvZGVzY3JpcHRpb24+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBza2V0Y2g6dHlwZT0iTVNQYWdlIj4KICAgICAgICA8cGF0aCBkPSJNMTcxLjUwNzgxMywzLjI1MDAwMDM4IEMyMjYuMjA4MTgzLDEyLjg1NzcxMTEgMjk3LjExMjcyMiw3MS40OTEyODIzIDI1MC44OTU1OTksMTA4LjQxMDE1NSBDMjE2LjU4MjAyNCwxMzUuODIwMzEgMTg2LjUyODQwNSw5Ny4wNjI0OTY0IDE1Ni44MDA3NzQsODUuNzczNDM0NiBDMTI3LjA3MzE0Myw3NC40ODQzNzIxIDc2Ljg4ODQ2MzIsODQuMjE2MTQ2MiA2MC4xMjg5MDY1LDEwOC40MTAxNTMgQy0xNS45ODA0Njg1LDIxOC4yODEyNDcgMTQ1LjI3NzM0NCwyOTYuNjY3OTY4IDE0NS4yNzczNDQsMjk2LjY2Nzk2OCBDMTQ1LjI3NzM0NCwyOTYuNjY3OTY4IC0yNS40NDkyMTg3LDI1Ny4yNDIxOTggMy4zOTg0Mzc1LDEwOC40MTAxNTUgQzE2LjMwNzA2NjEsNDEuODExNDE3NCA4NC43Mjc1ODI5LC0xMS45OTIyOTg1IDE3MS41MDc4MTMsMy4yNTAwMDAzOCBaIiBpZD0iUGF0aC0xIiBmaWxsPSIjMDAwMDAwIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj48L3BhdGg+CiAgICA8L2c+Cjwvc3ZnPg==);
+        }
+        /* sitNSpin.less */
+        @keyframes rotateBefore {
+          from {
+            transform: rotateX(60deg) rotateY(45deg) rotateZ(0deg);
+          }
+
+          to {
+            transform: rotateX(60deg) rotateY(45deg) rotateZ(-360deg);
+          }
+        }
+
+        @keyframes rotateAfter {
+          from {
+            transform: rotateX(240deg) rotateY(45deg) rotateZ(0deg);
+          }
+
+          to {
+            transform: rotateX(240deg) rotateY(45deg) rotateZ(360deg);
+          }
+        }
+            .spinner-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 9999; 
+                display: none; 
+            }
+
+
+            .spinner {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+ 
+
+            
+            }
+
+
+        </style>
+
+        <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector('.spinner-overlay').style.display = 'block';
+    });
+
+    window.addEventListener('load', function() {
+        document.querySelector('.spinner-overlay').style.display = 'none';
+    });
+
+   
+    window.addEventListener('beforeunload', function(event) {
+        
+        document.querySelector('.spinner-overlay').style.display = 'none';
+    });
+        </script>
+
+    </div>
+</div>
+
+
+
 <div class="modal" id="confirmation-popup">
         <div class="modal-content">
             <p>¿Estás seguro de que deseas cerrar sesión?</p>
@@ -65,7 +191,8 @@ if (isset($_POST['confirm-logout'])) {
                 <a href="./perfil.php"><button>Perfil</button></a>
                 <a href="./perfilajus.php"><button>Editar perfil</button></a>
                 <a href="./Report.php"><button>Reporte bugs</button></a>
-                <?php if ($_SESSION['nombreUsuario'] === 'admin'): ?>
+
+                <?php if ($rol === 'Admin'): ?>
                 <a href="admin.php"><button>Administrador</button></a>
                 <?php endif; ?>
                 <form method="post">
@@ -114,41 +241,14 @@ if (isset($_POST['confirm-logout'])) {
 <?php if (isset($_SESSION['nombreUsuario'])): ?>
 
     <div class="twelve">
-    <center><h1 style="color: #fff;">Bienvenido, <?php echo $_SESSION['nombreUsuario']; ?></h1></center>
+    <center><h1 style="color: #fff; z-index:-33">Bienvenido, <?php echo $_SESSION['nombreUsuario']; ?></h1></center>
 </div>
-
-<style>
-
-.twelve h1 {
-  font-size:26px; font-weight:700;  letter-spacing:1px; text-transform:uppercase; width:160px; text-align:center; margin:auto; white-space:nowrap; padding-bottom:13px;
-}
-.twelve h1:before {
-    background-color: #c50000;
-    content: '';
-    display: block;
-    height: 3px;
-    width: 75px;
-    margin-bottom: 5px;
-}
-.twelve h1:after {
-    background-color: #c50000;
-    content: '';
-    display: block;
-  position:absolute; right:0; bottom:0;
-    height: 3px;
-    width: 75px;
-    margin-bottom: 0.25em;
-}
-
-</style>
     
 <?php endif; ?>
 <br>
 
-<center>
-    <video src="./vid/y2mate.com - Marvels SpiderMan 2  Limited Edition PS5 Bundle  DualSense Wireless Controller_720p.mp4" width="600px" controls autoplay loop muted></video>
 
-</center>
+<!---   carrusel--->
 <br>
 <br>
 <br>
@@ -326,9 +426,15 @@ No cabe duda de que Hollow Knight es uno de los juegos de tipo metroidvania que 
       width: 100%; 
       margin: 5px; 
       text-align: center;
+      z-index:-33
   }
 
 
   }
+
+  .twelve h1 {
+  font-size:26px; font-weight:700;  letter-spacing:1px; text-transform:uppercase; text-align:center; margin:auto; white-space:nowrap; padding-bottom:13px; z-index:-33
+}
+
 
 </style>
