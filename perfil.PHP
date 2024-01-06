@@ -58,6 +58,7 @@ if (isset($_POST['confirm-logout'])) {
     exit();
 }
 
+
 mysqli_close($conexion);
 ?>
 

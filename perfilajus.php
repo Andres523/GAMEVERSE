@@ -41,73 +41,16 @@
         $ciudadesAntioquia = array('Medellín', 'Envigado', 'Itagüí', 'Bello', 'Sabaneta', 'Rionegro', 'La Estrella', 'Caldas', 'Copacabana', 'Girardota', 'Barbosa', 'Otra Ciudad');
 
         mysqli_close($conexion);
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
         
-            if (!$conexion) {
-                die("Error de conexión: " . mysqli_connect_error());
-            }
 
+ 
 
-            $nuevoCorreo = $_POST['nuevoCorreo'];
-            $nuevaEdad = $_POST['nuevaEdad'];
-            $nuevaLocalidad = $_POST['nuevaLocalidad'];
-            $nuevoGenero = $_POST['nuevoGenero'];
-            $nuevaDireccion = $_POST['nuevaDireccion'];
-            $colorSeleccionado = $_POST['selectedColor'];
-            $imagenSeleccionada = $_POST['selectedImage'];
-            
+   
+    
 
-            $actualizarDatos = "UPDATE usuarios SET color='$selectedColor', fondo='$selectedImage', ubicacion='$nuevaLocalidad', genero='$nuevoGenero', edad='$nuevaEdad', direccion='$nuevaDireccion', correo='$nuevoCorreo' WHERE nombre='$nombreUsuario'";
+   
 
-
-            if (mysqli_query($conexion, $actualizarDatos)) {
-                mysqli_close($conexion);
-                header("Location: perfil.php");
-                exit();
-            } else {
-                echo "Error al actualizar los datos: " . mysqli_error($conexion);
-            }
-
-                
-                if (mysqli_query($conexion, $actualizarDatos)) {
-                
-                    if ($_FILES['nuevaImagen']['error'] === UPLOAD_ERR_OK) {
-                    
-                        $directorioImagenes = './img/perfiles/'; 
-                        $nombreArchivo = $_FILES['nuevaImagen']['name'];
-                        $rutaArchivo = $directorioImagenes . $nombreArchivo;
-                    
-                        if (move_uploaded_file($_FILES['nuevaImagen']['tmp_name'], $rutaArchivo)) {
-                        
-                            $actualizarImagen = "UPDATE usuarios SET imagenPerfil='$rutaArchivo' WHERE nombre='$nombreUsuario'";
-                            if (mysqli_query($conexion, $actualizarImagen)) {
-                            
-                                mysqli_close($conexion);
-                                header("Location: perfil.php"); 
-                                exit();
-                            } else {
-                                echo "Error al actualizar la imagen de perfil: " . mysqli_error($conexion);
-                            }
-                        } else {
-                            echo "Error al subir la imagen de perfil.";
-                        }
-                    } else {
-                        mysqli_close($conexion);
-                        header("Location: perfil.php");
-                        exit();
-                    }
-                } else {
-                    echo "Error al actualizar los datos: " . mysqli_error($conexion);
-                }
-                
-            
-        }
-        
-        
-        
-    ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -127,79 +70,6 @@
      
 
 
-        <style>
-
-        .spinner:before {
-          transform: rotateX(60deg) rotateY(45deg) rotateZ(45deg);
-          animation: 750ms rotateBefore infinite linear reverse;
-        }
-
-        .spinner:after {
-          transform: rotateX(240deg) rotateY(45deg) rotateZ(45deg);
-          animation: 750ms rotateAfter infinite linear;
-        }
-
-        .spinner:before,
-        .spinner:after {
-          box-sizing: border-box;
-          content: '';
-          display: block;
-          position: absolute;
-          margin-top: -5em;
-          margin-left: -5em;
-          width: 10em;
-          height: 10em;
-          transform-style: preserve-3d;
-          transform-origin: 50%;
-          transform: rotateY(50%);
-          perspective-origin: 50% 50%;
-          perspective: 300px;
-          background-size: 10em 10em;
-          background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjI2NnB4IiBoZWlnaHQ9IjI5N3B4IiB2aWV3Qm94PSIwIDAgMjY2IDI5NyIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWxuczpza2V0Y2g9Imh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaC9ucyI+CiAgICA8dGl0bGU+c3Bpbm5lcjwvdGl0bGU+CiAgICA8ZGVzY3JpcHRpb24+Q3JlYXRlZCB3aXRoIFNrZXRjaCAoaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoKTwvZGVzY3JpcHRpb24+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBza2V0Y2g6dHlwZT0iTVNQYWdlIj4KICAgICAgICA8cGF0aCBkPSJNMTcxLjUwNzgxMywzLjI1MDAwMDM4IEMyMjYuMjA4MTgzLDEyLjg1NzcxMTEgMjk3LjExMjcyMiw3MS40OTEyODIzIDI1MC44OTU1OTksMTA4LjQxMDE1NSBDMjE2LjU4MjAyNCwxMzUuODIwMzEgMTg2LjUyODQwNSw5Ny4wNjI0OTY0IDE1Ni44MDA3NzQsODUuNzczNDM0NiBDMTI3LjA3MzE0Myw3NC40ODQzNzIxIDc2Ljg4ODQ2MzIsODQuMjE2MTQ2MiA2MC4xMjg5MDY1LDEwOC40MTAxNTMgQy0xNS45ODA0Njg1LDIxOC4yODEyNDcgMTQ1LjI3NzM0NCwyOTYuNjY3OTY4IDE0NS4yNzczNDQsMjk2LjY2Nzk2OCBDMTQ1LjI3NzM0NCwyOTYuNjY3OTY4IC0yNS40NDkyMTg3LDI1Ny4yNDIxOTggMy4zOTg0Mzc1LDEwOC40MTAxNTUgQzE2LjMwNzA2NjEsNDEuODExNDE3NCA4NC43Mjc1ODI5LC0xMS45OTIyOTg1IDE3MS41MDc4MTMsMy4yNTAwMDAzOCBaIiBpZD0iUGF0aC0xIiBmaWxsPSIjMDAwMDAwIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj48L3BhdGg+CiAgICA8L2c+Cjwvc3ZnPg==);
-        }
-        /* sitNSpin.less */
-        @keyframes rotateBefore {
-          from {
-            transform: rotateX(60deg) rotateY(45deg) rotateZ(0deg);
-          }
-
-          to {
-            transform: rotateX(60deg) rotateY(45deg) rotateZ(-360deg);
-          }
-        }
-
-        @keyframes rotateAfter {
-          from {
-            transform: rotateX(240deg) rotateY(45deg) rotateZ(0deg);
-          }
-
-          to {
-            transform: rotateX(240deg) rotateY(45deg) rotateZ(360deg);
-          }
-        }
-            .spinner-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 9999; 
-                display: none; 
-            }
-
-
-            .spinner {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
- 
-
-            
-            }
-
-
-        </style>
 
         <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -254,10 +124,11 @@
                                     <a href="#tab-4" class="tab-link"> <span class="material-icons tab-icon">toll</span> <span class="tab-label">Temas</span></a>
                                 </li>
                             </ul>
-                            <section id="tab-1" class="tab-body entry-content active active-content">
+
+                            <section id="tab-1" class="tab-body entry-content active active-content" >
 
                                 <h2>General</h2>
-                                <form method="post" enctype="multipart/form-data">
+                                <form method="post" action="procesar_datos.php" id="form-general">
 
                                     <p>
                                     Configura el nombre y los detalles de tu perfi.
@@ -304,7 +175,7 @@
                                     
                                     
                                     
-                                    <center><button class="btn4" type="submit">Guardar cambios</button></center>
+                                    <center><button class="btn4" type="submit" name="guardarCambiosGenerales">Guardar cambios</button></center>
                                 </form>
 
     
@@ -317,7 +188,7 @@
                                     Agrega una imagen de perfil.
                                 </p>
 
-                                <form method="post" enctype="multipart/form-data">
+                                <form method="post" action="procesar_datos.php" id="form-avatar" enctype="multipart/form-data">
             
                                     <center>
                                     <div class="item">
@@ -342,42 +213,28 @@
                                         
                                         
                                         
-                                    <center><button class="btn4" type="submit">Guardar cambios</button></center>
+                                        <center><button class="btn4" type="submit" name="guardarCambiosAvatar">Guardar cambios</button></center>
                     
                                 </form>
                             </section>
 
 
                             <section id="tab-3" class="tab-body entry-content">
-                                <h2>Seguirdad</h2>
-                                    <form method="post" enctype="multipart/form-data">
+    <h2>Seguridad</h2>
 
-                                        <div class="user-box">
-                                            <label for="nuevoCorreo"><h3>Correo electrónico:</h3></label>
-                                            <input class="input" type="email" id="nuevoCorreo" name="nuevoCorreo" value="<?php echo $correoActual; ?>">
-                                            
-                                        </div>
+    <form method="post" action="procesar_datos.php" id="form-seguridad">
+        <div class="user-box">
+            <label for="codigoVerificacion"><h3>Código de verificación:</h3></label>
+            <input class="input" type="text" id="codigoVerificacion" name="codigoVerificacion" required value="<?php echo $correoActual; ?>">
+        </div>
+        <button class="btn4" type="submit" name="verificarCodigo">Verificar código</button>
+    </form>
+</section>
 
-
-            
-            
-
-                                        <div class="user-box">
-                                            <h3>cambio de contraseña:</h3>
-
-                                        </div>
-
-        
-
-
-                                        <center><button class="btn4" type="submit">Guardar cambios</button></center>
-                    
-                                    </form>
-                            </section>
 
                             <section id="tab-4" class="tab-body entry-content">
                                 <h2>Configuración de Color de Fondo</h2>
-                                <form id="configuracionForm" method="post">
+                                <form method="post" action="procesar_datos.php" id="form-temas" enctype="multipart/form-data">
                                     <center>
                                         <button class="color-btn" type="button" value="#24282f" style="background-color: #24282f;"></button>
                                         <button class="color-btn" type="button" value="#cc0066" style="background-color: #cc0066;"></button>
@@ -414,7 +271,9 @@
                                         </label>
                                     </div>
 
-                                    <center><button id="guardarCambios" class="btn4" type="submit">Guardar cambios</button></center>
+                                    <center><button class="btn4" type="submit" name="guardarCambiosTemas">Guardar cambios</button></center>
+
+                    
                                 </form>
                             </section>
                         </div>
@@ -530,3 +389,77 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </script>
 
+
+<style>
+
+.spinner:before {
+  transform: rotateX(60deg) rotateY(45deg) rotateZ(45deg);
+  animation: 750ms rotateBefore infinite linear reverse;
+}
+
+.spinner:after {
+  transform: rotateX(240deg) rotateY(45deg) rotateZ(45deg);
+  animation: 750ms rotateAfter infinite linear;
+}
+
+.spinner:before,
+.spinner:after {
+  box-sizing: border-box;
+  content: '';
+  display: block;
+  position: absolute;
+  margin-top: -5em;
+  margin-left: -5em;
+  width: 10em;
+  height: 10em;
+  transform-style: preserve-3d;
+  transform-origin: 50%;
+  transform: rotateY(50%);
+  perspective-origin: 50% 50%;
+  perspective: 300px;
+  background-size: 10em 10em;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjI2NnB4IiBoZWlnaHQ9IjI5N3B4IiB2aWV3Qm94PSIwIDAgMjY2IDI5NyIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWxuczpza2V0Y2g9Imh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaC9ucyI+CiAgICA8dGl0bGU+c3Bpbm5lcjwvdGl0bGU+CiAgICA8ZGVzY3JpcHRpb24+Q3JlYXRlZCB3aXRoIFNrZXRjaCAoaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoKTwvZGVzY3JpcHRpb24+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBza2V0Y2g6dHlwZT0iTVNQYWdlIj4KICAgICAgICA8cGF0aCBkPSJNMTcxLjUwNzgxMywzLjI1MDAwMDM4IEMyMjYuMjA4MTgzLDEyLjg1NzcxMTEgMjk3LjExMjcyMiw3MS40OTEyODIzIDI1MC44OTU1OTksMTA4LjQxMDE1NSBDMjE2LjU4MjAyNCwxMzUuODIwMzEgMTg2LjUyODQwNSw5Ny4wNjI0OTY0IDE1Ni44MDA3NzQsODUuNzczNDM0NiBDMTI3LjA3MzE0Myw3NC40ODQzNzIxIDc2Ljg4ODQ2MzIsODQuMjE2MTQ2MiA2MC4xMjg5MDY1LDEwOC40MTAxNTMgQy0xNS45ODA0Njg1LDIxOC4yODEyNDcgMTQ1LjI3NzM0NCwyOTYuNjY3OTY4IDE0NS4yNzczNDQsMjk2LjY2Nzk2OCBDMTQ1LjI3NzM0NCwyOTYuNjY3OTY4IC0yNS40NDkyMTg3LDI1Ny4yNDIxOTggMy4zOTg0Mzc1LDEwOC40MTAxNTUgQzE2LjMwNzA2NjEsNDEuODExNDE3NCA4NC43Mjc1ODI5LC0xMS45OTIyOTg1IDE3MS41MDc4MTMsMy4yNTAwMDAzOCBaIiBpZD0iUGF0aC0xIiBmaWxsPSIjMDAwMDAwIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj48L3BhdGg+CiAgICA8L2c+Cjwvc3ZnPg==);
+}
+/* sitNSpin.less */
+@keyframes rotateBefore {
+  from {
+    transform: rotateX(60deg) rotateY(45deg) rotateZ(0deg);
+  }
+
+  to {
+    transform: rotateX(60deg) rotateY(45deg) rotateZ(-360deg);
+  }
+}
+
+@keyframes rotateAfter {
+  from {
+    transform: rotateX(240deg) rotateY(45deg) rotateZ(0deg);
+  }
+
+  to {
+    transform: rotateX(240deg) rotateY(45deg) rotateZ(360deg);
+  }
+}
+    .spinner-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999; 
+        display: none; 
+    }
+
+
+    .spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+
+    
+    }
+
+
+</style>
