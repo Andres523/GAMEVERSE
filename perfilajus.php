@@ -25,6 +25,7 @@
         $imagenPerfil = '';
         $colorFondo = '';
         $fondo ='';
+        $contraseñaNoCoincideError = "";
 
         if ($resultadoDatos && mysqli_num_rows($resultadoDatos) > 0) {
             $fila = mysqli_fetch_assoc($resultadoDatos);
@@ -40,17 +41,19 @@
 
         $ciudadesAntioquia = array('Medellín', 'Envigado', 'Itagüí', 'Bello', 'Sabaneta', 'Rionegro', 'La Estrella', 'Caldas', 'Copacabana', 'Girardota', 'Barbosa', 'Otra Ciudad');
 
+
+    
         mysqli_close($conexion);
+        ?>
+        
         
 
  
 
    
     
-
    
 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -220,16 +223,31 @@
 
 
                             <section id="tab-3" class="tab-body entry-content">
-    <h2>Seguridad</h2>
+                                <h1>Seguridad</h1>
 
-    <form method="post" action="procesar_datos.php" id="form-seguridad">
-        <div class="user-box">
-            <label for="codigoVerificacion"><h3>Código de verificación:</h3></label>
-            <input class="input" type="text" id="codigoVerificacion" name="codigoVerificacion" required value="<?php echo $correoActual; ?>">
-        </div>
-        <button class="btn4" type="submit" name="verificarCodigo">Verificar código</button>
-    </form>
-</section>
+                                <h2>Correo</h2>
+
+                                <form method="post" action="procesar_datos.php" id="form-cambiar-correo">
+                                    <div class="user-box">
+                                        <label for="nuevoCorreo"><h3>Nuevo Correo:</h3></label>
+                                        <input class="input" type="email" id="nuevoCorreo" name="nuevoCorreo" required value="<?php echo $correoActual; ?>">
+                                    </div>
+                                    <button class="btn4" type="submit" name="cambiarCorreo">Cambiar Correo</button>
+                                </form>
+                                <h2>Cambiar Contraseña</h2>
+
+                                <form method="post" action="procesar_datos.php" id="form-cambiar-contraseña">
+                                    <div class="user-box">
+                                        <label for="contraseñaActual"><h3>Contraseña Actual:</h3></label>
+                                        <input class="input" type="password" id="contraseñaActual" name="contraseñaActual" required>
+                                    </div>
+                                    <button class="btn4" type="submit" name="verificarContraseña">Verificar Contraseña</button>
+                                </form>
+           
+                                
+
+                             </section>
+
 
 
                             <section id="tab-4" class="tab-body entry-content">
