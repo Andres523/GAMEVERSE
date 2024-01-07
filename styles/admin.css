@@ -159,29 +159,42 @@ footer {
 }
 
 /*ventana de confirmacion cuando eliminas usuarios*/
-.modal {
-	display: none; 
-	position: fixed;
-	z-index: 99;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0,0,0,0.4);
-	color: green;
+.modal-content{
+	background: linear-gradient(
+		  82.3deg,
+		  rgb(93, 100, 233) 10.8%,
+		  rgb(145, 238, 88) 94.3%);
+    text-align: center;
+    border: none;
+    border-radius: 20px;
 }
-
-.modal-content {
-	background-color: #312e2e;
-	margin: 15% auto;
-	padding: 20px;
-	border: 1px solid rgb(226, 12, 12)515;
-	width: 50%;
-	text-align: center;
+.modal-icon{
+    color: #000000;
+    background-color: rgba(65,181,7,0.1);
+    font-size: 60px;
+    line-height: 120px;
+    height: 120px;
+    width: 120px;
+    margin: 0 auto 30px;
+    border-radius: 50%;
+}
+.title{
+    color: #000000;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+}
+.description{
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    margin: 0 0 30px;
 }
 
 .close {
-	color: rgb(9, 243, 9);
+	color: rgb(243, 9, 9);
 	float: right;
 	font-size: 28px;
 	font-weight: bold;
@@ -202,20 +215,10 @@ footer {
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.4);
-	color: green;
-}
-
-.modal-content {
-	background-color: #312e2e;
-	margin: 15% auto;
-	padding: 20px;
-	border: 1px solid rgb(226, 12, 12)515;
-	width: 50%;
-	text-align: center; 
 }
 
 .close {
-	color: rgb(9, 243, 9);
+	color: rgb(0, 0, 0);
 	float: right;
 	font-size: 28px;
 	font-weight: bold;
@@ -548,7 +551,7 @@ footer {
 		background: linear-gradient(
 		  82.3deg,
 		  rgba(150, 93, 233, 1) 10.8%,
-		  rgba(99, 88, 238, 1) 94.3%
+		  rgb(238, 88, 88) 94.3%
 		);
 		transition: all 0.475s;
 	  }

@@ -181,14 +181,25 @@
 
                     <div id="modal" class="modal">
                         <div class="modal-content">
-                            <span class="close" onclick="cerrarModal()">&times;</span>
-                            <p>¿Estás seguro de que quieres eliminar este usuario?</p>
+                            <div class="container">
+                                <div class="modal-box">
+                                    <span class="close" onclick="cerrarModal()">&times;</span>
+                                    <!-- Modal -->
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <h3 class="title">cuidado!</h3>
+                                            <p class="description">¿Estás seguro de que quieres eliminar este usuario?</p>
+                                            <div class="modal-icon">
+                                            <img src="./iconos/eliminar.jpg" alt="icono">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
                             <button class="button" id="confirmarEliminar" onclick="eliminarUsuario()"><span class="button-content">Sí</span> </button>
                             <button class="button" onclick="cerrarModal()"><span class="button-content">No</span></button>
                         </div>
                     </div>
-
-
 
                     <div class="tab">
                         <table >
