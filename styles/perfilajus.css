@@ -1,17 +1,7 @@
-html {
-  height: 170%;
-} 
 
 .info{
   width: 80px;
 }
-body {
-  margin: 0;
-  padding:0;
-  font-family: sans-serif;
- 
-
-  }
 
   .main-container {
     overflow-y: auto;
@@ -20,7 +10,7 @@ body {
     padding: 0 20px;
   }
   
-.item{
+.item{ 
   border-radius: 50px;
   }
  
