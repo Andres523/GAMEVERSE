@@ -94,7 +94,7 @@
 </head>
  
 <body 
-id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size:cover;">
+id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size:cover; object-fit: cover;">
 <div class="spinner-overlay">
     <div class="spinner">
 
@@ -118,19 +118,9 @@ id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; backgro
     </div>
 </div>
 
-        
-        <div class="site-wrapper"> 
-            <section class="article-wrapper">
-                <div class="article-container">
-                    <div class="article-block">
                         <div class="entry-content">
-                            <h1>Editar Perfil</h1>
-                            
                         </div>
-                    </div>
-                    
-                </div>
-            </section>
+             
             <section class="tabs-wrapper">
                 
                 <center><div class="tabs-container">
@@ -161,7 +151,7 @@ id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; backgro
                                     Configura el nombre y los detalles de tu perfi.
                                     </p>
             
-
+ 
 
                                     <label for="nuevaLocalidad"><h3>Localidad:</h3></label>
 
@@ -229,14 +219,12 @@ id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; backgro
                                             <img class="profile-picture" src="./img/logo.png" alt="imagen de perfil predeterminada">
                                         <?php endif; ?>
                                     </div>
-                                    <br>
-                                    <hr>
-                                        
+
                                     <label for="nuevaImagen" class="upload-button">Seleccionar archivo</label>
                                     <input type="file" id="nuevaImagen" name="nuevaImagen" style="display: none;">
                                     <br>
                                     <br>
-                                    <p>32px Sube un archivo desde tu dispositivo. La imagen debe ser cuadrada y tener al menos 184 px por lado <p>
+                                    <p>La imagen debe ser cuadrada y tener al menos 184 px por lado <p>
                                     
                                         </center>
                                         <br>
@@ -250,24 +238,29 @@ id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; backgro
 
 
                             <section id="tab-3" class="tab-body entry-content">
-                                <h1>Seguridad</h1>
-
-                                <h2>Correo</h2>
+                                <h2>Seguridad</h2>
+                                <br>
+                                <h3>Correo</h3>
 
                                 <form method="post" action="procesar_datos.php" id="form-cambiar-correo">
                                     <div class="user-box">
-                                        <label for="nuevoCorreo"><h3>Nuevo Correo:</h3></label>
+                                        <label for="nuevoCorreo">Nuevo Correo:</label>
                                         <input class="input" type="email" id="nuevoCorreo" name="nuevoCorreo" required value="<?php echo $correoActual; ?>">
                                     </div>
                                     <button class="btn4" type="submit" name="cambiarCorreo">Cambiar Correo</button>
+
                                 </form>
-                                <h2>Cambiar Contraseña</h2>
+                                <br>
+                            
+                                <h3>Cambiar Contraseña</h3>
 
                                 <form method="post" action="procesar_datos.php" id="form-cambiar-contraseña">
                                     <div class="user-box">
-                                        <label for="contraseñaActual"><h3>Contraseña Actual:</h3></label>
+                                        <label for="contraseñaActual">Contraseña Actual:</label>
+                                        <br>
                                         <input class="input" type="password" id="contraseñaActual" name="contraseñaActual" required>
                                     </div>
+                                    <br>
                                     <button class="btn4" type="submit" name="verificarContraseña">Verificar Contraseña</button>
                                 </form>
            
@@ -278,13 +271,13 @@ id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; backgro
 
 
                             <section id="tab-4" class="tab-body entry-content">
-                                <h2>Configuración de Color de Fondo</h2>
+                                <h3>Configuración de Color de Fondo</h3>
                                 <form method="post" action="procesar_datos.php" id="form-temas" enctype="multipart/form-data">
                                     <center>
                                         <button class="color-btn" type="button" value="#24282f" style="background-color: #24282f;"></button>
-                                        <button class="color-btn" type="button" value="#cc0066" style="background-color: #cc0066;"></button>
+                                        <button class="color-btn" type="button" value="#a000507c" style="background-color: #a000507c;"></button>
                                         <button class="color-btn" type="button" value="#aec6d2" style="background-color: #aec6d2;"></button>
-                                        <button class="color-btn" type="button" value="#006600" style="background-color: #006600;"></button>
+                                        <button class="color-btn" type="button" value="#00660077" style="background-color: #00660077;"></button>
                                     </center>
                                                                 
                                     <input type="hidden" name="selectedColor" id="selectedColor" value="<?php echo $colorFondo; ?>">
@@ -293,16 +286,16 @@ id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; backgro
                                     <br><br>
                                                                                
                                                                 
-                                     <h2>Imágenes predeterminadas :</h2>
+                                     <h3>Imágenes predeterminadas :</h3>
                                     <div class="image-selection">
                                         <label for="image1">
-                                            <img src="./img/fondo/1.jpg" alt="Imagen 1">
+                                            <img src="./img/fondo/1.jpg" alt="Imagen 1" class="img-preview">
                                             <input type="radio" id="image1" name="selectedImage" value="./img/fondo/1.jpg">
                                         </label>
 
                                         <label for="image2">
-                                            <img src="./img/fondo/2.jpg" alt="Imagen 2" class="img-preview">
-                                            <input type="radio" id="image2" name="selectedImage" value="./img/fondo/2.jpg">
+                                            <img src="./iconos/leds.jpg" alt="Imagen 2" class="img-preview">
+                                            <input type="radio" id="image2" name="selectedImage" value="./iconos/leds.jpg">
                                         </label>
 
                                         <label for="image3">
@@ -314,6 +307,7 @@ id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; backgro
                                             <img src="./img/fondo/4.jpg" alt="Imagen 4" class="img-preview">
                                             <input type="radio" id="image4" name="selectedImage" value="./img/fondo/4.jpg">
                                         </label>
+                                        
                                     </div>
 
                                     <center><button class="btn4" type="submit" name="guardarCambiosTemas">Guardar cambios</button></center>
