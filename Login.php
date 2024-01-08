@@ -72,8 +72,9 @@ session_start();
                 <label>Nombre de usuario</label>
             </div>
             <div class="user-box">
-                <input type="password" name="password" required="">
-                <label>Contraseña</label>
+              <input type="password" name="password" id="passwordField" required autocomplete="current-password" >
+              <label for="passwordField">Contraseña</label>
+              <span class="toggle-password" onclick="togglePassword()">Mostrar</span>
             </div>
             <a href="./Recuperacion.php" style="font-size: 9px;letter-spacing: 1px;padding: 0px 0px;">¿olvidaste la Contraseña ?</a>
             <br>
@@ -83,6 +84,8 @@ session_start();
             <center><a href="./register.html" style="letter-spacing: 4px;padding: 10px 20px;">¿No tienes cuenta?</a></center>
 
         </form>
+
+        
 
         <?php
         if (isset($_POST['nombre']) && isset($_POST['password'])) {
@@ -271,4 +274,25 @@ session_start();
             }
         }
 
+        
+  .toggle-password {
+  cursor: pointer;
+  color: blue;
+}
+
 </style>
+
+<script>
+        function togglePassword() {
+            var passwordField = document.getElementById("passwordField");
+            
+          
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                document.querySelector(".toggle-password").textContent = "Ocultar";
+            } else {
+                passwordField.type = "password";
+                document.querySelector(".toggle-password").textContent = "Mostrar";
+            }
+        }
+    </script>

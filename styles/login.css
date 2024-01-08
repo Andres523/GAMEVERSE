@@ -187,3 +187,8 @@ svg {
   background-color:  #243b55;
   background-image: linear-gradient(to bottom, rgba(25, 50, 69, 0.86), #000000);
 }
+
+.toggle-password {
+  cursor: pointer;
+  color: rgb(19, 19, 204);
+}
