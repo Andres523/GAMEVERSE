@@ -66,8 +66,9 @@
         <link rel="stylesheet" href="./styles/perfilajus.css">
         <title>Editar Perfil</title>
 </head>
-
-<body id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size:cover;">
+ 
+<body 
+id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size:cover;">
 <div class="spinner-overlay">
     <div class="spinner">
      
@@ -106,7 +107,6 @@
                     
                 </div>
             </section>
-            <a href="./index.php" ><button class="btn4">Atrás</button></a>
             <section class="tabs-wrapper">
                 
                 <center><div class="tabs-container">
@@ -179,6 +179,8 @@
                                     
                                     
                                     <center><button class="btn4" type="submit" name="guardarCambiosGenerales">Guardar cambios</button></center>
+                                    <br>
+                                    <a href="./index.php" ><button class="btn4">Atrás</button></a>
                                 </form>
 
     
