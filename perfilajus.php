@@ -191,7 +191,7 @@
                                     Agrega una imagen de perfil.
                                 </p>
 
-                                <form method="post" action="procesar_datos.php" id="form-avatar" enctype="multipart/form-data">
+                                <form method="post" action="" id="form-avatar" enctype="multipart/form-data">
             
                                     <center>
                                     <div class="item">

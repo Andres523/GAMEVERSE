@@ -9,25 +9,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $nombreUsuario = $_SESSION['nombreUsuario'];
-    $contraseñaActual = $_POST['contraseñaActual'];
 
     $sql = "SELECT password FROM usuarios WHERE nombre='$nombreUsuario'";
     $resultado = mysqli_query($conexion, $sql);
 
-    if ($resultado && mysqli_num_rows($resultado) > 0) {
-        $fila = mysqli_fetch_assoc($resultado);
-        $contraseñaAlmacenada = $fila['password'];
 
-      
-        if ($contraseñaActual === $contraseñaAlmacenada) {
-            header("Location: cambio_password.php");
-            exit;
-        } else {
-            echo "La contraseña actual no es correcta. Por favor, inténtalo de nuevo.";
-        }
-    } else {
-        echo "Usuario no encontrado o error en la base de datos.";
-    }
 
     if (isset($_POST['guardarCambiosGenerales'])) {
         
@@ -66,8 +52,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Error al cambiar el correo electrónico: " . mysqli_error($conexion);
         }
     }
+ 
+    if ($resultado && mysqli_num_rows($resultado) > 0) {
+        $fila = mysqli_fetch_assoc($resultado);
+        $contraseñaAlmacenada = $fila['password'];
+        
+        $contraseñaActual = $_POST['contraseñaActual'];
 
-
+      
+        if ($contraseñaActual === $contraseñaAlmacenada) {
+            header("Location: cambio_password.php");
+            exit;
+        } else {
+            echo "La contraseña actual no es correcta. Por favor, inténtalo de nuevo.";
+        }
+    } else {
+        echo "Usuario no encontrado o error en la base de datos.";
+    }
     
     if (isset($_POST['guardarCambiosTemas'])) {
         $colorSeleccionado = $_POST['selectedColor'];
