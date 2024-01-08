@@ -187,10 +187,10 @@
                                     <!-- Modal -->
                                     <div class="modal-content">
                                         <div class="modal-body">
-                                            <h3 class="title">cuidado!</h3>
-                                            <p class="description">¿Estás seguro de que quieres eliminar este usuario?</p>
+                                            <h3 class="title">¡CUIDADO!</h3>
+                                            <p class="description"><h2>¿Estás seguro de eliminar este usuario?</h2></p>
                                             <div class="modal-icon">
-                                            <img src="./iconos/eliminar.jpg" alt="icono">
+                                            <img src="./iconos/block-user.png" alt="icono" style="width: 110px; height: 110px;">
                                             </div>
                                         </div>
                                     </div>
