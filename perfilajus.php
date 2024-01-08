@@ -42,8 +42,34 @@
         $ciudadesAntioquia = array('Medellín', 'Envigado', 'Itagüí', 'Bello', 'Sabaneta', 'Rionegro', 'La Estrella', 'Caldas', 'Copacabana', 'Girardota', 'Barbosa', 'Otra Ciudad');
 
 
-    
+        error_reporting(0);
+            
+        if (isset($_FILES['nuevaImagen']) && $_FILES['nuevaImagen']['error'] === UPLOAD_ERR_OK) {
+            
+          
+            $directorioImagenes = './img/perfiles/'; 
+            $nombreArchivo = $_FILES['nuevaImagen']['name'];
+            $rutaArchivo = $directorioImagenes . $nombreArchivo;
+        
+            if (move_uploaded_file($_FILES['nuevaImagen']['tmp_name'], $rutaArchivo)) {
+             
+                $actualizarImagen = "UPDATE usuarios SET imagenPerfil='$rutaArchivo' WHERE nombre='$nombreUsuario'";
+                if (mysqli_query($conexion, $actualizarImagen)) {
+                   
+                    mysqli_close($conexion);
+                    header("Location: perfil.php"); 
+                    exit();
+                } else {
+                    echo "Error al actualizar la imagen de perfil: " . mysqli_error($conexion);
+                }
+            } else {
+                echo "Error al subir la imagen de perfil.";
+            }
+        }
+      
+
         mysqli_close($conexion);
+        
         ?>
         
         
@@ -71,8 +97,6 @@
 id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size:cover;">
 <div class="spinner-overlay">
     <div class="spinner">
-     
-
 
 
         <script>
@@ -180,8 +204,9 @@ id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; backgro
                                     
                                     <center><button class="btn4" type="submit" name="guardarCambiosGenerales">Guardar cambios</button></center>
                                     <br>
-                                    <a href="./index.php" ><button class="btn4">Atrás</button></a>
+                                    
                                 </form>
+                                <a href="./index.php" ><button class="btn4">Atrás</button></a>
 
     
                             </section>
