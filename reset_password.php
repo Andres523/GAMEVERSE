@@ -114,80 +114,91 @@
     </div>
 </div>
 
-    <div class='login-box'>
-       
-       <?php
-       $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
-       if (!$conexion) {
-           die("Error de conexión: " . mysqli_connect_error());
-       }
-   
-       if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['token'])) {
-           $token = $_GET['token'];
-   
-           $consultaToken = "SELECT * FROM usuarios WHERE token_recuperacion = '$token' AND TIMESTAMPDIFF(HOUR, fecha_token, NOW()) < 24";
-           $resultadoToken = mysqli_query($conexion, $consultaToken);
 
-            if ($resultadoToken && mysqli_num_rows($resultadoToken) == 1) {
-                ?>
+<div class='login-box'>
+    <?php
+    $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
+    if (!$conexion) {
+        die("Error de conexión: " . mysqli_connect_error());
+    }
 
-                <form class='login-box' action='process_reset_password.php' method='post' onsubmit='return submitForm()'>
-                <h2>Restablecer Contraseña</h2> 
+    if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['token'])) {
+        $token = $_GET['token'];
+
+        $consultaToken = "SELECT * FROM usuarios WHERE token_recuperacion = '$token' AND TIMESTAMPDIFF(HOUR, fecha_token, NOW()) < 24";
+        $resultadoToken = mysqli_query($conexion, $consultaToken);
+
+        if ($resultadoToken && mysqli_num_rows($resultadoToken) == 1) {
+            ?>
+
+            <form class='login-box' action='process_reset_password.php' method='post' onsubmit='return submitForm()'>
+                <h2>Restablecer Contraseña</h2>
                 <div class='user-box'>
-                <input type='password' name='password' required>
-                <label for='password'>Nueva Contraseña:</label>
+                    <input type='password' name='password' id='password' required>
+                    <label for='password'>Nueva Contraseña:</label>
                 </div>
 
                 <div class='user-box'>
-                <input type='password' name='password_repeated' required>
-                <label for='password_repeated'>Repetir Nueva Contraseña:</label>
+                    <input type='password' name='password_repeated' id='password_repeated' required>
+                    <label for='password_repeated'>Repetir Nueva Contraseña:</label>
                 </div>
                 <button type="button" onclick="toggleMostrarContrasenas()">Mostrar/ocultar contraseñas</button>
-                
+
+                <div id="error-message" style="color: red; margin-top: 5px;"></div>
 
                 <?php echo "<input type='hidden' name='token' value='$token'>"; ?>
-                <button class='btn4'><input type='submit'onclick='submitForm()' style='display: none;', style="position: relative;">Restablecer Contraseña</button> 
-                </form>
-                
+                    <button class='btn4'><input type='submit' style='display: none;'>Restablecer Contraseña</button>  
+            </form>
 
-                
+            <?php
+        } else {
+            echo "<p class='error-message'>El enlace de restablecimiento de contraseña no es válido o ha expirado. Por favor, solicita un nuevo enlace de recuperación.</p>";
+        }
+    }
 
-                <?php
-            } else {
-                echo "<p class='error-message'>El enlace de restablecimiento de contraseña no es válido o ha expirado. Por favor, solicita un nuevo enlace de recuperación.</p>";
-            }
-       }
-       
-       mysqli_close($conexion);
-       ?>
-    </div>
-    
-</body>
-</html>
+    mysqli_close($conexion);
+    ?>
+</div>
+
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector('.spinner-overlay').style.display = 'block';
+    });
+
+    window.addEventListener('load', function() {
+        document.querySelector('.spinner-overlay').style.display = 'none';
+    });
+
+    window.addEventListener('beforeunload', function(event) {
+        document.querySelector('.spinner-overlay').style.display = 'none';
+    });
+
     function toggleMostrarContrasenas() {
-        var contrasenaInputs = document.querySelectorAll('input[type="password"]');
-        contrasenaInputs.forEach(function(input) {
-            if (input.type === 'password') {
-                input.type = 'text';
-            } else {
-                input.type = 'password';
-            }
-        });
+        var passwordInput = document.getElementById('password');
+        var passwordRepeatedInput = document.getElementById('password_repeated');
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            passwordRepeatedInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+            passwordRepeatedInput.type = 'password';
+        }
     }
 
     function submitForm() {
-        var password = document.getElementsByName('password')[0].value;
-        var passwordRepeated = document.getElementsByName('password_repeated')[0].value;
+        var password = document.getElementById('password').value;
+        var passwordRepeated = document.getElementById('password_repeated').value;
+        var errorMessage = document.getElementById('error-message');
 
         if (password !== passwordRepeated) {
-            var errorElement = document.createElement('p');
-            errorElement.textContent = 'Las contraseñas no coinciden';
-            errorElement.style.color = 'red';
-            var loginBox = document.querySelector('.login-box');
-            loginBox.appendChild(errorElement);
-            return false; // Evita que el formulario se envíe
+            errorMessage.textContent = 'Las contraseñas no coinciden';
+            return false;
+        } else {
+            errorMessage.textContent = '';
+            return true;
         }
-        return true; // Envía el formulario si las contraseñas coinciden
     }
 </script>
+</body>
+</html>
