@@ -131,7 +131,7 @@
             if ($resultadoToken && mysqli_num_rows($resultadoToken) == 1) {
                 ?>
 
-                <form class='login-box' action='process_reset_password.php' method='post'>
+                <form class='login-box' action='process_reset_password.php' method='post' onsubmit='return submitForm()'>
                 <h2>Restablecer Contraseña</h2> 
                 <div class='user-box'>
                 <input type='password' name='password' required>
@@ -164,3 +164,30 @@
     
 </body>
 </html>
+<script>
+    function toggleMostrarContrasenas() {
+        var contrasenaInputs = document.querySelectorAll('input[type="password"]');
+        contrasenaInputs.forEach(function(input) {
+            if (input.type === 'password') {
+                input.type = 'text';
+            } else {
+                input.type = 'password';
+            }
+        });
+    }
+
+    function submitForm() {
+        var password = document.getElementsByName('password')[0].value;
+        var passwordRepeated = document.getElementsByName('password_repeated')[0].value;
+
+        if (password !== passwordRepeated) {
+            var errorElement = document.createElement('p');
+            errorElement.textContent = 'Las contraseñas no coinciden';
+            errorElement.style.color = 'red';
+            var loginBox = document.querySelector('.login-box');
+            loginBox.appendChild(errorElement);
+            return false; // Evita que el formulario se envíe
+        }
+        return true; // Envía el formulario si las contraseñas coinciden
+    }
+</script>
