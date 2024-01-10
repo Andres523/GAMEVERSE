@@ -98,6 +98,17 @@
         
         document.querySelector('.spinner-overlay').style.display = 'none';
     });
+
+    function toggleMostrarContrasenas() {
+    var contrasenaInputs = document.querySelectorAll('input[type="password"]');
+    contrasenaInputs.forEach(function(input) {
+        if (input.type === 'password') {
+            input.type = 'text';
+        } else {
+            input.type = 'password';
+        }
+    });
+}
         </script>
 
     </div>
@@ -131,10 +142,15 @@
                 <input type='password' name='password_repeated' required>
                 <label for='password_repeated'>Repetir Nueva Contraseña:</label>
                 </div>
+                <button type="button" onclick="toggleMostrarContrasenas()">Mostrar/ocultar contraseñas</button>
+                
 
                 <?php echo "<input type='hidden' name='token' value='$token'>"; ?>
                 <button class='btn4'><input type='submit'onclick='submitForm()' style='display: none;', style="position: relative;">Restablecer Contraseña</button> 
                 </form>
+                
+
+                
 
                 <?php
             } else {
@@ -145,5 +161,6 @@
        mysqli_close($conexion);
        ?>
     </div>
+    
 </body>
 </html>
