@@ -274,9 +274,39 @@
                                                         
                     <section id="content2">
                         <h3>Productos</h3>
-            
-                        <!-- ... (código relacionado con productos) ... -->
+                        <section id="content2">
+    <h3>Productos</h3>
+    <button id="openModalBtn">Agregar Producto</button>
+</section>
+
+                                    <div id="modal" class="modal">
+                                        <div class="modal-content">
+                                            <span class="close" id="closeModalBtn">&times;</span>
+                                            <form id="productForm">
+                                                <label for="nombre">Nombre:</label>
+                                                <input type="text" id="nombre" name="nombre" required>
+                                                                                            
+                                                <label for="descripcion">Descripción:</label>
+                                                <textarea id="descripcion" name="descripcion" required></textarea>
+                                                                                            
+                                                <label for="requisitos">Requisitos:</label>
+                                                <input type="text" id="requisitos" name="requisitos" required>
+                                                                                            
+                                                <label for="cantidad">Cantidad:</label>
+                                                <input type="number" id="cantidad" name="cantidad" required>
+                                                                                            
+                                                <label for="precio">Precio:</label>
+                                                <input type="number" id="precio" name="precio" required>
+                                                                                            
+                                                <label for="imagen">Imagen:</label>
+                                                <input type="file" id="imagen" name="imagen" accept="image/*" required>
+                                                                                            
+                                                <button type="submit">Guardar</button>
+                                            </form>
+                                        </div>
+                                    </div>
                     </section>
+  
                 </div>
             </div>
 
