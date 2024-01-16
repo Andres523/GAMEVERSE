@@ -1,4 +1,37 @@
 
+    <?php
+   
+    // ... (código anterior)
+    
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Obtener valores del formulario
+        $nombre = $_POST["nombre"];
+        $descripcion = $_POST["descripcion"];
+        $requisitos = $_POST["requisitos"];
+        $cantidad = $_POST["cantidad"];
+        $precio = $_POST["precio"];
+        $imagen = $_POST["imagen"]; 
+        $video_youtube = $_POST["video_youtube"];
+    
+        $nombre = mysqli_real_escape_string($conexion, $nombre);
+        $descripcion = mysqli_real_escape_string($conexion, $descripcion);
+        $requisitos = mysqli_real_escape_string($conexion, $requisitos);
+        $precio = mysqli_real_escape_string($conexion, $precio);
+
+    
+
+        $insertarConsulta = "INSERT INTO productos (nombre, descripcion, requisitos, precio, imagen, video_youtube)
+                             VALUES ('$nombre', '$descripcion', '$requisitos', '$precio', '$imagen', '$video_youtube')";
+    
+        if (mysqli_query($conexion, $insertarConsulta)) {
+            echo "Producto agregado exitosamente.";
+        } else {
+            echo "Error al agregar el producto: " . mysqli_error($conexion);
+        }
+    }
+    ?>
+    
+    ?>
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -179,7 +212,7 @@
                             die("Error al obtener usuarios: " . mysqli_error($conexion));
                         }
                         ?>
-
+<!-- MODAL ELIMINAR-->
                         <div id="modal" class="modal">
                             <div class="modal-content">
                                 <div class="container">
@@ -400,7 +433,7 @@
                         <br>
                         <br>
 
-                        
+                        <!-- MODAL PRODUCTOS -->
                                             <div id="productModal" class="modal">
                                             <div class="modal-content">
                                                 <span class="close" id="closeProductModalBtn">&times;</span>
@@ -422,7 +455,11 @@
                                                                                             
                                                 <label for="imagen">Imagen:</label>
                                                 <input type="file" id="imagen" name="imagen" accept="image/*" required>
-                                                                                            
+                                                               
+                                                
+                                                <label for="video_youtube">Enlace de YouTube:</label>
+                                                <input type="text" id="video_youtube" name="video_youtube">
+
                                                 <button type="submit">Guardar</button>
                                                 <script>
 
