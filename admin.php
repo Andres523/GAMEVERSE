@@ -1,8 +1,6 @@
 
     <?php
-   
-    // ... (código anterior)
-    
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Obtener valores del formulario
         $nombre = $_POST["nombre"];
@@ -31,7 +29,7 @@
     }
     ?>
     
-    ?>
+    
     <!DOCTYPE html>
     <html lang="en">
     <head>
