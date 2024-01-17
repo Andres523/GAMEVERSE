@@ -68,7 +68,7 @@ JUEGOS
             echo '<figure class="card">';
             echo '<img src="' . $fila['imagen'] . '" alt="' . $fila['nombre'] . '" style="width: 100%; min-height: 100%; object-fit: cover;">';
             echo '<figcaption>';
-            echo '<h2>' . $fila['nombre'] . '</h2>';
+            echo '<h2 style="text-decoration: none;">' . $fila['nombre'] . '</h2>';
             echo '<p>Precio: $' . $fila['precio'] . '</p>';
             echo '</figcaption>';
             echo '</figure>';
