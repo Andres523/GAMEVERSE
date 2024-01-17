@@ -109,24 +109,23 @@
         <form action="./register.php" method="post">
             <div class="user-box">
                 <input type="text" name="nombre" required="">
-                <label>nombre de usuario</label>
+                <label>Nombre de usuario</label>
             </div>
             <div class="user-box">
+                <input type="email" name="correo" required="">
+                <label for="">Correo</label>
+            </div>
+
+            <div class="user-box">
                 <input type="password" name="password" id="password" required="">
-            <label>contraseña</label>
+                <label>Contraseña</label>
             </div>
             <div class="user-box">
                 <input type="password" name="password_repetida" id="password_repetida" required="">
-                <label>repetir contraseña</label>
+                <label>Repetir contraseña</label>
+                <span class="toggle-password" onclick="togglePassword()">Mostrar</span>
             </div>
-            <button type="button" onclick="toggleMostrarContrasenas()">Mostrar/ocultar contraseñas</button>
 
-            
-            <div class="user-box">
-                <input type="email" name="correo" required="">
-                <label for="">correo</label>
-            </div>
-            
             <center><button class="btn4" type="submit" value="registrarse">Enviar</button></center>
             <br>
             <style>
@@ -157,6 +156,11 @@
                     );
                     transition: color 250ms;
                 }
+                .toggle-password {
+            cursor: pointer;
+            color: #333;
+            font-size: 14px;
+        }
                 .btn4::after,
                 .btn4::before {
                     content: '';
@@ -308,19 +312,26 @@
             ?>
         </form>
     </div>
+    <script>
+    function togglePassword() {
+        var passwordField = document.getElementById("password");
+        var passwordRepeatField = document.getElementById("password_repetida");
+
+        passwordField.type = (passwordField.type === "password") ? "text" : "password";
+        passwordRepeatField.type = (passwordRepeatField.type === "password") ? "text" : "password";
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector('.spinner-overlay').style.display = 'block';
+    });
+
+    window.addEventListener('load', function() {
+        document.querySelector('.spinner-overlay').style.display = 'none';
+    });
+
+    window.addEventListener('beforeunload', function(event) {
+        document.querySelector('.spinner-overlay').style.display = 'none';
+    });
+</script>
 </body>
 </html>
-<script>
-    function toggleMostrarContrasenas() {
-        var passwordField = document.getElementById("password");
-        var confirmPasswordField = document.getElementById("password_repetida");
-
-        if (passwordField.type === "password") {
-            passwordField.type = "text";
-            confirmPasswordField.type = "text";
-        } else {
-            passwordField.type = "password";
-            confirmPasswordField.type = "password";
-        }
-    }
-</script>
