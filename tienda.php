@@ -49,6 +49,7 @@ JUEGOS
 </h1>
 </center>
 <div class="wrapper">
+    
     <main>
         <section id="catalogo">
         <div class="cards">
