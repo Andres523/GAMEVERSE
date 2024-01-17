@@ -66,7 +66,7 @@ JUEGOS
         while ($fila = mysqli_fetch_assoc($resultado)) {
             echo '<a href="juego.php?id=' . $fila['id'] . '" class="juego-link">';
             echo '<figure class="card">';
-            echo '<img src="' . $fila['imagen'] . '" alt="' . $fila['nombre'] . '">';
+            echo '<img src="' . $fila['imagen'] . '" alt="' . $fila['nombre'] . '" style="width: 100%; min-height: 100%; object-fit: cover;">';
             echo '<figcaption>';
             echo '<h2>' . $fila['nombre'] . '</h2>';
             echo '<p>Precio: $' . $fila['precio'] . '</p>';
