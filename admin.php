@@ -197,8 +197,8 @@
                                     </div>
                                 </div>  
                             </div>
-                            <button class="button" id="confirmarEliminar" onclick="eliminarUsuario()"><span class="button-content">Sí</span> </button>
-                            <button class="button" onclick="cerrarModal()"><span class="button-content">No</span></button>
+                            <button class="btn4" id="confirmarEliminar" onclick="eliminarUsuario()"><span class="button-content">Sí</span> </button>
+                            <button class="btn4" onclick="cerrarModal()"><span class="button-content">No</span></button>
                         </div>
                     </div>
 
@@ -211,8 +211,8 @@
                                 <input type="email" id="correoUsuarioEditar" placeholder="Correo">
                                 <input type="toggleMostrarContrasena" id="contrasenaUsuarioEditar" placeholder="Contraseña">
                                     
-                                <button class="button" onclick="guardarCambiosUsuario()">Guardar Cambios</button>
-                                <button class="button" onclick="cerrarModalEditar()">Cerrar</button>
+                                <button class="btn4" onclick="guardarCambiosUsuario()">Guardar Cambios</button>
+                                <button class="btn4" onclick="cerrarModalEditar()">Cerrar</button>
                                 <br>
                                 <br>
                                 <span class="toggleMostrarContrasena" onclick="toggleMostrarContrasena()">Mostrar</span>
@@ -365,8 +365,8 @@ $conexion->close();
 
                                                     
                 <section id="content2">
-                    <h3>Productos</h3>
-                    <button id="openModalBtn">Agregar Producto</button>
+                    <h2>Productos</h2>
+                    <button class="btn4" id="openModalBtn">Agregar Producto</button>
                     <br>
                     <br>
 
@@ -379,10 +379,10 @@ $conexion->close();
                                                 <input type="text" id="nombre" name="nombre" required>
 
                                                 <label for="descripcion">Descripción:</label>
-                                                <input type="text" id="descripcion" name="descripcion" required>
+                                                <input type="text" id="descripcion" name="descripcion" required><br>
 
                                                 <label for="requisitos">Requisitos:</label>
-                                                <input type="text" id="requisitos" name="requisitos" required><br>
+                                                <input type="text" id="requisitos" name="requisitos" required>
 
                                                 <label for="cantidad">Cantidad:</label>
                                                 <input type="number" id="cantidad" name="cantidad" required>
