@@ -228,8 +228,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </div>
                                 </div>  
                             </div>
-                            <button class="button" id="confirmarEliminar" onclick="eliminarUsuario()"><span class="button-content">Sí</span> </button>
-                            <button class="button" onclick="cerrarModal()"><span class="button-content">No</span></button>
+                            <button class="btn4" id="confirmarEliminar" onclick="eliminarUsuario()"><span class="button-content">Sí</span> </button>
+                            <button class="btn4" onclick="cerrarModal()"><span class="button-content">No</span></button>
                         </div>
                     </div>
 
@@ -242,8 +242,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <input type="email" id="correoUsuarioEditar" placeholder="Correo">
                                 <input type="toggleMostrarContrasena" id="contrasenaUsuarioEditar" placeholder="Contraseña">
                                     
-                                <button class="button" onclick="guardarCambiosUsuario()">Guardar Cambios</button>
-                                <button class="button" onclick="cerrarModalEditar()">Cerrar</button>
+                                <button class="btn4" onclick="guardarCambiosUsuario()">Guardar Cambios</button>
+                                <button class="btn4" onclick="cerrarModalEditar()">Cerrar</button>
                                 <br>
                                 <br>
                                 <span class="toggleMostrarContrasena" onclick="toggleMostrarContrasena()">Mostrar</span>
@@ -366,12 +366,13 @@ function cerrarModal() {
                             <?php endwhile; ?>
                         </table>
                     </div>
+                    
                 </section>
 
                                                     
                 <section id="content2">
-                    <h3>Productos</h3>
-                    <button id="openModalBtn">Agregar Producto</button>
+                    <h2>Productos</h2>
+                    <button class="btn4" id="openModalBtn">Agregar Producto</button>
                     <br>
                     <br>
 
@@ -384,16 +385,16 @@ function cerrarModal() {
                                             <input type="text" id="nombre" name="nombre" required>
                                                                                         
                                             <label for="descripcion">Descripción:</label>
-                                            <textarea id="descripcion" name="descripcion" required></textarea>
+                                            <input type="text" id="descripcion" name="descripcion" required>
                                                                                         
                                             <label for="requisitos">Requisitos:</label>
-                                            <input type="text" id="requisitos" name="requisitos" required>
+                                            <input type="text" id="requisitos" name="requisitos" required><br>
                                                                                         
                                             <label for="cantidad">Cantidad:</label>
                                             <input type="number" id="cantidad" name="cantidad" required>
                                                                                         
                                             <label for="precio">Precio:</label>
-                                            <input type="number" id="precio" name="precio" required>
+                                            <input type="number" id="precio" name="precio" required><br>
                                                                                         
                                             <label for="imagen">Imagen:</label>
                                             <input type="file" id="imagen" name="imagen" accept="image/*" required>
@@ -402,33 +403,33 @@ function cerrarModal() {
                                             <label for="video_youtube">Enlace de YouTube:</label>
                                             <input type="text" id="video_youtube" name="video_youtube">
 
-                                            <button type="submit">Guardar</button>
-                                            <script>
+                                            <button class="btn4" type="submit">Guardar</button>
+                                                <script>
 
-    var openModalBtn = document.getElementById('openModalBtn');
-    var closeProductModalBtn = document.getElementById('closeProductModalBtn');
-    var productModal = document.getElementById('productModal');
+                                                    var openModalBtn = document.getElementById('openModalBtn');
+                                                    var closeProductModalBtn = document.getElementById('closeProductModalBtn');
+                                                    var productModal = document.getElementById('productModal');
 
-    openModalBtn.addEventListener('click', function() {
-        productModal.style.display = 'block';
-    });
+                                                    openModalBtn.addEventListener('click', function() {
+                                                        productModal.style.display = 'block';
+                                                    });
+                                                
+                                                    closeProductModalBtn.addEventListener('click', function() {
+                                                        productModal.style.display = 'none';
+                                                    });
+                                                
+                                                
+                                                    window.addEventListener('click', function(event) {
+                                                        if (event.target == productModal) {
+                                                            productModal.style.display = 'none';
+                                                        }
+                                                    });
+                                                </script>
+                                            </form>
+                                        </div>
+                                        </div>
 
-    closeProductModalBtn.addEventListener('click', function() {
-        productModal.style.display = 'none';
-    });
-
-   
-    window.addEventListener('click', function(event) {
-        if (event.target == productModal) {
-            productModal.style.display = 'none';
-        }
-    });
-</script>
-                                        </form>
-                                    </div>
-                                </div>
-
-                                <div class="tab2">          
+                                    <div class="tabla">     
                                     <?php
                                     $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
 
@@ -482,11 +483,10 @@ function cerrarModal() {
                                     } else {
                                         echo 'No hay productos disponibles.';
                                     }
-                                
+                                    
                                     mysqli_close($conexion);
                                     ?>
-                                </div>
-
+                                    </div>
 
                 </section>
 
