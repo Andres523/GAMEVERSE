@@ -1,35 +1,4 @@
 
-<?php
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener valores del formulario
-    $nombre = $_POST["nombre"];
-    $descripcion = $_POST["descripcion"];
-    $requisitos = $_POST["requisitos"];
-    $cantidad = $_POST["cantidad"];
-    $precio = $_POST["precio"];
-    $imagen = $_POST["imagen"]; 
-    $video_youtube = $_POST["video_youtube"];
-
-    $nombre = mysqli_real_escape_string($conexion, $nombre);
-    $descripcion = mysqli_real_escape_string($conexion, $descripcion);
-    $requisitos = mysqli_real_escape_string($conexion, $requisitos);
-    $precio = mysqli_real_escape_string($conexion, $precio);
-
-
-
-    $insertarConsulta = "INSERT INTO productos (nombre, descripcion, requisitos, precio, imagen, video_youtube)
-                         VALUES ('$nombre', '$descripcion', '$requisitos', '$precio', '$imagen', '$video_youtube')";
-
-    if (mysqli_query($conexion, $insertarConsulta)) {
-        echo "Producto agregado exitosamente.";
-    } else {
-        echo "Error al agregar el producto: " . mysqli_error($conexion);
-    }
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -379,56 +348,112 @@ function cerrarModal() {
                                         <div id="productModal" class="modal">
                                         <div class="modal-content">
                                             <span class="close" id="closeProductModalBtn">&times;</span>
-                                            <form id="productForm">
-                                            <label for="nombre">Nombre:</label>
-                                            <input type="text" id="nombre" name="nombre" required>
-                                                                                        
-                                            <label for="descripcion">Descripción:</label>
-                                            <textarea id="descripcion" name="descripcion" required></textarea>
-                                                                                        
-                                            <label for="requisitos">Requisitos:</label>
-                                            <input type="text" id="requisitos" name="requisitos" required>
-                                                                                        
-                                            <label for="cantidad">Cantidad:</label>
-                                            <input type="number" id="cantidad" name="cantidad" required>
-                                                                                        
-                                            <label for="precio">Precio:</label>
-                                            <input type="number" id="precio" name="precio" required>
-                                                                                        
-                                            <label for="imagen">Imagen:</label>
-                                            <input type="file" id="imagen" name="imagen" accept="image/*" required>
-                                                           
-                                            
-                                            <label for="video_youtube">Enlace de YouTube:</label>
-                                            <input type="text" id="video_youtube" name="video_youtube">
+                                            <form id="productForm" action="" method="post" enctype="multipart/form-data">
+                                                <label for="nombre">Nombre:</label>
+                                                <input type="text" id="nombre" name="nombre" required>
 
-                                            <button type="submit">Guardar</button>
-                                            <script>
+                                                <label for="descripcion">Descripción:</label>
+                                                <textarea id="descripcion" name="descripcion" required></textarea>
 
-    var openModalBtn = document.getElementById('openModalBtn');
-    var closeProductModalBtn = document.getElementById('closeProductModalBtn');
-    var productModal = document.getElementById('productModal');
+                                                <label for="requisitos">Requisitos:</label>
+                                                <input type="text" id="requisitos" name="requisitos" required>
 
-    openModalBtn.addEventListener('click', function() {
-        productModal.style.display = 'block';
-    });
+                                                <label for="cantidad">Cantidad:</label>
+                                                <input type="number" id="cantidad" name="cantidad" required>
 
-    closeProductModalBtn.addEventListener('click', function() {
-        productModal.style.display = 'none';
-    });
+                                                <label for="precio">Precio:</label>
+                                                <input type="number" id="precio" name="precio" required>
 
+                                                <label for="imagen">Imagen:</label>
+                                                <input type="file" id="imagen" name="imagen" accept="image/*" required>
+
+
+                                                <label for="video_youtube">Enlace de YouTube:</label>
+                                                <input type="text" id="video_youtube" name="video_youtube">
+
+                                                <button type="submit">Guardar</button>
+                                            </form>
+
+<?php
+$conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
+
+if (!$conexion) {
+    die("Conexión fallida: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nombre = mysqli_real_escape_string($conexion, $_POST["nombre"]);
+    $descripcion = mysqli_real_escape_string($conexion, $_POST["descripcion"]);
+    $requisitos = mysqli_real_escape_string($conexion, $_POST["requisitos"]);
+    $precio = mysqli_real_escape_string($conexion, $_POST["precio"]);
+    $video_youtube = mysqli_real_escape_string($conexion, $_POST["video_youtube"]);
+    $cantidad = mysqli_real_escape_string($conexion, $_POST["cantidad"]);
+
+  
+    $imagen_nombre = $_FILES["imagen"]["name"];
+    $imagen_temp = $_FILES["imagen"]["tmp_name"];
+    $imagen_tipo = $_FILES["imagen"]["type"];
+    $imagen_tamano = $_FILES["imagen"]["size"];
+    $imagen_error = $_FILES["imagen"]["error"];
+
+
+    if ($imagen_error === UPLOAD_ERR_OK) {
+  
+        $imagen_extension = pathinfo($imagen_nombre, PATHINFO_EXTENSION);
+        
+    
+        $imagen_nombre_nuevo = uniqid('imagen_') . "." . $imagen_extension;
+
+        $ruta_imagen = "./img/juegos/" . $imagen_nombre_nuevo;
+
+
+        if (move_uploaded_file($imagen_temp, $ruta_imagen)) {
    
-    window.addEventListener('click', function(event) {
-        if (event.target == productModal) {
-            productModal.style.display = 'none';
+            $insertarConsulta = "INSERT INTO productos (nombre, descripcion, requisitos, precio, imagen, cantidad, video_youtube)
+                                VALUES ('$nombre', '$descripcion', '$requisitos', '$precio', '$ruta_imagen', '$cantidad', '$video_youtube')";
+
+            if (mysqli_query($conexion, $insertarConsulta)) {
+                
+            } else {
+                echo "Error al agregar el producto: " . mysqli_error($conexion);
+            }
+        } else {
+            echo "Error al subir la imagen.";
         }
-    });
+    } else {
+        echo "Error al cargar la imagen: " . $imagen_error;
+    }
+}
+
+mysqli_close($conexion);
+?>
+
+    <script>
+
+var openModalBtn = document.getElementById('openModalBtn');
+var closeProductModalBtn = document.getElementById('closeProductModalBtn');
+var productModal = document.getElementById('productModal');
+
+openModalBtn.addEventListener('click', function() {
+    productModal.style.display = 'block';
+});
+
+closeProductModalBtn.addEventListener('click', function() {
+    productModal.style.display = 'none';
+});
+
+
+window.addEventListener('click', function(event) {
+    if (event.target == productModal) {
+        productModal.style.display = 'none';
+    }
+});
 </script>
                                         </form>
                                     </div>
                                 </div>
 
-                                <div class="tab2">          
+                                <div class="">          
                                     <?php
                                     $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
 
@@ -436,7 +461,7 @@ function cerrarModal() {
                                         die("Error de conexión: " . mysqli_connect_error());
                                     }
                                 
-                                    $consulta = "SELECT id, nombre, descripcion, requisitos, precio, imagen FROM productos";
+                                    $consulta = "SELECT id, nombre, descripcion, requisitos, cantidad, precio, imagen FROM productos";
                                     $resultado = mysqli_query($conexion, $consulta);
                                 
                                     if (mysqli_num_rows($resultado) > 0) {
@@ -447,6 +472,7 @@ function cerrarModal() {
                                                 <th>Nombre: </th>
                                                 <th>Descripción: </th>
                                                 <th>Requisitos: </th>
+                                                <th>Cantidad: </th>
                                                 <th>Precio: </th>
                                                 <th>Acciones: </th>
                                               </tr> ';
@@ -458,7 +484,14 @@ function cerrarModal() {
                                             echo '<td>' . $fila['nombre'] . '</td>';
                                             echo '<td>' . $fila['descripcion'] . '</td>';
                                             echo '<td>' . $fila['requisitos'] . '</td>';
-                                            echo '<td>' . $fila['precio'] . '</td>';
+                                            echo '<td>';
+                                            if ($fila['cantidad'] == 0) {
+                                                echo '<span style="color: red;">Agotado</span>';
+                                            } else {
+                                                echo $fila['cantidad'];
+                                            }
+                                            echo '</td>';
+                                            echo '<td style="color: green;">' . $fila['precio'] . ' COP' . '</td>';
                                             echo '<td> 
                                             <button class="edit-button" type="button" onclick="editarProducto(' . $fila['id'] . ')">
                                             <svg class="edit-svgIcon" viewBox="0 0 512 512">
