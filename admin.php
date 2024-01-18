@@ -454,7 +454,7 @@ mysqli_close($conexion);
                                         </div>
 
                                 <div class="">          
-                                    <div class="tabla">     
+                                    <div class="">     
                                     <?php
                                     $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
 
