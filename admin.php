@@ -337,6 +337,32 @@ function cerrarModal() {
                     </div>
                 </section>
 
+
+<?php
+$conexion = new mysqli("127.0.0.1", "root", "", "gameverse");
+
+if ($conexion->connect_error) {
+    die("Error de conexión a la base de datos: " . $conexion->connect_error);
+}
+
+
+$resultado = $conexion->query("SELECT id, nombre FROM categorias");
+
+if ($resultado === false) {
+    die("Error en la consulta SQL: " . $conexion->error);
+}
+
+if ($resultado->num_rows > 0) {
+    $categorias = $resultado->fetch_all(MYSQLI_ASSOC);
+} else {
+    $categorias = [];
+}
+
+
+$conexion->close();
+?>
+
+
                                                     
                 <section id="content2">
                     <h3>Productos</h3>
@@ -345,10 +371,10 @@ function cerrarModal() {
                     <br>
 
                     <!-- MODAL PRODUCTOS -->
-                                        <div id="productModal" class="modal">
-                                        <div class="modal-content">
+                                            <div id="productModal" class="modal">
+                                            <div class="modal-content">
                                             <span class="close" id="closeProductModalBtn">&times;</span>
-                                            <form id="productForm" action="" method="post" enctype="multipart/form-data">
+                                            <form id="productForm" action="procesar_producto.php" method="post" enctype="multipart/form-data">
                                                 <label for="nombre">Nombre:</label>
                                                 <input type="text" id="nombre" name="nombre" required>
 
@@ -367,66 +393,25 @@ function cerrarModal() {
                                                 <label for="imagen">Imagen:</label>
                                                 <input type="file" id="imagen" name="imagen" accept="image/*" required>
 
-
                                                 <label for="video_youtube">Enlace de YouTube:</label>
                                                 <input type="text" id="video_youtube" name="video_youtube">
 
-                                                <button class="btn4" type="submit">Guardar</button>
-                                                </form>
-
-<?php
-$conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
-
-if (!$conexion) {
-    die("Conexión fallida: " . mysqli_connect_error());
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = mysqli_real_escape_string($conexion, $_POST["nombre"]);
-    $descripcion = mysqli_real_escape_string($conexion, $_POST["descripcion"]);
-    $requisitos = mysqli_real_escape_string($conexion, $_POST["requisitos"]);
-    $precio = mysqli_real_escape_string($conexion, $_POST["precio"]);
-    $video_youtube = mysqli_real_escape_string($conexion, $_POST["video_youtube"]);
-    $cantidad = mysqli_real_escape_string($conexion, $_POST["cantidad"]);
-
-  
-    $imagen_nombre = $_FILES["imagen"]["name"];
-    $imagen_temp = $_FILES["imagen"]["tmp_name"];
-    $imagen_tipo = $_FILES["imagen"]["type"];
-    $imagen_tamano = $_FILES["imagen"]["size"];
-    $imagen_error = $_FILES["imagen"]["error"];
+                                                <ul>
+                                                    <h2>Categorías</h2>
+                                                    <?php foreach ($categorias as $categoria): ?>
+                                                        <li>
+                                                            <input type="checkbox" id="categoria_<?php echo $categoria['id']; ?>" name="categorias[]" value="<?php echo $categoria['id']; ?>">
+                                                            <label for="categoria_<?php echo $categoria['id']; ?>"><?php echo $categoria['nombre']; ?></label>
+                                                        </li>
+                                                    <?php endforeach; ?>
+                                                </ul>
+                                                    
+                                                <a href="./categorias.php">Agregar Categoría</a>
+                                                <br>
+                                                <button class="btn4" type="submit" name="guardarProducto">Guardar Producto</button>
+                                            </form>
 
 
-    if ($imagen_error === UPLOAD_ERR_OK) {
-  
-        $imagen_extension = pathinfo($imagen_nombre, PATHINFO_EXTENSION);
-        
-    
-        $imagen_nombre_nuevo = uniqid('imagen_') . "." . $imagen_extension;
-
-        $ruta_imagen = "./img/juegos/" . $imagen_nombre_nuevo;
-
-
-        if (move_uploaded_file($imagen_temp, $ruta_imagen)) {
-   
-            $insertarConsulta = "INSERT INTO productos (nombre, descripcion, requisitos, precio, imagen, cantidad, video_youtube)
-                                VALUES ('$nombre', '$descripcion', '$requisitos', '$precio', '$ruta_imagen', '$cantidad', '$video_youtube')";
-
-            if (mysqli_query($conexion, $insertarConsulta)) {
-                
-            } else {
-                echo "Error al agregar el producto: " . mysqli_error($conexion);
-            }
-        } else {
-            echo "Error al subir la imagen.";
-        }
-    } else {
-        echo "Error al cargar la imagen: " . $imagen_error;
-    }
-}
-
-mysqli_close($conexion);
-?>
 
     <script>
 
@@ -454,7 +439,7 @@ mysqli_close($conexion);
                                         </div>
 
                                 <div class="">          
-                                    <div class="">     
+                                    <div class="tabl">     
                                     <?php
                                     $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
 
