@@ -9,7 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die("Error de conexión: " . $conexion->connect_error);
         }
 
-        // Utiliza consultas preparadas para prevenir SQL injection
         $consulta = $conexion->prepare("INSERT INTO categorias (nombre) VALUES (?)");
         $consulta->bind_param("s", $nuevaCategoria);
 
@@ -36,33 +35,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 <form id="categoriaForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-    <label for="categoria">Categorías:</label>
+    <label>Categorías:</label>
     <br>
-    <select id="categoria" name="categoria">
-        <!-- Añade una opción por defecto -->
-        <option value="" disabled selected>Selecciona una categoría</option>
 
-        <?php
-        $conexion = new mysqli("localhost", "root", "", "gameverse");
+    <?php
+    $conexion = new mysqli("localhost", "root", "", "gameverse");
 
-        if ($conexion->connect_error) {
-            die("Error de conexión: " . $conexion->connect_error);
-        }
+    if ($conexion->connect_error) {
+        die("Error de conexión: " . $conexion->connect_error);
+    }
 
-        $consulta = "SELECT id, nombre FROM categorias";
-        $resultado = $conexion->query($consulta);
+    $consulta = "SELECT id, nombre FROM categorias";
+    $resultado = $conexion->query($consulta);
 
-        while ($fila = $resultado->fetch_assoc()) {
-            echo "<option value='" . $fila['id'] . "'>" . $fila['nombre'] . "</option>";
-        }
+    while ($fila = $resultado->fetch_assoc()) {
+        echo "<input type='checkbox' name='categorias[]' value='" . $fila['id'] . "'>" . $fila['nombre'] . "<br>";
+    }
 
-        $conexion->close();
-        ?>
-    </select>
+    $conexion->close();
+    ?>
 
     <br>
 
-    <!-- Agrega una etiqueta para el campo de nueva categoría -->
     <label for="nuevaCategoria">Nueva Categoría:</label>
     <input type="text" id="nuevaCategoria" name="nuevaCategoria" required>
 
