@@ -353,16 +353,16 @@ function cerrarModal() {
                                                 <input type="text" id="nombre" name="nombre" required>
 
                                                 <label for="descripcion">Descripción:</label>
-                                                <textarea id="descripcion" name="descripcion" required></textarea>
+                                                <input type="text" id="descripcion" name="descripcion" required>
 
                                                 <label for="requisitos">Requisitos:</label>
-                                                <input type="text" id="requisitos" name="requisitos" required>
+                                                <input type="text" id="requisitos" name="requisitos" required><br>
 
                                                 <label for="cantidad">Cantidad:</label>
                                                 <input type="number" id="cantidad" name="cantidad" required>
 
                                                 <label for="precio">Precio:</label>
-                                                <input type="number" id="precio" name="precio" required>
+                                                <input type="number" id="precio" name="precio" required><br>
 
                                                 <label for="imagen">Imagen:</label>
                                                 <input type="file" id="imagen" name="imagen" accept="image/*" required>
@@ -371,8 +371,8 @@ function cerrarModal() {
                                                 <label for="video_youtube">Enlace de YouTube:</label>
                                                 <input type="text" id="video_youtube" name="video_youtube">
 
-                                                <button type="submit">Guardar</button>
-                                            </form>
+                                                <button class="btn4" type="submit">Guardar</button>
+                                                </form>
 
 <?php
 $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
@@ -430,30 +430,31 @@ mysqli_close($conexion);
 
     <script>
 
-var openModalBtn = document.getElementById('openModalBtn');
-var closeProductModalBtn = document.getElementById('closeProductModalBtn');
-var productModal = document.getElementById('productModal');
+                                                var openModalBtn = document.getElementById('openModalBtn');
+                                                var closeProductModalBtn = document.getElementById('closeProductModalBtn');
+                                                var productModal = document.getElementById('productModal');
 
-openModalBtn.addEventListener('click', function() {
-    productModal.style.display = 'block';
-});
-
-closeProductModalBtn.addEventListener('click', function() {
-    productModal.style.display = 'none';
-});
-
-
-window.addEventListener('click', function(event) {
-    if (event.target == productModal) {
-        productModal.style.display = 'none';
-    }
-});
-</script>
-                                        </form>
-                                    </div>
-                                </div>
+                                                openModalBtn.addEventListener('click', function() {
+                                                    productModal.style.display = 'block';
+                                                });
+                                                
+                                                closeProductModalBtn.addEventListener('click', function() {
+                                                    productModal.style.display = 'none';
+                                                });
+                                                
+                                             
+                                                window.addEventListener('click', function(event) {
+                                                    if (event.target == productModal) {
+                                                        productModal.style.display = 'none';
+                                                    }
+                                                });
+                                                </script>
+                                            </form>
+                                        </div>
+                                        </div>
 
                                 <div class="">          
+                                    <div class="tabla">     
                                     <?php
                                     $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
 
