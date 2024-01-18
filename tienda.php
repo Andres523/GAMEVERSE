@@ -48,20 +48,35 @@
 JUEGOS
 </h1>
 </center>
+<form action="" method="GET" class="search-form">
+    <label for="search">Buscar juego:</label>
+    <input type="text" id="search" name="search" placeholder="Nombre del juego" oninput="filtrarJuegos()">
+
+</form>
+
 <div class="wrapper">
+
     <main>
         <section id="catalogo">
         <div class="cards">
-    <?php
-    $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
+        <?php
+$conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
 
-    if (!$conexion) {
-        die("Error de conexión: " . mysqli_connect_error());
-    }
+if (!$conexion) {
+    die("Error de conexión: " . mysqli_connect_error());
+}
 
-    $consulta = "SELECT id, nombre, descripcion, requisitos, precio, imagen FROM productos";
-    $resultado = mysqli_query($conexion, $consulta);
+$filtro_nombre = isset($_GET['search']) ? mysqli_real_escape_string($conexion, $_GET['search']) : '';
+$consulta = "SELECT id, nombre, descripcion, requisitos, precio, imagen, cantidad FROM productos";
 
+// Agregar el filtro de nombre a la consulta si se proporciona un nombre de búsqueda
+if (!empty($filtro_nombre)) {
+    $consulta .= " WHERE nombre LIKE '%$filtro_nombre%'";
+}
+
+$resultado = mysqli_query($conexion, $consulta);
+
+if ($resultado) {
     if (mysqli_num_rows($resultado) > 0) {
         while ($fila = mysqli_fetch_assoc($resultado)) {
             echo '<a href="juego.php?id=' . $fila['id'] . '" class="juego-link">';
@@ -69,7 +84,13 @@ JUEGOS
             echo '<img src="' . $fila['imagen'] . '" alt="' . $fila['nombre'] . '" style="width: 100%; min-height: 100%; object-fit: cover;">';
             echo '<figcaption>';
             echo '<h2 style="text-decoration: none;">' . $fila['nombre'] . '</h2>';
-            echo '<p>Precio: $' . $fila['precio'] . '</p>';
+            
+            if ($fila['cantidad'] > 0) {
+                echo '<p style="color: green;">Precio: $' . $fila['precio'] . '</p>';
+            } else {
+                echo '<p style="color: red; text-align: center;">Agotado</p>';
+            }
+
             echo '</figcaption>';
             echo '</figure>';
             echo '</a>';
@@ -77,9 +98,10 @@ JUEGOS
     } else {
         echo '<p>No hay productos disponibles.</p>';
     }
+}
 
-    mysqli_close($conexion);
-    ?>
+mysqli_close($conexion);
+?>
 </div>
 
         </section>
@@ -90,7 +112,30 @@ JUEGOS
         <p>&copy; 2023 Todos los derechos reservados.</p>
     </footer>
 </div>
+
+<script>
+function filtrarJuegos() {
+    var input, filtro, cards, card, titulo, i, txtValue;
+    input = document.getElementById("search");
+    filtro = input.value.toUpperCase();
+    cards = document.getElementsByClassName("juego-link");
+
+    for (i = 0; i < cards.length; i++) {
+        card = cards[i];
+        titulo = card.getElementsByTagName("h2")[0];
+        txtValue = titulo.textContent || titulo.innerText;
+
+        if (txtValue.toUpperCase().indexOf(filtro) > -1) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+    }
+}
+</script>
 </body>
+
 </html>
+
 
 
