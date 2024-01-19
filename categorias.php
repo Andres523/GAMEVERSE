@@ -5,7 +5,7 @@ $conexion = new mysqli("127.0.0.1", "root", "", "gameverse");
 if ($conexion->connect_error) {
     die("Error de conexión a la base de datos: " . $conexion->connect_error);
 }
-
+ 
 
 $resultado = $conexion->query("SELECT id, nombre FROM categorias");
 
@@ -59,34 +59,50 @@ $conexion->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/categorias.css">
     <title>Document</title>
 </head>
 <body>
 
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <h3>Agregar Categoría</h3>
+    
+    <div class="login-box">
+    <h1>Agregar Categoría</h1>
+    <div class="user-box">
         <ul>
             <?php foreach ($categorias as $categoria): ?>
                 <li>
-                    <input type="checkbox" id="categoria_<?php echo $categoria['id']; ?>" name="categorias[]" value="<?php echo $categoria['id']; ?>">
-                    <label for="categoria_<?php echo $categoria['id']; ?>"><?php echo $categoria['nombre']; ?></label>
+                <div class="checkbox">
+                    <input class="checkbox__input" type="checkbox" id="categoria_<?php echo $categoria['id']; ?>" name="categorias[]" value="<?php echo $categoria['id']; ?>">
+
+                    <label class="checkbox__label" for="categoria_<?php echo $categoria['id']; ?>"><?php echo $categoria['nombre'];?>
+                    <span class="checkbox__custom"></span>
+                    </label>
+                </div>
+                
                 </li>
             <?php endforeach; ?>
+            <br>
         </ul>
         <label for="nueva_categoria">Nueva Categoría:</label>
+
         <input type="text" id="nueva_categoria" name="nueva_categoria" required>
         <button type="submit" name="agregarCategoria">Agregar Categoría</button>
     </form>
 
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <h3>Eliminar Categoría</h3>
+
         <label for="categoria_id">Seleccionar Categoría:</label>
         <select id="categoria_id" name="categoria_id" required>
             <?php foreach ($categorias as $categoria): ?>
                 <option value="<?php echo $categoria['id']; ?>"><?php echo $categoria['nombre']; ?></option>
             <?php endforeach; ?>
         </select>
+
         <button type="submit" name="eliminarCategoria">Eliminar Categoría</button>
     </form>
+    </div>
+    </div>
 </body>
 </html>
