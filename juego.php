@@ -27,9 +27,7 @@
     <title>Detalles del Juego</title>
 </head>
 <body>
-    <header>
-        <center><h1>Detalles del Juego</h1></center>
-    </header>
+
 
     <div class="main-content">
             <center>
@@ -69,22 +67,24 @@
             </div>
 
     <main>
-        <section id="detalles-juego">
+ 
+        <section id="home", class="main-content">
             <?php  
      
                     
-                    echo '<p>Precio: $' . $fila['precio'] . '</p>';
+                echo '<p style="color: green; text-align: center; font-size: 24px;">Precio: $' . $fila['precio'] . " COP".'</p>';
+
+
  
-                    echo '<button>Comprar</button>';
-                    echo '</div>';
-                } else {
-                    echo '<p>No se encontró el juego.</p>';
-                }
+                 
+                   
+    
 
                 mysqli_close($conexion);
             } else {
                 echo '<p>No se proporcionó un ID de juego válido.</p>';
             }
+        }
             ?>
         </section>
     </main>
