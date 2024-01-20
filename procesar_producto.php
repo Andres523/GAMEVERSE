@@ -22,7 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $descripcion = $conexion->real_escape_string($_POST["descripcion"]);
     $requisitos = $conexion->real_escape_string($_POST["requisitos"]);
     $precio = $conexion->real_escape_string($_POST["precio"]);
-    $video_youtube = $conexion->real_escape_string($_POST["video_youtube"]);
     $cantidad = $conexion->real_escape_string($_POST["cantidad"]);
     $categoriasSeleccionadas = isset($_POST['categorias']) ? $_POST['categorias'] : [];
 
@@ -34,20 +33,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imagen_nombre_nuevo = uniqid('imagen_') . "." . $imagen_extension;
     $ruta_imagen = "./img/juegos/" . $imagen_nombre_nuevo;
 
+    $video_mp4_nombre = $_FILES["video_mp4"]["name"];
+    $video_mp4_temp = $_FILES["video_mp4"]["tmp_name"];
+    $video_mp4_extension = pathinfo($video_mp4_nombre, PATHINFO_EXTENSION);
+    $video_mp4_nombre_nuevo = uniqid('video_') . "." . $video_mp4_extension;
+    $ruta_video_mp4 = "./vid/" . $video_mp4_nombre_nuevo;
 
-if (move_uploaded_file($imagen_temp, $ruta_imagen)) {
-    $insertarConsulta = "INSERT INTO productos (nombre, descripcion, requisitos, precio, imagen, cantidad, video_youtube, categoria)
-                        VALUES ('$nombre', '$descripcion', '$requisitos', '$precio', '$ruta_imagen', '$cantidad', '$video_youtube', '" . implode(',', $categoriasSeleccionadas) . "')";
+    if (move_uploaded_file($imagen_temp, $ruta_imagen) && move_uploaded_file($video_mp4_temp, $ruta_video_mp4)) {
+        $insertarConsulta = "INSERT INTO productos (nombre, descripcion, requisitos, precio, imagen, cantidad, video_mp4, categoria)
+                            VALUES ('$nombre', '$descripcion', '$requisitos', '$precio', '$ruta_imagen', '$cantidad', '$ruta_video_mp4', '" . implode(',', $categoriasSeleccionadas) . "')";
 
-    if ($conexion->query($insertarConsulta)) {
-        header('Location: admin.php');
-        
+        if ($conexion->query($insertarConsulta)) {
+            header('Location: admin.php');
+        } else {
+            echo "Error al agregar el producto: " . $conexion->error;
+        }
     } else {
-        echo "Error al agregar el producto: " . $conexion->error;
+        echo "Error al subir la imagen o el video MP4.";
     }
-} else {
-    echo "Error al subir la imagen.";
 }
-
-
-}
+?>

@@ -393,8 +393,8 @@ $conexion->close();
                                                 <label for="imagen">Imagen:</label>
                                                 <input type="file" id="imagen" name="imagen" accept="image/*" required>
 
-                                                <label for="video_youtube">Enlace de YouTube:</label>
-                                                <input type="text" id="video_youtube" name="video_youtube">
+                                                <label for="video_mp4">Video MP4:</label>
+                                                <input type="file" id="video_mp4" name="video_mp4" accept="video/mp4">
 
                                                 <ul>
                                                     <h2>Categorías</h2>
