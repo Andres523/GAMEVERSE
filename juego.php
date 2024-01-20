@@ -27,9 +27,7 @@
     <title>Detalles del Juego</title>
 </head>
 <body>
-    <header>
-        <h1>Detalles del Juego</h1>
-    </header>
+
 
     <div class="main-content">
             <center>
@@ -42,28 +40,51 @@
             </center>
 
     </div>
+    <div class="game-bar">
+        <?php
+        echo '<img class="game-image" src="' . $fila['imagen'] . '" alt="Imagen del juego' . $fila['nombre'] . '">';
+        ?>
+                
+                <div class="game-info">
+                    <?php
+                    echo '<center>'.'<h2>' . $fila['nombre'] . '</h2>'.'</center>';
+                    echo '<br>'
+                    ?>
+                    <h3>DESCRIPCION</h3>
+                    <?php
+                    echo '<p>' . $fila['descripcion'] . '</p>';
+                    ?>
+                    <br>
+                    <h3>CATEGORIAS</h3>
+                    <br>
+                    <h3>REQUISITOS</h3>
+                    <br>
+                    <?php
+                    echo '<p>' . $fila['requisitos'] . '</p>';
+                    ?>
+ 
+                </div>
+            </div>
 
     <main>
-        <section id="detalles-juego">
+ 
+        <section id="home", class="main-content">
             <?php  
+     
+                    
+                echo '<p style="color: green; text-align: center; font-size: 24px;">Precio: $' . $fila['precio'] . " COP".'</p>';
 
-                    echo '<div class="juego">';
-                    echo '<img src="' . $fila['imagen'] . '" alt="' . $fila['nombre'] . '">';
-                    echo '<h2>' . $fila['nombre'] . '</h2>';
-                    echo '<p>Descripción: ' . $fila['descripcion'] . '</p>';
-                    echo '<p>Requisitos: ' . $fila['requisitos'] . '</p>';
-                    echo '<p>Precio: $' . $fila['precio'] . '</p>';
-                    echo '<p>Categoría: <a href="categorias.php?id=' . $fila['categoria_id'] . '">' . $fila['categoria_nombre'] . '</a></p>';
-                    echo '<button>Comprar</button>';
-                    echo '</div>';
-                } else {
-                    echo '<p>No se encontró el juego.</p>';
-                }
+
+ 
+                 
+                   
+    
 
                 mysqli_close($conexion);
             } else {
                 echo '<p>No se proporcionó un ID de juego válido.</p>';
             }
+        }
             ?>
         </section>
     </main>
