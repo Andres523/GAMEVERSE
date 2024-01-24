@@ -414,3 +414,20 @@ padding: 31px;
 font-weight:normal;
 margin-top: 20px;
 }
+
+.footer {
+display: flex;
+justify-content: center;
+}
+
+.img-container {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+}
+
+.img-container img {
+height: 60px;
+flex-basis: auto;
+}
