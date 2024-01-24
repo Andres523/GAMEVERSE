@@ -174,13 +174,6 @@ html {
   right: 0;
   z-index: -1;
   }
-  
-
-
-
-
-
-
 
 .btn4 {
 --border-color: linear-gradient(-45deg, #ffae00, #7e03aa, #00fffb);
@@ -190,7 +183,6 @@ html {
 --bg: #080312;
 --color: #afffff;
 color: var(--color);
-  /* use position: relative; so that BG is only for .btn */
 position: relative;
 isolation: isolate;
 display: inline-grid;

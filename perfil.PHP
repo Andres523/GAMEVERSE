@@ -58,6 +58,7 @@ if (isset($_POST['confirm-logout'])) {
     exit();
 }
 
+
 mysqli_close($conexion);
 ?>
 
@@ -204,7 +205,7 @@ mysqli_close($conexion);
         </div>
 
         <div class="perfil">
-        <?php  echo $rol /*////////////falta por style //////////////////////////////*/?> 
+        <center><p style="color: #8803f4;"> <h3 >Tu rol es: </h3></p><?php  echo $rol?></center>
             <div class="item">
                 
                 <?php if ($imagenPerfil): ?>

@@ -164,18 +164,23 @@
                   <input type="text" name="nombre" required="">
                   <label>nombre de usuario</label>
                 </div>
+
                 <div class="user-box">
-                  <input type="password" name="password"required="">
-                  <label>contraseña</label>
+                  <input type="email" name="correo"required="">
+                  <label for="">correo</label>
                 </div>
+
                 <div class="user-box">
-                    <input type="password" name="password_repetida"required="">
-                    <label>repetir contraseña</label>
-                  </div>
-                  <div class="user-box">
-                    <input type="email" name="correo"required="">
-                    <label for="">correo</label>
-                  </div>
+                  <input type="password" name="password" id="password" required="">
+                  <label>contraseña</label>
+              </div>
+              <div class="user-box">
+                  <input type="password" name="password_repetida" id="password_repetida" required="">
+                  <label>repetir contraseña</label>
+                  <span class="toggle-password" onclick="togglePassword()">Mostrar</span>
+              </div>
+               
+              
                   <center><button class="btn4" type="submit" value="registrarse">Enviar</button></center>
                  </form>
                </div>
@@ -243,7 +248,11 @@
                background-position: 31% 0%
              }
            }
-           
+           .toggle-password {
+            cursor: pointer;
+            color: #333;
+            font-size: 14px;
+        }
            .btn4::after {
              background: var(--bg);
              z-index: -1;
@@ -305,6 +314,31 @@
       <br>
       <br>
       
+
+<script>
+  function toggleMostrarContrasenas() {
+      var passwordField = document.getElementById("password");
+      var confirmPasswordField = document.getElementById("password_repetida");
+
+      if (passwordField.type === "password") {
+          passwordField.type = "text";
+          confirmPasswordField.type = "text";
+      } else {
+          passwordField.type = "password";
+          confirmPasswordField.type = "password";
+      }
+  }
+</script>
+<script>
+  function togglePassword() {
+      var passwordField = document.getElementById("password");
+      var passwordRepeatField = document.getElementById("password_repetida");
+
+      
+      passwordField.type = (passwordField.type === "password") ? "text" : "password";
+      passwordRepeatField.type = (passwordRepeatField.type === "password") ? "text" : "password";
+  }
+</script>
 </body>
 
 </html>

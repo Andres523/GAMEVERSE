@@ -1,26 +1,15 @@
-html {
-  height: 170%;
-} 
 
-.info{
-  width: 80px;
-}
-body {
+* {
   margin: 0;
-  padding:0;
-  font-family: sans-serif;
- 
-
-  }
+  padding: 0;
+  box-sizing: border-box;
+}
 
   .main-container {
-    overflow-y: auto;
-    height: 100vh;
     box-sizing: border-box; 
-    padding: 0 20px;
   }
   
-.item{
+.item{ 
   border-radius: 50px;
   }
  
@@ -67,7 +56,6 @@ body {
   --bg: #080312;
   --color: #afffff;
   color: var(--color);
-    /* use position: relative; so that BG is only for .btn */
   position: relative;
   isolation: isolate;
   display: inline-grid;
@@ -78,17 +66,16 @@ body {
   text-transform: uppercase;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, .6);
   clip-path: polygon(
-            /* Top-left */
             0% var(--curve-size),
 
             var(--curve-size) 0,
-            /* top-right */
+
             100% 0,
             100% calc(100% - var(--curve-size)),
 
-            /* bottom-right 1 */
+
             calc(100% - var(--curve-size)) 100%,
-            /* bottom-right 2 */
+
             0 100%);
   transition: color 250ms;
 }
@@ -200,6 +187,8 @@ option {
   padding: 5px;
   font-size: 14px;
   border-bottom: 1px solid #ddd;
+  color: inherit;
+  background-color: #141e30;
 }
 
 
@@ -207,13 +196,6 @@ option:hover {
   background-color: #e0e0e0;
 }
 
-
-
-
-/**
- prueba
- */
- *,
  *::before,
  *::after {
    box-sizing: border-box;
@@ -274,16 +256,14 @@ option:hover {
    -webkit-font-smoothing: antialiased;
  }
  
- /**
-  * Global Rules
-  */
+
  h1,
  h2,
  h3,
  h4,
  h5,
  h6 {
-   color: #0d0d0d;
+   color: #ffffff;
    font-family: Roboto, sans-serif;
    line-height: 1.2;
    word-wrap: break-word;
@@ -334,42 +314,13 @@ option:hover {
  footer .credits {
    font-size: 1rem;
  }
- 
- /**
-  * Article Container
-  */
- .article-container {
-   padding: 2rem;
- }
- 
- /**
-  * Article Block
-  */
- .article-block {
-   text-align: center;
- }
- 
- .article-block .entry-content > p {
-   color: #666;
- }
- 
- /**
-  * Tabs contenido
-  */
- .tabs-container {
-   padding: 2rem;
- }
- 
- /**
-  * Tabs Block
-  */
+
  .tabs-block {
    display: flex;
    align-items: center;
    justify-content: center;
  }
  
-
  .tabs {
    display: flex;
  }
