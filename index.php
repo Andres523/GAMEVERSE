@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 $loggedIn = isset($_SESSION['nombreUsuario']);
 
 if (isset($_POST['logout'])) {
@@ -24,11 +23,7 @@ error_reporting (0);
 
 $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
 
-
-
-
 $nombreUsuario = $_SESSION['nombreUsuario'];
-
 
 $consulta = "SELECT Rol FROM usuarios WHERE nombre = '$nombreUsuario'";
 
@@ -48,100 +43,19 @@ if ($resultado) {
     echo "Error en la consulta: " . mysqli_error($conexion);
 }
 
-?>  
+?> 
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./img/logo.png">
-    <link rel="stylesheet" href="./styles/stylegameverse.css">
-    <script src="./javascript.js"></script>
-
-    <title>inicio</title>
+    <title>Gameverse</title>
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <link rel="stylesheet" href="./css/stylegameverse.css">
 </head>
 <body>
-    <!--carga-->
-<div class="spinner-overlay">
-    <div class="spinner">
-     
-
-
-        <style>
-
-        .spinner:before {
-          transform: rotateX(60deg) rotateY(45deg) rotateZ(45deg);
-          animation: 750ms rotateBefore infinite linear reverse;
-        }
-
-        .spinner:after {
-          transform: rotateX(240deg) rotateY(45deg) rotateZ(45deg);
-          animation: 750ms rotateAfter infinite linear;
-        }
-
-        .spinner:before,
-        .spinner:after {
-          box-sizing: border-box;
-          content: '';
-          display: block;
-          position: absolute;
-          margin-top: -5em;
-          margin-left: -5em;
-          width: 10em;
-          height: 10em;
-          transform-style: preserve-3d;
-          transform-origin: 50%;
-          transform: rotateY(50%);
-          perspective-origin: 50% 50%;
-          perspective: 300px;
-          background-size: 10em 10em;
-          background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjI2NnB4IiBoZWlnaHQ9IjI5N3B4IiB2aWV3Qm94PSIwIDAgMjY2IDI5NyIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWxuczpza2V0Y2g9Imh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaC9ucyI+CiAgICA8dGl0bGU+c3Bpbm5lcjwvdGl0bGU+CiAgICA8ZGVzY3JpcHRpb24+Q3JlYXRlZCB3aXRoIFNrZXRjaCAoaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoKTwvZGVzY3JpcHRpb24+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBza2V0Y2g6dHlwZT0iTVNQYWdlIj4KICAgICAgICA8cGF0aCBkPSJNMTcxLjUwNzgxMywzLjI1MDAwMDM4IEMyMjYuMjA4MTgzLDEyLjg1NzcxMTEgMjk3LjExMjcyMiw3MS40OTEyODIzIDI1MC44OTU1OTksMTA4LjQxMDE1NSBDMjE2LjU4MjAyNCwxMzUuODIwMzEgMTg2LjUyODQwNSw5Ny4wNjI0OTY0IDE1Ni44MDA3NzQsODUuNzczNDM0NiBDMTI3LjA3MzE0Myw3NC40ODQzNzIxIDc2Ljg4ODQ2MzIsODQuMjE2MTQ2MiA2MC4xMjg5MDY1LDEwOC40MTAxNTMgQy0xNS45ODA0Njg1LDIxOC4yODEyNDcgMTQ1LjI3NzM0NCwyOTYuNjY3OTY4IDE0NS4yNzczNDQsMjk2LjY2Nzk2OCBDMTQ1LjI3NzM0NCwyOTYuNjY3OTY4IC0yNS40NDkyMTg3LDI1Ny4yNDIxOTggMy4zOTg0Mzc1LDEwOC40MTAxNTUgQzE2LjMwNzA2NjEsNDEuODExNDE3NCA4NC43Mjc1ODI5LC0xMS45OTIyOTg1IDE3MS41MDc4MTMsMy4yNTAwMDAzOCBaIiBpZD0iUGF0aC0xIiBmaWxsPSIjMDAwMDAwIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj48L3BhdGg+CiAgICA8L2c+Cjwvc3ZnPg==);
-        }
-        /* sitNSpin.less */
-        @keyframes rotateBefore {
-          from {
-            transform: rotateX(60deg) rotateY(45deg) rotateZ(0deg);
-          }
-
-          to {
-            transform: rotateX(60deg) rotateY(45deg) rotateZ(-360deg);
-          }
-        }
-
-        @keyframes rotateAfter {
-          from {
-            transform: rotateX(240deg) rotateY(45deg) rotateZ(0deg);
-          }
-
-          to {
-            transform: rotateX(240deg) rotateY(45deg) rotateZ(360deg);
-          }
-        }
-            .spinner-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 9999; 
-                display: none; 
-            }
-
-
-            .spinner {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
- 
-
-            
-            }
-
-
-        </style>
-
-        <script>
+<script>
     document.addEventListener("DOMContentLoaded", function() {
         document.querySelector('.spinner-overlay').style.display = 'block';
     });
@@ -170,7 +84,7 @@ if ($resultado) {
                 <button type="button" id="cancel-button" onclick="hideConfirmationModal();">No</button>
             </form>
         </div>
-    </div>
+</div>
 
 
 <header class="main-header">
@@ -204,237 +118,176 @@ if ($resultado) {
         <?php endif; ?>
     </div>
 
-    <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
-        <span class="icon">
-            <svg viewBox="0 0 175 80" width="60" height="40">
-                <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-            </svg>
-        </span>
-        <span class="text">MENU </span>
-    </label>
-    <input type="checkbox" id="btn-nav"> 
-
-    <nav>
-        <ul class="navigation">
-            <li><a href="./index.php">HOME</a></li>
-            <li><a href="./tienda.php">TIENDA</a></li>
-            <li><a href="./marketplace.html">MARKETPLACE</a></li>
-        </ul>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <aside>
-            <a href="https://www.facebook.com/"><img src="./img/facebook-logo-3-1.png" alt="facebook-logo-3-1" width="50px"></a>
-            <a href="https://twitter.com/"><img src="./img/Logo_of_Twitter.svg.png" alt="Logo_of_Twitter" width="70px"></a>
-            <a href="https://www.instagram.com/?hl=en"><img src="./img/Instagram-Logosu.png" alt="Instagram-Logosu" width="80px"></a>
-        </aside>
-    </nav>
-</header>
-
-<?php if (isset($_SESSION['nombreUsuario'])): ?>
-
-    <div class="twelve">
-    <center><h1 style="color: #fff; z-index:-33">Bienvenido, <?php echo $_SESSION['nombreUsuario']; ?></h1></center>
-</div>
+    <header class="main-header">
+        <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
+            <span class="icon">
+                <svg viewBox="0 0 175 80" width="60" height="40">
+                    <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                    <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                    <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                </svg>
+            </span>
+            <span class="text">MENU</span>
+        </label>    
+        <input type="checkbox" id="btn-nav"> 
     
-<?php endif; ?>
-<br>
-
-
-<!---   carrusel--->
-<br>
-<br>
-<br>
-
-
-<div class="wrapper">
-    <div class="cards">
-
-
-        <h2><strong>QUE ES LO NUEVO</strong></h2>
-
-	<div class="news">
-
-		<figure class="article" style="box-shadow: 0 0 80px red;">
-
-			<img src="./img/Noticias/spider.jpg" />
-
-			<figcaption>
-
-				<h3>EL PRÓXIMO JUEGO Marvel Spiderman 2</h3>
-
-				<p>
-
-					
-Los Spider-Men Peter Parker y Miles Morales regresan para una nueva y emocionante aventura de la aclamada franquicia.
-
-Balancéate, salta para recorrer toda la ciudad También podrás cambiar rápidamente entre Peter Parker y Miles Morales para vivir diferentes historias y canalizar poderes nuevos y épicos, se testigo el 20/OCT/2023
-
-				</p>
-
-			</figcaption>
-
-		</figure>
-        <figure class="article" style="box-shadow: 0 0 80px red;">
-
-			<img src="./img/Noticias/mario.jpg" />
-
-			<figcaption>
-
-				<h3>EL PRÓXIMO JUEGO Super Mario bros, Wonder</h3>
-
-				<p>
-
-					
-Encuentra maravillas en la siguiente evolución de las aventuras de Mario,
-El estilo de juego clásico de desplazamiento lateral de los juegos de Mario será toda una locura con la adición de la Flor Maravilla. Estos revolucionarios objetos activarán espectaculares momentos que tendrás que ver para creer. sé testigo de el 20/OCT/2023
-
-				</p>
-
-			</figcaption>
-
-		</figure>
-        <figure class="article" style="box-shadow: 0 0 80px red;">
-
-			<img src="./img/Noticias/Mortal-Kombat-1-f.jpg" />
-
-			<figcaption>
-
-				<h3>EL PROXIMO JUEGO Mortal Kombat 1</h3>
-
-				<p>
-
-					
-Descubre un nuevo universo de Mortal Kombat creado por Liu Kang, Dios del Fuego. ¡Mortal Kombat 1 abre paso a una nueva era de esta icónica saga con un nuevo sistema de kombate, modos de juego y fatalities! Se testigo de el 19/AGO/2023
-
-				</p>
-
-			</figcaption>
-
-		</figure>
-        <figure class="article" style="box-shadow: 0 0 80px red;">
-
-			<img src="./img/Noticias/star.jpg" />
-
-			<figcaption>
-
-				<h3>EL NUEVO JUEGO STARFILD</h3>
-
-				<p>
-
-					
-Starfield es el primer universo nuevo en más de 25 años que crea Bethesda Game Studios, los galardonados creadores de The Elder Scrolls V: Skyrim y Fallout 4. En este juego de rol de próxima generación ambientado entre las estrellas, podrás crear el personaje que desees y explorar con una libertad sin precedentes mientras te embarcas en un viaje épico para desentrañar el mayor misterio de la humanidad.
-
-				</p>
-
-			</figcaption>
-
-		</figure>
-        <figure class="article" style="box-shadow: 0 0 80px red;">
-
-			<img src="./img/Noticias/sonic.jpg" />
-
-			<figcaption>
-
-				<h3>EL PROXIMO JUEGO Sonic Superstar</h3>
-
-				<p>
-
-					
-Recorre las místicas Northstar Islands en la renovación del clásico juego de plataformas 2D de acción a alta velocidad de Sonic. Juega como Sonic, Tails, Knuckles y Amy por lugares inéditos en solitario o con otros 3 jugadores y evita que el Dr. Eggman, Fang y un nuevo rival misterioso conviertan a los animales gigantes, antes de que sea muy tarde el 17/OCT/2023
-
-
-				</p>
-
-			</figcaption>
-
-		</figure>
-        <figure class="article" style="box-shadow: 0 0 80px red;">
-
-			<img src="./img/Noticias/Silksong_cover.jpg" />
-
-			<figcaption>
-
-				<h3>PARA CUANDO saldra silksong?? </h3>
-
-				<p>
-
-					
-No cabe duda de que Hollow Knight es uno de los juegos de tipo metroidvania que más furor ha causado; con un enorme mapa, enemigos, opciones y diversión a raudales, todos estamos pendientes de que Team Cherry anuncie por fin la fecha definitiva de lanzamiento de su secuela, Hollow Knight: Silksong, pero el tiempo pasa y todavía no tenemos noticias claras al respecto a pesar de que prometieron que saldría a la venta este mismo año 2023.
-
-				</p>
-
-			</figcaption>
-
-		</figure>
-        
-</div>
-
-<br>
-
-<center>
-
-
-
-
-<h1 class="titulo">
-    contactanos 
-</h1>
-</center>
-
-<center>
-        <button class="btn" style="box-shadow: 0 0 80px red; text-decoration: none;"> cel:31468584
-        </button>
-        <button class="btn" style="box-shadow: 0 0 80px red;text-decoration: none;"> tel:13498647
-        </button>
+        <nav>
+            <ul class="navigation">
+                <li><a href="./index.php">HOME</a></li>
+                <li><a href="tienda.html">TIENDA</a></li>
+                <li><a href="./marketplace.html">MARKETPLACE</a></li>
+            </ul>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <aside>
+                <a href="https://www.facebook.com/"><img src="./img/facebook-logo-3-1.png" alt="facebook-logo-3-1" width="50px"></a>
+                <a href="https://twitter.com/"><img src="./img/Logo_of_Twitter.svg.png" alt="Logo_of_Twitter" width="70px"></a>
+                <a href="https://www.instagram.com/?hl=en"><img src="./img/Instagram-Logosu.png" alt="Instagram-Logosu" width="80px"></a>
+            </aside>
+        </nav>
+    </header>
+    </div>
+    <center><img src="./img/gameverse.jpg"/></center>
+    <div style="background-color: #0A1850;">
+        <br>
+        <h2 class="h2" ><center>Nuevos títulos y descuentos</center></h2>
+        <br>
+        <div class="carousel"
+            data-flickity='{ "wrapAround": true }'
+            style="background-color: #0A1850;">
+            <div>
+                <center><img class="carousel-cell" src="https://gmedia.playstation.com/is/image/SIEPDC/spider-man-2-keyart-01-en-31may23?$1600px$"/></center>
+                <h1 class="h2"><center>Marvel&#39;s Spider-Man 2</center></h1>
+                <h2 class="h1"><center>¡Cuelga de rascacielos, balancea entre edificios y enfrenta villanos en Spider-Man 2!<br>¡Conviértete en el héroe que Nueva York necesita! <br>¿Estás listo para la acción?</center></h2>
+                <br>
+                <div>
+                    <center><button class="button-gameverse">Descubrir</button></center>
+                </div>
+                <br>
+                <br>
+            </div>
+
+            <div>
+                <center><img class="carousel-cell" src="./img/last3.jpg"/></center>
+                <h1 class="h2"><center>The Last of Us - Part II</center></h1>
+                <h2 class="h1"><center>¡Sumérgete en el apocalipsis!<BR> Acompaña a Ellie en su viaje lleno de emociones<br>enfrenta decisiones desgarradoras y sobrevive en un mundo postapocalíptico implacable.</center></h2>
+                <br>
+                <div>
+                    <center><button class="button-gameverse">Descubrir</button></center>
+                </div>
+                <br>
+                <br>
+            </div>
+
+            <div>
+                <center><img class="carousel-cell" src="https://gmedia.playstation.com/is/image/SIEPDC/god-of-war-ragnarok-keyart-01-en-07sep21?$1600px$"/></center>
+                <h1 class="h2"><center>God of War: Ragnarok</center></h1>
+                <h2 class="h1"><center>¡Prepárate para la furia de los dioses!<br>Embárcate en una odisea mitológica, enfrenta y desafía a los dioses nórdicos.<br>Kratos regresa para enfrentar su destino en la batalla definitiva.</center></h2>
+                <br>
+                <div>
+                    <center><button class="button-gameverse">Descubrir</button></center>
+                </div>
+                <br>
+                <br>
+            </div>
+
+            <div>
+                <center><img class="carousel-cell" src="./img/gta.jpg"/></center>
+                <h1 class="h2"><center>Grand Theft Auto V</center></h1>
+                <h2 class="h1"><center>¡Explora Los Santos y sumérgete en el caos urbano!<br>Conviértete en un criminal de élite, planea atracos épicos.<br>y vive la vida en el lado salvaje</center></h2>
+                <br>
+                <div>
+                    <center><button class="button-gameverse">Descubrir</button></center>
+                </div>
+                <br>
+                <br>
+            </div>
+
+            <div>
+                <center><img class="carousel-cell" src="./img/zelda3.jpg"/></center>
+                <h1 class="h2"><center>The legend of zelda: Totk</center></h1>
+                <h2 class="h1"><center>¡Embárcate en una épica aventura! <br>Explora misteriosos reinos y enfrenta a antiguos enemigos. <br>Conviértete en el héroe que restaurará la paz en Hyrule</center></h2>
+                <br>
+                <div>
+                    <center><button class="button-gameverse">Descubrir</button></center>
+                </div>
+                <br>
+                <br>
+            </div>
+        </div>
+
+
+    <br>
+    <br>
+    </div>
+    <div style="background-color: #E17349">
+        <br><br>
+        <h2 class="h2" ><center>Las novedades más recientes</center></h2>
+        <br>
+        <div class="carousel-2"
+            data-flickity='{ "wrapAround": true }'>
+            <div class="carousel-2-cell" style="background-color: #E5D6D0">
+                <center><img class= "carousel-2 img" src="./img/gods.jpg"/><center>
+                <h1><center>God of war-ragnarok:<br>valhalla</center></h1>
+                <br><br>
+                <h2><center>Tras los eventos de Ragnarök, Kratos descubre un rumbo que nunca creyó posible seguir y que lo lleva a las costas del Valhala.<br>Junto a Mimir, Kratos emprende un viaje íntimo y reflexivo que lo llevará a perfeccionar su cuerpo y mente, pues tendrá que enfrentarse a los desafíos del Valhala en una aventura trepidante y rejugable que combina el reconocido estilo de combate de God of War Ragnarök con nuevos elementos inspirados en el género roguelite.</center></h2>
+                <br><br>
+            </div>
+            <div class="carousel-2-cell" style="background-color: #E5D6D0">
+                <center><img class= "carousel-2 img" src="./img/devil.jpg"/></center>
+                <h1><center>Devil May Cry:<br>Peak of Combat</center></h1>
+                <br>
+                <h2><center>Es un hack and slash desarrollado por NebulaJoy y publicado por Capcom para dispositivos móviles iOS y Android. La clásica saga de acción protagonizada por el cazador de demonios Dante llega con una nueva entrega gratuita y exclusiva para teléfonos móviles, en la que podemos controlar a varios personajes de la saga y que ofrece los espectaculares combates de acción acrobática a los que estamos acostumbrados en la saga pero en la palma de nuestra mano.</center></h2>
+                <br><br>
+            </div>
+            <div class="carousel-2-cell" style="background-color: #E5D6D0">
+                <center><img class= "carousel-2 img" src="./img/prince.jpg"/><center>
+                <h1><center>Principe de Persia:<br>The Lost Crown</center></h1>
+                <br>
+                <h2><center>el retorno de Prince of Persia a los sistemas de entretenimiento, ratifica que algo está cambiando en Ubisoft. Tras unos cuantos años obcecada en los juegos como servicio, la multinacional francesa ha decidido honrar a sus franquicias insignia bajo esquemas de juego clásicos. Al sobresaliente 'Mario + Rabbids: Sparks of Hope' le siguió un 'Assassin's Creed Mirage' que nos supo a gloria; aunque con las suficientes actualizaciones en materia de calidad de vida.</center></h2>
+                <br><br>
+            </div>
+            <div class="carousel-2-cell" style="background-color: #E5D6D0">
+                <center><img class= "carousel-2 img" src="./img/mariop.jpg"/></center>
+                <h1><center>Paper Mario:<br>La Puerta Milenaria</center></h1>
+                <br>
+                <h2><center>es un RPG desarrollado por Intelligent Systems y publicado por Nintendo para Switch. Un remake del genial juego lanzado para GameCube en 2004, una divertidísima y colorida aventura con un ingenioso sistema de combate por turnos que para muchos es la mejor entrega de la saga Paper Mario.<br> la entrega sigue sin confirmar su fecha de lanzamiento y solamente está apuntado para algún momento del próximo año. lo que da una pista de que puede estar cerca.</center></h2>
+                <br><br>
+            </div>
+            <div class="carousel-2-cell" style="background-color: #E5D6D0">
+                <center><img class= "carousel-2 img" src="./img/f.jpg"/></center>
+                <h1><center>Fortnite</center></h1>
+                <br>
+                <h2><center>Ampere Analysis asegura que los jugadores han estado más tiempo en Fortnite que en Call of Duty HQ, EA Sports FC 24, GTA V y Roblox juntos. Cabe destacar, sin embargo, que esta información alude únicamente popularidad de los juegos en consolas PlayStation y Xbox; la cosa podría cambiar mucho si se dieran asimismo los datos de PC y otras plataformas.
+                Pero, en resumidas cuentas, el aumento de popularidad de Fortnite es más que evidente. Siguiendo con el informe, se indica que el número de horas invertidas en la entrega de Epic Games creció un 146% el pasado mes de noviembre.</center></h2>
+                <br><br>
+            </div>
+            <br>
+        </div>
+        <br><br><br>     
+    </div>
     
-        <a href="https://www.google.com/maps/place/Parque+San+Antonio/@6.2455975,-75.5708185,16.25z/data=!4m15!1m8!3m7!1s0x8e4428dfb80fad05:0x42137cfcc7b53b56!2sMedell%C3%ADn,+Antioquia!3b1!8m2!3d6.2476376!4d-75.5658153!16zL20vMDF4XzZz!3m5!1s0x8e44285682622b25:0x549026acddaebe34!8m2!3d6.245725!4d-75.5681414!16s%2Fg%2F121rjknb?entry=ttu"><button class="btn" style="box-shadow: 0 0 80px red; text-decoration: none;"> ubicanos</a></button>
-        
-    <button class="btn" style="box-shadow: 0 0 80px red; text-decoration: none;"> correo
-    </button>
-    
-</center>
+  </div>
 
-=======
-<br>
-<br>
-<center>
-    <footer class="footer">
-        <p>&copy; 2023 Todos los derechos reservados.</p>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    
+    <footer style="background-color: #07113B";>
+        <center>
+        <h3 class="h2">Copyright 2023 Gameverse</h3>
+        <div class="img-container">
+        <img src="./img/twitter.jpg" alt="Twitter">
+        <img src="./img/fb.jpg" alt="Facebook">
+        <img src="./img/insta.jpg" alt="Instagram">
+        </div>
+        </center>
+        <br>
     </footer>
-</center>
 
-
-
-</style>
 </body>
 </html>
-
-<style>
-    /*esto es para que la pagina sea responsive en pocas palabras se acomode al tamaño de la ventana coloquenlo donde puedan */
-    @media only screen and (max-width: 1200px) {
-  .info,
-  .perfil,
-  .deceados {
-      width: 100%; 
-      margin: 5px; 
-      text-align: center;
-      z-index:-33
-  }
-
-
-  }
-
-  .twelve h1 {
-  font-size:26px; font-weight:700;  letter-spacing:1px; text-transform:uppercase; text-align:center; margin:auto; white-space:nowrap; padding-bottom:13px; z-index:-33
-}
-
-
-</style>
