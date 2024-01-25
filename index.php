@@ -52,7 +52,7 @@ if ($resultado) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gameverse</title>
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-    <link rel="stylesheet" href="./css/stylegameverse.css">
+    <link rel="stylesheet" href="./styles/stylegameverse.css">
 </head>
 <body>
 <script>
