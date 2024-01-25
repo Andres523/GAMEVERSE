@@ -290,4 +290,4 @@ if ($resultado) {
     </footer>
 
 </body>
-</html>
+</html> 
