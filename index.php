@@ -1,4 +1,8 @@
 <?php
+header("Content-Type: text/html; charset=utf-8");
+?>
+
+<?php
 session_start();
 
 $loggedIn = isset($_SESSION['nombreUsuario']);
@@ -52,7 +56,8 @@ if ($resultado) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gameverse</title>
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-    <link rel="stylesheet" href="./styles/stylegameverse.css">
+    <link rel="stylesheet" href="./styles/styleindex.css">
+    <?php echo file_get_contents("style.css"); ?>
 </head>
 <body>
 <script>
@@ -139,7 +144,7 @@ if ($resultado) {
             </ul>
             <br>
             <br>
-            <br>
+            <br>                                                
             <br>
             <br>
             <br>
