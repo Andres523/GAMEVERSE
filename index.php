@@ -61,7 +61,18 @@ if ($resultado) {
 </head>
 <body>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function() {
+        var settingsBtn = document.getElementById('settingsBtn');
+        var settingsPopup = document.getElementById('settingsPopup');
+
+        settingsBtn.addEventListener('click', function() {
+            if (settingsPopup.style.display === 'block') {
+                settingsPopup.style.display = 'none';
+            } else {
+                settingsPopup.style.display = 'block';
+            }
+        });
+
         document.querySelector('.spinner-overlay').style.display = 'block';
     });
 
@@ -69,9 +80,7 @@ if ($resultado) {
         document.querySelector('.spinner-overlay').style.display = 'none';
     });
 
-   
     window.addEventListener('beforeunload', function(event) {
-        
         document.querySelector('.spinner-overlay').style.display = 'none';
     });
         </script>
