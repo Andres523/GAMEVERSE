@@ -16,6 +16,8 @@
                 $resultado = mysqli_query($conexion, $consulta);
                 if (mysqli_num_rows($resultado) > 0) {
                     $fila = mysqli_fetch_assoc($resultado);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -69,7 +71,15 @@
     <main>
  
         <section id="home", class="main-content">
-            <?php  
+            
+
+            
+                <a href="compra.php?id=<?php echo $id_juego; ?>" class="comprar-link">Comprar Juego</a>
+                <?php  
+                echo '<form action="carrito.php" method="post">';
+                echo '<input type="hidden" name="id_juego" value="' . $id_juego . '">';
+                echo '<button type="submit" name="agregar_carrito">Agregar al Carrito</button>';
+                echo '</form>';
      
                     
                 echo '<p style="color: green; text-align: center; font-size: 24px;">Precio: $' . $fila['precio'] . " COP".'</p>';
