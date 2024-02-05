@@ -125,7 +125,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             var form = document.getElementById('filter-form');
             form.addEventListener('submit', function(event) {
-                event.preventDefault();
+                event.preventDefault(); 
                 filtrarJuegos();
             });
         });
@@ -134,13 +134,13 @@
             var form = document.getElementById('filter-form');
             var formData = new FormData(form); 
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'procesar_filtro.php', true);
+            xhr.open('POST', 'procesar_filtro.php', true); 
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     document.getElementById('cards-container').innerHTML = xhr.responseText; 
                 }
             };
-            xhr.send(formData); 
+            xhr.send(formData);
         }
     </script>
         <script>
@@ -159,14 +159,15 @@
 
         function filtrarJuegos() {
             var form = document.getElementById('filter-form');
-            var formData = new FormData(form); 
-            xhr.open('POST', 'procesar_filtro.php', true); 
+            var formData = new FormData(form);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'procesar_filtro.php', true);
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     document.getElementById('cards-container').innerHTML = xhr.responseText; 
                 }
             };
-            xhr.send(formData);
+            xhr.send(formData); 
         }
     </script>
 </body>
