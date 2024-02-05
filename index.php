@@ -75,6 +75,7 @@ if ($resultado) {
 
         document.querySelector('.spinner-overlay').style.display = 'block';
     });
+    
 
     window.addEventListener('load', function() {
         document.querySelector('.spinner-overlay').style.display = 'none';
