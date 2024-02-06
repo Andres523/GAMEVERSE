@@ -1,3 +1,8 @@
+<?php
+session_start();
+$loggedIn = isset($_SESSION['nombreUsuario']);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
