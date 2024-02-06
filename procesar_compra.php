@@ -30,15 +30,15 @@ if(isset($_SESSION['nombreUsuario'])) {
             die("Error en la preparación de la consulta: " . mysqli_error($conexion));
         }
 
-        // Obtener el ID del usuario
-        $consulta_id_usuario = "SELECT id, correo FROM usuarios WHERE nombre = ?";
-        $stmt_id_usuario = mysqli_prepare($conexion, $consulta_id_usuario);
-        mysqli_stmt_bind_param($stmt_id_usuario, "s", $nombreUsuario);
-        mysqli_stmt_execute($stmt_id_usuario);
-        $resultado_id_usuario = mysqli_stmt_get_result($stmt_id_usuario);
-        $fila_id_usuario = mysqli_fetch_assoc($resultado_id_usuario);
-        $id_usuario = $fila_id_usuario['id'];
-        $correo_usuario = $fila_id_usuario['correo'];
+        // Obtener el ID del usuario y su correo electrónico
+        $consulta_usuario = "SELECT id, correo FROM usuarios WHERE nombre = ?";
+        $stmt_usuario = mysqli_prepare($conexion, $consulta_usuario);
+        mysqli_stmt_bind_param($stmt_usuario, "s", $nombreUsuario);
+        mysqli_stmt_execute($stmt_usuario);
+        $resultado_usuario = mysqli_stmt_get_result($stmt_usuario);
+        $fila_usuario = mysqli_fetch_assoc($resultado_usuario);
+        $id_usuario = $fila_usuario['id'];
+        $correo_usuario = $fila_usuario['correo'];
 
         // Obtener el precio del juego
         $consulta_precio_juego = "SELECT precio FROM productos WHERE id = ?";
@@ -60,28 +60,38 @@ if(isset($_SESSION['nombreUsuario'])) {
         if(mysqli_stmt_affected_rows($stmt_insertar_compra) > 0) {
             echo "La compra se ha realizado exitosamente.";
             echo "<br>";
-            echo '<a href="tienda.php">Seguir explorando</a>';
 
-            // Envío del correo electrónico de confirmación
-            $asunto = "Confirmación de Compra en Gameverse";
-            $mensaje = "Hola " . $nombreUsuario . ",\n\nTu compra del juego '" . $nombre_juego . "' ha sido procesada exitosamente.\n\nDetalles de la compra:\nID del juego: " . $id_juego . "\nPrecio: $" . $precio_juego . "\nCantidad: " . $cantidad . "\n\nGracias por comprar en Gameverse. Su envío llegará en máximo 3 días.";
+            // Crear el mensaje del correo electrónico
+            $to = $correo_usuario; // Correo del usuario
+            $subject = "Confirmación de compra en GameVerse";
+            $message = "Hola $nombreUsuario,\n\n";
+            $message .= "¡Tu compra en GameVerse ha sido confirmada!\n\n";
+            $message .= "Detalles de la compra:\n";
+            $message .= "Juego: $nombre_juego\n";
+            $message .= "Ubicación: $ubicacion\n";
+            $message .= "Dirección de entrega: $direccion\n";
+            $message .= "Precio: $precio_juego\n";
+            $message .= "Cantidad: $cantidad\n\n";
+            $message .= "Gracias por comprar en GameVerse. si el juego no te llega en 3 dias has un reporte";
 
-            if (mail($correo_usuario, $asunto, $mensaje)) {
-                echo "<br>Se ha enviado un correo electrónico de confirmación.";
-            } else {
-                echo "<br>Error: No se pudo enviar el correo electrónico de confirmación.";
-            }
+            // Cabeceras del correo electrónico
+            $headers = "From: sender@example.com\r\n";
+            $headers .= "Reply-To: sender@example.com\r\n";
+            $headers .= "Return-Path: sender@example.com\r\n"; 
+            
+            // Enviar el correo electrónico
+            mail($to, $subject, $message, $headers);
+
+
+            echo "<br>";
+            echo "<a href='tienda.php'> Seguir explorando </a>";
+            mysqli_close($conexion);
         } else {
-            echo "Error al procesar la compra.";
+            echo "No se ha enviado el formulario de confirmación de compra.";
         }
-
-        // Cerrar la conexión
-        mysqli_close($conexion);
     } else {
-        echo "No se ha enviado el formulario de confirmación de compra.";
+        header("Location: index.php");
+        exit();
     }
-} else {
-    header("Location: index.php");
-    exit();
 }
 ?>
