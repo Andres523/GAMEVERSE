@@ -124,6 +124,11 @@ if ($resultado) {
                 <?php if ($rol === 'Admin'): ?>
                 <a href="admin.php"><button>Administrador</button></a>
                 <?php endif; ?>
+
+                <?php if ($rol === 'Admin'): ?>
+                <a href="ventas.php"><button>Ventas</button></a>
+                <?php endif; ?>
+                
                 <form method="post">
                     <button type="submit" name="logout" onclick="showConfirmationModal();">Cerrar sesión</button>
                 </form>
