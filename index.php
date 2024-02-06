@@ -178,69 +178,54 @@ if ($resultado) {
         <br>
         <h2 class="h2" ><center>Nuevos títulos y descuentos</center></h2>
         <br>
-        <div class="carousel"
-            data-flickity='{ "wrapAround": true }'
-            style="background-color: #0A1850;">
-            <div>
-                <center><img class="carousel-cell" src="https://gmedia.playstation.com/is/image/SIEPDC/spider-man-2-keyart-01-en-31may23?$1600px$"/></center>
-                <h1 class="h2"><center>Marvel&#39;s Spider-Man 2</center></h1>
-                <h2 class="h1"><center>¡Cuelga de rascacielos, balancea entre edificios y enfrenta villanos en Spider-Man 2!<br>¡Conviértete en el héroe que Nueva York necesita! <br>¿Estás listo para la acción?</center></h2>
-                <br>
-                <div>
-                    <center><button class="button-gameverse">Descubrir</button></center>
-                </div>
-                <br>
-                <br>
-            </div>
+        <?php
+// Realiza la conexión a la base de datos y la consulta para obtener los juegos mejor valorados
+$conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
 
-            <div>
-                <center><img class="carousel-cell" src="./img/last3.jpg"/></center>
-                <h1 class="h2"><center>The Last of Us - Part II</center></h1>
-                <h2 class="h1"><center>¡Sumérgete en el apocalipsis!<BR> Acompaña a Ellie en su viaje lleno de emociones<br>enfrenta decisiones desgarradoras y sobrevive en un mundo postapocalíptico implacable.</center></h2>
-                <br>
-                <div>
-                    <center><button class="button-gameverse">Descubrir</button></center>
-                </div>
-                <br>
-                <br>
-            </div>
+if (!$conexion) {
+    die("Error de conexión: " . mysqli_connect_error());
+}
 
-            <div>
-                <center><img class="carousel-cell" src="https://gmedia.playstation.com/is/image/SIEPDC/god-of-war-ragnarok-keyart-01-en-07sep21?$1600px$"/></center>
-                <h1 class="h2"><center>God of War: Ragnarok</center></h1>
-                <h2 class="h1"><center>¡Prepárate para la furia de los dioses!<br>Embárcate en una odisea mitológica, enfrenta y desafía a los dioses nórdicos.<br>Kratos regresa para enfrentar su destino en la batalla definitiva.</center></h2>
-                <br>
-                <div>
-                    <center><button class="button-gameverse">Descubrir</button></center>
-                </div>
-                <br>
-                <br>
-            </div>
+// Consulta para obtener los juegos mejor valorados
+$consulta = "SELECT p.id, p.nombre, p.descripcion, p.requisitos, p.cantidad, p.precio, p.imagen, p.video_mp4, p.categoria, AVG(c.calificacion) AS calificacion_promedio
+             FROM productos p
+             LEFT JOIN calificaciones c ON p.id = c.id_juego
+             GROUP BY p.id
+             ORDER BY calificacion_promedio DESC
+             LIMIT 5"; 
 
-            <div>
-                <center><img class="carousel-cell" src="./img/gta.jpg"/></center>
-                <h1 class="h2"><center>Grand Theft Auto V</center></h1>
-                <h2 class="h1"><center>¡Explora Los Santos y sumérgete en el caos urbano!<br>Conviértete en un criminal de élite, planea atracos épicos.<br>y vive la vida en el lado salvaje</center></h2>
-                <br>
-                <div>
-                    <center><button class="button-gameverse">Descubrir</button></center>
-                </div>
-                <br>
-                <br>
-            </div>
+$resultado = mysqli_query($conexion, $consulta);
 
+if ($resultado) {
+    ?>
+    <div class="carousel" data-flickity='{ "wrapAround": true }' style="background-color: #0A1850;">
+        <?php
+        while ($fila = mysqli_fetch_assoc($resultado)) {
+            ?>
             <div>
-                <center><img class="carousel-cell" src="./img/zelda3.jpg"/></center>
-                <h1 class="h2"><center>The legend of zelda: Totk</center></h1>
-                <h2 class="h1"><center>¡Embárcate en una épica aventura! <br>Explora misteriosos reinos y enfrenta a antiguos enemigos. <br>Conviértete en el héroe que restaurará la paz en Hyrule</center></h2>
+                <center><img class="carousel-cell" src="<?php echo $fila['imagen']; ?>"/></center>
+                <h1 class="h2"><center><?php echo $fila['nombre']; ?></center></h1>
+                <h2 class="h1"><center><?php echo $fila['descripcion']; ?></center></h2>
+                <h3 class="h2"><center>Calificación: <?php echo round($fila['calificacion_promedio'], 1); ?></center></h3>
                 <br>
                 <div>
-                    <center><button class="button-gameverse">Descubrir</button></center>
+                    <center><button class="button-gameverse"><?php echo '<a href="juego.php?id=' . $fila['id'] . '" class="juego-link"> DESCUBRIR </a> '?></button></center>
                 </div>
                 <br>
                 <br>
             </div>
-        </div>
+            <?php
+        }
+        ?>
+    </div>
+    <?php
+} else {
+    echo "Error en la consulta: " . mysqli_error($conexion);
+}
+
+mysqli_close($conexion);
+?>
+
 
 
     <br>
