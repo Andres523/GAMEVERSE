@@ -179,7 +179,7 @@
                         die("Error al obtener usuarios: " . mysqli_error($conexion));
                     }
                     ?>
-<!-- MODAL ELIMINAR-->
+                    <!-- MODAL ELIMINAR-->
                     <div id="modal" class="modal">
                         <div class="modal-content">
                             <div class="container">
@@ -205,7 +205,7 @@
                     <div id="modalEditar" class="modal">
                         <div class="modal-content">
                             <div class="container">
-<br>
+                                <br>
                                 <input type="hidden" id="idUsuarioEditar" value="">
                                 <input type="text" id="nombreUsuarioEditar" placeholder="Nombre">
                                 <input type="email" id="correoUsuarioEditar" placeholder="Correo">
@@ -370,45 +370,60 @@ $conexion->close();
                     <br>
                     <br>
 
-                    <!-- MODAL PRODUCTOS -->
-                                            <div id="productModal" class="modal">
-                                            <div class="modal-content">
-                                            <span class="close" id="closeProductModalBtn">&times;</span>
-                                            <form id="productForm" action="procesar_producto.php" method="post" enctype="multipart/form-data">
-                                                <label for="nombre">Nombre:</label>
-                                                <input type="text" id="nombre" name="nombre" required>
+                                <!-- MODAL PRODUCTOS -->
+                                <div id="productModal" class="modal">
+                                    <div class="modal-content">
+                                        <span class="close" id="closeProductModalBtn">&times;</span>
+                                        <form id="productForm" action="procesar_producto.php" method="post" enctype="multipart/form-data">
+                                            <div class="form-container">
+                                                <div class="form-column">
+                                                    <label for="nombre"></label>
+                                                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" required="Complete este campo">
 
-                                                <label for="descripcion">Descripción:</label>
-                                                <input type="text" id="descripcion" name="descripcion" required><br>
+                                                    <label for="descripcion"></label>
+                                                    <input type="text" id="descripcion" name="descripcion" placeholder="Descripción" required="Complete este campo">
 
-                                                <label for="requisitos">Requisitos:</label>
-                                                <input type="text" id="requisitos" name="requisitos" required>
+                                                    <label for="requisitos"></label>
+                                                    <input type="text" id="requisitos" name="requisitos" placeholder="Requisitos" required="Complete este campo">
+                                                
+                                                    <label for="cantidad"></label>
+                                                    <input type="number" id="cantidad" name="cantidad" placeholder="Cantidad" required="Complete este campo">
+                                                    
+                                                    <label for="precio"></label>
+                                                    <input type="number" id="precio" name="precio" placeholder="Precio" required="Complete este campo">
+                                                    <br>
+                                                    <label for="imagen">Imagen    </label>
+                                                    <input type="file" id="imagen" name="imagen" accept="image/*" placeholder="Imagen" required="Complete este campo">
+                                                    <br>
+                                                    <label for="video_mp4">Video MP4</label>
+                                                    <input type="file" id="video_mp4" name="video_mp4" accept="video/mp4"placeholder="Video MP4" required="Complete este campo">
+                                                    
+                                                </div>
+                                            </div>
 
-                                                <label for="cantidad">Cantidad:</label>
-                                                <input type="number" id="cantidad" name="cantidad" required>
 
-                                                <label for="precio">Precio:</label>
-                                                <input type="number" id="precio" name="precio" required><br>
-
-                                                <label for="imagen">Imagen:</label>
-                                                <input type="file" id="imagen" name="imagen" accept="image/*" required>
-
-                                                <label for="video_mp4">Video MP4:</label>
-                                                <input type="file" id="video_mp4" name="video_mp4" accept="video/mp4">
-
+                                                <div class="form-column">
                                                 <ul>
                                                     <h2>Categorías</h2>
                                                     <?php foreach ($categorias as $categoria): ?>
                                                         <li>
-                                                            <input type="checkbox" id="categoria_<?php echo $categoria['id']; ?>" name="categorias[]" value="<?php echo $categoria['id']; ?>">
-                                                            <label for="categoria_<?php echo $categoria['id']; ?>"><?php echo $categoria['nombre']; ?></label>
+                                                        <div class="checkbox">
+  
+                                                            <input class="checkbox__input" type="checkbox" id="categoria_<?php echo $categoria['id']; ?>" name="categorias[]" value="<?php echo $categoria['id']; ?>">
+
+                                                            <label class="checkbox__label" for="categoria_<?php echo $categoria['id']; ?>"><?php echo $categoria['nombre']; ?>
+                                                            <span class="checkbox__custom"></span>
+                                                            </label>
+                                                        </div>    
                                                         </li>
                                                     <?php endforeach; ?>
                                                 </ul>
-                                                    
+                                                </div>
+                                                <center>
                                                 <a href="./categorias.php">Agregar Categoría</a>
                                                 <br>
                                                 <button class="btn4" type="submit" name="guardarProducto">Guardar Producto</button>
+                                                </center>
                                             </form>
 
 
@@ -531,9 +546,7 @@ main {
 
 
     @media only screen and (max-width: 1200px) {
-.info,
-.perfil,
-.deceados {
+.i{
     width: 100%; 
     margin: 5px; 
     text-align: center;
@@ -634,12 +647,9 @@ xhr.send(`id_usuario=${idUsuario}&nuevo_nombre=${nuevoNombre}&nuevo_correo=${nue
 
 <style>
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
-
 body {
 	background-color: #383c41;
 	color: #fcf9f4;
-	font-family: "Open Sans", "Arial"; 
 }
 
 main {
@@ -796,11 +806,9 @@ footer {
 
 /*confirmacion eliminacion de usuarios*/
 .modal-content{
-	background: linear-gradient(
-		  82.3deg,
-		  rgb(0, 0, 0) 75%,
-		  rgb(145, 238, 88) 25%);
-    text-align: center;
+    background: #7F00FF;
+    background: -webkit-linear-gradient(to bottom, #E100FF, #7F00FF);
+    background: linear-gradient(to bottom, #E100FF, #7F00FF);
     border: none;
     border-radius: 20px;
 }
@@ -1036,13 +1044,12 @@ footer {
 		width: 40px;
 		height: 40px;
 		border-radius: 50%;
-		background-color: rgb(20, 20, 20);
+		background-color: rgb(255, 69, 69);
 		border: none;
 		font-weight: 600;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		box-shadow: 0px 0px 20px rgba(255, 69, 69);
 		cursor: pointer;
 		transition-duration: 0.3s;
 		overflow: hidden;
@@ -1095,23 +1102,22 @@ footer {
 	  }
 	  
 
-	  .edit-button {
-		width: 40px;
-		height: 40px;
-		border-radius: 50%;
-		background-color:(20, 20, 20);
-		border: none;
-		font-weight: 600;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		box-shadow: 0px 0px 20px #00ff00;
-		cursor: pointer;
-		transition-duration: 0.3s;
-		overflow: hidden;
-		position: relative;
-		text-decoration: none !important;
-	  }
+      .edit-button {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color:#00ff00;
+        border: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition-duration: 0.3s;
+        overflow: hidden;
+        position: relative;
+        text-decoration: none !important;
+  }
 	  
 	  .edit-svgIcon {
 		width: 17px;
@@ -1157,5 +1163,76 @@ footer {
 		transform: translateY(0px);
 		transition-duration: 0.3s;
 	  }
-    
+
+    .modal-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-container {
+        display: flex;
+    }
+
+    .form-column {
+        padding: 7px 30px;
+        background: transparent;
+        margin-right: 50px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        margin-right: 10px;
+    }
+
+.checkbox {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkbox__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkbox__label {
+  display: inline-block;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  position: relative;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.checkbox__custom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(#212121, #212121) padding-box,
+              linear-gradient(145deg,#e81cff, #40c9ff) border-box;
+  border: 2px solid transparent;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.checkbox__input:checked + .checkbox__label .checkbox__custom {
+  background-image: linear-gradient(145deg,#e81cff, #40c9ff);
+  transform: rotate(45deg) scale(0.8);
+}
+
+.checkbox__label:hover .checkbox__custom {
+  transform: scale(1.2);
+}
+
+
 </style>
