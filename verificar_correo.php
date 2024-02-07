@@ -36,6 +36,7 @@ mysqli_close($conexion);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/VC.css">
+    <link rel="shortcut icon" href="../img/logo.png">
     <title>Verificar Correo Electrónico</title>
 </head>
 <body>

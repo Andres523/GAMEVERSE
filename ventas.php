@@ -26,6 +26,7 @@ if (!$resultado_ventas) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../img/logo.png">
     <title>Listado de Ventas</title>
     <!-- Agrega tus estilos CSS -->
 </head>

@@ -57,6 +57,7 @@ if ($resultado) {
     <title>Gameverse</title>
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <link rel="stylesheet" href="./styles/styleindex.css">
+    <link rel="shortcut icon" href="../img/logo.png">
     <?php echo file_get_contents("style.css"); ?>
 </head>
 <body>

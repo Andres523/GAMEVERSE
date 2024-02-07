@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="shortcut icon" href="../img/logo.png">
     <title>Restablecer Contraseña</title>
 </head>
 <body>

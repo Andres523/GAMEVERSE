@@ -74,6 +74,8 @@ if(isset($_SESSION['nombreUsuario'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../img/logo.png">
+    
     <title>Confirmar Compra</title>
     <!-- mari tus estilos CSS aquí -->
     <script>
