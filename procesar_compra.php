@@ -49,45 +49,82 @@ if(isset($_SESSION['nombreUsuario'])) {
         $fila_precio_juego = mysqli_fetch_assoc($resultado_precio_juego);
         $precio_juego = $fila_precio_juego['precio'];
 
+        // Obtener la cantidad disponible del producto
+        $consulta_cantidad_producto = "SELECT cantidad FROM productos WHERE id = ?";
+        $stmt_cantidad_producto = mysqli_prepare($conexion, $consulta_cantidad_producto);
+        mysqli_stmt_bind_param($stmt_cantidad_producto, "i", $id_juego);
+        mysqli_stmt_execute($stmt_cantidad_producto);
+        $resultado_cantidad_producto = mysqli_stmt_get_result($stmt_cantidad_producto);
+        $fila_cantidad_producto = mysqli_fetch_assoc($resultado_cantidad_producto);
+        $cantidad_disponible = $fila_cantidad_producto['cantidad'];
+
         // Obtener la cantidad del formulario
         $cantidad = isset($_POST['cantidad']) ? $_POST['cantidad'] : 1;
 
-        // Ejecutar la inserción de la compra
-        mysqli_stmt_bind_param($stmt_insertar_compra, "iiii", $id_usuario, $id_juego, $precio_juego, $cantidad);
-        mysqli_stmt_execute($stmt_insertar_compra);
+        // Verificar si la cantidad es igual a cero
+        if ($cantidad == 0) {
+            echo "El producto no está disponible.";
+        } elseif ($cantidad > 0 && $cantidad <= $cantidad_disponible) {
+            // Ejecutar la inserción de la compra
+            mysqli_stmt_bind_param($stmt_insertar_compra, "iiii", $id_usuario, $id_juego, $precio_juego, $cantidad);
+            mysqli_stmt_execute($stmt_insertar_compra);
 
-        // Verificar si la inserción fue exitosa
-        if(mysqli_stmt_affected_rows($stmt_insertar_compra) > 0) {
-            echo "La compra se ha realizado exitosamente.";
-            echo "<br>";
+            // Verificar si la inserción fue exitosa
+            if(mysqli_stmt_affected_rows($stmt_insertar_compra) > 0) {
+                echo "La compra se ha realizado exitosamente.";
+                echo "<br>";
 
-            // Crear el mensaje del correo electrónico
-            $to = $correo_usuario; // Correo del usuario
-            $subject = "Confirmación de compra en GameVerse";
-            $message = "Hola $nombreUsuario,\n\n";
-            $message .= "¡Tu compra en GameVerse ha sido confirmada!\n\n";
-            $message .= "Detalles de la compra:\n";
-            $message .= "Juego: $nombre_juego\n";
-            $message .= "Ubicación: $ubicacion\n";
-            $message .= "Dirección de entrega: $direccion\n";
-            $message .= "Precio: $precio_juego\n";
-            $message .= "Cantidad: $cantidad\n\n";
-            $message .= "Gracias por comprar en GameVerse. si el juego no te llega en 3 dias has un reporte";
+                // Actualizar la cantidad de juegos disponibles
+                $consulta_actualizar_cantidad = "UPDATE productos SET cantidad = cantidad - ? WHERE id = ?";
+                $stmt_actualizar_cantidad = mysqli_prepare($conexion, $consulta_actualizar_cantidad);
 
-            // Cabeceras del correo electrónico
-            $headers = "From: sender@example.com\r\n";
-            $headers .= "Reply-To: sender@example.com\r\n";
-            $headers .= "Return-Path: sender@example.com\r\n"; 
-            
-            // Enviar el correo electrónico
-            mail($to, $subject, $message, $headers);
+                if (!$stmt_actualizar_cantidad) {
+                    die("Error en la preparación de la consulta de actualización de cantidad: " . mysqli_error($conexion));
+                }
 
+                // Restar la cantidad comprada del producto
+                mysqli_stmt_bind_param($stmt_actualizar_cantidad, "ii", $cantidad, $id_juego);
+                mysqli_stmt_execute($stmt_actualizar_cantidad);
 
-            echo "<br>";
-            echo "<a href='tienda.php'> Seguir explorando </a>";
-            mysqli_close($conexion);
+                // Verificar si la actualización fue exitosa
+                if(mysqli_stmt_affected_rows($stmt_actualizar_cantidad) > 0) {
+                    echo "Se ha actualizado la cantidad de juegos disponibles.";
+                } else {
+                    echo "No se pudo actualizar la cantidad de juegos disponibles.";
+                }
+
+                echo "<br>";
+
+                // Crear el mensaje del correo electrónico
+                $to = $correo_usuario; // Correo del usuario
+                $subject = "Confirmación de compra en GameVerse";
+                $message = "Hola $nombreUsuario,\n\n";
+                $message .= "¡Tu compra en GameVerse ha sido confirmada!\n\n";
+                $message .= "Detalles de la compra:\n";
+                $message .= "Juego: $nombre_juego\n";
+                $message .= "Ubicación: $ubicacion\n";
+                $message .= "Dirección de entrega: $direccion\n";
+                $message .= "Precio: $precio_juego\n";
+                $message .= "Cantidad: $cantidad\n\n";
+                $message .= "Gracias por comprar en GameVerse. Si el juego no te llega en 3 días, haz un reporte.";
+
+                // Cabeceras del correo electrónico
+                $headers = "From: sender@example.com\r\n";
+                $headers .= "Reply-To: sender@example.com\r\n";
+                $headers .= "Return-Path: sender@example.com\r\n"; 
+                
+                // Enviar el correo electrónico
+                mail($to, $subject, $message, $headers);
+
+                echo "<br>";
+                echo "<a href='tienda.php'> Seguir explorando </a>";
+                mysqli_close($conexion);
+            } else {
+                echo "No se ha enviado el formulario de confirmación de compra.";
+            }
         } else {
-            echo "No se ha enviado el formulario de confirmación de compra.";
+            // Si la cantidad es negativa o excede la cantidad disponible, cancelar la compra
+            echo "La cantidad seleccionada no es válida. Por favor, seleccione una cantidad válida.";
         }
     } else {
         header("Location: index.php");
