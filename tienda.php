@@ -29,7 +29,7 @@ $loggedIn = isset($_SESSION['nombreUsuario']);
         <nav>
             <ul class="navigation">
                 <li><a href="./index.php">HOME</a></li>
-                <li><a href="tienda.html">TIENDA</a></li>
+                <li><a href="tienda.php">TIENDA</a></li>
                 <li><a href="./marketplace.html">MARKETPLACE</a></li>
             </ul>
             <br>

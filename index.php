@@ -179,7 +179,7 @@ if ($resultado) {
         <h2 class="h2" ><center>Nuevos títulos y descuentos</center></h2>
         <br>
         <?php
-// Realiza la conexión a la base de datos y la consulta para obtener los juegos mejor valorados
+
 $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
 
 if (!$conexion) {
@@ -230,54 +230,58 @@ mysqli_close($conexion);
 
     <br>
     <br>
+    
     </div>
+<?php 
+$conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
+
+if (!$conexion) {
+    die("Error de conexión: " . mysqli_connect_error());
+}
+
+$consulta = "SELECT * FROM novedades ORDER BY id DESC LIMIT 5";
+$resultado = mysqli_query($conexion, $consulta);
+
+if ($resultado) {
+    ?>
     <div style="background-color: #E17349">
         <br><br>
         <h2 class="h2" ><center>Las novedades más recientes</center></h2>
+        <?php if ($rol === 'Admin'): ?>
+            <h2 class="h2"><center><a href="novedades.php">agregar novedades</a></center></h2>
+        <?php endif; ?>
         <br>
-        <div class="carousel-2"
-            data-flickity='{ "wrapAround": true }'>
-            <div class="carousel-2-cell" style="background-color: #E5D6D0">
-                <center><img class= "carousel-2 img" src="./img/gods.jpg"/><center>
-                <h1><center>God of war-ragnarok:<br>valhalla</center></h1>
-                <br><br>
-                <h2><center>Tras los eventos de Ragnarök, Kratos descubre un rumbo que nunca creyó posible seguir y que lo lleva a las costas del Valhala.<br>Junto a Mimir, Kratos emprende un viaje íntimo y reflexivo que lo llevará a perfeccionar su cuerpo y mente, pues tendrá que enfrentarse a los desafíos del Valhala en una aventura trepidante y rejugable que combina el reconocido estilo de combate de God of War Ragnarök con nuevos elementos inspirados en el género roguelite.</center></h2>
-                <br><br>
-            </div>
-            <div class="carousel-2-cell" style="background-color: #E5D6D0">
-                <center><img class= "carousel-2 img" src="./img/devil.jpg"/></center>
-                <h1><center>Devil May Cry:<br>Peak of Combat</center></h1>
-                <br>
-                <h2><center>Es un hack and slash desarrollado por NebulaJoy y publicado por Capcom para dispositivos móviles iOS y Android. La clásica saga de acción protagonizada por el cazador de demonios Dante llega con una nueva entrega gratuita y exclusiva para teléfonos móviles, en la que podemos controlar a varios personajes de la saga y que ofrece los espectaculares combates de acción acrobática a los que estamos acostumbrados en la saga pero en la palma de nuestra mano.</center></h2>
-                <br><br>
-            </div>
-            <div class="carousel-2-cell" style="background-color: #E5D6D0">
-                <center><img class= "carousel-2 img" src="./img/prince.jpg"/><center>
-                <h1><center>Principe de Persia:<br>The Lost Crown</center></h1>
-                <br>
-                <h2><center>el retorno de Prince of Persia a los sistemas de entretenimiento, ratifica que algo está cambiando en Ubisoft. Tras unos cuantos años obcecada en los juegos como servicio, la multinacional francesa ha decidido honrar a sus franquicias insignia bajo esquemas de juego clásicos. Al sobresaliente 'Mario + Rabbids: Sparks of Hope' le siguió un 'Assassin's Creed Mirage' que nos supo a gloria; aunque con las suficientes actualizaciones en materia de calidad de vida.</center></h2>
-                <br><br>
-            </div>
-            <div class="carousel-2-cell" style="background-color: #E5D6D0">
-                <center><img class= "carousel-2 img" src="./img/mariop.jpg"/></center>
-                <h1><center>Paper Mario:<br>La Puerta Milenaria</center></h1>
-                <br>
-                <h2><center>es un RPG desarrollado por Intelligent Systems y publicado por Nintendo para Switch. Un remake del genial juego lanzado para GameCube en 2004, una divertidísima y colorida aventura con un ingenioso sistema de combate por turnos que para muchos es la mejor entrega de la saga Paper Mario.<br> la entrega sigue sin confirmar su fecha de lanzamiento y solamente está apuntado para algún momento del próximo año. lo que da una pista de que puede estar cerca.</center></h2>
-                <br><br>
-            </div>
-            <div class="carousel-2-cell" style="background-color: #E5D6D0">
-                <center><img class= "carousel-2 img" src="./img/f.jpg"/></center>
-                <h1><center>Fortnite</center></h1>
-                <br>
-                <h2><center>Ampere Analysis asegura que los jugadores han estado más tiempo en Fortnite que en Call of Duty HQ, EA Sports FC 24, GTA V y Roblox juntos. Cabe destacar, sin embargo, que esta información alude únicamente popularidad de los juegos en consolas PlayStation y Xbox; la cosa podría cambiar mucho si se dieran asimismo los datos de PC y otras plataformas.
-                Pero, en resumidas cuentas, el aumento de popularidad de Fortnite es más que evidente. Siguiendo con el informe, se indica que el número de horas invertidas en la entrega de Epic Games creció un 146% el pasado mes de noviembre.</center></h2>
-                <br><br>
-            </div>
-            <br>
+        <div class="carousel-2" data-flickity='{ "wrapAround": true }'>
+            <?php 
+            while ($fila = mysqli_fetch_assoc($resultado)) {
+                $id = $fila["id"];
+                $nombre = $fila["nombre"];
+                $descripcion = $fila["descripcion"];
+                $imagen = $fila["imagen"];
+                ?>
+                <div class="carousel-2-cell" style="background-color: #E5D6D0">
+                    <center><img class="carousel-2 img" src="<?php echo $imagen; ?>" /></center>
+                    
+                    <h1><center><?php echo $nombre; ?></center></h1>
+                    <h1><center><?php echo $imagen; ?></center></h1>
+                    <br><br>
+                    <h2><center><?php echo $descripcion; ?></center></h2>
+                    <br><br>
+                </div>
+                <?php 
+            } // Fin del bucle while
+            ?>
         </div>
         <br><br><br>     
     </div>
-    
+    <?php 
+} else {
+    echo "Error en la consulta: " . mysqli_error($conexion);
+}
+
+mysqli_close($conexion);
+?>
+
   </div>
 
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
@@ -296,3 +300,4 @@ mysqli_close($conexion);
 
 </body>
 </html>
+
