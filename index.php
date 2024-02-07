@@ -232,14 +232,14 @@ mysqli_close($conexion);
     <br>
     
     </div>
-<?php 
+    <?php 
 $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
 
 if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
-$consulta = "SELECT * FROM novedades ORDER BY id DESC LIMIT 5";
+$consulta = "SELECT id, nombre, img, descripcion from novedades";
 $resultado = mysqli_query($conexion, $consulta);
 
 if ($resultado) {
@@ -257,13 +257,12 @@ if ($resultado) {
                 $id = $fila["id"];
                 $nombre = $fila["nombre"];
                 $descripcion = $fila["descripcion"];
-                $imagen = $fila["imagen"];
+                $imagen = $fila["img"];
                 ?>
                 <div class="carousel-2-cell" style="background-color: #E5D6D0">
                     <center><img class="carousel-2 img" src="<?php echo $imagen; ?>" /></center>
                     
                     <h1><center><?php echo $nombre; ?></center></h1>
-                    <h1><center><?php echo $imagen; ?></center></h1>
                     <br><br>
                     <h2><center><?php echo $descripcion; ?></center></h2>
                     <br><br>
@@ -281,6 +280,8 @@ if ($resultado) {
 
 mysqli_close($conexion);
 ?>
+
+  </div>
 
   </div>
 

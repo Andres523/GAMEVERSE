@@ -24,20 +24,33 @@ if (isset($_GET['eliminar'])) {
     }
 }
 
+// Obtener el último ID de la tabla novedades
+$sql_last_id = "SELECT MAX(id) AS max_id FROM novedades";
+$result_last_id = $conn->query($sql_last_id);
+$row_last_id = $result_last_id->fetch_assoc();
+$max_id = $row_last_id['max_id'];
+
+// Verificar si hay algún registro en la tabla novedades
+if ($max_id === null) {
+    $next_id = 1;
+} else {
+    $next_id = $max_id + 1;
+}
+
 // Procesar el formulario si se envió
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = $_POST['nombre'];
-    $descripcion = $_POST['descripcion'];
+    $nombre = mysqli_real_escape_string($conn, $_POST['nombre']);
+    $descripcion = mysqli_real_escape_string($conn, $_POST['descripcion']);
 
     // Subir imagen
     $imagen = $_FILES['imagen']['name'];
     $imagen_temp = $_FILES['imagen']['tmp_name'];
-    $imagen_destino = "./img_novedades/" . $imagen; // Cambia "carpeta_destino" por la carpeta donde deseas guardar las imágenes
+    $imagen_destino = "./img_novedades/" . $imagen; 
 
     move_uploaded_file($imagen_temp, $imagen_destino);
 
-    // Preparar la consulta SQL para insertar los datos en la base de datos
-    $sql = "INSERT INTO novedades (nombre, img, descripcion) VALUES ('$nombre', '$imagen_destino', '$descripcion')";
+ 
+    $sql = "INSERT INTO novedades (id, nombre, img, descripcion) VALUES ('$next_id', '$nombre', '$imagen_destino', '$descripcion')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Novedad agregada correctamente";
@@ -55,6 +68,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Agregar y Administrar Novedades - Gameverse</title>
 </head>
 <body>
+    <br>
+    <a href="index.php"> Volver</a>
+
     <h2>Agregar Nueva Novedad</h2>
     <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
         <label for="nombre">Nombre:</label><br>
