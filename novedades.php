@@ -217,3 +217,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Cerrar la conexión
 $conn->close();
 ?>
+
+
+<style>
+
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999; 
+    background-color: #141e30; /* Cambio de color de fondo */
+    display: none; 
+}
+
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+body {
+    margin: 15px;
+    padding: 30px;
+    background-color: #243b55;
+    color: #fff;
+}
+
+h2 {
+    color: #8803f4; /* Cambio de color de texto */
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #141e30; /* Cambio de color de fondo de fila par */
+}
+
+label {
+    color: #8803f4; /* Cambio de color de texto de etiqueta */
+}
+
+input[type="text"], textarea {
+    background-color: #243b55;
+    color: #fff;
+    border: 1px solid #8803f4;
+}
+
+
+</style>
