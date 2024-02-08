@@ -218,8 +218,8 @@ if ($resultado) {
             ?>
             <div>
                 <center><img class="carousel-cell" src="<?php echo $fila['imagen']; ?>"/></center>
-                <h1 class="h2"><center><?php echo $fila['nombre']; ?></center></h1>
-                <h2 class="h1"><center><?php echo $fila['descripcion']; ?></center></h2>
+                <h1 class="h3"><center><?php echo $fila['nombre']; ?></center></h1>
+                <h2 class="descripcion"><center><?php echo $fila['descripcion']; ?></center></h2>
                 <h3 class="h2"><center>Calificación: <?php echo round($fila['calificacion_promedio'], 1); ?></center></h3>
                 <br>
                 <div>
