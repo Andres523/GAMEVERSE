@@ -64,7 +64,7 @@ if ($resultado) {
       rel="stylesheet"
     />
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-    <link rel="stylesheet" href="./styles/styleindex.css">
+    <link rel="stylesheet" href="./styles/style index.css">
     <link rel="shortcut icon" href="../img/logo.png">
     <?php echo file_get_contents("style.css"); ?>
 </head>
