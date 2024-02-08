@@ -54,39 +54,6 @@ if(isset($_SESSION['nombreUsuario'])) {
             } else {
                 $direccionUsuario = ''; 
             }
-?>
-            <!DOCTYPE html>
-            <html lang="es">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Confirmar Compra</title>
-                <!-- Agrega tus estilos CSS -->
-            </head>
-            <body>
-                <h1>Confirmar Compra</h1>
-                <div>
-                    <img src="<?php echo $fila['imagen']; ?>" alt="<?php echo $fila['nombre']; ?>">
-                    <p>Nombre: <?php echo $fila['nombre']; ?></p>
-                    <p>Precio: <?php echo $fila['precio']; ?></p>
-                </div>
-                <form action="procesar_compra.php" method="post">
-                    <input type="hidden" name="id_juego" value="<?php echo $fila['id']; ?>">
-                    <input type="hidden" name="nombre_juego" value="<?php echo $fila['nombre']; ?>">
-                    <input type="hidden" name="imagen_juego" value="<?php echo $fila['imagen']; ?>">
-                    <input type="hidden" name="precio_juego" value="<?php echo $fila['precio']; ?>">
-                    <input type="checkbox" name="terminos" required> Acepto los términos y condiciones<br><br>
-
-                    <label for="ubicacion">Ubicación:</label>
-                    <input type="text" id="ubicacion" name="ubicacion" value="<?php echo htmlspecialchars($ubicacionUsuario); ?>" required><br><br>
-
-                    <label for="direccion">Dirección:</label>
-                    <input type="text" id="direccion" name="direccion" value="<?php echo htmlspecialchars($direccionUsuario); ?>" required><br><br>
-                    <button type="submit" name="confirmar">Comprar</button>
-                </form>
-            </body>
-            </html>
-<?php
         } else {
             echo '<p>No se encontró el juego.</p>';
         }
@@ -101,3 +68,50 @@ if(isset($_SESSION['nombreUsuario'])) {
     exit();
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../img/logo.png">
+    
+    <title>Confirmar Compra</title>
+    <!-- mari tus estilos CSS aquí -->
+    <script>
+    function calcularPrecioTotal() {
+        var precioUnitario = <?php echo $fila['precio']; ?>;
+        var cantidad = document.getElementById('cantidad').value;
+        var precioTotal = precioUnitario * cantidad;
+        document.getElementById('precio-total').textContent = 'Precio total: $' + precioTotal.toFixed(2);
+    }
+    </script>
+</head>
+<body>
+    <h1>Confirmar Compra</h1>
+    <div>
+        <img src="<?php echo $fila['imagen']; ?>" alt="<?php echo $fila['nombre']; ?>">
+        <p>Nombre: <?php echo $fila['nombre']; ?></p>
+        <p>Precio unitario: <?php echo $fila['precio']; ?></p>
+    </div>
+    <form action="procesar_compra.php" method="post">
+        <input type="hidden" name="id_juego" value="<?php echo $fila['id']; ?>">
+        <input type="hidden" name="nombre_juego" value="<?php echo $fila['nombre']; ?>">
+        <input type="hidden" name="imagen_juego" value="<?php echo $fila['imagen']; ?>">
+        <input type="hidden" name="precio_unitario" value="<?php echo $fila['precio']; ?>">
+        <input type="checkbox" name="terminos" required> Acepto los términos y condiciones<br><br>
+
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" name="cantidad" value="1" min="1" onchange="calcularPrecioTotal()" required><br><br>
+
+        <label id="precio-total">Precio total: $<?php echo $fila['precio']; ?></label><br><br>
+
+        <label for="ubicacion">Ubicación:</label>
+        <input type="text" id="ubicacion" name="ubicacion" value="<?php echo htmlspecialchars($ubicacionUsuario); ?>" required><br><br>
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" value="<?php echo htmlspecialchars($direccionUsuario); ?>" required><br><br>
+        <button type="submit" name="confirmar">Comprar</button>
+    </form>
+</body>
+</html>

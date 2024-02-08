@@ -1,3 +1,8 @@
+<?php
+session_start();
+$loggedIn = isset($_SESSION['nombreUsuario']);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -24,7 +29,7 @@
         <nav>
             <ul class="navigation">
                 <li><a href="./index.php">HOME</a></li>
-                <li><a href="tienda.html">TIENDA</a></li>
+                <li><a href="tienda.php">TIENDA</a></li>
                 <li><a href="./marketplace.html">MARKETPLACE</a></li>
             </ul>
             <br>
@@ -86,7 +91,11 @@
                             die("Error de conexión: " . mysqli_connect_error());
                         }
 
-                        $consulta = "SELECT id, nombre, descripcion, requisitos, precio, imagen, cantidad, categoria FROM productos";
+                        $consulta = "SELECT p.id, p.nombre, p.descripcion, p.requisitos, p.precio, p.imagen, p.cantidad, p.categoria,
+                        AVG(c.calificacion) AS calificacion_promedio
+                        FROM productos p
+                        LEFT JOIN calificaciones c ON p.id = c.id_juego
+                        GROUP BY p.id";
                         $resultado = mysqli_query($conexion, $consulta);
 
                         if ($resultado) {
@@ -96,6 +105,7 @@
                                 echo '<img src="' . $fila['imagen'] . '" alt="' . $fila['nombre'] . '" style="width: 100%; min-height: 100%; object-fit: cover;">';
                                 echo '<figcaption>';
                                 echo '<h2 style="text-decoration: none;">' . $fila['nombre'] . '</h2>';
+                                echo '<p>' . round($fila['calificacion_promedio'], 1) . '</p>'; //calificacion no olvidemos las estrellas
                                 
                                 if ($fila['cantidad'] > 0) {
                                     echo '<p style="color: green;">Precio: $' . $fila['precio'] . '</p>';
