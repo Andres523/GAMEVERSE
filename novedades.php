@@ -3,7 +3,7 @@ $servername = "localhost";
 $username = "root"; 
 $password = ""; 
 $dbname = "gameverse";
-
+ 
 // Establecer la conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
 
