@@ -66,6 +66,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../img/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+ 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"/>
+    
     <title>Agregar y Administrar Novedades - Gameverse</title>
 </head>
 <body>
@@ -167,23 +171,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </div>
     <br>
-    <a href="index.php"> Volver</a>
+    <a class="btn4" href="index.php"> Volver</a>
 
-    <h2>Agregar Nueva Novedad</h2>
-    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
-        <label for="nombre">Nombre:</label><br>
-        <input type="text" id="nombre" name="nombre"><br><br>
-        
-        <label for="imagen">Subir imagen:</label><br>
-        <input type="file" id="imagen" name="imagen"><br><br>
-        
-        <label for="descripcion">Descripción:</label><br>
-        <textarea id="descripcion" name="descripcion" rows="4" cols="50"></textarea><br><br>
-        
-        <input type="submit" value="Agregar Novedad">
-    </form>
-
-    <h2>Administrar Novedades</h2>
+<div class="box">
+    <div class="orden">
+        <div class="columna">
+            <h1>Agregar Nueva Novedad</h1>
+        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombre" name="nombre"><br>
+            <br><br>
+            <label for="imagen">Importar Imagen: </label>
+            <br><br>
+            <div class="input-div">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon"><polyline points="16 16 12 12 8 16"></polyline><line y2="21" x2="12" y1="12" x1="12"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline></svg>
+            <input class="input" type="file" id="imagen" name="imagen"><br>
+            </div>
+            </div>
+        <div class="columna">
+            <br><br><br><br>        
+            <label for="descripcion">Descripción:</label><br>
+            <textarea id="descripcion" name="descripcion" rows="4" cols="50"></textarea><br>
+            <button class="btn4" type="submit" value="Agregar Novedad">Agregar Novedad</button>
+        </div>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+    <h1>Administrar Novedades</h1>
     <h3>Novedades</h3>
     <table border="1">
         <tr>
@@ -221,6 +237,239 @@ $conn->close();
 
 <style>
 
+
+.btn4 {
+  --border-color: linear-gradient(-45deg, #ffae00, #7e03aa, #00fffb);
+  --border-width: .125em;
+  --curve-size: .5em;
+  --blur: 30px;
+  --bg: #080312;
+  --color: #afffff;
+  color: var(--color);
+  position: relative;
+  isolation: isolate;
+  display: inline-grid;
+  place-content: center;
+  padding: .5em 1.5em;
+  font-size: 17px;
+  border: 0;
+  text-transform: uppercase;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, .6);
+  clip-path: polygon(
+            0% var(--curve-size),
+
+            var(--curve-size) 0,
+
+            100% 0,
+            100% calc(100% - var(--curve-size)),
+
+
+            calc(100% - var(--curve-size)) 100%,
+
+            0 100%);
+  transition: color 250ms;
+}
+
+.btn4::after,
+.btn4::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.btn4::before {
+  background: var(--border-color);
+  background-size: 300% 300%;
+  animation: move-bg7234 5s ease infinite;
+  z-index: -2;
+}
+
+@keyframes move-bg7234 {
+  0% {
+    background-position: 31% 0%
+  }
+
+  50% {
+    background-position: 70% 100%
+  }
+
+  100% {
+    background-position: 31% 0%
+  }
+}
+
+.btn4::after {
+  background: var(--bg);
+  z-index: -1;
+  clip-path: polygon(
+            /* Top-left */
+            var(--border-width) 
+            calc(var(--curve-size) + var(--border-width) * .5),
+
+            calc(var(--curve-size) + var(--border-width) * .5) var(--border-width),
+
+            /* top-right */
+            calc(100% - var(--border-width)) 
+            var(--border-width),
+
+            calc(100% - var(--border-width)) 
+            calc(100% - calc(var(--curve-size) + var(--border-width) * .5)),
+
+            /* bottom-right 1 */
+            calc(100% - calc(var(--curve-size) + var(--border-width) * .5)) calc(100% - var(--border-width)),
+            /* bottom-right 2 */
+            var(--border-width) calc(100% - var(--border-width)));
+  transition: clip-path 500ms;
+}
+
+.btn4:where(:hover, :focus)::after {
+  clip-path: polygon(
+                /* Top-left */
+                calc(100% - var(--border-width)) 
+
+                calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
+    
+                calc(100% - var(--border-width))
+
+                var(--border-width),
+    
+                /* top-right */
+                calc(100% - var(--border-width))
+
+                 var(--border-width),
+    
+                calc(100% - var(--border-width)) 
+
+                calc(100% - calc(var(--curve-size) + var(--border-width) * .5)),
+    
+                /* bottom-right 1 */
+                calc(100% - calc(var(--curve-size) + var(--border-width) * .5)) 
+                calc(100% - var(--border-width)),
+
+                /* bottom-right 2 */
+                calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
+                calc(100% - var(--border-width)));
+  transition: 200ms;
+}
+
+.btn4:where(:hover, :focus) {
+  color: #fff;
+}
+
+.input-div {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #8803f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0px 0px 25px #8803f4, inset 0px 0px 10px #8803f4, 0px 0px 5px #ffffff;
+}
+
+.input-div:hover {
+  animation: flicker 2s linear infinite;
+}
+
+.icon {
+  color: #8803f4;
+  font-size: 1rem;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.input-div:hover .icon {
+  animation: iconflicker 2s linear infinite;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 50%;
+  height: 50%;
+  cursor: pointer !important;
+}
+
+@keyframes flicker {
+  0% {
+    border: 2px solid #8803f4;
+    box-shadow: 0px 0px 30px #8803f4, inset 0px 0px 10px #8803f4, 0px 0px 50px #ffffff;
+  }
+
+  5% {
+    border: none;
+    box-shadow: none;
+  }
+
+  10% {
+    border: 2px solid #8803f4;
+    box-shadow: 0px 0px 30px #8803f4, inset 0px 0px 10px #8803f4, 0px 0px 5px #ffffff;
+  }
+
+  25% {
+    border: none;
+    box-shadow: none;
+  }
+
+  30% {
+    border: 2px solid #8803f4;
+    box-shadow: 0px 0px 30px #8803f4, inset 0px 0px 10px #8803f4, 0px 0px 5px #ffffff;
+  }
+
+  100% {
+    border: 2px solid #8803f4;
+    box-shadow: 0px 0px 30px #8803f4, inset 0px 0px 10px #8803f4, 0px 0px 5px #ffffff;
+  }
+}
+
+@keyframes iconflicker {
+  0% {
+    opacity: 1;
+  }
+
+  5% {
+    opacity: 0.2;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 0.2;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
+
+
+.box {  
+    padding: 30px;
+    background-color: #141e30;
+    color: #fff;
+    justify-content: center;
+    align-items: flex-start;
+    border-bottom: 1px solid #fff;
+}
+
+.orden {
+    display: flex;
+    align-items: flex-start;
+    margin-right: 10%;
+    justify-content: space-around;
+}
+
 .spinner-overlay {
     position: fixed;
     top: 0;
@@ -246,7 +495,7 @@ body {
     color: #fff;
 }
 
-h2 {
+h1 {
     color: #8803f4; /* Cambio de color de texto */
 }
 
