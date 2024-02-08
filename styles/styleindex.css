@@ -69,8 +69,6 @@ a {
   color: #007bff; /* Puedes definir un color de texto personalizado para los enlaces si lo deseas */
 }
 
-
-
 .button-container {
   display: flex;
   justify-content: flex-end;
@@ -115,6 +113,7 @@ a {
   cursor: pointer;
   position: relative;
   border-radius: 20px;
+  border: 1px solid #6217d143;
 }
 
 .button svg {
@@ -125,7 +124,7 @@ a {
 .label {
   line-height: 20px;
   font-size: 17px;
-  color: #5D41DE;
+  color: #6a2dec;
   font-family: sans-serif;
   letter-spacing: 1px;
 }
@@ -151,12 +150,13 @@ a {
   display: none;
   position: absolute;
   top: 100%;
-  right: 0;
-  background: #ffffff0e;
-  border: 1px solid #ffffff0e;
+  right: 14px;
+  background: #0d0111b0;
+  border: 1px solid #0d0111b0;
   border-radius: 5px;
   padding: 10px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  opacity: 1;
 }
 
 .button:hover .settings-popup {
@@ -219,9 +219,6 @@ a {
 .modal button:hover {
   background: #0056b3;
 }
-
-
-
 
 :root{
   --main-color:#fff;
