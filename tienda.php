@@ -11,6 +11,15 @@ $loggedIn = isset($_SESSION['nombreUsuario']);
     <link rel="stylesheet" href="./styles/tienda.css">
     <link rel="shortcut icon" href="./img/logo.png">
     <title>Tienda de Juegos</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+ 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 </head>
 <div class="spinner-overlay">
     <div class="spinner">
@@ -111,7 +120,7 @@ $loggedIn = isset($_SESSION['nombreUsuario']);
 </div>
 <body>
     <header class="main-header">
-        <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
+        <label for="btn-nav" class="btn-nav">
             <span class="icon">
                 <svg viewBox="0 0 175 80" width="60" height="40">
                     <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
