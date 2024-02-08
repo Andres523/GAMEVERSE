@@ -6,12 +6,29 @@ body { font-family: sans-serif;
 }
 
 .h1 {
-    font-size:120%;
-    color: aliceblue;
-    font-weight:normal;
+  font-size:120%;
+  color: aliceblue;
+  font-weight:normal;
 }
 .h2 {
-    color: aliceblue;
+  font-size:120%;
+  color: aliceblue;
+}
+
+.h3 {
+  font-size:170%;
+  color: aliceblue;
+  font-weight: bold;;
+}
+
+.descripcion {
+  font-size: 110%;
+  color: aliceblue;
+  font-weight: normal;
+  text-align: center;
+  margin: 10px 0;
+  margin-left:250px;
+  margin-right:250px;
 }
 
 .carousel-cell { 
