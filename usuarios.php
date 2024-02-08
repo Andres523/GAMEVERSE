@@ -8,7 +8,7 @@
      
 
     <link rel="shortcut icon" href="../img/logo.png">
-    <title>Panel de Administración</title>
+    
 </head>
 <body>
 <div class="spinner-overlay">
@@ -110,17 +110,15 @@
 </div>
     <main>
         <div class="login-box">
-            <a href="./index.php" ><button class="btn4">Atrás</button></a>
+            <a href="./admin2.php" ><button class="btn4">Atrás</button></a>
             <br>
-            <center><h1>Panel de Administración</h1></center>
+            
         
             <input id="radio1" type="radio" name="css-tabs" checked>
             <input id="radio2" type="radio" name="css-tabs">
         
             <div id="tabs">
                 <label id="tab4" for="radio1">Usuarios</label>
-                <label id="tab2" for="radio2">Juegos</label>
-                <label for="tab3" for ="radio3">productos</label>
             </div>
  
             <div id="content">
