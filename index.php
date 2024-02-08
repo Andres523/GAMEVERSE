@@ -158,7 +158,7 @@ if ($resultado) {
     </div>
 
     <header class="main-header">
-        <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
+        <label for="btn-nav" class="btn-nav">
             <span class="icon">
                 <svg viewBox="0 0 175 80" width="60" height="40">
                     <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
