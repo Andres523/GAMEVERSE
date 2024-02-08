@@ -38,7 +38,7 @@ function guardarImagen() {
         echo '<pre>';
         print_r($_FILES['imagen']);
         echo '</pre>';
-        header("Location: admin.php"); 
+        header("Location: admin2.php"); 
 
         $nombreArchivo = time() . '_' . $_FILES['imagen']['name'];
         $rutaCompleta = $directorioImagenes . $nombreArchivo;

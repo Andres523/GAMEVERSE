@@ -8,6 +8,15 @@
      
 
     <link rel="shortcut icon" href="../img/logo.png">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+ 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     
 </head>
 <body>
@@ -135,11 +144,35 @@
     
                                 <button type="submit" class="btn4">Buscar</button>
                         </div>
+
+                        <script>
+            
+                            document.getElementById('buscarNombre').addEventListener('input', function() {
+                            
+                            var nombre = this.value.trim();
+                            
+                            
+                            var xhr = new XMLHttpRequest();
+                        
+                            xhr.onreadystatechange = function() {
+                                if (xhr.readyState === XMLHttpRequest.DONE) {
+                                    if (xhr.status === 200) {
+
+                                        document.getElementById('resultadoBusqueda').innerHTML = xhr.responseText;
+                                    } else {
+                                        console.error('Error al realizar la solicitud AJAX');
+                                    }
+                                }
+                            };
+                            xhr.send();
+                            });
+                        </script>
+
                     </form>
                     
                     
 
-                <?php
+                    <?php
                 
 
                     $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
@@ -181,7 +214,7 @@
                     if (!$resultadoUsuarios) {
                         die("Error al obtener usuarios: " . mysqli_error($conexion));
                     }
-                ?>
+                    ?>
                     <!-- MODAL ELIMINAR-->
                     <div id="modal" class="modal">
                         <div class="modal-content">
@@ -203,8 +236,40 @@
                             <button class="btn4" id="confirmarEliminar" onclick="eliminarUsuario()"><span class="button-content">Sí</span> </button>
                             <button class="btn4" onclick="cerrarModal()"><span class="button-content">No</span></button>
                         </div>
-                    </div>
+                        <script>
+                                                                function configurarEliminar(idUsuario) {
+                                        document.getElementById('confirmarEliminar').setAttribute('data-id-usuario', idUsuario);
+                                        document.getElementById('modal').style.display = 'block';
+                                    
+                                    
+                                        document.getElementById('confirmarEliminar').addEventListener('click', eliminarUsuario);
+                                    }
 
+
+                                        function eliminarUsuario() {
+                                            const idUsuario = document.getElementById('confirmarEliminar').getAttribute('data-id-usuario');
+                                        
+                                            const xhr = new XMLHttpRequest();
+                                            xhr.onreadystatechange = function() {
+                                                if (xhr.readyState === XMLHttpRequest.DONE) {
+                                                    if (xhr.status === 200) {
+                                                        console.log('Usuario eliminado correctamente');
+                                                        location.reload(); 
+                                                    } else {
+                                                        console.error('Error al eliminar usuario:', xhr.responseText);
+                                                    }
+                                                }
+                                            };
+                                        
+                                            xhr.open('POST', 'eliminar_usuario.php');
+                                            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                                            xhr.send('id_usuario=' + idUsuario);
+                                        
+                                            cerrarModal();
+                                        }
+                        </script>
+                    </div>
+                    <!-- MODAL editar-->
                     <div id="modalEditar" class="modal">
                         <div class="modal-content">
                             <div class="container">
@@ -212,94 +277,64 @@
                                 <input type="hidden" id="idUsuarioEditar" value="">
                                 <input type="text" id="nombreUsuarioEditar" placeholder="Nombre">
                                 <input type="email" id="correoUsuarioEditar" placeholder="Correo">
-                                <input type="toggleMostrarContrasena" id="contrasenaUsuarioEditar" placeholder="Contraseña">
-                                    
+                                <input type="password" id="contrasenaUsuarioEditar" placeholder="Contraseña">
                                 <button class="btn4" onclick="guardarCambiosUsuario()">Guardar Cambios</button>
                                 <button class="btn4" onclick="cerrarModalEditar()">Cerrar</button>
-                                <br>
-                                <br>
+                                <br><br>
                                 <span class="toggleMostrarContrasena" onclick="toggleMostrarContrasena()">Mostrar</span>
                                 <script>
-                                    function toggleMostrarContrasena() {
-                                        var passwordField = document.getElementById('contrasenaUsuarioEditar');
-
+                                    function guardarCambiosUsuario() {
+                                        const idUsuario = document.getElementById('idUsuarioEditar').value;
+                                        const nuevoNombre = document.getElementById('nombreUsuarioEditar').value;
+                                        const nuevoCorreo = document.getElementById('correoUsuarioEditar').value;
+                                        const nuevaContrasena = document.getElementById('contrasenaUsuarioEditar').value;
                                     
-                                        if (contrasenaInput.type === 'password') {
-                                            contrasenaInput.type = 'text';
-                                            document.querySelector(".toggleMostrarContrasena").textContent = "Ocultar";
-                                        } else {
-                                            contrasenaInput.type = 'password';
-                                            document.querySelector(".toggleMostrarContrasena").textContent = "Mostrar";
-                                        }
+                                        const xhr = new XMLHttpRequest();
+                                        xhr.onreadystatechange = function() {
+                                            if (xhr.readyState === XMLHttpRequest.DONE) {
+                                                if (xhr.status === 200) {
+                                                    console.log('Usuario actualizado correctamente');
+                                                    cerrarModalEditar();
+                                                    // Recargar la página para mostrar los cambios
+                                                    window.location.reload();
+                                                } else {
+                                                    console.error('Error al actualizar usuario:', xhr.responseText);
+                                                }
+                                            }
+                                        };
+                                    
+                                        xhr.open('POST', 'actualizar_usuario.php');
+                                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                                        xhr.send('id=' + idUsuario + '&nombre=' + nuevoNombre + '&correo=' + nuevoCorreo + '&contrasena=' + nuevaContrasena);
                                     }
                                 </script>
+
                                 <script>
 
-                                function configurarEliminar(idUsuario) {
-    document.getElementById('confirmarEliminar').setAttribute('data-id-usuario', idUsuario);
-    document.getElementById('modal').style.display = 'block';
 
-
-    document.getElementById('confirmarEliminar').addEventListener('click', eliminarUsuario);
-}
-
-
-    function eliminarUsuario() {
-        const idUsuario = document.getElementById('confirmarEliminar').getAttribute('data-id-usuario');
-
-        const xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    console.log('Usuario eliminado correctamente');
-                    location.reload(); 
-                } else {
-                    console.error('Error al eliminar usuario:', xhr.responseText);
-                }
-            }
-        };
-
-        xhr.open('POST', 'eliminar_usuario.php');
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send('id_usuario=' + idUsuario);
-
-        cerrarModal();
-    }
-
-    function abrirModalEditar(idUsuario, nombre, correo, contrasena) {
-        document.getElementById('idUsuarioEditar').value = idUsuario;
-        document.getElementById('nombreUsuarioEditar').value = nombre;
-        document.getElementById('correoUsuarioEditar').value = correo;
-        document.getElementById('contrasenaUsuarioEditar').value = contrasena;
-
-        document.getElementById('modalEditar').style.display = 'block';
-    }
-
-    function guardarCambiosUsuario() {
-    
-        const idUsuario = document.getElementById('idUsuarioEditar').value;
-        const nuevoNombre = document.getElementById('nombreUsuarioEditar').value;
-        const nuevoCorreo = document.getElementById('correoUsuarioEditar').value;
-        const nuevaContrasena = document.getElementById('contrasenaUsuarioEditar').value;
-
-    
-
-    
-        cerrarModalEditar();
-    }
-
-
-function cerrarModalEditar() {
-    document.getElementById('modalEditar').style.display = 'none';
-}
-function cerrarModal() {
-    document.getElementById('modal').style.display = 'none';
-}
+                                    
+                                        function abrirModalEditar(idUsuario, nombre, correo, contrasena) {
+                                            document.getElementById('idUsuarioEditar').value = idUsuario;
+                                            document.getElementById('nombreUsuarioEditar').value = nombre;
+                                            document.getElementById('correoUsuarioEditar').value = correo;
+                                            document.getElementById('contrasenaUsuarioEditar').value = contrasena;
+                                        
+                                            document.getElementById('modalEditar').style.display = 'block';
+                                        }
+                                    
+                                    
+                                    function cerrarModalEditar() {
+                                        document.getElementById('modalEditar').style.display = 'none';
+                                    }
+                                    function cerrarModal() {
+                                        document.getElementById('modal').style.display = 'none';
+                                    }
 
                                 </script>
                             </div>
                         </div>
                     </div>
+
 
                     <div class="tab">
                         <table >
@@ -341,64 +376,39 @@ function cerrarModal() {
                 </section>
 
 
-<?php
-$conexion = new mysqli("127.0.0.1", "root", "", "gameverse");
-
-if ($conexion->connect_error) {
-    die("Error de conexión a la base de datos: " . $conexion->connect_error);
-}
-
-
-$resultado = $conexion->query("SELECT id, nombre FROM categorias");
-
-if ($resultado === false) {
-    die("Error en la consulta SQL: " . $conexion->error);
-}
-
-if ($resultado->num_rows > 0) {
-    $categorias = $resultado->fetch_all(MYSQLI_ASSOC);
-} else {
-    $categorias = [];
-}
-
-
-$conexion->close();
-?>
-
 
                                                     
 
 
 
+                    <script>
+                        // Obtener referencias a los elementos del DOM
+                        var openModalBtn = document.getElementById('openModalBtn'); 
+                        var closeProductModalBtn = document.getElementById('closeProductModalBtn'); 
+                        var productModal = document.getElementById('productModal'); 
 
+                       
+                        openModalBtn.addEventListener('click', function() {
+                           
+                            productModal.style.display = 'block';
+                        });
 
+                       
+                        closeProductModalBtn.addEventListener('click', function() {
+                            
+                            productModal.style.display = 'none';
+                        });
 
+                        
+                        window.addEventListener('click', function(event) {
+                            if (event.target == productModal) {
+                                
+                                productModal.style.display = 'none';
+                            }
+                        });
+                    </script>
 
-    <script>
-
-                                                var openModalBtn = document.getElementById('openModalBtn');
-                                                var closeProductModalBtn = document.getElementById('closeProductModalBtn');
-                                                var productModal = document.getElementById('productModal');
-
-                                                openModalBtn.addEventListener('click', function() {
-                                                    productModal.style.display = 'block';
-                                                });
-                                                
-                                                closeProductModalBtn.addEventListener('click', function() {
-                                                    productModal.style.display = 'none';
-                                                });
-                                                
-                                             
-                                                window.addEventListener('click', function(event) {
-                                                    if (event.target == productModal) {
-                                                        productModal.style.display = 'none';
-                                                    }
-                                                });
-                                                </script>
-                                            </form>
-                                        </div>
-                                        </div>
-
+               
 
 
 
@@ -407,56 +417,7 @@ $conexion->close();
             </div>
         </div>
 
-    </main>
-    <script>
-    function guardarCambiosUsuario() {
-const idUsuario = document.getElementById('idUsuarioEditar').value;
-const nuevoNombre = document.getElementById('nombreUsuarioEditar').value;
-const nuevoCorreo = document.getElementById('correoUsuarioEditar').value;
-const nuevaContrasena = document.getElementById('contrasenaUsuarioEditar').value;
 
-const xhr = new XMLHttpRequest();
-xhr.onreadystatechange = function() {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-            console.log('Datos actualizados correctamente');
-     
-        } else {
-            console.error('Error al actualizar datos:', xhr.responseText);
-        }
-    }
-};
-
-xhr.open('POST', 'guardar_cambios_usuario.php');
-xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-xhr.send(`id_usuario=${idUsuario}&nuevo_nombre=${nuevoNombre}&nuevo_correo=${nuevoCorreo}&nueva_contrasena=${nuevaContrasena}`);
-
-cerrarModalEditar();
-}
-function guardarCambiosUsuario() {
-const idUsuario = document.getElementById('idUsuarioEditar').value;
-const nuevoNombre = document.getElementById('nombreUsuarioEditar').value;
-const nuevoCorreo = document.getElementById('correoUsuarioEditar').value;
-const nuevaContrasena = document.getElementById('contrasenaUsuarioEditar').value;
-
-const xhr = new XMLHttpRequest();
-xhr.onreadystatechange = function() {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-            console.log('Datos actualizados correctamente');
-            location.reload(); 
-        } else {
-            console.error('Error al actualizar datos:', xhr.responseText);
-        }
-    }
-};
-
-xhr.open('POST', 'guardar_cambios_usuario.php');
-xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-xhr.send(`id_usuario=${idUsuario}&nuevo_nombre=${nuevoNombre}&nuevo_correo=${nuevoCorreo}&nueva_contrasena=${nuevaContrasena}`);
-}
-
-</script>
 
 </body>
 </html>
@@ -1070,51 +1031,6 @@ footer {
     li {
         margin-right: 10px;
     }
-
-.checkbox {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-}
-
-.checkbox__input {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.checkbox__label {
-  display: inline-block;
-  padding-left: 30px;
-  margin-bottom: 10px;
-  position: relative;
-  font-size: 16px;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-}
-
-.checkbox__custom {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 20px;
-  background: linear-gradient(#212121, #212121) padding-box,
-              linear-gradient(145deg,#e81cff, #40c9ff) border-box;
-  border: 2px solid transparent;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-}
-
-.checkbox__input:checked + .checkbox__label .checkbox__custom {
-  background-image: linear-gradient(145deg,#e81cff, #40c9ff);
-  transform: rotate(45deg) scale(0.8);
-}
-
-.checkbox__label:hover .checkbox__custom {
-  transform: scale(1.2);
-}
 
 
 </style>

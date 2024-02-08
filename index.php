@@ -55,6 +55,15 @@ if ($resultado) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gameverse</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+ 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <link rel="stylesheet" href="./styles/styleindex.css">
     <link rel="shortcut icon" href="../img/logo.png">
@@ -136,12 +145,9 @@ if ($resultado) {
                 <a href="./Report.php"><button>Reporte bugs</button></a>
 
                 <?php if ($rol === 'Admin'): ?>
-                <a href="admin.php"><button>Administrador</button></a>
+                <a href="admin2.php"><button>Administrador</button></a>
                 <?php endif; ?>
 
-                <?php if ($rol === 'Admin'): ?>
-                <a href="ventas.php"><button>Ventas</button></a>
-                <?php endif; ?>
                 
                 <form method="post">
                     <button type="submit" name="logout" onclick="showConfirmationModal();">Cerrar sesión</button>
@@ -218,8 +224,8 @@ if ($resultado) {
             ?>
             <div>
                 <center><img class="carousel-cell" src="<?php echo $fila['imagen']; ?>"/></center>
-                <h1 class="h2"><center><?php echo $fila['nombre']; ?></center></h1>
-                <h2 class="h1"><center><?php echo $fila['descripcion']; ?></center></h2>
+                <h1 class="h3"><center><?php echo $fila['nombre']; ?></center></h1>
+                <h2 class="descripcion"><center><?php echo $fila['descripcion']; ?></center></h2>
                 <h3 class="h2"><center>Calificación: <?php echo round($fila['calificacion_promedio'], 1); ?></center></h3>
                 <br>
                 <div>
