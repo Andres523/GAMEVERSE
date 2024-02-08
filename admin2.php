@@ -37,7 +37,10 @@
           </div>
           </a>
         </div>
+
+        
         <div class="column">
+        <a href="juegos.php" style="color: inherit; text-decoration: none;">
           <div class="card">
             <div class="icon-wrapper">
             <i class="fa-solid fa-gamepad"></i>
@@ -47,8 +50,12 @@
               agregar editar y eliminar juegos de tu catalogo 
             </p>
           </div>
+          </a>
         </div>
+        
+        
         <div class="column">
+
           <div class="card">
             <div class="icon-wrapper">
             <i class="fa-solid fa-dragon"></i>
@@ -58,8 +65,11 @@
               agregar editar y eliminar productos, comics, figuras de tu catalogo
             </p>
           </div>
+        
         </div>
+
         <div class="column">
+        <a href="ventas.php" style="color: inherit; text-decoration: none;">
           <div class="card">
             <div class="icon-wrapper">
             <i class="fa-solid fa-truck"></i>
@@ -69,9 +79,10 @@
               Revision de las ventas y el envio de productos
             </p>
           </div>
-        
+          </a>
         </div>
       </div>
+
     </section>
   </body>
 </html>
