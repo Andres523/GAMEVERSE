@@ -61,30 +61,43 @@ if ($resultado) {
 </head>
 <body>
 <script>
-        document.addEventListener("DOMContentLoaded", function() {
-        var settingsBtn = document.getElementById('settingsBtn');
-        var settingsPopup = document.getElementById('settingsPopup');
+        document.addEventListener("DOMContentLoaded", function () {
+            var settingsBtn = document.getElementById('settingsBtn');
+            var settingsPopup = document.getElementById('settingsPopup');
 
-        settingsBtn.addEventListener('click', function() {
-            if (settingsPopup.style.display === 'block') {
-                settingsPopup.style.display = 'none';
-            } else {
+            settingsBtn.addEventListener('click', function () {
+                toggleSettingsPopup();
+            });
+
+            function toggleSettingsPopup() {
+                var settingsPopup = document.getElementById('settingsPopup');
+                if (settingsPopup.style.display === 'block') {
+                    settingsPopup.style.display = 'none';
+                    localStorage.setItem('settingsPopupState', 'none');
+                } else {
+                    settingsPopup.style.display = 'block';
+                    localStorage.setItem('settingsPopupState', 'block');
+                }
+            }
+
+            // Mostrar el estado inicial del menú de configuración
+            var settingsPopupState = localStorage.getItem('settingsPopupState');
+            if (settingsPopupState === 'block') {
                 settingsPopup.style.display = 'block';
+            } else {
+                settingsPopup.style.display = 'none';
+            }
+
+            // Funciones para el modal de confirmación (opcional)
+            function showConfirmationModal() {
+                document.getElementById("confirmation-popup").style.display = "block";
+            }
+
+            function hideConfirmationModal() {
+                document.getElementById("confirmation-popup").style.display = "none";
             }
         });
-
-        document.querySelector('.spinner-overlay').style.display = 'block';
-    });
-    
-
-    window.addEventListener('load', function() {
-        document.querySelector('.spinner-overlay').style.display = 'none';
-    });
-
-    window.addEventListener('beforeunload', function(event) {
-        document.querySelector('.spinner-overlay').style.display = 'none';
-    });
-        </script>
+    </script>
 
     </div>
 </div>

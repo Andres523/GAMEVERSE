@@ -384,3 +384,73 @@ button:before {
 button:hover:before {
   transform: translateX(15em);
 }
+/*menu desplegable*/
+.button2 {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  border-radius: 20px;
+  border: 1px solid #6217d143;
+}
+
+.button2 svg {
+  width: 20px;
+  height: 20px;
+}
+
+.label2 {
+  line-height: 20px;
+  font-size: 17px;
+  color: #6a2dec;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+}
+
+.button2:hover {
+  background: #5e41de4d;
+}
+
+.button2:hover .svg-icon {
+  animation: spin 2s linear infinite;
+}
+
+.settings-popup {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 14px;
+  background: #0d0111b0;
+  border: 1px solid #0d0111b0;
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 10;
+  opacity: 1;
+}
+
+.button2:hover .settings-popup {
+  display: block;
+}
+
+.settings-popup a {
+  display: block;
+  margin-bottom: 5px;
+  text-decoration: none;
+}
+
+.settings-popup button {
+  width: 100%;
+  border: none;
+  background: none;
+  color: #5D41DE;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+.settings-popup button:hover {
+  text-decoration: underline;
+}
