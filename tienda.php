@@ -154,7 +154,7 @@ $loggedIn = isset($_SESSION['nombreUsuario']);
         <label for="search">Buscar juego:</label>
         <input type="text" id="search" name="search" placeholder="Nombre del juego">
         
-        <label for="categorias">Filtrar por Categorías:</label>
+        <label class="label2" for="categorias">Filtrar por Categorías:</label>
         <?php
             $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
 
