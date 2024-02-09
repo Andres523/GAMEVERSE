@@ -206,7 +206,7 @@
                             <button class="btn4" onclick="cerrarModal()"><span class="button-content">No</span></button>
                         </div>
                     </div>
-
+                    <!-- MODAL ed-->
                     <div id="modalEditar" class="modal">
                         <div class="modal-content">
                             <div class="container">

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -233,10 +232,10 @@
                                             echo '</td>';
                                             echo '<td style="color: green;">' . $fila['precio'] . ' COP' . '</td>';
                                             echo '<td> 
-                                            <button class="edit-button" type="button" onclick="editarProducto(' . $fila['id'] . ')">
-                                            <svg class="edit-svgIcon" viewBox="0 0 512 512">
-                                                    <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
-                                                    </svg></button>
+                                            <button class="edit-button" type="button" onclick="abrirModalEditar( ' . $fila['id'] . ')"><svg class="edit-svgIcon" viewBox="0 0 512 512">
+                                            <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+                                            </svg></button>
+
                                                     
                                                     <button class="delete-button" type="button" onclick="eliminarProducto( ' . $fila['id'] . ')">
                                                     <svg class="delete-svgIcon" viewBox="0 0 448 512">
@@ -259,24 +258,96 @@
                                         echo 'No hay productos disponibles.';
                                     }
                                 
-                                    mysqli_close($conexion);
-                                    ?>
-                                    <script>
-                                    function cerrarModalEditar() {
-                                        document.getElementById('modalEditar').style.display = 'none';
-                                    }
-                                    function cerrarModal() {
-                                        document.getElementById('modal').style.display = 'none';
-                                    }
-                                    </script>
                                     
+                                    ?>
+
                                 </div>
+                                
+                                 <!-- MODAL editar-->
+
+
+
+                                    <div id="modalEditar" class="modal">
+                                        <div class="modal-content">
+                                            <span class="close" onclick="cerrarModalEditar()">&times;</span>
+                                            <div class="container">
+                                                <h2>Editar Producto</h2>
+                                                <form id="formEditarProducto" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                                <input type="hidden" id="edit-id" name="id">
+                                                <label for="edit-nombre">Nombre:</label>
+                                                <input type="text" id="edit-nombre" name="nombre">
+                 
+                                                <label for="edit-descripcion">Descripción:</label>
+                                                <textarea id="edit-descripcion" name="descripcion"></textarea>
+
+                                                <label for="edit-requisitos">Requisitos:</label>
+                                                <input type="text" id="edit-requisitos" name="requisitos">
+
+                                                <label for="edit-cantidad">Cantidad:</label>
+                                                <input type="number" id="edit-cantidad" name="cantidad">
+
+                                                <label for="edit-precio">Precio:</label>
+                                                <input type="number" id="edit-precio" name="precio">
+
+                                                <button type="submit">Guardar Cambios</button>
+
+
+                                                
+                                            <?php
+                                            mysqli_close($conexion);
+                                            ?>
+                                            </form>
+                                            <?php
+                                            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                                $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
+                                                if (!$conexion) {
+                                                    die("Error de conexión: " . mysqli_connect_error());
+                                                }
+                                            
+                                                $id = $_POST['id'];
+                                                $nombre = $_POST['nombre'];
+                                                // Recupera los demás campos del formulario de la misma manera
+                                            
+                                                $consulta = "UPDATE productos SET nombre='$nombre' WHERE id=$id";
+                                            
+                                                if (mysqli_query($conexion, $consulta)) {
+                                                    echo "<p>Los datos del producto han sido actualizados correctamente</p>";
+                                                    // Cerrar la conexión con la base de datos
+                                                    mysqli_close($conexion);
+                                                    // Redirigir al usuario a la misma página
+                                                    echo "<script>window.location.href = window.location.href;</script>";
+                                                    exit; // Terminar el script para evitar que se ejecute más código PHP
+                                                } else {
+                                                    echo "<p>Error al actualizar los datos del producto: " . mysqli_error($conexion) . "</p>";
+                                                }
+                                            
+                                                mysqli_close($conexion);
+                                            }
+                                            ?>
+                                        </div>
+                                    
+                                        <script>
+                                        function abrirModalEditar(id) {
+                                            document.getElementById('modalEditar').style.display = 'block';
+                                            document.getElementById('edit-id').value = id;
+                                            // Aquí puedes añadir lógica para cargar los datos del producto en el formulario
+                                        }
+
+                                        function cerrarModalEditar() {
+                                            document.getElementById('modalEditar').style.display = 'none';
+                                        }
+                                        </script>
+
+
+                                    </div>
+
+
                                 <!-- MODAL ELIMINAR-->
                                 <div id="modal" class="modal">
                                     <div class="modal-content">
                                         <div class="container">
                                             <div class="modal-box">
-                                                <span class="close" onclick="cerrarModal()">&times;</span>
+                                                <span class="close" onclick="cerrarModalEliminar()">&times;</span>
 
                                                 <div class="modal-content">
                                                     <div class="modal-body">
@@ -291,54 +362,61 @@
                                         </div>
                                         <button class="btn4" id="confirmarEliminarBtn" onclick="eliminarProductoAJAX()"><span class="button-content">Sí</span> </button>
 
-                                        <button class="btn4" onclick="cerrarModal()"><span class="button-content">No</span></button>
+                                        <button class="btn4" onclick="cerrarModalEliminar()"><span class="button-content">No</span></button>
                                     </div>
 
-                                    <script>
+                                
                                
-                                        function eliminarProducto(idProducto) {
-                                        // Configurar el ID del producto a eliminar en el botón de confirmación
-                                        document.getElementById('confirmarEliminarBtn').setAttribute('data-id-producto', idProducto);
-                                        // Mostrar el modal de confirmación
-                                        document.getElementById('modal').style.display = 'block';
-                                        }
+                                        <script>
+                                           function eliminarProducto(idProducto) {
+                                               // Configurar el ID del producto a eliminar en el botón de confirmación
+                                               document.getElementById('confirmarEliminarBtn').setAttribute('data-id-producto', idProducto);
+                                               // Mostrar el modal de confirmación
+                                               document.getElementById('modal').style.display = 'block';
+                                           }
+                                       
+                                           function eliminarProductoAJAX() {
+                                               // Obtener el ID del producto a eliminar desde el botón de confirmación
+                                               const idProducto = document.getElementById('confirmarEliminarBtn').getAttribute('data-id-producto');
 
-                                        function eliminarProductoAJAX() {
-                                        // Obtener el ID del producto a eliminar desde el botón de confirmación
-                                        const idProducto = document.getElementById('confirmarEliminarBtn').getAttribute('data-id-producto');
+                                               // Crear una solicitud XMLHttpRequest para eliminar el producto
+                                               const xhr = new XMLHttpRequest();
+                                               xhr.onreadystatechange = function() {
+                                                   if (xhr.readyState === XMLHttpRequest.DONE) {
+                                                       if (xhr.status === 200) {
+                                                           console.log('Producto eliminado correctamente');
+                                                           // Recargar la página para actualizar la lista de productos
+                                                           location.reload();
+                                                       } else {
+                                                           console.error('Error al eliminar el producto:', xhr.responseText);
+                                                       }
+                                                       // Cerrar el modal de confirmación después de recibir la respuesta de la solicitud AJAX
+                                                       cerrarModalEliminar();
+                                                   }
+                                               };
+                                           
+                                               // Abrir la solicitud POST hacia el script eliminar_juego.php
+                                               xhr.open('POST', 'eliminar_juego.php');
+                                               xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                                               // Enviar el ID del producto a eliminar como parámetro
+                                               xhr.send('id_producto=' + idProducto);
+                                           }
+                                       
+                                           function cerrarModalEliminar() {
+                                               // Lógica para cerrar el modal de confirmación
+                                               document.getElementById('modal').style.display = 'none';
+                                           }
+                                        </script>
 
-                                        // Crear una solicitud XMLHttpRequest para eliminar el producto
-                                        const xhr = new XMLHttpRequest();
-                                        xhr.onreadystatechange = function() {
-                                            if (xhr.readyState === XMLHttpRequest.DONE) {
-                                                if (xhr.status === 200) {
-                                                    console.log('Producto eliminado correctamente');
-                                                    // Recargar la página para actualizar la lista de productos
-                                                    location.reload();
-                                                } else {
-                                                    console.error('Error al eliminar el producto:', xhr.responseText);
-                                                }
-                                            }
-                                        };
-
-                                        // Abrir la solicitud POST hacia el script eliminar_juego.php
-                                        xhr.open('POST', 'eliminar_juego.php');
-                                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                                        // Enviar el ID del producto a eliminar como parámetro
-                                        xhr.send('id_producto=' + idProducto);
-
-                                        // Cerrar el modal de confirmación
-                                        cerrarModal();
-                                    }
 
 
 
 
-                                    </script>
+                              
                                 </div>
 
 
-                                <!-- MODAL PRODUCTOS -->
+                                <!-- PRODUCTOS -->
                                 <div id="productModal" class="modal">
                                     <div class="modal-content">
                                         <span class="close" id="closeProductModalBtn">&times;</span>
