@@ -161,7 +161,7 @@ $conexion->close();
 
     </div>
 </div>
-<a href="./admin2.php"><button class="at">Atras</button></a>
+<a href="./juegos.php"><button class="at">Atras</button></a>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     <div class="login-box">
     <h1>Agregar Categoría</h1>

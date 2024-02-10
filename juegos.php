@@ -395,36 +395,38 @@
                                         <button class="btn4" onclick="cerrarModalEliminar()"><span class="button-content">No</span></button>
                                     </div>
                                     <script>
-                                        function abrirModalEliminar(id) {
-                                        document.getElementById('modalEliminar').style.display = 'block';
-                                        
-                                        
-                                        }
+    function abrirModalEliminar(id) {
+        document.getElementById('modalEliminar').style.display = 'block';
+        eliminarProducto(id);
+    }
 
-                                        function eliminarProductoAJAX() {
-                                            const idProducto = document.getElementById('confirmarEliminarBtn').getAttribute('data-id-producto');
-                                            const xhr = new XMLHttpRequest();
-                                            xhr.onreadystatechange = function() {
-                                                if (xhr.readyState === XMLHttpRequest.DONE) {
-                                                    if (xhr.status === 200) {
-                                                        console.log('Producto eliminado correctamente');
-                                                        location.reload();
-                                                    } else {
-                                                        console.error('Error al eliminar el producto:', xhr.responseText);
-                                                    }
-                                                    cerrarModalEliminar();
-                                                }
-                                            };
-                                            xhr.open('POST', 'eliminar_juego.php');
-                                            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                                            xhr.send('id_producto=' + idProducto);
-                                        }
-                                    
-                                        function cerrarModalEliminar() {
-                                            document.getElementById('modalEliminar').style.display = 'none';
-                                        }
+    function eliminarProducto(id) {
+        document.getElementById('confirmarEliminarBtn').setAttribute('data-id-producto', id);
+    }
 
-                                    </script>
+    function eliminarProductoAJAX() {
+        const idProducto = document.getElementById('confirmarEliminarBtn').getAttribute('data-id-producto');
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    console.log('Producto eliminado correctamente');
+                    location.reload(); // Recargar la página después de eliminar el producto
+                } else {
+                    console.error('Error al eliminar el producto:', xhr.responseText);
+                }
+                cerrarModalEliminar(); // Cerrar el modal después de completar la eliminación
+            }
+        };
+        xhr.open('POST', 'eliminar_juego.php');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send('id_producto=' + idProducto);
+    }
+
+    function cerrarModalEliminar() {
+        document.getElementById('modalEliminar').style.display = 'none';
+    }
+</script>
 
                                 </div>
 
