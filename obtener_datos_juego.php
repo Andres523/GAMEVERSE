@@ -1,5 +1,4 @@
 <?php
-// obtener_datos_juego.php
 
 // Verificar si se ha proporcionado un ID válido mediante GET
 if(isset($_GET['id']) && !empty($_GET['id'])) {
