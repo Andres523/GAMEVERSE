@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             VALUES ('$nombre', '$descripcion', '$requisitos', '$precio', '$ruta_imagen', '$cantidad', '$ruta_video_mp4', '" . implode(',', $categoriasSeleccionadas) . "')";
 
         if ($conexion->query($insertarConsulta)) {
-            header('Location: admin2.php');
+            header('Location: juegos.php');
         } else {
             echo "Error al agregar el producto: " . $conexion->error;
         }
