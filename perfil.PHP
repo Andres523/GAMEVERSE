@@ -66,10 +66,9 @@ mysqli_close($conexion);
 <html lang="es">
 <head>
     <title>PERFIL</title>
-    <link rel="stylesheet" href="./styles/usuario.css">
     <link rel="shortcut icon" href="./img/logo.png">
     <script src="./javascript.js"></script>
-
+ 
     <!-- sonic movimiento -->
     <style>
         .moving-image {
@@ -83,7 +82,7 @@ mysqli_close($conexion);
         }
     </style>
 </head>
-<body id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>');">
+<body id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size: cover ">
     <a href="./index.php" style="display: inline-block;"><button>ATRAS</button></a>
 
     <div class="spinner-overlay">
@@ -265,14 +264,13 @@ mysqli_close($conexion);
 display: grid;
 grid-template-columns: repeat(3, 1fr); /* Crea 3 columnas de igual ancho */
 grid-gap: 20px;
-padding: 20px;
-
+padding: 25px;
 border-color: #000000;
 box-shadow: 0 0 75px black;
 width: 1400px;
 height: 570px;
+margin-left: 40px;
 text-shadow: #040f16;
-opacity: 1;
 color: #fff;
 text-decoration: dashed;
 text-shadow: 0 0 30px;
@@ -301,7 +299,6 @@ margin-left: 17%;
   text-shadow: #040f16;
   opacity:0.9;
   color:#ffffff;
-  background-color: #2b2e31;
   overflow: auto;
   padding-left: 20px;
   }
@@ -318,11 +315,6 @@ margin-top:  5%;
 margin-left: 17%;
 border-radius: 50%;
 z-index: 1;
-}
-
-.text {
-margin-top: 3%;
-margin-left: 2%;
 }
 
 .profile-picture{

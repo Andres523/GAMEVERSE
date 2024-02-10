@@ -17,8 +17,8 @@
     
   </head>
   <body>
-    <a href="index.php">Volver</a>
     <section>
+    <a class="btn4" href="index.php">Volver</a>
       <div class="row">
         <h2 class="section-heading">¿Que quieres Hacer hoy?</h2>
       </div>
@@ -30,9 +30,9 @@
             <div class="icon-wrapper">
             <i class="fa-solid fa-person"></i>
             </div>
-            <h3>Usuarios</h3>
+            <h3>USUARIOS</h3>
             <p>
-              Revisar que usuarios Estan en la plataforma Editarlos o eliminarlos
+              Revisar que usuarios Estan en la plataforma, Editarlos o eliminarlos.
             </p>
           </div>
           </a>
@@ -45,9 +45,9 @@
             <div class="icon-wrapper">
             <i class="fa-solid fa-gamepad"></i>
             </div>
-            <h3>Juegos</h3>
+            <h3>JUEGOS</h3>
             <p>
-              agregar editar y eliminar juegos de tu catalogo 
+              Agregar, editar y eliminar juegos de tu catalogo.
             </p>
           </div>
           </a>
@@ -60,9 +60,9 @@
             <div class="icon-wrapper">
             <i class="fa-solid fa-dragon"></i>
             </div>
-            <h3>Productos Marketplace</h3>
+            <h3>PRODUCTOS MARKETPLACE</h3>
             <p>
-              agregar editar y eliminar productos, comics, figuras de tu catalogo
+              Agregar, editar o eliminar productos, comics, figuras de tu catalogo.
             </p>
           </div>
         
@@ -74,9 +74,9 @@
             <div class="icon-wrapper">
             <i class="fa-solid fa-truck"></i>
             </div>
-            <h3>Ventas</h3>
+            <h3>VENTAS</h3>
             <p>
-              Revision de las ventas y el envio de productos
+              Revision de las ventas y el envio de productos.
             </p>
           </div>
           </a>
@@ -90,7 +90,6 @@
 
 <style>
     * {
-  padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
@@ -125,17 +124,17 @@ section {
 h3 {
   font-size: 20px;
   font-weight: 600;
-  color: #1f194c;
+  color: black;
   margin: 1em 0;
 }
 p {
-  color: #575a7b;
+  color: #8803f4;
   font-size: 15px;
   line-height: 1.6;
   letter-spacing: 0.03em;
 }
 .icon-wrapper {
-  background-color: #2c7bfe;
+  background-color: #8803f4;
   position: relative;
   margin: auto;
   font-size: 30px;
@@ -152,13 +151,13 @@ p {
 }
 .card:hover .icon-wrapper {
   background-color: #ffffff;
-  color: #2c7bfe;
+  color: #141e30;
 }
 .card:hover h3 {
   color: #ffffff;
 }
 .card:hover p {
-  color: #f0f0f0;
+  color: #243b55;
 }
 @media screen and (min-width: 768px) {
   section {
@@ -177,5 +176,163 @@ p {
     flex: 0 0 33.33%;
     max-width: 33.33%;
   }
+}
+</style>
+
+<style>
+main {
+    max-width: 800px;
+    height: 600px;
+    margin: 30px auto;
+    background: #2d2f33;
+    padding: 30px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}	
+
+    main {
+        max-width: 800px;
+        height: 600px;
+        margin: 30px auto;
+        background: #2d2f33;
+        padding: 30px;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .tab table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .tab td {
+        padding: 10px; 
+    }
+
+    .tab tr {
+        height: 10px; 
+    }
+
+
+body {
+  background: linear-gradient(#141e30, #243b55);
+	color: #fcf9f4;
+}
+
+/* mari */
+
+.btn4 {
+    --border-color: linear-gradient(-45deg, #ffae00, #7e03aa, #00fffb);
+    --border-width: .125em;
+    --curve-size: .5em;
+    --blur: 30px;
+    --bg: #080312;
+    --color: #afffff;
+    color: var(--color);
+    position: relative;
+    isolation: isolate;
+    display: inline-grid;
+    place-content: center;
+    padding: .5em 1.5em;
+    font-size: 17px;
+    border: 0;
+    text-transform: uppercase;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, .6);
+    clip-path: polygon(
+              /* Top-left */
+              0% var(--curve-size), 
+              var(--curve-size) 0,
+              /* top-right */
+              100% 0,
+              100% calc(100% - var(--curve-size)),  
+              /* bottom-right 1 */
+              calc(100% - var(--curve-size)) 100%,
+              /* bottom-right 2 */
+              0 100%);
+    transition: color 250ms;
+}
+      
+.btn4::after,
+.btn4::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+}
+      
+.btn4::before {
+    background: var(--border-color);
+    background-size: 300% 300%;
+    animation: move-bg7234 5s ease infinite;
+    z-index: -2;
+}
+      
+@keyframes move-bg7234 {
+    0% {
+      background-position: 31% 0%
+    }
+
+    50% {
+      background-position: 70% 100%
+    }
+
+    100% {
+      background-position: 31% 0%
+    }
+}
+ 
+.btn4::after {
+    background: var(--bg);
+    z-index: -1;
+    clip-path: polygon(
+              /* Top-left */
+              var(--border-width) 
+              calc(var(--curve-size) + var(--border-width) * .5),
+
+              calc(var(--curve-size) + var(--border-width) * .5) var(--border-width),
+
+              /* top-right */
+              calc(100% - var(--border-width)) 
+              var(--border-width),
+
+              calc(100% - var(--border-width)) 
+              calc(100% - calc(var(--curve-size) + var(--border-width) * .5)),
+
+              /* bottom-right 1 */
+              calc(100% - calc(var(--curve-size) + var(--border-width) * .5)) calc(100% - var(--border-width)),
+              /* bottom-right 2 */
+              var(--border-width) calc(100% - var(--border-width)));
+    transition: clip-path 500ms;
+}
+      
+.btn4:where(:hover, :focus)::after {
+    clip-path: polygon(
+                  /* Top-left */
+                  calc(100% - var(--border-width)) 
+
+                  calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
+      
+                  calc(100% - var(--border-width))
+
+                  var(--border-width),
+      
+                  /* top-right */
+                  calc(100% - var(--border-width))
+
+                   var(--border-width),
+      
+                  calc(100% - var(--border-width)) 
+
+                  calc(100% - calc(var(--curve-size) + var(--border-width) * .5)),
+      
+                  /* bottom-right 1 */
+                  calc(100% - calc(var(--curve-size) + var(--border-width) * .5)) 
+                  calc(100% - var(--border-width)),
+
+                  /* bottom-right 2 */
+                  calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
+                  calc(100% - var(--border-width)));
+    transition: 200ms;
+}
+      
+.btn4:where(:hover, :focus) {
+    color: #fff;
 }
 </style>
