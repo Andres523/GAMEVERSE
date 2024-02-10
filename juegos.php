@@ -191,7 +191,7 @@
 
                                 
 
-                                <div class="">          
+                            <div class="">          
                                     <div id="tablaProductos" class="tab">    
                                     <?php
                                     $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
@@ -237,18 +237,20 @@
                                             </svg></button>
 
                                                     
-                                                    <button class="delete-button" type="button" onclick="eliminarProducto( ' . $fila['id'] . ')">
-                                                    <svg class="delete-svgIcon" viewBox="0 0 448 512">
-                                                        <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
-                                                    </svg>
-                                                    </button>
-                                                  </td>';
+                                            <button class="delete-button" type="button" onclick="abrirModalEliminar(' . $fila['id'] . ')">
+                                            <svg class="delete-svgIcon" viewBox="0 0 448 512">
+                                                <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                                            </svg>
+                                        </button>
+                                            </td>';
                                                   
                                             
                                                   
                                             
+                                            echo '<tr>';
+                                            echo '<td colspan="8"> <hr> </td>'; 
                                             echo '</tr>';
-                                            echo '<td> <hr> </td>';
+                                            
                                         
                                         }
                                         
@@ -267,32 +269,27 @@
 
 
 
-                                    <div id="modalEditar" class="modal">
-                                        <div class="modal-content">
-                                            <span class="close" onclick="cerrarModalEditar()">&times;</span>
-                                            <div class="container">
-                                                <h2>Editar Producto</h2>
-                                                <form id="formEditarProducto" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                                                <input type="hidden" id="edit-id" name="id">
-                                                <label for="edit-nombre">Nombre:</label>
-                                                <input type="text" id="edit-nombre" name="nombre">
-                 
-                                                <label for="edit-descripcion">Descripción:</label>
-                                                <textarea id="edit-descripcion" name="descripcion"></textarea>
+                                <div id="modalEditar" class="modal">
+                                    <div class="modal-content">
+                                        <span class="close" onclick="cerrarModalEditar()">&times;</span>
+                                        <div class="container">
+                                            <h2>Editar Producto</h2>
+                                            <form id="formEditarProducto" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                            <input type="hidden" id="edit-id" name="id">
+                                            <label for="edit-nombre">Nombre:</label>
+                                            <input type="text" id="edit-nombre" name="nombre">
+                                            <label for="edit-descripcion">Descripción:</label>
+                                            <textarea id="edit-descripcion" name="descripcion"></textarea>
+                                            <label for="edit-requisitos">Requisitos:</label>
+                                            <input type="text" id="edit-requisitos" name="requisitos">
+                                            <label for="edit-cantidad">Cantidad:</label>
+                                            <input type="number" id="edit-cantidad" name="cantidad">
+                                            <label for="edit-precio">Precio:</label>
+                                            <input type="number" id="edit-precio" name="precio">
+                                            <label for="edit-imagen">imagen:</label>
 
-                                                <label for="edit-requisitos">Requisitos:</label>
-                                                <input type="text" id="edit-requisitos" name="requisitos">
-
-                                                <label for="edit-cantidad">Cantidad:</label>
-                                                <input type="number" id="edit-cantidad" name="cantidad">
-
-                                                <label for="edit-precio">Precio:</label>
-                                                <input type="number" id="edit-precio" name="precio">
-
-                                                <button type="submit">Guardar Cambios</button>
-
-
-                                                
+                                            <button type="submit">Guardar Cambios</button>
+                                            
                                             <?php
                                             mysqli_close($conexion);
                                             ?>
@@ -309,111 +306,136 @@
                                                 // Recupera los demás campos del formulario de la misma manera
                                             
                                                 $consulta = "UPDATE productos SET nombre='$nombre' WHERE id=$id";
-                                            
-                                                if (mysqli_query($conexion, $consulta)) {
-                                                    echo "<p>Los datos del producto han sido actualizados correctamente</p>";
-                                                    // Cerrar la conexión con la base de datos
-                                                    mysqli_close($conexion);
-                                                    // Redirigir al usuario a la misma página
-                                                    echo "<script>window.location.href = window.location.href;</script>";
-                                                    exit; // Terminar el script para evitar que se ejecute más código PHP
-                                                } else {
-                                                    echo "<p>Error al actualizar los datos del producto: " . mysqli_error($conexion) . "</p>";
-                                                }
-                                            
+                                        
+                                            if (mysqli_query($conexion, $consulta)) {
+                                                echo "<p>Los datos del producto han sido actualizados correctamente</p>";
+                                                // Cerrar la conexión con la base de datos
                                                 mysqli_close($conexion);
+                                                // Redirigir al usuario a la misma página
+                                                echo "<script>window.location.href = window.location.href;</script>";
+                                                exit; // Terminar el script para evitar que se ejecute más código PHP
+                                            } else {
+                                                echo "<p>Error al actualizar los datos del producto: " . mysqli_error($conexion) . "</p>";
+                                            }
+                                        
+                                            mysqli_close($conexion);
                                             }
                                             ?>
                                         </div>
+                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                                     
                                         <script>
-                                        function abrirModalEditar(id) {
-                                            document.getElementById('modalEditar').style.display = 'block';
-                                            document.getElementById('edit-id').value = id;
-                                            // Aquí puedes añadir lógica para cargar los datos del producto en el formulario
-                                        }
+                                        
 
-                                        function cerrarModalEditar() {
-                                            document.getElementById('modalEditar').style.display = 'none';
-                                        }
+                                            function abrirModalEditar(id) {
+                                                document.getElementById('modalEditar').style.display = 'block';
+                                                document.getElementById('edit-id').value = id;
+                                                obtenerDatosJuego(id);
+                                                document.getElementById('modalEditar').style.display = 'block';
+                                            }
+
+                                            function cerrarModalEditar() {
+                                                document.getElementById('modalEditar').style.display = 'none';
+                                            }
+
+
+                                            function obtenerDatosJuego(id) {
+                                                // Hacer una solicitud AJAX al servidor para obtener los datos del juego
+                                                $.ajax({
+                                                    url: 'obtener_datos_juego.php',
+                                                    method: 'GET',
+                                                    data: {id: id},
+                                                    success: function(response) {
+                                                        var juego = JSON.parse(response);
+                                                        // Llenar los campos del formulario con los datos del juego
+                                                        $('#edit-nombre').val(juego.nombre);
+                                                        $('#edit-descripcion').val(juego.descripcion);
+                                                        $('#edit-requisitos').val(juego.requisitos);
+                                                        $('#edit-cantidad').val(juego.cantidad);
+                                                        $('#edit-precio').val(juego.precio);
+                                                        $('#edit-imagen').val(juego.imagen);
+                                                        $('#edit-video').val(juego.video_mp4);
+                                                        $('#edit-categoria').val(juego.categoria);
+
+                                                        // Mostrar el modal después de llenar los campos del formulario
+                                                        $('#modalEditar').css('display', 'block');
+                                                    },
+                                                    error: function(xhr, status, error) {
+                                                        console.error('Error al obtener los datos del juego:', error);
+                                                    }
+                                                });
+                                            }
+
+
+                                   
                                         </script>
-
-
                                     </div>
+                                </div>
+                                
 
 
-                                <!-- MODAL ELIMINAR-->
-                                <div id="modal" class="modal">
+                               <!-- MODAL ELIMINAR-->
+                                <div id="modalEliminar" class="modal">
                                     <div class="modal-content">
                                         <div class="container">
                                             <div class="modal-box">
                                                 <span class="close" onclick="cerrarModalEliminar()">&times;</span>
-
                                                 <div class="modal-content">
                                                     <div class="modal-body">
                                                         <h3 class="title">¡CUIDADO!</h3>
                                                         <p class="description"><h2>¿Estás seguro de eliminar este juego?</h2></p>
                                                         <div class="modal-icon">
-                                                        <img src="./iconos/block-user.png" alt="icono" style="width: 110px; height: 110px;">
+                                                            <img src="./iconos/block-user.png" alt="icono" style="width: 110px; height: 110px;">
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>  
+                                            </div>
                                         </div>
-                                        <button class="btn4" id="confirmarEliminarBtn" onclick="eliminarProductoAJAX()"><span class="button-content">Sí</span> </button>
-
+                                        <button class="btn4" id="confirmarEliminarBtn" onclick="eliminarProductoAJAX()"><span class="button-content">Sí</span></button>
                                         <button class="btn4" onclick="cerrarModalEliminar()"><span class="button-content">No</span></button>
                                     </div>
+                                    <script>
+                                        function abrirModalEliminar(id) {
+                                        document.getElementById('modalEliminar').style.display = 'block';
+                                        
+                                        
+                                        }
 
-                                
-                               
-                                        <script>
-                                           function eliminarProducto(idProducto) {
-                                               // Configurar el ID del producto a eliminar en el botón de confirmación
-                                               document.getElementById('confirmarEliminarBtn').setAttribute('data-id-producto', idProducto);
-                                               // Mostrar el modal de confirmación
-                                               document.getElementById('modal').style.display = 'block';
-                                           }
-                                       
-                                           function eliminarProductoAJAX() {
-                                               // Obtener el ID del producto a eliminar desde el botón de confirmación
-                                               const idProducto = document.getElementById('confirmarEliminarBtn').getAttribute('data-id-producto');
+                                        function eliminarProductoAJAX() {
+                                            const idProducto = document.getElementById('confirmarEliminarBtn').getAttribute('data-id-producto');
+                                            const xhr = new XMLHttpRequest();
+                                            xhr.onreadystatechange = function() {
+                                                if (xhr.readyState === XMLHttpRequest.DONE) {
+                                                    if (xhr.status === 200) {
+                                                        console.log('Producto eliminado correctamente');
+                                                        location.reload();
+                                                    } else {
+                                                        console.error('Error al eliminar el producto:', xhr.responseText);
+                                                    }
+                                                    cerrarModalEliminar();
+                                                }
+                                            };
+                                            xhr.open('POST', 'eliminar_juego.php');
+                                            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                                            xhr.send('id_producto=' + idProducto);
+                                        }
+                                    
+                                        function cerrarModalEliminar() {
+                                            document.getElementById('modalEliminar').style.display = 'none';
+                                        }
 
-                                               // Crear una solicitud XMLHttpRequest para eliminar el producto
-                                               const xhr = new XMLHttpRequest();
-                                               xhr.onreadystatechange = function() {
-                                                   if (xhr.readyState === XMLHttpRequest.DONE) {
-                                                       if (xhr.status === 200) {
-                                                           console.log('Producto eliminado correctamente');
-                                                           // Recargar la página para actualizar la lista de productos
-                                                           location.reload();
-                                                       } else {
-                                                           console.error('Error al eliminar el producto:', xhr.responseText);
-                                                       }
-                                                       // Cerrar el modal de confirmación después de recibir la respuesta de la solicitud AJAX
-                                                       cerrarModalEliminar();
-                                                   }
-                                               };
-                                           
-                                               // Abrir la solicitud POST hacia el script eliminar_juego.php
-                                               xhr.open('POST', 'eliminar_juego.php');
-                                               xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                                               // Enviar el ID del producto a eliminar como parámetro
-                                               xhr.send('id_producto=' + idProducto);
-                                           }
-                                       
-                                           function cerrarModalEliminar() {
-                                               // Lógica para cerrar el modal de confirmación
-                                               document.getElementById('modal').style.display = 'none';
-                                           }
-                                        </script>
+                                    </script>
+
+                                </div>
+
+
 
 
 
 
 
                               
-                                </div>
+                            </div>
 
 
                                 <!-- PRODUCTOS -->
