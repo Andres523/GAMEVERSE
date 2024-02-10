@@ -13,9 +13,8 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <div class="box">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<lottie-player src="https://lottie.host/80de2692-661a-4920-9946-f0b1f491864a/aT43SHn92I.json" background="#fff" speed="1" style="width: 300px; height: 300px" loop autoplay direction="1" mode="normal"></lottie-player></div>
+<lottie-player src="https://lottie.host/80de2692-661a-4920-9946-f0b1f491864a/aT43SHn92I.json" background="#fff" speed="1" style="width: 300px; height: 300px" loop autoplay direction="1" mode="normal"></lottie-player>
 
     
 </head>
@@ -166,6 +165,21 @@ if(isset($_SESSION['nombreUsuario'])) {
 }
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #8803f4; /* Color de fondo de la página */
+    box-shadow: 30px 30px 30px rgba(136, 3, 244, 0.5); /* Desplazamiento horizontal, desplazamiento vertical, desenfoque, color de sombra */
+    width: 100vw; /* Ancho suficientemente grande para cubrir toda la página */
+    height: 100vw; /* Alto suficientemente grande para cubrir toda la página */
+    background-color: transparent;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+
+}
 
 body {
     display: flex;
