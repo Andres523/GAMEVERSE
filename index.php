@@ -59,13 +59,12 @@ if ($resultado) {
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
- 
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-    <link rel="stylesheet" href="./styles/styleindex.css">
+    <link rel="stylesheet" href="./styles/style index.css">
     <link rel="shortcut icon" href="../img/logo.png">
     <?php echo file_get_contents("style.css"); ?>
 </head>
@@ -159,7 +158,7 @@ if ($resultado) {
     </div>
 
     <header class="main-header">
-        <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
+        <label for="btn-nav" class="btn-nav">
             <span class="icon">
                 <svg viewBox="0 0 175 80" width="60" height="40">
                     <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>

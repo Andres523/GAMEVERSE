@@ -75,6 +75,7 @@ if(isset($_SESSION['nombreUsuario'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../img/logo.png">
+    <link rel="stylesheet" href="./styles/compra.css">
     
     <title>Confirmar Compra</title>
     <!-- mari tus estilos CSS aquí -->
@@ -90,11 +91,7 @@ if(isset($_SESSION['nombreUsuario'])) {
 <body>
 <div class="spinner-overlay">
     <div class="spinner">
-    
-
-
         <style>
-
         .spinner:before {
         transform: rotateX(60deg) rotateY(45deg) rotateZ(45deg);
         animation: 750ms rotateBefore infinite linear reverse;
@@ -153,62 +150,75 @@ if(isset($_SESSION['nombreUsuario'])) {
                 display: none; 
             }
 
-
             .spinner {
                 position: absolute;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-
-
-            
             }
-
-
         </style>
-
         <script>
     document.addEventListener("DOMContentLoaded", function() {
         document.querySelector('.spinner-overlay').style.display = 'block';
     });
-
     window.addEventListener('load', function() {
         document.querySelector('.spinner-overlay').style.display = 'none';
     });
-
-
     window.addEventListener('beforeunload', function(event) {
-        
         document.querySelector('.spinner-overlay').style.display = 'none';
     });
         </script>
-
     </div>
 </div>
-    <h1>Confirmar Compra</h1>
-    <div>
-        <img src="<?php echo $fila['imagen']; ?>" alt="<?php echo $fila['nombre']; ?>">
-        <p>Nombre: <?php echo $fila['nombre']; ?></p>
-        <p>Precio unitario: <?php echo $fila['precio']; ?></p>
+    <div style="background-color: #0A1850; border-bottom: 10px solid #5436bf;">
+    <br>
+    <h2 class="h1"><center>Confirmar Compra</center></h2>
+    <br>
     </div>
+    <br><br><br><br>
+    <div class="borde">
+        <img class="imagen"src="<?php echo $fila['imagen']; ?>" alt="<?php echo $fila['nombre']; ?>">
+        <div class="texto-contenedor">
+            <h2 class="nombre-juego"><?php echo $fila['nombre']; ?></h2>
+            <p>Precio unitario: <?php echo $fila['precio']; ?></p>
+        </div>
+        <div class="factura"> 
     <form action="procesar_compra.php" method="post">
-        <input type="hidden" name="id_juego" value="<?php echo $fila['id']; ?>">
-        <input type="hidden" name="nombre_juego" value="<?php echo $fila['nombre']; ?>">
-        <input type="hidden" name="imagen_juego" value="<?php echo $fila['imagen']; ?>">
-        <input type="hidden" name="precio_unitario" value="<?php echo $fila['precio']; ?>">
-        <input type="checkbox" name="terminos" required> Acepto los términos y condiciones<br><br>
+            <input type="hidden" name="id_juego" value="<?php echo $fila['id']; ?>">
+            <input class="hidden" type="hidden" name="nombre_juego" value="<?php echo $fila['nombre']; ?>">
+            <input type="hidden" name="imagen_juego" value="<?php echo $fila['imagen']; ?>">
+            <input type="hidden" name="precio_unitario" value="<?php echo $fila['precio']; ?>">
 
-        <label for="cantidad">Cantidad:</label>
-        <input type="number" id="cantidad" name="cantidad" value="1" min="1" onchange="calcularPrecioTotal()" required><br><br>
+            <div class="user-box">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" name="cantidad" value="1" min="1" onchange="calcularPrecioTotal()" required><br><br>
+            </div>
 
-        <label id="precio-total">Precio total: $<?php echo $fila['precio']; ?></label><br><br>
+            <div class="user-box">
+                <label for="ubicacion">Ubicación:</label>
+                <input type="text" id="ubicacion" name="ubicacion" value="<?php echo htmlspecialchars($ubicacionUsuario); ?>" required><br><br>
+            </div>
 
-        <label for="ubicacion">Ubicación:</label>
-        <input type="text" id="ubicacion" name="ubicacion" value="<?php echo htmlspecialchars($ubicacionUsuario); ?>" required><br><br>
-
-        <label for="direccion">Dirección:</label>
-        <input type="text" id="direccion" name="direccion" value="<?php echo htmlspecialchars($direccionUsuario); ?>" required><br><br>
-        <button type="submit" name="confirmar">Comprar</button>
+            <div class="user-box">
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" name="direccion" value="<?php echo htmlspecialchars($direccionUsuario); ?>" required><br><br>
+            </div>
+            
+            <input type="checkbox" name="terminos" required> Acepto los términos y condiciones<br><br>
+            </div>
+    </div>
+   
+        <div class="compra">
+            <div class="texto-precio">
+                <p><?php echo $fila['nombre']; ?></p>
+                <label id="precio-total">Precio total: $<?php echo $fila['precio']; ?></label>
+            </div>
+            <div class="pbutton">
+                <button class="btn4" type="submit" name="confirmar">Comprar</button>
+            </div>
     </form>
+        </div>
+        
+    
 </body>
 </html>
