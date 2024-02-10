@@ -117,12 +117,10 @@
 
     </div>
 </div>
+<a href="./admin2.php" ><button class="btn4">Atrás</button></a>
     <main>
         <div class="login-box">
-            <a href="./admin2.php" ><button class="btn4">Atrás</button></a>
-            <br>
-            
-        
+
             <input id="radio1" type="radio" name="css-tabs" checked>
             <input id="radio2" type="radio" name="css-tabs">
         
@@ -132,11 +130,11 @@
  
             <div id="content">
                 <section id="content1">
-                    <h2>Buscar Usuarios</h2>
+                    <h2>BUSCAR USUARIOS</h2>
 
                     <form method="GET">
                         <div class='user-box'>
-                            <label for="buscarNombre" >Buscar por Nombre:</label>
+                            <label for="buscarNombre" >Buscar por nombre:</label>
                             <input type="text" id="buscarNombre" name="buscarNombre">
     
                                 <label for="buscarID">Buscar por ID:</label>
@@ -225,17 +223,15 @@
                                     <div class="modal-content">
                                         <div class="modal-body">
                                             <h3 class="title">¡CUIDADO!</h3>
-                                            <p class="description"><h2>¿Estás seguro de eliminar este usuario?</h2></p>
-                                            <div class="modal-icon">
-                                            <img src="./iconos/block-user.png" alt="icono" style="width: 110px; height: 110px;">
-                                            </div>
+                                            <center><p class="description"><h2>¿Estás seguro de eliminar este usuario?</h2></p></center>
+                                            <center><img src="./iconos/block-user.png" alt="icono" style="width: 110px; height: 110px;"></center>
                                         </div>
                                     </div>
                                 </div>  
                             </div>
-                            <button class="btn4" id="confirmarEliminar" onclick="eliminarUsuario()"><span class="button-content">Sí</span> </button>
+                            <center><button class="btn4" id="confirmarEliminar" onclick="eliminarUsuario()"><span class="button-content">Sí</span> </button>
                             <button class="btn4" onclick="cerrarModal()"><span class="button-content">No</span></button>
-                        </div>
+                        </div></center>
                         <script>
                                                                 function configurarEliminar(idUsuario) {
                                         document.getElementById('confirmarEliminar').setAttribute('data-id-usuario', idUsuario);
@@ -456,19 +452,6 @@ main {
         box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
     }
 
-
-    @media only screen and (max-width: 1200px) {
-    
-        .info,
-        .perfil,
-        .deceados {
-            width: 100%;
-            margin: 5px;
-            text-align: center;
-        }
-    }
-
-
     .tab table {
         width: 100%;
         border-collapse: collapse;
@@ -481,13 +464,6 @@ main {
     .tab tr {
         height: 10px; 
     }
-</style>
-
-
-
-
-
-<style>
 
 body {
 	background-color: #383c41;
@@ -648,9 +624,8 @@ footer {
 
 /*confirmacion eliminacion de usuarios*/
 .modal-content{
-    background: #7F00FF;
-    background: -webkit-linear-gradient(to bottom, #E100FF, #7F00FF);
-    background: linear-gradient(to bottom, #E100FF, #7F00FF);
+    background: -webkit-linear-gradient(#E100FF, #7F00FF);
+    background: linear-gradient(#E100FF, #7F00FF);
     border: none;
     border-radius: 20px;
 }
@@ -663,12 +638,7 @@ footer {
     letter-spacing: 5px;
     text-transform: uppercase;
     margin: 0 0 10px;
-}
-.description{
-    color: rgb(255, 255, 255);
-    font-size: 14px;
-    letter-spacing: 0.5px;
-    margin: 0 0 30px;
+    text-align: center;
 }
 
 .close {
@@ -851,7 +821,7 @@ footer {
 .tab{
 	border-color: #000000;
 	width: 780px;
-	height: 250px;
+	height: 400px;
 	text-shadow: #040f16;
 	opacity:0.9;
 	color:#ffffff;
@@ -1009,7 +979,6 @@ footer {
 
     .modal-content {
         width: 100%;
-        display: flex;
         flex-direction: column;
     }
 
