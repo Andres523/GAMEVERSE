@@ -411,6 +411,18 @@ if (isset($_SESSION['nombreUsuario'])) {
     $id_usuario = $fila_id_usuario['id'];
 
     // Verifica si el juego ya está en la lista de deseos del usuario
+    $consulta_verificar_carrito = "SELECT * FROM carrito WHERE id_usuario = $id_usuario AND id_producto = $id_juego";
+    $resultado_verificar_carrito = mysqli_query($conexion, $consulta_verificar_carrito);
+
+    if (mysqli_num_rows($resultado_verificar_carrito) > 0) {
+        // Si el juego ya está en el carrito, muestra un mensaje al usuario
+        $enCarrito = true;
+    } else {
+        // Si el juego no está en el carrito, muestra el botón "Agregar al Carrito"
+        $enCarrito = false;
+    }
+    
+
     $consulta_verificar_deseo = "SELECT * FROM deseados WHERE id_usuario = $id_usuario AND id_juego = $id_juego";
     $resultado_verificar_deseo = mysqli_query($conexion, $consulta_verificar_deseo);
 
@@ -444,15 +456,22 @@ if (isset($_SESSION['nombreUsuario'])) {
 ?>
                     <section id="home", class="main-content">
                     <a href="compra.php?id=<?php echo $id_juego; ?>">Comprar juego</a>
-                        <?php
+                        
                         
 
-                        echo '<form action="carrito.php" method="post">';
-                        echo '<input type="hidden" name="id_juego" value="' . $id_juego . '">';
-                        echo '<button class="CartBtn" type="submit" name="agregar_carrito"><span class="IconCompra"> 
-                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" fill="rgb(17, 17, 17)" class="cart"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"></path></svg>
-                      </span><p class="text">Agregar al carrito</p></button>';
-                        echo '</form>';
+                        <?php if ($loggedIn): ?>
+                            <?php if ($enCarrito): ?>
+                                <p>Este juego ya está en tu carrito.</p>
+                            <?php else: ?>
+                                <form action="agregar_carrito.php" method="post">
+                                    <input type="hidden" name="id_juego" value="<?php echo $id_juego; ?>">
+                                    <button type="submit" name="agregar_carrito">Agregar al Carrito</button>
+                                </form>
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <p>Debes iniciar sesión para agregar juegos a tu carrito.</p>
+                        <?php endif; ?>
+                        <?php
                         echo '<p style="color: green; text-align: center; font-size: 24px;">Precio: $' . $fila['precio'] . " COP".'</p>';
                         ?>
 

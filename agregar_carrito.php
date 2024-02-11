@@ -32,7 +32,7 @@ if (isset($_SESSION['nombreUsuario'])) {
         $resultado_agregar_carrito = mysqli_query($conexion, $consulta_agregar_carrito);
         if ($resultado_agregar_carrito) {
             // Redirige de vuelta a la página de detalles del producto
-            header("Location: detalles_juego.php?id=$id_juego");
+            header("Location: carrito.php");
             exit();
         } else {
             echo "Error al agregar el juego al carrito: " . mysqli_error($conexion);
