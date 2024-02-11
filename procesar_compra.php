@@ -15,11 +15,19 @@
     />
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <lottie-player src="https://lottie.host/80de2692-661a-4920-9946-f0b1f491864a/aT43SHn92I.json" background="#fff" speed="1" style="width: 300px; height: 300px" loop autoplay direction="1" mode="normal"></lottie-player>
-
+<style>
+    #contador {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        display: inline-block;
+        margin-left: 5px;
+    }
+</style>
     
 </head>
 <body>
-
+    <div class="box"></div>
 <?php
 session_start();
 
@@ -95,6 +103,7 @@ if(isset($_SESSION['nombreUsuario'])) {
             if(mysqli_stmt_affected_rows($stmt_insertar_compra) > 0) {
                 echo "La compra se ha realizado exitosamente.";
                 echo "<br>";
+                echo "Serás redirigido a la tienda en: <span id='contador'>7</span> segundos ";
 
                 // Actualizar la cantidad de juegos disponibles
                 $consulta_actualizar_cantidad = "UPDATE productos SET cantidad = cantidad - ? WHERE id = ?";
@@ -141,6 +150,17 @@ if(isset($_SESSION['nombreUsuario'])) {
                 echo "<br>";
                 echo "<a href='tienda.php'> Seguir explorando </a>";
                 mysqli_close($conexion);
+                header("refresh:7;url=tienda.php");
+                echo "<script>
+                    var segundos = 7;
+                    setInterval(function() {
+                        segundos--;
+                        document.getElementById('contador').innerText = segundos;
+                        if(segundos == 0) {
+                            window.location.href = 'tienda.php';
+                        }
+                    }, 1000);
+                    </script>";
             } else {
                 echo "No se ha enviado el formulario de confirmación de compra.";
             }
@@ -165,6 +185,20 @@ if(isset($_SESSION['nombreUsuario'])) {
 }
 }
 
+.box {
+    margin: 0;
+    padding: 0;
+    box-shadow: -30px 30px 30px rgba(3, 244, 31, 0.5); /* Cambié el signo para invertir la dirección */
+    width: 100vw;
+    height: 100vw;
+    background-color: transparent;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -186,7 +220,6 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #ffffff;
 }
 
 .lottie-container {
