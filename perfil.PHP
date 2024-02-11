@@ -28,6 +28,8 @@ $id_usuario = $fila_id_usuario['id'];
 $consultaDatos = "SELECT correo, ubicacion, edad, genero, imagenPerfil, Rol , color, fondo FROM usuarios WHERE nombre = '$nombreUsuario'";
 $resultadoDatos = mysqli_query($conexion, $consultaDatos);
 
+
+
 if ($resultadoDatos) {
     if ($fila = mysqli_fetch_assoc($resultadoDatos)) {
         $correo = !empty($fila['correo']) ? $fila['correo'] : 'Por completar';
