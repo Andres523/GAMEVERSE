@@ -81,8 +81,23 @@
           </div>
           </a>
         </div>
-      </div>
+      
 
+      <div class="column">
+
+        <a href="novedades.php" style="color: inherit; text-decoration: none;">
+          <div class="card">
+            <div class="icon-wrapper">
+            <i class="fa-solid fa-headset"></i>
+            </div>
+            <h3>Novedades</h3>
+            <p>
+             agrega novedades nuevas y elimina las viejas 
+            </p>
+          </div>
+          </a>
+        </div>
+        </div>
     </section>
   </body>
 </html>
