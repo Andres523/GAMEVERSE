@@ -22,10 +22,13 @@ if (isset($_SESSION['nombreUsuario'])) {
             $id_juego = $_GET['id'];
 
             // Consulta para obtener los detalles del juego
-            $consulta = "SELECT p.id, p.nombre, p.descripcion, p.requisitos, p.precio, p.imagen, p.video_mp4, c.id as categoria_id, c.nombre as categoria_nombre
+            $consulta = "SELECT p.id, p.nombre, p.descripcion, p.requisitos, p.precio, p.imagen, p.video_mp4, GROUP_CONCAT(c.nombre SEPARATOR ', ') AS categorias
             FROM productos p
-            LEFT JOIN categorias c ON p.categoria = c.id
-            WHERE p.id = $id_juego";
+            LEFT JOIN categorias c ON FIND_IN_SET(c.id, p.categoria)
+            WHERE p.id = $id_juego
+            GROUP BY p.id";
+
+
 
             $resultado = mysqli_query($conexion, $consulta);
 
@@ -367,6 +370,16 @@ if (isset($_SESSION['nombreUsuario'])) {
                         ?>
                         <br>
                         <h3>CATEGORIAS</h3>
+                        <br>
+                        <?php
+                        
+                        $categorias = explode(", ", $fila['categorias']);
+                        foreach ($categorias as $categoria) {
+                            echo "<p>" . $categoria . "</p>";
+                        }
+                       
+                        
+                        ?>
                         <br>
                         <h3>REQUISITOS</h3>
                         <br>

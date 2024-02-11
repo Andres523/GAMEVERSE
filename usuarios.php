@@ -278,6 +278,27 @@
                                 <button class="btn4" onclick="cerrarModalEditar()">Cerrar</button>
                                 <br><br>
                                 <span class="toggleMostrarContrasena" onclick="toggleMostrarContrasena()">Mostrar</span>
+                                        <script>
+                                            function toggleMostrarContrasena() {
+                                                var campoContrasena = document.getElementById("contrasenaUsuarioEditar");
+                                                var toggleMostrar = document.querySelector(".toggleMostrarContrasena");
+                                            
+                                                if (campoContrasena.type === "password") {
+                                                    campoContrasena.type = "text";
+                                                    toggleMostrar.textContent = "Ocultar";
+                                                } else {
+                                                    campoContrasena.type = "password";
+                                                    toggleMostrar.textContent = "Mostrar";
+                                                }
+                                            }
+                                        </script>
+                                           <style>
+                                            .toggleMostrarContrasena {
+                                                cursor: pointer;
+                                                color: blue;
+                                            }
+                                            </style>
+                        
                                 <script>
                                     function guardarCambiosUsuario() {
                                         const idUsuario = document.getElementById('idUsuarioEditar').value;
