@@ -173,6 +173,7 @@ function imprimirEstrellas($calificacion) {
                 event.preventDefault();
                 filtrarJuegos();
             });
+            
 
             var searchInput = document.getElementById('search');
             searchInput.addEventListener('input', function () {
