@@ -14,6 +14,17 @@ if (!$conexion) {
 
 $nombreUsuario = $_SESSION['nombreUsuario'];
 
+$consulta_id_usuario = "SELECT id FROM usuarios WHERE nombre = '$nombreUsuario'";
+$resultado_id_usuario = mysqli_query($conexion, $consulta_id_usuario);
+
+if (!$resultado_id_usuario) {
+    echo "Error al obtener el ID del usuario: " . mysqli_error($conexion);
+    exit();
+}
+
+$fila_id_usuario = mysqli_fetch_assoc($resultado_id_usuario);
+$id_usuario = $fila_id_usuario['id'];
+
 $consultaDatos = "SELECT correo, ubicacion, edad, genero, imagenPerfil, Rol , color, fondo FROM usuarios WHERE nombre = '$nombreUsuario'";
 $resultadoDatos = mysqli_query($conexion, $consultaDatos);
 
@@ -221,9 +232,75 @@ mysqli_close($conexion);
         </div>
 
         <div class="deseados">
-            <label for=""><h1 style="text-align: center;">DESEADOS</h1></label>
+            <label for=""><h1 style="text-align: center;">Deseados</h1></label>
             <hr>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates iusto animi totam dolorem natus consequuntur, numquam odit laboriosam modi, qui dolorum. Eaque repellendus numquam dolor laborum, ipsam iusto! Velit, modi!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates iusto animi totam dolorem natus consequuntur, numquam odit laboriosam modi, qui dolorum. Eaque repellendus numquam dolor laborum, ipsam iusto! Velit, modi!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates iusto animi totam dolorem natus consequuntur, numquam odit laboriosam modi, qui dolorum. Eaque repellendus numquam dolor laborum, ipsam iusto! Velit, modi!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates iusto animi totam dolorem natus consequuntur, numquam odit laboriosam modi, qui dolorum. Eaque repellendus numquam dolor laborum, ipsam iusto! Velit, modi!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates iusto animi totam dolorem natus consequuntur, numquam odit laboriosam modi, qui dolorum. Eaque repellendus numquam dolor laborum, ipsam iusto! Velit, modi!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates iusto animi totam dolorem natus consequuntur, numquam odit laboriosam modi, qui dolorum. Eaque repellendus numquam dolor laborum, ipsam iusto! Velit, modi!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates iusto animi totam dolorem natus consequuntur, numquam odit laboriosam modi, qui dolorum. Eaque repellendus numquam dolor laborum, ipsam iusto! Velit, modi!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates iusto animi totam dolorem natus consequuntur, numquam odit laboriosam modi, qui dolorum. Eaque repellendus numquam dolor laborum, ipsam iusto! Velit, modi!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates iusto animi totam dolorem natus consequuntur, numquam odit laboriosam modi, qui dolorum. Eaque repellendus numquam dolor laborum, ipsam iusto! Velit, modi!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates iusto animi totam dolorem natus consequuntur, numquam odit laboriosam modi, qui dolorum. Eaque repellendus numquam dolor laborum, ipsam iusto! Velit, modi!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates iusto animi totam dolorem natus consequuntur, numquam odit laboriosam modi, qui dolorum. Eaque repellendus numquam dolor laborum, ipsam iusto! Velit, modi!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates iusto animi totam dolorem natus consequuntur, numquam odit laboriosam modi, qui dolorum. Eaque repellendus numquam dolor laborum, ipsam iusto! Velit, modi!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates iusto animi totam dolorem natus consequuntur, numquam odit laboriosam modi, qui dolorum. Eaque repellendus numquam dolor laborum, ipsam iusto! Velit, modi!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates iusto animi totam dolorem natus consequuntur, numquam odit laboriosam modi, qui dolorum. Eaque repellendus numquam dolor laborum, ipsam iusto! Velit, modi!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates iusto animi totam dolorem natus consequuntur, numquam odit laboriosam modi, qui dolorum. Eaque repellendus numquam dolor laborum, ipsam iusto! Velit, modi!</p>
+            <?php
+$conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
+
+$nombreUsuario = $_SESSION['nombreUsuario'];
+$consulta_deseados = "SELECT * FROM deseados WHERE id_usuario = $id_usuario";
+$resultado_deseados = mysqli_query($conexion, $consulta_deseados);
+
+if (!$resultado_deseados) {
+    echo "Error al obtener los juegos deseados: " . mysqli_error($conexion);
+    exit();
+}
+
+$consulta_id_usuario = "SELECT id FROM usuarios WHERE nombre = '$nombreUsuario'";
+$resultado_id_usuario = mysqli_query($conexion, $consulta_id_usuario);
+
+if (mysqli_num_rows($resultado_deseados) > 0) {
+    echo '<table>';
+    echo '<tr>
+            <th>Imagen: </th>
+            <th>Nombre: </th>
+            <th>Disponibilidad: </th>
+            <th>Acciones: </th>
+          </tr>';
+
+    // Recorre los juegos deseados y muestra la información
+    while ($fila_deseado = mysqli_fetch_assoc($resultado_deseados)) {
+        $id_juego = $fila_deseado['id_juego'];
+
+        // Obtén la información del juego desde la tabla productos
+        $consulta_juego = "SELECT nombre, imagen, cantidad FROM productos WHERE id = $id_juego";
+        $resultado_juego = mysqli_query($conexion, $consulta_juego);
+
+        if ($resultado_juego) {
+            $fila_juego = mysqli_fetch_assoc($resultado_juego);
+            $nombre_juego = $fila_juego['nombre'];
+            $imagen_juego = $fila_juego['imagen'];
+            $cantidad_juego = $fila_juego['cantidad'];
+
+            // Muestra la información del juego como una fila de la tabla
+            echo '<tr>';
+            echo '<td><a href="juego.php?id=' . $id_juego . '"><img src="' . $imagen_juego . '" alt="' . $nombre_juego . '" height="50"></a></td>';
+
+            echo '<td>' . $nombre_juego . '</td>';
+            echo '<td>' . ($cantidad_juego > 0 ? '<span style="color: green;">Disponible</span>' : '<span style="color: red;">Agotado</span>') . '</td>';
+
+            echo '<td>';
+            echo '<form action="eliminar_deseo2.php" method="post">';
+            echo '<input type="hidden" name="id_juego" value="' . $id_juego . '">';
+            echo '<button type="submit" name="eliminar_deseo">Eliminar</button>';
+            echo '</form>';
+            echo '</td>';
+            
+            echo '<tr>';
+            echo '<td colspan="8"> <hr> </td>'; 
+            echo '</tr>';
+        } else {
+            echo "Error al obtener la información del juego: " . mysqli_error($conexion);
+        }
+    }
+    echo '</table>';
+} else {
+    echo "No tienes juegos en tu lista de deseos.";
+}
+
+// Cierra la conexión a la base de datos
+mysqli_close($conexion);
+?>
         </div>
     </div>
 
