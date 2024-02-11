@@ -9,6 +9,7 @@ body { font-family: sans-serif;
 .h2 {
   font-size:120%;
   color: aliceblue;
+
 }
 
 .h3 {
@@ -22,7 +23,7 @@ body { font-family: sans-serif;
     height: 230px;
     border-radius: 20px;
     margin-right: 30px;
-  }
+}
   
 .borde {
     width: auto;
@@ -34,17 +35,18 @@ body { font-family: sans-serif;
     background-color: #d9dae9;
     display:flex;
     align-items: center;
+    
 }
 
 .texto-contenedor {
     width: auto;
     height: auto;
     margin-right: 30px;
-  }
+}
 
 .factura {
     margin-left: auto;
-    width: 500px;
+    width: 350px;
     border-radius: 20px;
     height: 250px;
     text-align: center; /* Removemos esta propiedad, ya que la usamos en el elemento hijo */
@@ -95,34 +97,33 @@ body { font-family: sans-serif;
 
 
 .compra {
-
-    border-top: 10px solid #5436bf;
+    z-index: 1;
+    border-top: 10px solid #4f36aa88;
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 100px;
-    background-color: #9757ae;
+    background-color: #0A1880;
     display: flex;
     align-items: center;
 }
   
-  .texto-precio {
+.texto-precio {
     font-size: 20px;
     font-weight:normal;
     font-weight: 500;
     font-family: sans-serif;
     margin: 0 auto;
-    margin-bottom: 15px
+    margin-bottom: 15px;
+    color: aliceblue;
+
 }
   
-  .pbutton {
+.pbutton {
     margin-left: auto;
     margin-right:100px ;
 }
-
-
-
 
   
 .btn4 {
@@ -209,4 +210,155 @@ font-size: 14px;
 }
 .btn4:where(:hover, :focus) {
     color: #fff;
+}
+
+.spinner:before {
+    transform: rotateX(60deg) rotateY(45deg) rotateZ(45deg);
+    animation: 750ms rotateBefore infinite linear reverse;
+}
+
+.spinner:after {
+    transform: rotateX(240deg) rotateY(45deg) rotateZ(45deg);
+    animation: 750ms rotateAfter infinite linear;
+}
+
+.spinner:before,
+.spinner:after {
+    box-sizing: border-box;
+    content: '';
+    display: block;
+    position: absolute;
+    margin-top: -5em;
+    margin-left: -5em;
+    width: 10em;
+    height: 10em;
+    transform-style: preserve-3d;
+    transform-origin: 50%;
+    transform: rotateY(50%);
+    perspective-origin: 50% 50%;
+    perspective: 300px;
+    background-size: 10em 10em;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjI2NnB4IiBoZWlnaHQ9IjI5N3B4IiB2aWV3Qm94PSIwIDAgMjY2IDI5NyIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWxuczpza2V0Y2g9Imh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaC9ucyI+CiAgICA8dGl0bGU+c3Bpbm5lcjwvdGl0bGU+CiAgICA8ZGVzY3JpcHRpb24+Q3JlYXRlZCB3aXRoIFNrZXRjaCAoaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoKTwvZGVzY3JpcHRpb24+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBza2V0Y2g6dHlwZT0iTVNQYWdlIj4KICAgICAgICA8cGF0aCBkPSJNMTcxLjUwNzgxMywzLjI1MDAwMDM4IEMyMjYuMjA4MTgzLDEyLjg1NzcxMTEgMjk3LjExMjcyMiw3MS40OTEyODIzIDI1MC44OTU1OTksMTA4LjQxMDE1NSBDMjE2LjU4MjAyNCwxMzUuODIwMzEgMTg2LjUyODQwNSw5Ny4wNjI0OTY0IDE1Ni44MDA3NzQsODUuNzczNDM0NiBDMTI3LjA3MzE0Myw3NC40ODQzNzIxIDc2Ljg4ODQ2MzIsODQuMjE2MTQ2MiA2MC4xMjg5MDY1LDEwOC40MTAxNTMgQy0xNS45ODA0Njg1LDIxOC4yODEyNDcgMTQ1LjI3NzM0NCwyOTYuNjY3OTY4IDE0NS4yNzczNDQsMjk2LjY2Nzk2OCBDMTQ1LjI3NzM0NCwyOTYuNjY3OTY4IC0yNS40NDkyMTg3LDI1Ny4yNDIxOTggMy4zOTg0Mzc1LDEwOC40MTAxNTUgQzE2LjMwNzA2NjEsNDEuODExNDE3NCA4NC43Mjc1ODI5LC0xMS45OTIyOTg1IDE3MS41MDc4MTMsMy4yNTAwMDAzOCBaIiBpZD0iUGF0aC0xIiBmaWxsPSIjMDAwMDAwIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj48L3BhdGg+CiAgICA8L2c+Cjwvc3ZnPg==);
+}
+    /* sitNSpin.less */
+@keyframes rotateBefore {
+from {
+    transform: rotateX(60deg) rotateY(45deg) rotateZ(0deg);
+}
+
+to {
+    transform: rotateX(60deg) rotateY(45deg) rotateZ(-360deg);
+}
+}
+
+@keyframes rotateAfter {
+from {
+    transform: rotateX(240deg) rotateY(45deg) rotateZ(0deg);
+}
+
+to {
+    transform: rotateX(240deg) rotateY(45deg) rotateZ(360deg);
+}
+}
+
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+   width: 100%;
+    height: 100%;
+    z-index: 9999; 
+    display: none; 
+}
+
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.contenedor input {
+    position: absolute;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    border-radius: 5px;
+}
+
+.contenedor input {
+  position: absolute;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+  float: left;
+}
+
+.contenedor {
+  display: flex;
+  margin-left: 10px;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+  border-radius: 5px;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 150px;
+  justify-content: right;
+  margin-left: 20px;
+  margin-right: 30px
+}
+
+.checkmark {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 1.6em;
+  width: 1.6em;
+  background-color: #ccc;
+  border-radius: 5px;
+  z-index: 0; /* Set z-index to 0 so it's behind the checkbox */
+}
+
+.contenedor input:checked ~ .checkmark {
+  box-shadow: 3px 3px 0px rgb(183, 183, 183);
+  transition: all 0.2s;
+  opacity: 1;
+  background-image: linear-gradient(45deg, rgb(100, 61, 219) 0%, rgb(217, 21, 239) 100%);
+}
+
+.contenedor input ~ .checkmark {
+  transition: all 0.2s;
+  opacity: 1;
+  box-shadow: 1px 1px 0px rgb(183, 183, 183);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.contenedor input:checked ~ .checkmark:after {
+  opacity: 1;
+  transition: all 0.2s;
+}
+
+.contenedor .checkmark:after {
+  left: 0.6em;
+  top: 0.3em;
+  width: 0.35em;
+  height: 0.7em;
+  border: solid white;
+  border-width: 0 0.15em 0.15em 0;
+  transform: rotate(45deg);
+}
+
+.t {
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 20px;
+    color: #ffffff;
 }

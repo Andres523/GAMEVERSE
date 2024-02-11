@@ -244,9 +244,6 @@ if ($resultado) {
 
 mysqli_close($conexion);
 ?>
-
-
-
     <br>
     <br>
     
