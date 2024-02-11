@@ -47,6 +47,24 @@ if ($resultado) {
     echo "Error en la consulta: " . mysqli_error($conexion);
 }
 
+function imprimirEstrellas($calificacion) {
+    if ($calificacion === null) {
+        return 'Sin calificación'; 
+    }
+
+    $estrellas = '';
+    $calificacion = round($calificacion); // Redondear la calificación
+
+    
+    for ($i = 0; $i < 5; $i++) {
+        if ($i < $calificacion) {
+            $estrellas .= '<span style="color: gold;">★</span>'; // Estrella llena
+        } else {
+            $estrellas .= '<span style="color: grey;">★</span>'; // Estrella vacía
+        }
+    }
+    return $estrellas;
+}
 ?> 
 
 <!DOCTYPE html>
@@ -225,7 +243,7 @@ if ($resultado) {
                 <center><img class="carousel-cell" src="<?php echo $fila['imagen']; ?>"/></center>
                 <h1 class="h3"><center><?php echo $fila['nombre']; ?></center></h1>
                 <h2 class="descripcion"><center><?php echo $fila['descripcion']; ?></center></h2>
-                <h3 class="h2"><center>Calificación: <?php echo round($fila['calificacion_promedio'], 1); ?></center></h3>
+                <h3 class="h2"><center><?php echo '<p>' . imprimirEstrellas($fila['calificacion_promedio']) . '</p>'; ?></center></h3>
                 <br>
                 <div>
                     <center><button class="button-gameverse"><?php echo '<a href="juego.php?id=' . $fila['id'] . '" class="juego-link"> DESCUBRIR </a> '?></button></center>
@@ -284,7 +302,8 @@ if ($resultado) {
                     <br><br>
                 </div>
                 <?php 
-            } // Fin del bucle while
+            } 
+            
             ?>
         </div>
         <br><br><br>     
