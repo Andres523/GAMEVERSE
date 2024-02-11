@@ -168,10 +168,9 @@ if(isset($_SESSION['nombreUsuario'])) {
 body {
     margin: 0;
     padding: 0;
-    background-color: #8803f4; /* Color de fondo de la página */
-    box-shadow: 30px 30px 30px rgba(136, 3, 244, 0.5); /* Desplazamiento horizontal, desplazamiento vertical, desenfoque, color de sombra */
-    width: 100vw; /* Ancho suficientemente grande para cubrir toda la página */
-    height: 100vw; /* Alto suficientemente grande para cubrir toda la página */
+    box-shadow: 30px 30px 30px rgba(136, 3, 244, 0.5);
+    width: 100vw;
+    height: 100vw;
     background-color: transparent;
     position: fixed;
     top: 50%;
