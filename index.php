@@ -86,7 +86,7 @@ function imprimirEstrellas($calificacion) {
     <link rel="shortcut icon" href="../img/logo.png">
     <?php echo file_get_contents("style.css"); ?>
 </head>
-<body>
+<body id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size: cover ">
 <script>
         document.addEventListener("DOMContentLoaded", function () {
             var settingsBtn = document.getElementById('settingsBtn');

@@ -64,8 +64,79 @@ if (isset($_SESSION['nombreUsuario'])) {
                         $actualizar_calificacion = "UPDATE calificaciones SET calificacion = $calificacion, comentario = '$comentario' WHERE id_juego = $id_juego AND id_usuario = $id_usuario";
                         $resultado_actualizar_calificacion = mysqli_query($conexion, $actualizar_calificacion);
                         if ($resultado_actualizar_calificacion) {
-                            echo "¡Gracias por tu comentario!";
-                            header("refresh:2;url=tienda.php");
+                            echo '
+
+                            <style>
+                            body {
+                                margin: 0;
+                                padding: 0;
+                                background-color: #000;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                height: 100vh;
+                            }
+                            
+                            .card {
+                                width: 900px;
+                                height: 400px;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 10px;
+                                padding: 15px;
+                                background-color: red;
+                                border-radius: 10px;
+                                border: none;
+                                font-size: 70px;
+                             
+                                color: white;
+                                position: relative;
+                                cursor: pointer;
+                                font-weight: 900;
+                                transition-duration: .2s;
+                                background: linear-gradient(0deg, #000, #272727);
+                            }
+                        
+                            .card:before, .card:after {
+                                content: "";
+                                position: absolute;
+                                left: -2px;
+                                top: -2px;
+                                border-radius: 10px;
+                                background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00,#ffff00, #ff0000, #fb0094, 
+                                    #0000ff, #00ff00,#ffff00, #ff0000);
+                                background-size: 400%;
+                                width: calc(100% + 4px);
+                                height: calc(100% + 4px);
+                                z-index: -1;
+                                animation: steam 20s linear infinite;
+                            }
+                        
+                            @keyframes steam {
+                                0% {
+                                    background-position: 0 0;
+                                }
+                        
+                                50% {
+                                    background-position: 400% 0;
+                                }
+                        
+                                100% {
+                                    background-position: 0 0;
+                                }
+                            }
+                        
+                            .card:after {
+                                filter: blur(100px);
+                            }
+                        </style>
+                        </head>
+                        <body>
+                        <div class="card">¡Gracias por tu comentario!</div>';
+
+                            header("refresh:1;url=tienda.php");
                             exit();
                         } else {
                             echo "Error al actualizar la calificación: " . mysqli_error($conexion);
@@ -75,8 +146,76 @@ if (isset($_SESSION['nombreUsuario'])) {
                         $insertar_calificacion = "INSERT INTO calificaciones (id_usuario, id_juego, calificacion, comentario, fecha) VALUES ($id_usuario, $id_juego, $calificacion, '$comentario', NOW())";
                         $resultado_insertar_calificacion = mysqli_query($conexion, $insertar_calificacion);
                         if ($resultado_insertar_calificacion) {
-                            echo "¡Gracias por tu comentario!";
-                            header("refresh:2;url=tienda.php");
+                            echo '                            <style>
+                            body {
+                                margin: 0;
+                                padding: 0;
+                                background-color: #000;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                height: 100vh;
+                            }
+                            
+                            .card {
+                                width: 900px;
+                                height: 400px;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 10px;
+                                padding: 15px;
+                                background-color: red;
+                                border-radius: 10px;
+                                border: none;
+                                font-size: 70px;
+                             
+                                color: white;
+                                position: relative;
+                                cursor: pointer;
+                                font-weight: 900;
+                                transition-duration: .2s;
+                                background: linear-gradient(0deg, #000, #272727);
+                            }
+                        
+                            .card:before, .card:after {
+                                content: "";
+                                position: absolute;
+                                left: -2px;
+                                top: -2px;
+                                border-radius: 10px;
+                                background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00,#ffff00, #ff0000, #fb0094, 
+                                    #0000ff, #00ff00,#ffff00, #ff0000);
+                                background-size: 400%;
+                                width: calc(100% + 4px);
+                                height: calc(100% + 4px);
+                                z-index: -1;
+                                animation: steam 20s linear infinite;
+                            }
+                        
+                            @keyframes steam {
+                                0% {
+                                    background-position: 0 0;
+                                }
+                        
+                                50% {
+                                    background-position: 400% 0;
+                                }
+                        
+                                100% {
+                                    background-position: 0 0;
+                                }
+                            }
+                        
+                            .card:after {
+                                filter: blur(100px);
+                            }
+                        </style>
+                        </head>
+                        <body>
+                        <div class="card">¡Gracias por tu comentario!</div>';
+                            header("refresh:1;url=tienda.php");
                             exit();
                         } else {
                             echo "Error al insertar la calificación: " . mysqli_error($conexion);
@@ -331,8 +470,6 @@ if (isset($_SESSION['nombreUsuario'])) {
                                 </form>
                             </div>
                         <?php endif; ?>
-
-                        <!-- Sección de comentarios -->
                         <?php
                         if ($resultado_comentarios) {
                             echo '<div class="comentarios">';
@@ -383,9 +520,9 @@ if (isset($_SESSION['nombreUsuario'])) {
         echo "Error al obtener la ID del usuario.";
     }
 } else {
-    // Si el usuario no ha iniciado sesión, redirigirlo a la página de inicio de sesión
+   
     header("Location: login.php");
-    exit(); // Es importante detener la ejecución del script después de redirigir al usuario.
+    exit(); 
 }
 ?>
 <style>
