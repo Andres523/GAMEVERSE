@@ -141,9 +141,7 @@ session_start();
   .mensaje-error {
       color: red; 
   }
-</style>
 
-<style>
       .btn4 {
   --border-color: linear-gradient(-45deg, #ffae00, #7e03aa, #00fffb);
   --border-width: .125em;
@@ -263,18 +261,15 @@ session_start();
 .btn4:where(:hover, :focus) {
   color: #fff;
 }
-    </style>
 
-<style>
     /*esto es para que la pagina sea responsive en pocas palabras se acomode al tamaño de la ventana coloquenlo donde puedan */
-    @media only screen and (max-width: 1200px) {
-            body {
-                width: 100%; 
-                margin: 5px; 
-                text-align: center;
-            }
-        }
-
+@media only screen and (max-width: 1200px) {
+  body {
+      width: 100%; 
+      margin: 5px; 
+      text-align: center;
+  }
+}
         
   .toggle-password {
   cursor: pointer;

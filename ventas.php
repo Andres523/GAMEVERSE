@@ -28,15 +28,16 @@ if (!$resultado_ventas) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../img/logo.png">
     <link rel="stylesheet" href="./styles/ventas.css">
-    <!-- Agrega tus estilos CSS -->
+
 </head>
-<body>
-    <div style="background-color: #0A1880; border-bottom: 10px solid #5436bf;">
-        <h1><center>Listado de Ventas</center></h1>
-    </div>
+<body>  
+    
+        <h1>Listado de Ventas</h1>
+        <a class="btn4" href="admin2.php">volver</a>
     <br><br>
     <table border="1">
         <tr>
+            
             <th>ID Compra</th>
             <th>ID Usuario</th>
             <th>Nombre</th>
@@ -89,7 +90,7 @@ if (!$resultado_ventas) {
             $.ajax({
                 url: 'actualizar_estado_repartidor.php', // El archivo PHP que manejará la actualización
                 method: 'POST',
-                data: { idCompra: idCompra, estadoActual: estadoActual }, // Enviamos el ID de la compra y el estado actual al servidor
+                data: { idCompra: idCompra, estadoActual: estadoActual },
                 success: function(response) {
                     // Cambiamos el color del botón y el texto según la respuesta del servidor
                     if (response == 'success') {
@@ -105,10 +106,12 @@ if (!$resultado_ventas) {
             });
         });
     </script>
-</body>
-</html>
+
 
 <?php
 // Cerrar la conexión a la base de datos
 mysqli_close($conexion);
 ?>
+
+</body>
+</html>
