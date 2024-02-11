@@ -112,6 +112,8 @@ function imprimirEstrellas($calificacion) {
         </div>
     </form>
 
+    <a href="carrito.php">carrito</a>
+
     <center class="d-flex justify-content-center">
         <div class="wrapper">
             <main>
