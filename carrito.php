@@ -11,55 +11,34 @@ if(isset($_SESSION['nombreUsuario'])) {
     }
 
     $loggedIn = true;
-    $id_juego = isset($_GET['id']) ? $_GET['id'] : null;
 
-    if ($loggedIn && $id_juego) {
-        $consulta = "SELECT p.id, p.nombre, p.descripcion, p.requisitos, p.precio, p.imagen, p.video_mp4, c.id as categoria_id, c.nombre as categoria_nombre
+    // Consulta para obtener los juegos en el carrito del usuario
+    $consulta_carrito = "SELECT p.id, p.nombre, p.descripcion, p.requisitos, p.precio, p.imagen, p.video_mp4, c.id as categoria_id, c.nombre as categoria_nombre
                     FROM productos p
                     LEFT JOIN categorias c ON p.categoria = c.id
-                    WHERE p.id = ?";
+                    INNER JOIN carrito car ON p.id = car.id_producto
+                    INNER JOIN usuarios u ON car.id_usuario = u.id
+                    WHERE u.nombre = ?";
 
-        $stmt = mysqli_prepare($conexion, $consulta);
-        mysqli_stmt_bind_param($stmt, "i", $id_juego);
-        mysqli_stmt_execute($stmt);
-        $resultado = mysqli_stmt_get_result($stmt);
+    $stmt_carrito = mysqli_prepare($conexion, $consulta_carrito);
+    mysqli_stmt_bind_param($stmt_carrito, "s", $nombreUsuario);
+    mysqli_stmt_execute($stmt_carrito);
+    $resultado_carrito = mysqli_stmt_get_result($stmt_carrito);
 
-        if ($resultado && mysqli_num_rows($resultado) > 0) {
-            $fila = mysqli_fetch_assoc($resultado);
+    // Consulta para obtener la ubicación y dirección del usuario
+    $consultaUbicacionDireccion = "SELECT ubicacion, direccion FROM usuarios WHERE nombre = ?";
+    $stmtUbicacionDireccion = mysqli_prepare($conexion, $consultaUbicacionDireccion);
+    mysqli_stmt_bind_param($stmtUbicacionDireccion, "s", $nombreUsuario);
+    mysqli_stmt_execute($stmtUbicacionDireccion);
+    $resultadoUbicacionDireccion = mysqli_stmt_get_result($stmtUbicacionDireccion);
 
-            // Consulta para obtener la ubicación del usuario
-            $consultaUbicacion = "SELECT ubicacion FROM usuarios WHERE nombre = ?";
-            $stmtUbicacion = mysqli_prepare($conexion, $consultaUbicacion);
-            mysqli_stmt_bind_param($stmtUbicacion, "s", $nombreUsuario);
-            mysqli_stmt_execute($stmtUbicacion);
-            $resultadoUbicacion = mysqli_stmt_get_result($stmtUbicacion);
-
-            if ($resultadoUbicacion && mysqli_num_rows($resultadoUbicacion) > 0) {
-                $filaUbicacion = mysqli_fetch_assoc($resultadoUbicacion);
-                $ubicacionUsuario = $filaUbicacion['ubicacion'];
-            } else {
-                $ubicacionUsuario = ''; 
-            }
-
-            // Consulta para obtener la dirección del usuario
-            $consultaDireccion = "SELECT direccion FROM usuarios WHERE nombre = ?";
-            $stmtDireccion = mysqli_prepare($conexion, $consultaDireccion);
-            mysqli_stmt_bind_param($stmtDireccion, "s", $nombreUsuario);
-            mysqli_stmt_execute($stmtDireccion);
-            $resultadoDireccion = mysqli_stmt_get_result($stmtDireccion);
-
-            if ($resultadoDireccion && mysqli_num_rows($resultadoDireccion) > 0) {
-                $filaDireccion = mysqli_fetch_assoc($resultadoDireccion);
-                $direccionUsuario = $filaDireccion['direccion'];
-            } else {
-                $direccionUsuario = ''; 
-            }
-        } else {
-            echo '<p>No se encontró el juego.</p>';
-        }
+    if ($resultadoUbicacionDireccion && mysqli_num_rows($resultadoUbicacionDireccion) > 0) {
+        $filaUbicacionDireccion = mysqli_fetch_assoc($resultadoUbicacionDireccion);
+        $ubicacionUsuario = $filaUbicacionDireccion['ubicacion'];
+        $direccionUsuario = $filaUbicacionDireccion['direccion'];
     } else {
-        header("Location: index.php");
-        exit();
+        $ubicacionUsuario = ''; 
+        $direccionUsuario = ''; 
     }
 
     mysqli_close($conexion);
@@ -68,95 +47,58 @@ if(isset($_SESSION['nombreUsuario'])) {
     exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../img/logo.png">
-    <link rel="stylesheet" href="./styles/compra.css">
-    
     <title>Confirmar Compra</title>
-    <!-- mari tus estilos CSS aquí -->
-    <script>
-    function calcularPrecioTotal() {
-        var precioUnitario = <?php echo $fila['precio']; ?>;
-        var cantidad = document.getElementById('cantidad').value;
-        var precioTotal = precioUnitario * cantidad;
-        document.getElementById('precio-total').textContent = 'Precio total: $' + precioTotal.toFixed(2);
-    }
-    </script>
 </head>
 <body>
-<div class="spinner-overlay">
-    <div class="spinner">
 
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.querySelector('.spinner-overlay').style.display = 'block';
-    });
-    window.addEventListener('load', function() {
-        document.querySelector('.spinner-overlay').style.display = 'none';
-    });
-    window.addEventListener('beforeunload', function(event) {
-        document.querySelector('.spinner-overlay').style.display = 'none';
-    });
-        </script>
+<h2>Confirmar Compra</h2>
+
+<?php
+$totalPrecio = 0; // Variable para almacenar el precio total inicializado en 0
+
+if ($resultado_carrito && mysqli_num_rows($resultado_carrito) > 0) {
+    while ($fila = mysqli_fetch_assoc($resultado_carrito)) {
+        // Sumar el precio de cada juego al total
+        $totalPrecio += $fila['precio'];
+?>
+    <div class="item-carrito">
+        <img src="<?php echo $fila['imagen']; ?>" alt="<?php echo $fila['nombre']; ?>">
+        <p>Nombre: <?php echo $fila['nombre']; ?></p>
+        <p>Precio: <?php echo $fila['precio']; ?> COP</p> <!-- Agregamos "COP" al final del precio -->
     </div>
-</div>
-    <div style="background-color: #0A1880; border-bottom: 10px solid #5436bf;">
-    <br>
-    <h2 class="h1"><center>Confirmar Compra</center></h2>
-    <br>
-    </div>
-    <br><br>
-    <div class="borde">
-        <img class="imagen"src="<?php echo $fila['imagen']; ?>" alt="<?php echo $fila['nombre']; ?>">
-        <div class="texto-contenedor">
-            <h2 class="nombre-juego"><?php echo $fila['nombre']; ?></h2>
-            <p>Precio unitario: <?php echo $fila['precio']; ?></p>
-        </div>
-        <div class="factura"> 
-    <form action="procesar_compra.php" method="post">
-            <input type="hidden" name="id_juego" value="<?php echo $fila['id']; ?>">
-            <input class="hidden" type="hidden" name="nombre_juego" value="<?php echo $fila['nombre']; ?>">
-            <input type="hidden" name="imagen_juego" value="<?php echo $fila['imagen']; ?>">
-            <input type="hidden" name="precio_unitario" value="<?php echo $fila['precio']; ?>">
+<?php
+    }
+} else {
+    echo '<p>No hay juegos en tu carrito.</p>';
+}
+?>
 
-            <div class="user-box">
-                <label for="cantidad">Cantidad:</label>
-                <input type="number" id="cantidad" name="cantidad" value="1" min="1" onchange="calcularPrecioTotal()" required><br><br>
-            </div>
-
-            <div class="user-box">
-                <label for="ubicacion">Ubicación:</label>
-                <input type="text" id="ubicacion" name="ubicacion" value="<?php echo htmlspecialchars($ubicacionUsuario); ?>" required><br><br>
-            </div>
-
-            <div class="user-box">
-                <label for="direccion">Dirección:</label>
-                <input type="text" id="direccion" name="direccion" value="<?php echo htmlspecialchars($direccionUsuario); ?>" required><br><br>
-            </div>
-            
-            </div>
-    </div>
-    <label class="contenedor">
-    <input type="checkbox" name="terminos" required> 
-    <span class="t">Acepto los términos y condiciones</span><br><br>
-    <div class="checkmark"></div>
+<form action="procesar_compra_carrito.php" method="post">
+<p>Precio total: <?php echo $totalPrecio," COP"; ?></p>
+    <?php if (!empty($ubicacionUsuario)) : ?>
+        <label>
+            Ubicación:
+            <input type="text" name="ubicacion" value="<?php echo $ubicacionUsuario; ?>">
+        </label>
+    <?php endif; ?>
+    <?php if (!empty($direccionUsuario)) : ?>
+        <label>
+            Dirección:
+            <input type="text" name="direccion" value="<?php echo $direccionUsuario; ?>">
+        </label>
+    <?php endif; ?>
+    <label>
+        <input type="checkbox" name="terminos" required> 
+        Acepto los términos y condiciones
     </label>
-        <div class="compra">
-            <div class="texto-precio">
-                <p><?php echo $fila['nombre']; ?></p>
-                <label class="texto-precio" id="precio-total">Precio total: $<?php echo $fila['precio']; ?></label>
-            </div>
-            <div class="pbutton">
-                <button class="btn4" type="submit" name="confirmar">Comprar</button>
-            </div>
-    </form>
-        </div>
-        
-    
+    <button type="submit" name="confirmar">Confirmar Compra</button>
+</form>
+
 </body>
 </html>
