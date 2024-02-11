@@ -238,6 +238,57 @@ if (isset($_SESSION['nombreUsuario'])) {
                 </div>
 
                 <main>
+                <?php
+
+if (isset($_SESSION['nombreUsuario'])) {
+    // Realiza la conexión a la base de datos
+    $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
+
+    if (!$conexion) {
+        die("Error de conexión: " . mysqli_connect_error());
+    }
+
+    // Obtén el ID del juego
+    $id_juego = $_GET['id'];
+
+    // Obtén el ID del usuario
+    $nombreUsuario = $_SESSION['nombreUsuario'];
+    $consulta_id_usuario = "SELECT id FROM usuarios WHERE nombre = '$nombreUsuario'";
+    $resultado_id_usuario = mysqli_query($conexion, $consulta_id_usuario);
+    $fila_id_usuario = mysqli_fetch_assoc($resultado_id_usuario);
+    $id_usuario = $fila_id_usuario['id'];
+
+    // Verifica si el juego ya está en la lista de deseos del usuario
+    $consulta_verificar_deseo = "SELECT * FROM deseados WHERE id_usuario = $id_usuario AND id_juego = $id_juego";
+    $resultado_verificar_deseo = mysqli_query($conexion, $consulta_verificar_deseo);
+
+    // Si el juego está en la lista de deseos, muestra el botón para eliminarlo de la lista
+    if (mysqli_num_rows($resultado_verificar_deseo) > 0) {
+        echo '<form action="eliminar_deseo.php" method="post">';
+        echo '<input type="hidden" name="id_juego" value="' . $id_juego . '">';
+        echo '<button type="submit" name="eliminar_deseo">Eliminar de la lista de deseos</button>';
+        echo '</form>';
+    } else {
+        // Si el juego no está en la lista de deseos, muestra el botón para agregarlo a la lista
+        echo '<form action="agregar_deseo.php" method="post">';
+        echo '<input type="hidden" name="id_juego" value="' . $id_juego . '">';
+        echo '<button type="submit" name="agregar_deseo"><span class="IconContainer">
+        <svg viewBox="0 0 384 512" height="0.9em" class="icon">
+          <path
+            d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"
+          ></path>
+        </svg>
+      </span>
+      <p class="text"></p></button>';
+        echo '</form>';
+    }
+
+    // Cierra la conexión a la base de datos
+    mysqli_close($conexion);
+} else {
+    echo "Debes iniciar sesión para agregar juegos a tu lista de deseos.";
+}
+?>
                     <section id="home", class="main-content">
                     <a href="compra.php?id=<?php echo $id_juego; ?>">Comprar juego</a>
                         <?php
@@ -337,3 +388,64 @@ if (isset($_SESSION['nombreUsuario'])) {
     exit(); // Es importante detener la ejecución del script después de redirigir al usuario.
 }
 ?>
+<style>
+.bookmarkBtn {
+  width: 100px;
+  height: 40px;
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.349);
+  background-color: rgb(12, 12, 12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+}
+
+.IconContainer {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(to bottom, rgb(255, 136, 255), rgb(172, 70, 255));
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+  transition-duration: 0.3s;
+}
+
+.icon {
+  border-radius: 1px;
+}
+
+.text {
+  height: 100%;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 1;
+  transition-duration: 0.3s;
+  font-size: 1.04em;
+}
+
+.bookmarkBtn:hover .IconContainer {
+  width: 90px;
+  transition-duration: 0.3s;
+}
+
+.bookmarkBtn:hover .text {
+  transform: translate(10px);
+  width: 0;
+  font-size: 0;
+  transition-duration: 0.3s;
+}
+
+.bookmarkBtn:active {
+  transform: scale(0.95);
+  transition-duration: 0.3s;
+}
+</style>
