@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./styles/admin2.css">
-     
-
-     <link rel="shortcut icon" href="../img/logo.png">
-</head>
-<body>
-
 <?php
 // Conexión a la base de datos
 $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
@@ -24,7 +11,7 @@ if (isset($_GET['nombre']) && !empty($_GET['nombre'])) {
     $nombreABuscar = $_GET['nombre'];
 
     // Consulta SQL para buscar productos por nombre
-    $consulta = "SELECT id, nombre, descripcion, requisitos, cantidad, precio, imagen FROM productos WHERE nombre LIKE '%$nombreABuscar%'";
+    $consulta = "SELECT id, nombre, descripcion, cantidad, precio, imagen FROM marketplace WHERE nombre LIKE '%$nombreABuscar%'";
 
     // Ejecutar la consulta
     $resultado = mysqli_query($conexion, $consulta);
@@ -38,7 +25,7 @@ if (isset($_GET['nombre']) && !empty($_GET['nombre'])) {
                 <th>Imagen: </th>
                 <th>Nombre: </th>
                 <th>Descripción: </th>
-                <th>Requisitos: </th>
+ 
                 <th>Cantidad: </th>
                 <th>Precio: </th>
                 <th>Acciones: </th>
@@ -50,7 +37,7 @@ if (isset($_GET['nombre']) && !empty($_GET['nombre'])) {
             echo '<td><img src="' . $fila['imagen'] . '" alt="' . $fila['nombre'] . '" height="50"></td>';
             echo '<td>' . $fila['nombre'] . '</td>';
             echo '<td>' . $fila['descripcion'] . '</td>';
-            echo '<td>' . $fila['requisitos'] . '</td>';
+
             echo '<td>';
             if ($fila['cantidad'] == 0) {
                 echo '<span style="color: red;">Agotado</span>';
@@ -71,13 +58,23 @@ if (isset($_GET['nombre']) && !empty($_GET['nombre'])) {
             </svg>
         </button>
             </td>';
+                  
+            
+                  
+            
+            echo '<tr>';
+            echo '<td colspan="8"> <hr> </td>'; 
+            echo '</tr>';
+            
+        
         }
-
+        
         echo '</table>';
+       
     } else {
-        // Si no se encuentran resultados
-        echo 'No se encontraron productos.';
+        echo 'No hay productos disponibles.';
     }
+
 } else {
     // Si no se proporcionó un parámetro de búsqueda válido
     echo 'Ingrese un término de búsqueda válido.';
@@ -87,6 +84,3 @@ if (isset($_GET['nombre']) && !empty($_GET['nombre'])) {
 mysqli_close($conexion);
 ?>
 
-    
-</body>
-</html>

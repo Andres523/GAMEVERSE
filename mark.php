@@ -117,12 +117,12 @@
             <input id="radio2" type="radio" name="css-tabs">
         
             <div id="tabs">
-                <label id="tab2" for="radio1">Juegos</label>
+                <label id="tab2" for="radio1">Marketplace</label>
             </div>
  
             <div id="content">
             <section id="content1">
-                    <h2>Productos</h2>
+                    <h2>Marketplace</h2>
                     <button class="btn4" id="openModalBtn">Agregar Producto</button>
                     <br><br>
                     <?php
@@ -132,7 +132,7 @@
                         die("Error de conexión: " . mysqli_connect_error());
                     }
                     
-                    $consulta = "SELECT id, nombre, descripcion, requisitos, cantidad, precio, imagen FROM productos";
+                    $consulta = "SELECT id, nombre, descripcion, cantidad, precio, imagen FROM marketplace";
                     
                     
                     if (isset($_GET['buscarNombre']) && !empty($_GET['buscarNombre'])) {
@@ -180,7 +180,7 @@
                                 };
                             
                                 // Enviar una solicitud GET al servidor para buscar productos por nombre
-                                xhr.open('GET', 'buscar_producto.php?nombre=' + encodeURIComponent(nombreABuscar), true);
+                                xhr.open('GET', 'buscar_producto2.php?nombre=' + encodeURIComponent(nombreABuscar), true);
                                 xhr.send();
                             });
                         });
@@ -200,7 +200,7 @@
                                         die("Error de conexión: " . mysqli_connect_error());
                                     }
                                 
-                                    $consulta = "SELECT id, nombre, descripcion, requisitos, cantidad, precio, imagen FROM productos";
+                                    $consulta = "SELECT id, nombre, descripcion, cantidad, precio, imagen FROM marketplace";
                                     $resultado = mysqli_query($conexion, $consulta);
                                 
                                     if (mysqli_num_rows($resultado) > 0) {
@@ -210,7 +210,6 @@
                                                 <th>Imagen: </th>
                                                 <th>Nombre: </th>
                                                 <th>Descripción: </th>
-                                                <th>Requisitos: </th>
                                                 <th>Cantidad: </th>
                                                 <th>Precio: </th>
                                                 <th>Acciones: </th>
@@ -222,7 +221,6 @@
                                             echo '<td><img src="' . $fila['imagen'] . '" alt="' . $fila['nombre'] . '" height="50"></td>';
                                             echo '<td>' . $fila['nombre'] . '</td>';
                                             echo '<td>' . $fila['descripcion'] . '</td>';
-                                            echo '<td>' . $fila['requisitos'] . '</td>';
                                             echo '<td>';
                                             if ($fila['cantidad'] == 0) {
                                                 echo '<span style="color: red;">Agotado</span>';
@@ -280,8 +278,6 @@
                                             <input type="text" id="edit-nombre" name="nombre">
                                             <label for="edit-descripcion">Descripción:</label>
                                             <textarea id="edit-descripcion" name="descripcion"></textarea>
-                                            <label for="edit-requisitos">Requisitos:</label>
-                                            <input type="text" id="edit-requisitos" name="requisitos">
                                             <label for="edit-cantidad">Cantidad:</label>
                                             <input type="number" id="edit-cantidad" name="cantidad">
                                             <label for="edit-precio">Precio:</label>
@@ -289,8 +285,6 @@
                                             <label for="edit-imagen">Imagen</label>
                                             <input type="file" id="edit-imagen" name="imagen" accept="image/*">
                                             <br>
-                                            <label for="edit-video">Video MP4</label>
-                                            <input type="file" id="edit-video" name="video_mp4" accept="video/mp4">
                                             <button type="submit">Guardar Cambios</button>
                                         
                                             
@@ -312,13 +306,12 @@
                                                 // Obtener los datos del formulario
                                                 $id = $_POST['id'];
                                                 $nombre = $_POST['nombre'];
-                                                $descripcion = $_POST['descripcion'];
-                                                $requisitos = $_POST['requisitos'];
                                                 $cantidad = $_POST['cantidad'];
+                                                $descripcion = $_POST['descripcion'];
                                                 $precio = $_POST['precio'];
                                             
                                                 // Consulta SQL para actualizar los datos del producto
-                                                $consulta = "UPDATE productos SET nombre='$nombre', descripcion='$descripcion', requisitos='$requisitos', cantidad=$cantidad, precio=$precio";
+                                                $consulta = "UPDATE marketplace SET nombre='$nombre', descripcion='$descripcion', cantidad=$cantidad, precio=$precio";
                                             
                                                 // Actualizar la ruta de la imagen si se ha cargado un nuevo archivo
                                                 if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
@@ -331,14 +324,6 @@
                                                 }
 
                                                 // Actualizar la ruta del video si se ha cargado un nuevo archivo
-                                                if (isset($_FILES['video_mp4']) && $_FILES['video_mp4']['error'] === UPLOAD_ERR_OK) {
-                                                    $video_nombre = $_FILES['video_mp4']['name'];
-                                                    $video_tmp = $_FILES['video_mp4']['tmp_name'];
-                                                    $video_ruta = "./vid/" . $video_nombre;
-                                                    move_uploaded_file($video_tmp, $video_ruta);
-                                                    // Actualizar la ruta del video en la base de datos
-                                                    $consulta .= ", video_mp4='$video_ruta'";
-                                                }
 
                                                 // Agregar la condición WHERE a la consulta
                                                 $consulta .= " WHERE id=$id";
@@ -383,7 +368,7 @@
                                             function obtenerDatosJuego(id) {
                                                 // Hacer una solicitud AJAX al servidor para obtener los datos del juego
                                                 $.ajax({
-                                                    url: 'obtener_datos_juego.php',
+                                                    url: 'obtener_datos_juego2.php',
                                                     method: 'GET',
                                                     data: {id: id},
                                                     success: function(response) {
@@ -391,11 +376,11 @@
                                                         // Llenar los campos del formulario con los datos del juego
                                                         $('#edit-nombre').val(juego.nombre);
                                                         $('#edit-descripcion').val(juego.descripcion);
-                                                        $('#edit-requisitos').val(juego.requisitos);
+                                                        
                                                         $('#edit-cantidad').val(juego.cantidad);
                                                         $('#edit-precio').val(juego.precio);
                                                         $('#edit-imagen').val(juego.imagen);
-                                                        $('#edit-video').val(juego.video_mp4);
+                                                       
                                                         $('#edit-categoria').val(juego.categoria);
 
                                                         // Mostrar el modal después de llenar los campos del formulario
@@ -459,7 +444,7 @@
                 cerrarModalEliminar(); // Cerrar el modal después de completar la eliminación
             }
         };
-        xhr.open('POST', 'eliminar_juego.php');
+        xhr.open('POST', 'eliminar_juego2.php');
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send('id_producto=' + idProducto);
     }
@@ -485,17 +470,16 @@
                                 <div id="productModal" class="modal">
                                     <div class="modal-content">
                                         <span class="close" id="closeProductModalBtn">&times;</span>
-                                        <form id="productForm" action="procesar_producto.php" method="post"     enctype="multipart/form-data">
+                                        <form id="productForm" action="procesar_productoM.php" method="post"     enctype="multipart/form-data">
                                             <div class="form-container">
                                                 <div class="form-column">
+                                                <div class="column">
                                                     <label for="nombre"></label>
                                                     <input type="text" id="nombre" name="nombre" placeholder="Nombre" required="Complete este campo">
 
                                                     <label for="descripcion"></label>
                                                     <input type="text" id="descripcion" name="descripcion" placeholder="Descripción" required="Complete este campo">
 
-                                                    <label for="requisitos"></label>
-                                                    <input type="text" id="requisitos" name="requisitos" placeholder="Requisitos" required="Complete este campo">
                                                 
                                                     <label for="cantidad"></label>
                                                     <input type="number" id="cantidad" name="cantidad" placeholder="Cantidad" required="Complete este campo">
@@ -503,59 +487,28 @@
                                                     <label for="precio"></label>
                                                     <input type="number" id="precio" name="precio" placeholder="Precio" required="Complete este campo">
                                                     <br>
-                                                    <label for="imagen">Imagen    </label>
-                                                    <input type="file" id="imagen" name="imagen" accept="image/*" placeholder="Imagen" required="Complete este campo">
-                                                    <br>
-                                                    <label for="video_mp4">Video MP4</label>
-                                                    <input type="file" id="video_mp4" name="video_mp4" accept="video/mp4"placeholder="Video MP4" required="Complete este campo">
-                                                    
+      
+                                                </div>
+                                                <div class="column">
+                                                <label for="edit-precio"></label>
+                                                    <input type="number" id="edit-precio" name="precio" placeholder="Precio:">
+                                                    IMAGEN
+                                                    <label for="edit-imagen" class="button">
+                                                      <span class="button__text">Agg Img</span>
+                                                      <span class="button__icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+                                                          <line y2="19" y1="5" x2="12" x1="12"></line>
+                                                          <line y2="12" y1="12" x2="19" x1="5"></line>
+                                                        </svg>
+                                                      </span>
+                                                    </label>
+                                                    <input class="button" type="file" id="edit-imagen" name="imagen" accept="image/*" style="display: none;">
+                                                </div>    
                                                 </div>
                                             </div>
 
 
-                                                <div class="form-column">
-                                                <?php
-                                                $conexion = new mysqli("127.0.0.1", "root", "", "gameverse");
-                                                                                
-                                                if ($conexion->connect_error) {
-                                                    die("Error de conexión a la base de datos: " . $conexion->connect_error);
-                                                }
-                                                
-                                                
-                                                $resultado = $conexion->query("SELECT id, nombre FROM categorias");
-                                                
-                                                if ($resultado === false) {
-                                                    die("Error en la consulta SQL: " . $conexion->error);
-                                                }
-                                                
-                                                if ($resultado->num_rows > 0) {
-                                                    $categorias = $resultado->fetch_all(MYSQLI_ASSOC);
-                                                } else {
-                                                    $categorias = [];
-                                                }
-                                                
-                                                
-                                                $conexion->close();
-                                                ?>
-                                                <ul>
-                                                    <h2>Categorías</h2>
-                                                    <?php foreach ($categorias as $categoria): ?>
-                                                        <li>
-                                                        <div class="checkbox">
-  
-                                                            <input class="checkbox__input" type="checkbox" id="categoria_<?php echo $categoria['id']; ?>" name="categorias[]" value="<?php echo $categoria['id']; ?>">
 
-                                                            <label class="checkbox__label" for="categoria_<?php echo $categoria['id']; ?>"><?php echo $categoria['nombre']; ?>
-                                                            <span class="checkbox__custom"></span>
-                                                            </label>
-                                                        </div>    
-                                                        </li>
-                                                    <?php endforeach; ?>
-                                                </ul>
-                                                </div>
-                                                <center>
-                                                <a href="./categorias.php">Agregar Categoría</a>
-                                                <br>
                                                 <button class="btn4" type="submit" name="guardarProducto">Guardar Producto</button>
                                                 </center>
                                             </form>
