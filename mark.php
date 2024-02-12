@@ -200,7 +200,7 @@
                                         die("Error de conexión: " . mysqli_connect_error());
                                     }
                                 
-                                    $consulta = "SELECT id, nombre, descripcion, cantidad, precio, imagen FROM marketplace";
+                                    $consulta = "SELECT id, nombre, descripcion, cantidad, precio, imagen, tipo FROM marketplace";
                                     $resultado = mysqli_query($conexion, $consulta);
                                 
                                     if (mysqli_num_rows($resultado) > 0) {
@@ -232,6 +232,7 @@
                                             echo '<td style="color: green;">' . $fila['precio'] . ' COP' . '</td>';
                                             echo '</td>';
                                             echo '<td>' . $fila['tipo'] .  '</td>';
+                                            $tipo = $fila['tipo'];
 
 
                                             echo '<td> 
@@ -262,9 +263,11 @@
                                     } else {
                                         echo 'No hay productos disponibles.';
                                     }
-                                
+                                    
+                       
                                     
                                     ?>
+                                   
 
                                 </div>
                                 
@@ -287,6 +290,22 @@
                                             <input type="number" id="edit-cantidad" name="cantidad">
                                             <label for="edit-precio">Precio:</label>
                                             <input type="number" id="edit-precio" name="precio">
+                                            
+                                            <label for="edit-tipo">Tipo:</label>
+                                            <select id="edit-tipo" name="tipo">
+                                                <?php 
+                                                if ($tipo == "posters")
+                                                    echo '<option value="posters">posters</option>';
+                                                    echo '<option value="consolas">Consolas</option>';
+                                                    echo '<option value="figuras">Figuras</option>';
+                                                
+                                                    
+                                                
+
+                                                ?>
+
+                                            </select>
+
                                             <label for="edit-imagen">Imagen</label>
                                             <input type="file" id="edit-imagen" name="imagen" accept="image/*">
                                             <br>
@@ -314,9 +333,11 @@
                                                 $cantidad = $_POST['cantidad'];
                                                 $descripcion = $_POST['descripcion'];
                                                 $precio = $_POST['precio'];
+                                                $tipo = $_POST['tipo'];
                                             
-                                                // Consulta SQL para actualizar los datos del producto
-                                                $consulta = "UPDATE marketplace SET nombre='$nombre', descripcion='$descripcion', cantidad=$cantidad, precio=$precio";
+                                              
+                                                $consulta = "UPDATE marketplace SET nombre='$nombre', descripcion='$descripcion', cantidad=$cantidad, precio=$precio, tipo='$tipo'";
+                                                                                            
                                             
                                                 // Actualizar la ruta de la imagen si se ha cargado un nuevo archivo
                                                 if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
