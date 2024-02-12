@@ -146,7 +146,7 @@ function imprimirEstrellas($calificacion) {
                                     echo '<p style="color: green;">Precio: $' . $fila['precio'] . '</p>';
                                 } else {
                                     echo '<p style="color: red; text-align: center;">Agotado</p>';
-                                }
+                                }   
 
                                 echo '</figcaption>';
                                 echo '</figure>';
