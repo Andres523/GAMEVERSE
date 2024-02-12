@@ -22,11 +22,14 @@ if (isset($_SESSION['nombreUsuario'])) {
             $id_juego = $_GET['id'];
 
             // Consulta para obtener los detalles del juego
-            $consulta = "SELECT p.id, p.nombre, p.descripcion, p.requisitos, p.precio, p.imagen, p.video_mp4, GROUP_CONCAT(c.nombre SEPARATOR ', ') AS categorias
+            $consulta = "SELECT p.id, p.nombre, p.descripcion, p.requisitos, p.precio, p.imagen, p.video_mp4, p.cantidad, GROUP_CONCAT(c.nombre SEPARATOR ', ') AS categorias
             FROM productos p
             LEFT JOIN categorias c ON FIND_IN_SET(c.id, p.categoria)
             WHERE p.id = $id_juego
             GROUP BY p.id";
+
+            
+
 
 
 
@@ -453,19 +456,26 @@ if (isset($_SESSION['nombreUsuario'])) {
 } else {
     echo "Debes iniciar sesión para agregar juegos a tu lista de deseos.";
 }
+$cantidad = $fila['cantidad']
 ?>
+
                     <section id="home", class="main-content">
+
+                    <?php if ($cantidad > 0): ?>
                     <a href="compra.php?id=<?php echo $id_juego; ?>">
                     <button class="compra" data-text="Awesome">
+                    
                     <span class="actual-text">&nbsp;¡COMPRALO!&nbsp;</span>
                     <span aria-hidden="true" class="hover-text">&nbsp;¡COMPRALO!&nbsp;</span></button></a>
                     <br><br><br>
 
                         <?php if ($loggedIn): ?>
                             <?php if ($enCarrito): ?>
-                                <p>Este juego ya está en tu carrito.</p>
+                                <a href="carrito.php" style="text-decoration: none; color: yellow;"> El juego ya se encuentra en tu carrito </a>
                             <?php else: ?>
                                 <form action="agregar_carrito.php" method="post">
+                                    <br>
+                                    <br>    
                                     <input type="hidden" name="id_juego" value="<?php echo $id_juego; ?>">
                                     <center>
                                       <button class="Btn CartBtn" type="submit" name="agregar_carrito">
@@ -483,9 +493,15 @@ if (isset($_SESSION['nombreUsuario'])) {
                         <?php else: ?>
                             <p>Debes iniciar sesión para agregar juegos a tu carrito.</p>
                         <?php endif; ?>
+                        <br><br><br>
+<?php else: ?>
+<p style="color: red; font-size: 80px">Agotado</p>
+<?php endif; ?>
                         <?php
+
                         echo '<p style="color: green; text-align: center; font-size: 24px;">Precio: $' . $fila['precio'] . " COP".'</p>';
                         ?>
+                        <br><br>
 
                         <!-- Mostrar promedio de calificaciones -->
                         <?php
