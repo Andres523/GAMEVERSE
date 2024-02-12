@@ -266,18 +266,22 @@
                         </script>
                     </div>
                     <!-- MODAL editar-->
+
                     <div id="modalEditar" class="modal">
                         <div class="modal-content">
                             <div class="container">
                                 <br>
+                                <h1 class="ti" >EDITAR USUARIO</h1>
+                                <div class="column">
                                 <input type="hidden" id="idUsuarioEditar" value="">
                                 <input type="text" id="nombreUsuarioEditar" placeholder="Nombre">
                                 <input type="email" id="correoUsuarioEditar" placeholder="Correo">
                                 <input type="password" id="contrasenaUsuarioEditar" placeholder="Contraseña">
-                                <button class="btn4" onclick="guardarCambiosUsuario()">Guardar Cambios</button>
+                                <span style="color: black" class="toggleMostrarContrasena" onclick="toggleMostrarContrasena()">Mostrar</span>
+                                <button class="btn4" onclick="guardarCambiosUsuario()">Guardar</button>
                                 <button class="btn4" onclick="cerrarModalEditar()">Cerrar</button>
-                                <br><br>
-                                <span class="toggleMostrarContrasena" onclick="toggleMostrarContrasena()">Mostrar</span>
+                                <br><br><br>
+                                </div>
                                         <script>
                                             function toggleMostrarContrasena() {
                                                 var campoContrasena = document.getElementById("contrasenaUsuarioEditar");
@@ -442,7 +446,42 @@
 
 
 <style>
-    
+
+
+input,
+textarea {
+  font-weight: 500;
+  font-size: 11px;
+  color: #fff;
+  background-color: rgb(28, 28, 30);
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  padding: 8px;
+  transition: 0.4s;
+}
+
+input:hover {
+  box-shadow: 0 0 0 2px rgba(135, 207, 235, 0.200);
+}
+
+input:focus {
+  box-shadow: 0 0 0 2px skyblue;
+}
+.column {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.ti{
+    margin-left: 27px;
+    margin-top: 10px;
+    color: black;
+}
+
+
 main {
     max-width: 800px;
     height: 600px;
@@ -462,17 +501,6 @@ main {
 
 
 }
-    
-
-    main {
-        max-width: 800px;
-        height: 600px;
-        margin: 30px auto;
-        background: #2d2f33;
-        padding: 30px;
-        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-    }
-
     .tab table {
         width: 100%;
         border-collapse: collapse;
@@ -490,15 +518,6 @@ body {
 	background-color: #383c41;
 	color: #fcf9f4;
 }
-
-main {
-	max-width: 800px;
-	height: 600px;
-	margin: 30px auto;
-	background: #2d2f33;
-	padding: 30px;
-	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-}	
 
 input[name="css-tabs"] {
 	display: none;
@@ -846,7 +865,7 @@ footer {
 	text-shadow: #040f16;
 	opacity:0.9;
 	color:#ffffff;
-	background-color: #2b2e31;
+	background-color: #222528;
 	overflow: auto;
 	padding-left: 20px;
 }
