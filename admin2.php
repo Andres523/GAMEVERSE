@@ -78,7 +78,7 @@ if ($resultadoDatos && $fila = mysqli_fetch_assoc($resultadoDatos)) {
         
         
         <div class="column">
-
+          <a href="mark.php" style="color: inherit; text-decoration: none;">
           <div class="card">
             <div class="icon-wrapper">
             <i class="fa-solid fa-dragon"></i>
@@ -88,7 +88,7 @@ if ($resultadoDatos && $fila = mysqli_fetch_assoc($resultadoDatos)) {
               Agregar, editar o eliminar productos, comics, figuras de tu catalogo.
             </p>
           </div>
-        
+          </a>
         </div>
 
         <div class="column">

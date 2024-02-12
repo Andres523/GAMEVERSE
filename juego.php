@@ -2,6 +2,9 @@
 session_start();
 
 if (isset($_SESSION['nombreUsuario'])) {
+
+
+   
     
     $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
 
@@ -22,11 +25,16 @@ if (isset($_SESSION['nombreUsuario'])) {
             $id_juego = $_GET['id'];
 
             // Consulta para obtener los detalles del juego
-            $consulta = "SELECT p.id, p.nombre, p.descripcion, p.requisitos, p.precio, p.imagen, p.video_mp4, GROUP_CONCAT(c.nombre SEPARATOR ', ') AS categorias
+            $consulta = "SELECT p.id, p.nombre, p.descripcion, p.requisitos, p.precio, p.imagen, p.video_mp4, p.cantidad, GROUP_CONCAT(c.nombre SEPARATOR ', ') AS categorias
             FROM productos p
             LEFT JOIN categorias c ON FIND_IN_SET(c.id, p.categoria)
             WHERE p.id = $id_juego
             GROUP BY p.id";
+
+            
+
+            
+
 
 
 
@@ -225,6 +233,7 @@ if (isset($_SESSION['nombreUsuario'])) {
                         }
                     }
                 }
+                
 
                 ?>
                 <!DOCTYPE html>
@@ -448,24 +457,66 @@ if (isset($_SESSION['nombreUsuario'])) {
     }
 
 
+
     // Cierra la conexión a la base de datos
     mysqli_close($conexion);
 } else {
     echo "Debes iniciar sesión para agregar juegos a tu lista de deseos.";
 }
+$cantidad = $fila['cantidad'];
+
+$conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
+
+$id_juego = $_GET['id']; // Obtén el id del juego desde la URL
+
+$consulta_promedio = "SELECT AVG(calificacion) AS promedio FROM calificaciones WHERE id_juego = $id_juego";
+$resultado_promedio = mysqli_query($conexion, $consulta_promedio);
+$fila_promedio = mysqli_fetch_assoc($resultado_promedio);
+$promedio_calificaciones = $fila_promedio['promedio'];
+
+
+
+    function imprimirEstrellas($calificacion) {
+        if ($calificacion === null) {
+            return 'Sin calificación'; 
+        }
+    
+        $estrellas = '';
+        $calificacion = round($calificacion); // Redondear la calificación
+    
+        
+        for ($i = 0; $i < 5; $i++) {
+            if ($i < $calificacion) {
+                $estrellas .= '<span style="color: gold;">★</span>'; // Estrella llena
+            } else {
+                $estrellas .= '<span style="color: grey;">★</span>'; // Estrella vacía
+            }
+        }
+        return $estrellas;
+    }
+    
+
 ?>
+
+
+
                     <section id="home", class="main-content">
+
+                    <?php if ($cantidad > 0): ?>
                     <a href="compra.php?id=<?php echo $id_juego; ?>">
                     <button class="compra" data-text="Awesome">
+                    
                     <span class="actual-text">&nbsp;¡COMPRALO!&nbsp;</span>
                     <span aria-hidden="true" class="hover-text">&nbsp;¡COMPRALO!&nbsp;</span></button></a>
                     <br><br><br>
 
-                        <?php if ($loggedIn): ?>
+                        
                             <?php if ($enCarrito): ?>
-                                <p>Este juego ya está en tu carrito.</p>
+                                <a href="carrito.php" style="text-decoration: none; color: yellow;"> El juego ya se encuentra en tu carrito </a>
                             <?php else: ?>
                                 <form action="agregar_carrito.php" method="post">
+                                    <br>
+                                    <br>    
                                     <input type="hidden" name="id_juego" value="<?php echo $id_juego; ?>">
                                     <center>
                                       <button class="Btn CartBtn" type="submit" name="agregar_carrito">
@@ -480,19 +531,38 @@ if (isset($_SESSION['nombreUsuario'])) {
 
                                 </form>
                             <?php endif; ?>
-                        <?php else: ?>
-                            <p>Debes iniciar sesión para agregar juegos a tu carrito.</p>
-                        <?php endif; ?>
+
+                        <br><br><br>
+<?php else: ?>
+<p style="color: red; font-size: 80px">Agotado</p>
+<?php endif; ?>
                         <?php
+
                         echo '<p style="color: green; text-align: center; font-size: 24px;">Precio: $' . $fila['precio'] . " COP".'</p>';
                         ?>
+                        <br><br>
 
                         <!-- Mostrar promedio de calificaciones -->
                         <?php
-                        echo "<p>Promedio de calificaciones: " . round($promedio_calificaciones, 2) . "</p>";
+                        
+                            // Verifica si la consulta se realizó con éxito
+                            
+                        
+                            // Muestra la calificación del juego actual
+                            echo '<div>';
+                            echo '<h3 class="h2"><center>' . imprimirEstrellas($promedio_calificaciones) . '</center></h3>';
+                            echo '<br><br>';
+                            echo '</div>';
+                        
                         ?>
+                          
+                        
+<?php
 
-                        <!-- Formulario para calificar y dejar un comentario -->
+
+
+mysqli_close($conexion);
+?>
                         <?php if ($loggedIn): ?>
                             <div class="calificacion-comentario-form">
                                 <h3>Califica y comenta sobre este juego</h3>
