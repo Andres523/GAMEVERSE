@@ -88,6 +88,7 @@ mysqli_close($conexion);
                 <td>
                     <input type="number" value="1" min="0" max="<?php echo $fila['cantidad']; ?>" class="qtyinput" id="qty_<?php echo $fila['id']; ?>" onchange="actualizarPrecio(<?php echo $fila['id']; ?>)">
                 </td>
+                <td><?php echo $fila['nombre']; ?></td>
                 <td id="precio_unitario_<?php echo $fila['id']; ?>"><?php echo $fila['precio']; ?></td>
                 <td id="precio_total_<?php echo $fila['id']; ?>"><?php echo $fila['precio']; ?></td>
                 <td>    <span class="remove"><a href="eliminar_carrito.php?id=<?php echo $fila['id']; ?>"><img src="https://i.imgur.com/h1ldGRr.png" alt="X"></a></span></td>
@@ -98,11 +99,10 @@ mysqli_close($conexion);
         echo '<tr><td colspan="5">No hay juegos en tu carrito.</td></tr>';
     }
     ?>
-    <tr class="totalprice">
-        <td class="light">Total:</td>
-        <td colspan="2">&nbsp;</td>
-        <td colspan="2" id="total"><?php echo '$' . number_format($totalPrecio, 2); ?></td>
-    </tr>
+<tr class="totalprice">
+    <td class="light" colspan="3">Total:</td>
+    <td colspan="2" id="total">$0.00</td>
+</tr>
 
                 <tr class="userlocation">
                     <td colspan="2"><input type="text" name="ubicacion" placeholder="Ubicación" value="<?php echo htmlspecialchars($ubicacionUsuario); ?>"></td>
@@ -127,32 +127,37 @@ mysqli_close($conexion);
         </table>
     </div>
 </div>
+
+
 <script>
-    function actualizarTotal(idProducto) {
-        var cantidad = document.getElementById('qty_' + idProducto).value;
-        var precioUnitario = parseFloat(document.getElementById('precio_' + idProducto).innerText);
-        var totalProducto = cantidad * precioUnitario;
-        document.getElementById('total').innerText = '$' + totalProducto.toFixed(2);
-    }
+function actualizarTotal() {
+    var total = 0;
+    var productos = document.querySelectorAll('.productitm');
+    productos.forEach(function(producto) {
+        var precioTotalProducto = parseFloat(producto.querySelector('td[id^="precio_total_"]').innerText.replace('$', ''));
+        total += precioTotalProducto;
+    });
+    document.getElementById('total').innerText = '$' + total.toFixed(2);
+}
+
     function actualizarPrecio(idProducto) {
         var cantidad = parseInt(document.getElementById('qty_' + idProducto).value);
         var precioUnitario = parseFloat(document.getElementById('precio_unitario_' + idProducto).innerText);
         var precioTotal = cantidad * precioUnitario;
         document.getElementById('precio_total_' + idProducto).innerText = '$' + precioTotal.toFixed(2);
 
-        // Recalcular el precio total
-        var total = 0;
-        var productos = document.querySelectorAll('.productitm');
-        productos.forEach(function(producto) {
-            var precioProducto = parseFloat(producto.querySelector('.qtyinput').value) * parseFloat(producto.querySelector('.precio_unitario').innerText);
-            total += precioProducto;
-        });
-        document.getElementById('total').innerText = '$' + total.toFixed(2);
+        actualizarTotal(); // Llama a esta función para recalcular el total
     }
 </script>
 
+
+
+
+
+
 </body>
 </html>
+
 
 <style>
     @import url(https://fonts.googleapis.com/css?family=Fredoka+One);
