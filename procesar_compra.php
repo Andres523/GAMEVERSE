@@ -101,9 +101,7 @@ if(isset($_SESSION['nombreUsuario'])) {
 
             // Verificar si la inserción fue exitosa
             if(mysqli_stmt_affected_rows($stmt_insertar_compra) > 0) {
-                echo "La compra se ha realizado exitosamente.";
-                echo "<br>";
-                echo "Serás redirigido a la tienda en: <span id='contador'>7</span> segundos ";
+               
 
                 // Actualizar la cantidad de juegos disponibles
                 $consulta_actualizar_cantidad = "UPDATE productos SET cantidad = cantidad - ? WHERE id = ?";
@@ -119,7 +117,7 @@ if(isset($_SESSION['nombreUsuario'])) {
 
                 // Verificar si la actualización fue exitosa
                 if(mysqli_stmt_affected_rows($stmt_actualizar_cantidad) > 0) {
-                    echo "Se ha actualizado la cantidad de juegos disponibles.";
+                
                 } else {
                     echo "No se pudo actualizar la cantidad de juegos disponibles.";
                 }
@@ -127,7 +125,7 @@ if(isset($_SESSION['nombreUsuario'])) {
                 echo "<br>";
 
                 // Crear el mensaje del correo electrónico
-                $to = $correo_usuario; // Correo del usuario
+                $to = $correo_usuario; 
                 $subject = "Confirmación de compra en GameVerse";
                 $message = "Hola $nombreUsuario,\n\n";
                 $message .= "¡Tu compra en GameVerse ha sido confirmada!\n\n";
@@ -146,13 +144,20 @@ if(isset($_SESSION['nombreUsuario'])) {
                 
                 // Enviar el correo electrónico
                 mail($to, $subject, $message, $headers);
-
-                echo "<br>";
-                echo "<a href='tienda.php'> Seguir explorando </a>";
-                mysqli_close($conexion);
+                mysqli_close($conexion);    
                 header("refresh:7;url=tienda.php");
+
+
+
+                echo "La compra se ha realizado exitosamente.";
+                echo "<br>";
+                echo "<br>";
+                echo "<br>";
+                echo "Serás redirigido a la tienda en: <span id='contador'>3</span> segundos ";
+
+
                 echo "<script>
-                    var segundos = 7;
+                    var segundos = 3;
                     setInterval(function() {
                         segundos--;
                         document.getElementById('contador').innerText = segundos;

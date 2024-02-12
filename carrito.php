@@ -76,24 +76,28 @@ mysqli_close($conexion);
             <tbody>
            
             <tbody>
-    <?php
-    $totalInicial = 0; // Inicializar el total inicial
+              <form action="comprar_carrito.php" method="post">
+                  <?php
+                  $totalInicial = 0; // Inicializar el total inicial
 
-    if ($resultado_carrito && mysqli_num_rows($resultado_carrito) > 0) {
-        while ($fila = mysqli_fetch_assoc($resultado_carrito)) {
-            // Sumar el precio de cada juego al total inicial
-            $totalInicial += $fila['precio'];
-            ?>
-            <tr class="productitm">
-                <td><img src="<?php echo $fila['imagen']; ?>" class="thumb"></td>
-                <td>
-                    <input type="number" value="1" min="1" max="<?php echo $fila['cantidad']; ?>" class="qtyinput" id="qty_<?php echo $fila['id']; ?>" onchange="actualizarPrecio(<?php echo $fila['id']; ?>)">
-                </td>
-                <td><?php echo $fila['nombre']; ?></td>
-                <td id="precio_unitario_<?php echo $fila['id']; ?>" style="display:none"><?php echo $fila['precio']; ?></td>
-                <td id="precio_total_<?php echo $fila['id']; ?>"><?php echo $fila['precio']; ?></td>
-                <td>    <span class="remove"><a href="eliminar_carrito.php?id=<?php echo $fila['id']; ?>"><img src="https://i.imgur.com/h1ldGRr.png" alt="X"></a></span></td>
-            </tr>   
+                  if ($resultado_carrito && mysqli_num_rows($resultado_carrito) > 0) {
+                      while ($fila = mysqli_fetch_assoc($resultado_carrito)) {
+                          // Sumar el precio de cada juego al total inicial
+                          $totalInicial += $fila['precio'];
+                          ?>
+                        <tr class="productitm">
+                            <td><img src="<?php echo $fila['imagen']; ?>" class="thumb"></td>
+                            <td>
+                            <input type="number" value="1" min="1" max="<?php echo $fila['cantidad']; ?>" class="qtyinput" id="qty_<?php echo $fila['id']; ?>" name="cantidad[]" onchange="actualizarPrecio(<?php echo $fila['id']; ?>)">
+
+                            </td>
+                            <td><?php echo $fila['nombre']; ?></td>
+                            <td id="precio_unitario_<?php echo $fila['id']; ?>" style="display:none"><?php echo $fila['precio']; ?></td>
+                            <td id="precio_total_<?php echo $fila['id']; ?>"><?php echo $fila['precio']; ?></td>
+                            <td>    <span class="remove"><a href="eliminar_carrito.php?id=<?php echo $fila['id']; ?>"><img src="https://i.imgur.com/h1ldGRr.png" alt="X"></a></span></td>
+                        </tr>  
+                        <input type="hidden" name="id_juego[]" value="<?php echo $fila['id']; ?>">
+                        <input type="hidden" name="nombre_juego[]" value="<?php echo $fila['nombre']; ?>">
     <?php
         }
     } else {
@@ -101,31 +105,34 @@ mysqli_close($conexion);
     }
     ?>
     <?php
-    echo '<tr class="totalprice">
-          <td class="light" colspan="3">Total:</td>
-          <td colspan="2" id="total">$' . number_format($totalInicial, 2) . '</td>
-      </tr>';
-      ?>
+                          echo '<tr class="totalprice">
+                                <td class="light" colspan="3">Total:</td>
+                                <td colspan="2" id="total">$' . number_format($totalInicial, 2) . '</td>
+                            </tr>';
+                            ?>
 
-                <tr class="userlocation">
-                    <td colspan="2"><input type="text" name="ubicacion" placeholder="Ubicación" value="<?php echo htmlspecialchars($ubicacionUsuario); ?>"></td>
-                    <td colspan="3"><input type="text" name="direccion" placeholder="Dirección" value="<?php echo htmlspecialchars($direccionUsuario); ?>"></td>
-                </tr>
-
-
-                <tr class="acceptterms">
-                    <td colspan="5">
-                        <label>
-                            <input type="checkbox" name="terminos" required>
-                            Acepto los términos y condiciones
-                        </label>
-                    </td>
-                </tr>
+                          <tr class="userlocation">
+                              <td colspan="2"><input type="text" name="ubicacion" placeholder="Ubicación" value="<?php echo htmlspecialchars($ubicacionUsuario); ?>"></td>
+                              <td colspan="3"><input type="text" name="direccion" placeholder="Dirección" value="<?php echo htmlspecialchars($direccionUsuario); ?>"></td>
+                          </tr>
 
 
-                <tr class="checkoutrow">
-                    <td colspan="5" class="checkout"><button id="submitbtn" name="comprar">Comprar</button></td>
-                </tr>
+                          <tr class="acceptterms">
+                              <td colspan="5">
+                                  <label>
+                                     
+                                  <input type="checkbox" name="confirmar" value="1" required>
+                                    <label for="confirmar"> Acepto los términos y condiciones</label>
+                                     
+                                  </label>
+                              </td>
+                          </tr>
+
+
+                          <tr class="checkoutrow">
+                              <td colspan="5" class="checkout"><button id="submitbtn" name="comprar">Comprar</button></td>
+                          </tr>
+                </form>
             </tbody>
         </table>
     </div>
