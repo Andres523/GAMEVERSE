@@ -58,8 +58,8 @@ if(isset($_SESSION['nombreUsuario'])) {
                 $ids_juegos = $_POST['id_juego'];
                 $nombres_juegos = $_POST['nombre_juego'];
                 $cantidades = $_POST['cantidad'];
-    
-                // Realizar el procesamiento para cada juego del carrito
+
+
                 foreach($ids_juegos as $key => $id_juego) {
                     $nombre_juego = $nombres_juegos[$key];
                     $cantidad = $cantidades[$key];
@@ -74,12 +74,19 @@ if(isset($_SESSION['nombreUsuario'])) {
                     mysqli_stmt_bind_param($stmt_actualizar_cantidad, "ii", $cantidadj, $id_juego);
                     mysqli_stmt_execute($stmt_actualizar_cantidad);
 
+                    $consulta_precio_juego = "SELECT precio FROM productos WHERE id = ?";
+                    $stmt_precio_juego = mysqli_prepare($conexion, $consulta_precio_juego);
+                    mysqli_stmt_bind_param($stmt_precio_juego, "i", $id_juego);
+                    mysqli_stmt_execute($stmt_precio_juego);
+                    $resultado_precio_juego = mysqli_stmt_get_result($stmt_precio_juego);
+                    $fila_precio_juego = mysqli_fetch_assoc($resultado_precio_juego);
+                    $precio_juego = $fila_precio_juego['precio'];
     
 
 
   
 
-                $consulta_usuario = "SELECT id, correo FROM usuarios WHERE nombre = ?";
+                    $consulta_usuario = "SELECT id, correo FROM usuarios WHERE nombre = ?";
                     $stmt_usuario = mysqli_prepare($conexion, $consulta_usuario);
                     mysqli_stmt_bind_param($stmt_usuario, "s", $nombreUsuario);
                     mysqli_stmt_execute($stmt_usuario);
@@ -88,19 +95,72 @@ if(isset($_SESSION['nombreUsuario'])) {
                     $id_usuario = $fila_usuario['id'];
                     $correo_usuario = $fila_usuario['correo'];
 
-                // Insertar los datos de la compra en la tabla correspondiente
-                $consulta_insertar_compra = "INSERT INTO compras (id_usuario, id_producto, fecha_compra, precio, cantidad) VALUES (?, ?, NOW(), ?, ?)";
-                $stmt_insertar_compra = mysqli_prepare($conexion, $consulta_insertar_compra);
-                mysqli_stmt_bind_param($stmt_insertar_compra, "iiii", $id_usuario, $id_juego, $precio_juego, $cantidad);
-     
-                if (mysqli_stmt_execute($stmt_insertar_compra)) {
-                    
-                } else {
-                    echo "Error al insertar la compra: " . mysqli_stmt_error($stmt_insertar_compra);
-                }
-                
 
-                // Actualizar la cantidad disponible del juego en la base de datos
+
+
+
+
+
+
+
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        // Tu código de conexión a la base de datos y configuración de variables
+                    
+                        // Recuperar el ID del usuario
+                        $consulta_usuario = "SELECT id FROM usuarios WHERE nombre = ?";
+                        $stmt_usuario = mysqli_prepare($conexion, $consulta_usuario);
+                        mysqli_stmt_bind_param($stmt_usuario, "s", $nombreUsuario);
+                        mysqli_stmt_execute($stmt_usuario);
+                        $resultado_usuario = mysqli_stmt_get_result($stmt_usuario);
+                        $fila_usuario = mysqli_fetch_assoc($resultado_usuario);
+                        $id_usuario = $fila_usuario['id'];
+                    
+                        // Recopilar precios de los productos
+                        $precios = array();
+                        foreach ($ids_juegos as $id_juego) {
+                            $consulta_precio = "SELECT precio FROM productos WHERE id = ?";
+                            $stmt_precio = mysqli_prepare($conexion, $consulta_precio);
+                            mysqli_stmt_bind_param($stmt_precio, "i", $id_juego);
+                            mysqli_stmt_execute($stmt_precio);
+                            $resultado_precio = mysqli_stmt_get_result($stmt_precio);
+                            $fila_precio = mysqli_fetch_assoc($resultado_precio);
+                            $precios[] = $fila_precio['precio'];
+                        }
+                    
+                        // Iterar sobre los juegos comprados
+                        for ($i = 0; $i < count($ids_juegos); $i++) {
+                            $id_juego = $ids_juegos[$i];
+                            $cantidad = $cantidades[$i];
+                            $precio = $precios[$i];
+                    
+                            // Verificar si el producto ya existe en la tabla de compras para este usuario
+                            $consulta_existencia_compra = "SELECT id_compra, cantidad FROM compras WHERE id_usuario = ? AND id_producto = ?";
+                            $stmt_existencia_compra = mysqli_prepare($conexion, $consulta_existencia_compra);
+                            mysqli_stmt_bind_param($stmt_existencia_compra, "ii", $id_usuario, $id_juego);
+                            mysqli_stmt_execute($stmt_existencia_compra);
+                            $resultado_existencia_compra = mysqli_stmt_get_result($stmt_existencia_compra);
+                    
+                            if (mysqli_num_rows($resultado_existencia_compra) > 0) {
+                                // El producto ya existe, actualizar la cantidad
+                                $fila_existencia_compra = mysqli_fetch_assoc($resultado_existencia_compra);
+                                $id_compra_existente = $fila_existencia_compra['id_compra'];
+                                $cantidad_existente = $fila_existencia_compra['cantidad'];
+                                $nueva_cantidad = $cantidad_existente + $cantidad;
+                    
+                                // Actualizar la cantidad en la tabla de compras
+                                $consulta_actualizar_compra = "UPDATE compras SET cantidad = ? WHERE id_compra = ?";
+                                $stmt_actualizar_compra = mysqli_prepare($conexion, $consulta_actualizar_compra);
+                                mysqli_stmt_bind_param($stmt_actualizar_compra, "ii", $nueva_cantidad, $id_compra_existente);
+                                mysqli_stmt_execute($stmt_actualizar_compra);
+                            } else {
+                                // Insertar un nuevo registro de compra
+                                $consulta_insertar_compra = "INSERT INTO compras (id_usuario, id_producto, fecha_compra, cantidad, precio) VALUES (?, ?, NOW(), ?, ?)";
+                                $stmt_insertar_compra = mysqli_prepare($conexion, $consulta_insertar_compra);
+                                mysqli_stmt_bind_param($stmt_insertar_compra, "iiid", $id_usuario, $id_juego, $cantidad, $precio);
+                                mysqli_stmt_execute($stmt_insertar_compra);
+                            }
+                        }
+                    }
 
 
                 // Enviar correo electrónico de confirmación al usuario

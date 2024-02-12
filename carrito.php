@@ -30,21 +30,6 @@ if(isset($_SESSION['nombreUsuario'])) {
     header("Location: index.php");
     exit();
 }
-$consultaUbicacionDireccion = "SELECT ubicacion, direccion FROM usuarios WHERE nombre = ?";
-$stmtUbicacionDireccion = mysqli_prepare($conexion, $consultaUbicacionDireccion);
-mysqli_stmt_bind_param($stmtUbicacionDireccion, "s", $nombreUsuario);
-mysqli_stmt_execute($stmtUbicacionDireccion);
-$resultadoUbicacionDireccion = mysqli_stmt_get_result($stmtUbicacionDireccion);
-
-if ($resultadoUbicacionDireccion && mysqli_num_rows($resultadoUbicacionDireccion) > 0) {
-    $filaUbicacionDireccion = mysqli_fetch_assoc($resultadoUbicacionDireccion);
-    $ubicacionUsuario = $filaUbicacionDireccion['ubicacion'];
-    $direccionUsuario = $filaUbicacionDireccion['direccion'];
-} else {
-    $ubicacionUsuario = ''; 
-    $direccionUsuario = ''; 
-}
-mysqli_close($conexion);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -110,11 +95,45 @@ mysqli_close($conexion);
                                 <td colspan="2" id="total">$' . number_format($totalInicial, 2) . '</td>
                             </tr>';
                             ?>
+                            <?php
+                            // Consulta para obtener la ubicación del usuario
+                            $consultaUbicacion = "SELECT ubicacion FROM usuarios WHERE nombre = ?";
+                            $stmtUbicacion = mysqli_prepare($conexion, $consultaUbicacion);
+                            mysqli_stmt_bind_param($stmtUbicacion, "s", $nombreUsuario);
+                            mysqli_stmt_execute($stmtUbicacion);
+                            $resultadoUbicacion = mysqli_stmt_get_result($stmtUbicacion);
+
+                            if ($resultadoUbicacion && mysqli_num_rows($resultadoUbicacion) > 0) {
+                                $filaUbicacion = mysqli_fetch_assoc($resultadoUbicacion);
+                                $ubicacionUsuario = $filaUbicacion['ubicacion'];
+                            } else {
+                                $ubicacionUsuario = ''; 
+                            }
+
+                            // Consulta para obtener la dirección del usuario
+                            $consultaDireccion = "SELECT direccion FROM usuarios WHERE nombre = ?";
+                            $stmtDireccion = mysqli_prepare($conexion, $consultaDireccion);
+                            mysqli_stmt_bind_param($stmtDireccion, "s", $nombreUsuario);
+                            mysqli_stmt_execute($stmtDireccion);
+                            $resultadoDireccion = mysqli_stmt_get_result($stmtDireccion);
+
+                            if ($resultadoDireccion && mysqli_num_rows($resultadoDireccion) > 0) {
+                                $filaDireccion = mysqli_fetch_assoc($resultadoDireccion);
+                                $direccionUsuario = $filaDireccion['direccion'];
+                            } else {
+                                $direccionUsuario = ''; 
+                            }
+                            ?>
+                            
 
                           <tr class="userlocation">
-                              <td colspan="2"><input type="text" name="ubicacion" placeholder="Ubicación" value="<?php echo htmlspecialchars($ubicacionUsuario); ?>"></td>
-                              <td colspan="3"><input type="text" name="direccion" placeholder="Dirección" value="<?php echo htmlspecialchars($direccionUsuario); ?>"></td>
+                              <td colspan="2"><input type="text" name="ubicacion" placeholder="Ubicación" value="<?php echo htmlspecialchars($ubicacionUsuario); ?> " required></td>
+                              <td colspan="3"><input type="text" name="direccion" placeholder="Dirección" value="<?php echo htmlspecialchars($direccionUsuario); ?>" required></td>
                           </tr>
+                          <?php
+                          mysqli_close($conexion);
+                          ?>
+
 
 
                           <tr class="acceptterms">
@@ -215,6 +234,16 @@ input, textarea {
   box-sizing: border-box;
   outline: none; 
 }
+.userlocation input[type="text"] {
+    width: 60%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+}
+
 
 blockquote, q { quotes: none; }
 blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
