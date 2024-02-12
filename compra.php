@@ -14,7 +14,7 @@ if(isset($_SESSION['nombreUsuario'])) {
     $id_juego = isset($_GET['id']) ? $_GET['id'] : null;
 
     if ($loggedIn && $id_juego) {
-        $consulta = "SELECT p.id, p.nombre, p.descripcion, p.requisitos, p.precio, p.imagen, p.video_mp4, c.id as categoria_id, c.nombre as categoria_nombre
+        $consulta = "SELECT p.id, p.nombre, p.descripcion, p.requisitos, p.cantidad, p.precio, p.imagen, p.video_mp4, c.id as categoria_id, c.nombre as categoria_nombre
                     FROM productos p
                     LEFT JOIN categorias c ON p.categoria = c.id
                     WHERE p.id = ?";
@@ -126,7 +126,7 @@ if(isset($_SESSION['nombreUsuario'])) {
 
             <div class="user-box">
                 <label for="cantidad">Cantidad:</label>
-                <input type="number" id="cantidad" name="cantidad" value="1" min="1" onchange="calcularPrecioTotal()" required><br><br>
+                <input type="number" id="cantidad" name="cantidad" value="1" min="1" max="<?php echo $fila['cantidad']; ?>" onchange="calcularPrecioTotal()" required><br><br>
             </div>
 
             <div class="user-box">

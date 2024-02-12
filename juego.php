@@ -469,7 +469,7 @@ $cantidad = $fila['cantidad']
                     <span aria-hidden="true" class="hover-text">&nbsp;¡COMPRALO!&nbsp;</span></button></a>
                     <br><br><br>
 
-                        <?php if ($loggedIn): ?>
+                        
                             <?php if ($enCarrito): ?>
                                 <a href="carrito.php" style="text-decoration: none; color: yellow;"> El juego ya se encuentra en tu carrito </a>
                             <?php else: ?>
@@ -490,9 +490,7 @@ $cantidad = $fila['cantidad']
 
                                 </form>
                             <?php endif; ?>
-                        <?php else: ?>
-                            <p>Debes iniciar sesión para agregar juegos a tu carrito.</p>
-                        <?php endif; ?>
+
                         <br><br><br>
 <?php else: ?>
 <p style="color: red; font-size: 80px">Agotado</p>
