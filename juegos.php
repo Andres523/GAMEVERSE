@@ -266,62 +266,33 @@
 
                                 </div>
                                 
-                                 <!-- MODAL editar-->
+                                <!-- MODAL editar-->
 
 
 
-                                 <div id="modalEditar" class="modal">
+                                <div id="modalEditar" class="modal">
                                     <div class="modal-content">
                                         <span class="close" onclick="cerrarModalEditar()">&times;</span>
                                         <div class="container">
+                                            <h2>Editar Producto</h2>
+                                            <form id="formEditarProducto" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
+                                            <input type="hidden" id="edit-id" name="id">
+                                            <label for="edit-nombre">Nombre:</label>
+                                            <input type="text" id="edit-nombre" name="nombre">
+                                            <label for="edit-descripcion">Descripción:</label>
+                                            <textarea id="edit-descripcion" name="descripcion"></textarea>
+                                            <label for="edit-requisitos">Requisitos:</label>
+                                            <input type="text" id="edit-requisitos" name="requisitos">
+                                            <label for="edit-cantidad">Cantidad:</label>
+                                            <input type="number" id="edit-cantidad" name="cantidad">
+                                            <label for="edit-precio">Precio:</label>
+                                            <input type="number" id="edit-precio" name="precio">
+                                            <label for="edit-imagen">Imagen</label>
+                                            <input type="file" id="edit-imagen" name="imagen" accept="image/*">
                                             <br>
-                                            <h2 class="ti">EDITAR PRODUCTO</h2>
-                                            <form id="formEditarProducto" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data" class="two-column-form">
-                                                <div class="column" >
-                                                    <label for="edit-nombre"></label>
-                                                    <input type="text" id="edit-nombre" name="nombre" placeholder="Nombre:">
-
-                                                    <label for="edit-requisitos"></label>
-                                                    <input type="text" id="edit-requisitos" name="requisitos" placeholder="Requisitos:">
-
-                                                    <label for="edit-cantidad"></label>
-                                                    <input type="number" id="edit-cantidad" name="cantidad" placeholder="Cantidad:">
-
-                                                    <label for="edit-descripcion"></label>
-                                                    <textarea class="input" id="edit-descripcion" name="descripcion" placeholder="Descripción:"></textarea>
-
-                                                </div>
-                                                <br>
-                                                <div class="column">
-                                                    <label for="edit-precio"></label>
-                                                    <input type="number" id="edit-precio" name="precio" placeholder="Precio:">
-                                                    IMAGEN
-                                                    <label for="edit-imagen" class="button">
-                                                      <span class="button__text">Agg Img</span>
-                                                      <span class="button__icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
-                                                          <line y2="19" y1="5" x2="12" x1="12"></line>
-                                                          <line y2="12" y1="12" x2="19" x1="5"></line>
-                                                        </svg>
-                                                      </span>
-                                                    </label>
-                                                    <input class="button" type="file" id="edit-imagen" name="imagen" accept="image/*" style="display: none;">
-
-                                                    VIDEO                                
-                                                    <label for="edit-video" class="button">
-                                                      <span class="button__text">Agg Video</span>
-                                                      <span class="button__icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
-                                                          <line y2="19" y1="5" x2="12" x1="12"></line>
-                                                          <line y2="12" y1="12" x2="19" x1="5"></line>
-                                                        </svg>
-                                                      </span>
-                                                    </label>
-                                                    <input class="button" type="file" id="edit-video" name="video_mp4" accept="video/mp4" style="display: none;">
-
-                                                    <button class="btn4" type="submit">Guardar Cambios</button>
-
-
+                                            <label for="edit-video">Video MP4</label>
+                                            <input type="file" id="edit-video" name="video_mp4" accept="video/mp4">
+                                            <button type="submit">Guardar Cambios</button>
                                         
                                             
                                             <?php
