@@ -690,35 +690,53 @@ mysqli_close($conexion);
                             </div>
                         <?php endif; ?>
                         <?php
-                        if ($resultado_comentarios) {
-                            echo '<div class="comentarios">';
-                            echo '<h3>Comentarios:</h3>';
-                            echo '<ul>';
-                            while ($fila_comentario = mysqli_fetch_assoc($resultado_comentarios)) {
-                                echo '<li>';
-                                echo '<div class="usuario">';
-                                echo '<img src="' . $fila_comentario['imagenPerfil'] . '" alt="Avatar">';
-                                if ($fila_comentario['id_usuario'] == $id_usuario) {
-                                    echo '<span>Yo</span>';
-                                } else {
-                                    echo '<span>' . $fila_comentario['nombre_usuario'] . '</span>';
-                                }
-                                echo '</div>';
-                                echo '<div class="contenido-comentario">';
-                                echo '<p>Calificación: ' . $fila_comentario['calificacion'] . '/5</p>';
-                                echo '<p>' . $fila_comentario['comentario'] . '</p>';
-                                echo '<p>Fecha: ' . $fila_comentario['fecha'] . '</p>';
-                                echo '</div>';
-                                echo '</li>';
-                            }
-                            echo '</ul>';
-                            echo '</div>';
-                        } else {
-                            echo "Error al obtener los comentarios: " . mysqli_error($conexion);
-                        }
-                        ?>
+if ($resultado_comentarios) {
+    echo '<div class="comentarios">';
+    echo '<h3>Comentarios:</h3>';
+    echo '<table>';
+    echo '<tr> 
+    <th>imagen</th>
+    <th>Usuario</th>
+    <th>Comentario</th>
+    <th>Calificación</th>
+    <th>Fecha</th>
+    </tr>';
+    while ($fila_comentario = mysqli_fetch_assoc($resultado_comentarios)) {
+        echo '<tr>';
+        echo '<td>';
+        echo '<img src="' . $fila_comentario['imagenPerfil'] . '" alt="Avatar" style="border-radius: 50%; width: 120px; height: 120px;">';
 
-                <?php
+        echo '</td>';
+        echo '<td>';
+        echo '<div class="usuario">';
+        if ($fila_comentario['id_usuario'] == $id_usuario) {
+            echo 'Yo';
+        } else {
+            echo $fila_comentario['nombre_usuario'];
+        }
+        echo '</div>';
+        echo '</td>';
+        echo '<td>' . $fila_comentario['comentario'] . '</td>';
+        echo '<td>';
+        // Muestra las estrellas según la calificación
+        $calificacion = intval($fila_comentario['calificacion']);
+        for ($i = 1; $i <= 5; $i++) {
+            if ($i <= $calificacion) {
+                echo '★';
+            } else {
+                echo '☆';
+            }
+        }
+        echo '</td>';
+        echo '<td>' . $fila_comentario['fecha'] . '</td>';
+        echo '</tr>';
+    }
+    echo '</table>';
+    echo '</div>';
+} else {
+    echo "Error al obtener los comentarios: " . mysqli_error($conexion);
+}
+               
             } else {
                 echo '<p>No se proporcionó un ID de juego válido.</p>';
             }
@@ -745,6 +763,23 @@ mysqli_close($conexion);
                 </html>
 <style>
 /* Estilos para los botones */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 5px; /* Ajusta el padding según lo necesites */
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr {
+    /* Agrega espacio vertical entre las filas */
+    margin-bottom: 5px; 
+}
+
 
 
 .footer {background-color: #333;color: white;text-align: center;padding: 10px 0;}
