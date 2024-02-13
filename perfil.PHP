@@ -95,7 +95,7 @@ mysqli_close($conexion);
         }
     </style>
 </head>
-<body id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size: cover ">
+<body id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size: cover; background-position: center top;background-attachment: fixed; ">
     <a href="./index.php" style="display: inline-block;"><button>ATRAS</button></a>
 
     <div class="spinner-overlay">
@@ -342,13 +342,13 @@ mysqli_close($conexion);
 .info{
 display: grid;
 grid-template-columns: repeat(3, 1fr); /* Crea 3 columnas de igual ancho */
-grid-gap: 20px;
-padding: 25px;
+
+padding: 15px;
 border-color: #000000;
 box-shadow: 0 0 75px black;
 width: 1400px;
-height: 570px;
-margin-left: 40px;
+
+
 text-shadow: #040f16;
 color: #fff;
 text-decoration: dashed;

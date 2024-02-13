@@ -35,8 +35,26 @@ function imprimirEstrellas($calificacion) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
+<?php
 
-<body>
+
+$conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
+
+$nombreUsuario = $_SESSION['nombreUsuario'];
+
+$consultaDatos = "SELECT color, fondo FROM usuarios WHERE nombre = '$nombreUsuario'";
+$resultadoDatos = mysqli_query($conexion, $consultaDatos);
+
+if ($resultadoDatos && $fila = mysqli_fetch_assoc($resultadoDatos)) {
+  $colorFondo = $fila['color'];
+  $fondo =  $fila['fondo'];
+} else {
+ 
+  $fondo = 'linear-gradient(#141e30, #243b55)';
+  $colorFondo = '#fcf9f4';
+}
+?>
+<body id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size: cover; background-position: center top;background-attachment: fixed;">
 
     <header class="main-header">
         <label for="btn-nav" class="btn-nav">

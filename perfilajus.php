@@ -190,8 +190,7 @@
 
     </div>
 </div>
-<body 
-id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size:cover; object-fit: cover;">
+<body id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size: cover; background-position: center top;background-attachment: fixed; ">
 <div class="spinner-overlay">
     <div class="spinner">
 

@@ -39,7 +39,7 @@ if ($resultadoDatos && $fila = mysqli_fetch_assoc($resultadoDatos)) {
     
     
   </head>
-  <body id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size: cover "><body>
+  <body id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size: cover; background-position: center top;background-attachment: fixed;">
     <section>
     <a class="btn4" href="index.php">Volver</a>
       <div class="row">

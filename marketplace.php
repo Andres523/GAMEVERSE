@@ -28,10 +28,29 @@ $resultado = mysqli_query($conexion, $consulta);
     <link rel="shortcut icon" href="./img/logo.png">
     <link rel="stylesheet" href="./styles/marketplace.css">
 </head>
-<body >
+<?php
+
+
+$conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
+
+$nombreUsuario = $_SESSION['nombreUsuario'];
+
+$consultaDatos = "SELECT color, fondo FROM usuarios WHERE nombre = '$nombreUsuario'";
+$resultadoDatos = mysqli_query($conexion, $consultaDatos);
+
+if ($resultadoDatos && $fila = mysqli_fetch_assoc($resultadoDatos)) {
+  $colorFondo = $fila['color'];
+  $fondo =  $fila['fondo'];
+} else {
+ 
+  $fondo = 'linear-gradient(#141e30, #243b55)';
+  $colorFondo = '#fcf9f4';
+}
+?>
+<body id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size: cover; background-position: center top;background-attachment: fixed;">
 
     
-<header class="main-header"></header>
+
 
 
 <br>
@@ -231,7 +250,7 @@ mysqli_close($conexion);
     <br>
     <br>    
     <img src="./img_marketplace/SONIC.gif" alt="sonic" class="moving-image">
-    <hr size="5" width="150%">
+    <hr size="5" width="100%">
     <br>
     <br>
     <br><center><img class="pac"  src="./img marketplace/MARIO.webp" alt="">
