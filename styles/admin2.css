@@ -701,4 +701,8 @@
 	  li {
 		  margin-right: 10px;
 	  }
-  
+	  .modal-icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}

@@ -434,17 +434,17 @@
                                                 <span class="close" onclick="cerrarModalEliminar()">&times;</span>
                                                 <div class="modal-content">
                                                     <div class="modal-body">
-                                                        <h3 class="title">¡CUIDADO!</h3>
-                                                        <p class="description"><h2>¿Estás seguro de eliminar este juego?</h2></p>
+                                                        <center><h3 class="title">¡CUIDADO!</h3>
+                                                        <p class="description"><h2>¿Estás seguro de eliminar este juego?</h2></p></center>
                                                         <div class="modal-icon">
-                                                            <img src="./iconos/block-user.png" alt="icono" style="width: 110px; height: 110px;">
+                                                        <img src="./iconos/block-user.png" alt="icono" style="width: 110px; height: 110px; align-item: center;">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="btn4" id="confirmarEliminarBtn" onclick="eliminarProductoAJAX()"><span class="button-content">Sí</span></button>
-                                        <button class="btn4" onclick="cerrarModalEliminar()"><span class="button-content">No</span></button>
+                                        <center><button class="btn4" id="confirmarEliminarBtn" onclick="eliminarProductoAJAX()"><span class="button-content">Sí</span></button>
+                                        <button class="btn4" onclick="cerrarModalEliminar()"><span class="button-content">No</span></button></center>
                                     </div>
                                     <script>
     function abrirModalEliminar(id) {
