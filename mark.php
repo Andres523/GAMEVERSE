@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/admin2.css">
      
- 
+
     <link rel="shortcut icon" href="../img/logo.png">
     
 </head>
@@ -294,25 +294,12 @@
                                             <label for="edit-tipo">Tipo:</label>
                                             <select id="edit-tipo" name="tipo">
                                                 <?php 
-                                                if ($tipo == "posters"){
+                                                if ($tipo == "posters")
                                                     echo '<option value="posters">posters</option>';
                                                     echo '<option value="consolas">Consolas</option>';
                                                     echo '<option value="figuras">Figuras</option>';
-                                                }
-                                                elseif ($tipo == "consolas"){
-                                                    echo '<option value="consolas">Consolas</option>';
-                                                    echo '<option value="figuras">Figuras</option>';
-                                                    echo '<option value="posters">posters</option>';
                                                 
-                                                }
-                                                
-                                                else {
                                                     
-                                                    echo '<option value="Figuras">Figuras</option>';
-                                                    echo '<option value="consolas">Consolas</option>';
-                                                    echo '<option value="posters">posters</option>';
-                                                
-                                                }
                                                 
 
                                                 ?>
