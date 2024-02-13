@@ -14,9 +14,8 @@ if(isset($_SESSION['nombreUsuario'])) {
     $id_juego = isset($_GET['id']) ? $_GET['id'] : null;
 
     if ($loggedIn && $id_juego) {
-        $consulta = "SELECT p.id, p.nombre, p.descripcion, p.requisitos, p.cantidad, p.precio, p.imagen, p.video_mp4, c.id as categoria_id, c.nombre as categoria_nombre
-                    FROM productos p
-                    LEFT JOIN categorias c ON p.categoria = c.id
+        $consulta = "SELECT p.id, p.nombre, p.descripcion, p.cantidad, p.precio, p.imagen
+                    FROM marketplace p
                     WHERE p.id = ?";
 
         $stmt = mysqli_prepare($conexion, $consulta);
@@ -76,7 +75,8 @@ if(isset($_SESSION['nombreUsuario'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../img/logo.png">
     <link rel="stylesheet" href="./styles/compra.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <title>Confirmar Compra</title>
     <!-- mari tus estilos CSS aquí -->
     <script>
@@ -91,24 +91,23 @@ if(isset($_SESSION['nombreUsuario'])) {
 <body>
 <div class="spinner-overlay">
     <div class="spinner">
-
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.querySelector('.spinner-overlay').style.display = 'block';
-    });
-    window.addEventListener('load', function() {
-        document.querySelector('.spinner-overlay').style.display = 'none';
-    });
-    window.addEventListener('beforeunload', function(event) {
-        document.querySelector('.spinner-overlay').style.display = 'none';
-    });
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector('.spinner-overlay').style.display = 'block';
+        });
+        window.addEventListener('load', function() {
+            document.querySelector('.spinner-overlay').style.display = 'none';
+        });
+        window.addEventListener('beforeunload', function(event) {
+            document.querySelector('.spinner-overlay').style.display = 'none';
+        });
         </script>
     </div>
 </div>
     <div style="background-color: #0A1880; border-bottom: 10px solid #5436bf;">
-    <br>
-    <h2 class="h1"><center>Confirmar Compra</center></h2>
-    <br>
+        <br>
+        <h2 class="h1"><center>Confirmar Compra</center></h2>
+        <br>
     </div>
     <br><br>
     <div class="borde">
@@ -118,45 +117,45 @@ if(isset($_SESSION['nombreUsuario'])) {
             <p>Precio unitario: <?php echo $fila['precio']; ?></p>
         </div>
         <div class="factura"> 
-            <form action="procesar_compra.php" method="post">
-            <input type="hidden" name="id_juego" value="<?php echo $fila['id']; ?>">
-            <input class="hidden" type="hidden" name="nombre_juego" value="<?php echo $fila['nombre']; ?>">
-            <input type="hidden" name="imagen_juego" value="<?php echo $fila['imagen']; ?>">
-            <input type="hidden" name="precio_unitario" value="<?php echo $fila['precio']; ?>">
+            <form action="procesar_compra2.php" method="post">
+                <input type="hidden" name="id_juego" value="<?php echo $fila['id']; ?>">
+                <input class="hidden" type="hidden" name="nombre_juego" value="<?php echo $fila['nombre']; ?>">
+                <input type="hidden" name="imagen_juego" value="<?php echo $fila['imagen']; ?>">
+                <input type="hidden" name="precio_unitario" value="<?php echo $fila['precio']; ?>">
 
-            <div class="user-box">
-                <label for="cantidad">Cantidad:</label>
-                <input type="number" id="cantidad" name="cantidad" value="1" min="1" max="<?php echo $fila['cantidad']; ?>" onchange="calcularPrecioTotal()" required><br><br>
-            </div>
+                <div class="user-box">
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" id="cantidad" name="cantidad" value="1" min="1" max="<?php echo $fila['cantidad']; ?>" onchange="calcularPrecioTotal()" required><br><br>
+                </div>
 
-            <div class="user-box">
-                <label for="ubicacion">Ubicación:</label>
-                <input type="text" id="ubicacion" name="ubicacion" value="<?php echo htmlspecialchars($ubicacionUsuario); ?>" required><br><br>
-            </div>
+                <div class="user-box">
+                    <label for="ubicacion">Ubicación:</label>
+                    <input type="text" id="ubicacion" name="ubicacion" value="<?php echo htmlspecialchars($ubicacionUsuario); ?>" required><br><br>
+                </div>
 
-            <div class="user-box">
-                <label for="direccion">Dirección:</label>
-                <input type="text" id="direccion" name="direccion" value="<?php echo htmlspecialchars($direccionUsuario); ?>" required><br><br>
-            </div>
-            
-            </div>
+                <div class="user-box">
+                    <label for="direccion">Dirección:</label>
+                    <input type="text" id="direccion" name="direccion" value="<?php echo htmlspecialchars($direccionUsuario); ?>" required><br><br>
+                </div>
+                </div>
     </div>
-    <label class="contenedor">
-    <input type="checkbox" name="terminos" required> 
-    <span class="t">Acepto los términos y condiciones</span><br><br>
-    <div class="checkmark"></div>
-    </label>
-        <div class="compra">
-            <div class="texto-precio">
-                <p><?php echo $fila['nombre']; ?></p>
-                <label class="texto-precio" id="precio-total">Precio total: $<?php echo $fila['precio']; ?></label>
-            </div>
-            <div class="pbutton">
-                <button class="btn4" type="submit" name="confirmar">Comprar</button>
-            </div>
-    </form>
+                
+                <label class="contenedor">
+                    <input type="checkbox" name="terminos" required> 
+                    <span class="t">Acepto los términos y condiciones</span><br><br>
+                    <div class="checkmark"></div>
+                </label>
+                <div class="compra">
+                    <div class="texto-precio">
+                        <p><?php echo $fila['nombre']; ?></p>
+                        <label class="texto-precio" id="precio-total">Precio total: $<?php echo $fila['precio']; ?></label>
+                    </div>
+                    <div class="pbutton">
+                        <button class="btn4" type="submit" name="confirmar">Comprar</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        
-    
+    </div>
 </body>
 </html>
