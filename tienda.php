@@ -54,7 +54,7 @@ function imprimirEstrellas($calificacion) {
             <ul style="font-family:sans-serif" class="navigation">
                 <li><a href="./index.php">HOME</a></li>
                 <li><a href="tienda.php">TIENDA</a></li>
-                <li><a href="./marketplace.html">MARKETPLACE</a></li>
+                <li><a href="./marketplace.php">MARKETPLACE</a></li>
             </ul>
             <aside>
                 <a href="https://www.facebook.com/"><img src="./img/facebook-logo-3-1.png" alt="facebook-logo-3-1" width="50px"></a>
