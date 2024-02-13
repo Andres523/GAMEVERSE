@@ -152,6 +152,7 @@ $stmt->close();
 
 mysqli_close($conexion); // Cerrar la conexión
 ?>
+<div style="right: 80px;">
 <a href="carrito.php"><button data-quantity="<?php echo $cantidad_carritos; ?>" class="btn-cart">
     <svg class="icon-cart" viewBox="0 0 24.38 30.52" height="30.52" width="24.38" xmlns="http://www.w3.org/2000/svg">
         <title>icon-cart</title>
@@ -159,8 +160,11 @@ mysqli_close($conexion); // Cerrar la conexión
     </svg>
     
 </button></a>
+</div>
 <style>
-    .btn-cart {
+
+
+.btn-cart {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,7 +173,10 @@ mysqli_close($conexion); // Cerrar la conexión
   border-radius: 10px;
   border: none;
   background-color: transparent;
-  position: relative;
+  position: fixed;
+  bottom: 500px; /* Ajusta la distancia desde el borde inferior */
+  right: 20px; /* Ajusta la distancia desde el borde derecho */
+  z-index: 999; /* Asegura que esté por encima de otros elementos */
 }
 
 .btn-cart::after {
