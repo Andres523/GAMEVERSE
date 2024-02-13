@@ -125,8 +125,10 @@ $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
 if ($conexion === false) {
     die("Error: No se pudo conectar. " . mysqli_connect_error());
 }
-
+error_reporting(0);
 $nombreUsuario = $_SESSION['nombreUsuario'];
+
+
 
 // Consulta para obtener el ID del usuario
 $sql = "SELECT id FROM usuarios WHERE nombre = ?";
