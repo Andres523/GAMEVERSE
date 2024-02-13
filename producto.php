@@ -57,13 +57,13 @@ if(isset($_SESSION['nombreUsuario'])) {
             echo '<p>No se encontró el juego.</p>';
         }
     } else {
-        header("Location: index.php");
+        header("Location: login.php");
         exit();
     }
 
     mysqli_close($conexion);
 } else {
-    header("Location: index.php");
+    header("Location: login.php");
     exit();
 }
 ?>

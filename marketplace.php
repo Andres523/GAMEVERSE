@@ -2,26 +2,6 @@
 session_start();
 $loggedIn = isset($_SESSION['nombreUsuario']);
 
-function imprimirEstrellas($calificacion) {
-    if ($calificacion === null) {
-        return 'Sin calificación'; 
-    }
-
-    $estrellas = '';
-    $calificacion = round($calificacion); // Redondear la calificación
-
-    
-    for ($i = 0; $i < 5; $i++) {
-        if ($i < $calificacion) {
-            $estrellas .= '<span style="color: gold;">★</span>'; // Estrella llena
-        } else {
-            $estrellas .= '<span style="color: grey;">★</span>'; // Estrella vacía
-        }
-    }
-    return $estrellas;
-}
-
-
 $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
 
 if (!$conexion) {
@@ -124,33 +104,43 @@ $resultado = mysqli_query($conexion, $consulta);
             
 
         <?php
-                    while ($fila = mysqli_fetch_assoc($resultado)) {
-                        // Obtener el tipo del juego actual
-                        $tipo = $fila['tipo'];
-    
-                        // Verificar si el tipo es "posters"
-                        if ($tipo == "posters") {
-                            echo '<a href="producto.php?id=' . $fila['id'] . '" class="juego-link" style="color: inherit; text-decoration: none;">';
-                            echo '<figure class="card">';
-                            echo '<img src="' . $fila['imagen'] . '" alt="' . $fila['nombre'] . '" style="width: 100%; min-height: 100%; object-fit: cover;">';
-                            echo '<figcaption>';
-                            echo '<p>' . imprimirEstrellas($fila['calificacion_promedio']) . '</p>';
-                            if ($fila['cantidad'] > 0) {
-                                echo '<p style="color: green;">Precio: $' . $fila['precio'] . '</p>';
-                            } else {
-                                echo '<p style="color: red; text-align: center;">Agotado</p>';
-                            }
-                            echo '</figcaption>';
-                            echo '</figure>';
-                            echo '</a>';
-                        }
-                    }
+while ($fila = mysqli_fetch_assoc($resultado)) {
+    // Obtener el tipo del juego actual
+    $tipo = $fila['tipo'];
 
-                   
-          
-    
-                    mysqli_close($conexion);
-                ?>
+    // Verificar si el tipo es "posters"
+    if ($tipo == "posters") {
+        // Verificar si la cantidad es mayor que cero
+        if ($fila['cantidad'] > 0) {
+            // Agregar un evento de clic solo si la cantidad es mayor que cero
+            echo '<div class="juego-link" style="color: inherit; text-decoration: none; cursor: pointer;" onclick="redirectToProduct(' . $fila['id'] . ');">';
+        } else {
+            echo '<div class="juego-link" style="color: inherit; text-decoration: none; opacity: 0.5;">';
+        }
+        echo '<figure class="card">';
+        echo '<img src="' . $fila['imagen'] . '" alt="' . $fila['nombre'] . '" style="width: 100%; min-height: 100%; object-fit: cover;">';
+        echo '<figcaption>';
+
+        if ($fila['cantidad'] > 0) {
+            echo '<p style="color: green;">Precio: $' . $fila['precio'] . '</p>';
+        } else {
+            echo '<p style="color: red; text-align: center;">Agotado</p>';
+        }
+        echo '</figcaption>';
+        echo '</figure>';
+        echo '</div>';
+    }
+}
+mysqli_close($conexion);
+?>
+
+<script>
+    // Función para redirigir a la página del producto con el ID específico
+    function redirectToProduct(productId) {
+        window.location.href = 'producto.php?id=' + productId;
+    }
+</script>
+
 
         </div>
     </center>
@@ -192,29 +182,42 @@ $resultado = mysqli_query($conexion, $consulta);
                             
         
         
-                    while ($fila = mysqli_fetch_assoc($resultado)) {
-                        $tipo = $fila['tipo'];
-                    
-                        if ($tipo == "consolas") {
-                            // Aquí va el código para mostrar los juegos del tipo "consolas"
-                            echo '<a href="producto.php?id=' . $fila['id'] . '" class="juego-link" style="color: inherit; text-decoration: none;">';
-                            echo '<figure class="card">';
-                            echo '<img src="' . $fila['imagen'] . '" alt="' . $fila['nombre'] . '" style="width: 100%; min-height: 100%; object-fit: cover;">';
-                            echo '<figcaption>';
-                            echo '<p>' . imprimirEstrellas($fila['calificacion_promedio']) . '</p>';
-                            if ($fila['cantidad'] > 0) {
-                                echo '<p style="color: green;">Precio: $' . $fila['precio'] . '</p>';
-                            } else {
-                                echo '<p style="color: red; text-align: center;">Agotado</p>';
-                            }
-                            echo '</figcaption>';
-                            echo '</figure>';
-                            echo '</a>';
-                        }
-                        
-                    }
-                    mysqli_close($conexion);
-                    ?>
+        while ($fila = mysqli_fetch_assoc($resultado)) {
+            // Obtener el tipo del juego actual
+            $tipo = $fila['tipo'];
+        
+           
+            if ($tipo == "consolas") {
+           
+                if ($fila['cantidad'] > 0) {
+                
+                    echo '<div class="juego-link" style="color: inherit; text-decoration: none; cursor: pointer;" onclick="redirectToProduct(' . $fila['id'] . ');">';
+                } else {
+                    echo '<div class="juego-link" style="color: inherit; text-decoration: none; opacity: 0.5;">';
+                }
+                echo '<figure class="card">';
+                echo '<img src="' . $fila['imagen'] . '" alt="' . $fila['nombre'] . '" style="width: 100%; min-height: 100%; object-fit: cover;">';
+                echo '<figcaption>';
+
+                if ($fila['cantidad'] > 0) {
+                    echo '<p style="color: green;">Precio: $' . $fila['precio'] . '</p>';
+                } else {
+                    echo '<p style="color: red; text-align: center;">Agotado</p>';
+                }
+                echo '</figcaption>';
+                echo '</figure>';
+                echo '</div>';
+            }
+        }
+        mysqli_close($conexion);
+        ?>
+        
+        <script>
+          
+            function redirectToProduct(productId) {
+                window.location.href = 'producto.php?id=' + productId;
+            }
+        </script>
     
 
     
@@ -262,29 +265,42 @@ $resultado = mysqli_query($conexion, $consulta);
                             
         
         
-                    while ($fila = mysqli_fetch_assoc($resultado)) {
-                        $tipo = $fila['tipo'];
+        while ($fila = mysqli_fetch_assoc($resultado)) {
+         
+            $tipo = $fila['tipo'];
+        
+            
+            if ($tipo == "figuras") {
+
+                if ($fila['cantidad'] > 0) {
                     
-                        if ($tipo == "figuras") {
-                            // Aquí va el código para mostrar los juegos del tipo "consolas"
-                            echo '<a href="producto.php?id=' . $fila['id'] . '" class="juego-link" style="color: inherit; text-decoration: none;">';
-                            echo '<figure class="card">';
-                            echo '<img src="' . $fila['imagen'] . '" alt="' . $fila['nombre'] . '" style="width: 100%; min-height: 100%; object-fit: cover;">';
-                            echo '<figcaption>';
-                            echo '<p>' . imprimirEstrellas($fila['calificacion_promedio']) . '</p>';
-                            if ($fila['cantidad'] > 0) {
-                                echo '<p style="color: green;">Precio: $' . $fila['precio'] . '</p>';
-                            } else {
-                                echo '<p style="color: red; text-align: center;">Agotado</p>';
-                            }
-                            echo '</figcaption>';
-                            echo '</figure>';
-                            echo '</a>';
-                        }
-                        
-                    }
-                    mysqli_close($conexion);
-                    ?>
+                    echo '<div class="juego-link" style="color: inherit; text-decoration: none; cursor: pointer;" onclick="redirectToProduct(' . $fila['id'] . ');">';
+                } else {
+                    echo '<div class="juego-link" style="color: inherit; text-decoration: none; opacity: 0.5;">';
+                }
+                echo '<figure class="card">';
+                echo '<img src="' . $fila['imagen'] . '" alt="' . $fila['nombre'] . '" style="width: 100%; min-height: 100%; object-fit: cover;">';
+                echo '<figcaption>';
+ 
+                if ($fila['cantidad'] > 0) {
+                    echo '<p style="color: green;">Precio: $' . $fila['precio'] . '</p>';
+                } else {
+                    echo '<p style="color: red; text-align: center;">Agotado</p>';
+                }
+                echo '</figcaption>';
+                echo '</figure>';
+                echo '</div>';
+            }
+        }
+        mysqli_close($conexion);
+        ?>
+        
+        <script>
+            // Función para redirigir a la página del producto con el ID específico
+            function redirectToProduct(productId) {
+                window.location.href = 'producto.php?id=' + productId;
+            }
+        </script>
     
         </div>
     </center>
