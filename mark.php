@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/admin2.css">
      
-
+ 
     <link rel="shortcut icon" href="../img/logo.png">
     
 </head>

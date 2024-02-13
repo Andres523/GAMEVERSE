@@ -223,7 +223,7 @@
                                     <div class="modal-content">
                                         <div class="modal-body">
                                             <h3 class="title">¡CUIDADO!</h3>
-                                            <center><p class="description"><h2>¿Estás seguro de eliminar este usuario?</h2></p></center>
+                                            <center><p><h2>¿Estás seguro de eliminar este usuario?</h2></p></center>
                                             <center><img src="./iconos/block-user.png" alt="icono" style="width: 110px; height: 110px;"></center>
                                         </div>
                                     </div>
