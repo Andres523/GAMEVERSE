@@ -247,9 +247,9 @@ mysqli_close($conexion); // Cerrar la conexión
                             while ($fila = mysqli_fetch_assoc($resultado)) {
                                 echo '<a href="juego.php?id=' . $fila['id'] . '" class="juego-link" style="color: inherit; text-decoration: none;">';
                                 echo '<figure class="card">';
-                                echo '<img src="' . $fila['imagen'] . '" alt="' . $fila['nombre'] . '" style="width: 100%; min-height: 100%; object-fit: cover;">';
+                                echo '<img src="' . $fila['imagen'] . '" alt="' . $fila['nombre'] . '" style="width: 100%; min-height: 100%; object-fit: cover;text-decoration: none;">';
                                 echo '<figcaption>';
-                                echo '<h2 style="text-decoration: none;">' . $fila['nombre'] . '</h2>';
+                                echo '<h3>' . $fila['nombre'] . '</h3>';
                                 echo '<p>' . imprimirEstrellas($fila['calificacion_promedio']) . '</p>';
                                 if ($fila['cantidad'] > 0) {
                                     echo '<p style="color: green;">Precio: $' . $fila['precio'] . '</p>';

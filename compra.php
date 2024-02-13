@@ -89,6 +89,7 @@ if(isset($_SESSION['nombreUsuario'])) {
     </script>
 </head>
 <body>
+
 <div class="spinner-overlay">
     <div class="spinner">
 
@@ -110,6 +111,7 @@ if(isset($_SESSION['nombreUsuario'])) {
     <h2 class="h1"><center>Confirmar Compra</center></h2>
     <br>
     </div>
+    <a class="btn4" href="tienda.php" style="text-decoration: none;">Volver</a>
     <br><br>
     <div class="borde">
         <img class="imagen"src="<?php echo $fila['imagen']; ?>" alt="<?php echo $fila['nombre']; ?>">
