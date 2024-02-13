@@ -39,7 +39,7 @@ function imprimirEstrellas($calificacion) {
 
 
 $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
-
+error_reporting(0);
 $nombreUsuario = $_SESSION['nombreUsuario'];
 
 $consultaDatos = "SELECT color, fondo FROM usuarios WHERE nombre = '$nombreUsuario'";
