@@ -192,7 +192,8 @@
                                 
 
                             <div class="">          
-                                    <div id="tablaProductos" class="tab">    
+                                    <div id="tablaProductos" class="tab">  
+                                        <br>  
                                     <?php
                                     $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
 
@@ -279,39 +280,51 @@
                                     <div class="modal-content">
                                         <span class="close" onclick="cerrarModalEditar()">&times;</span>
                                         <div class="container">
-                                            <h2>Editar Producto</h2>
+                                            <br>
+                                            <h2 class="ti">Editar Producto</h2>
                                             <form id="formEditarProducto" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
                                             <input type="hidden" id="edit-id" name="id">
-                                            <label for="edit-nombre">Nombre:</label>
-                                            <input type="text" id="edit-nombre" name="nombre">
-                                            <label for="edit-descripcion">Descripción:</label>
-                                            <textarea id="edit-descripcion" name="descripcion"></textarea>
-                                            <label for="edit-cantidad">Cantidad:</label>
-                                            <input type="number" id="edit-cantidad" name="cantidad">
-                                            <label for="edit-precio">Precio:</label>
-                                            <input type="number" id="edit-precio" name="precio">
+
+                                            <div class="column">
+                                            <label for="edit-nombre"></label>
+                                            <input class="su" type="text" id="edit-nombre" name="nombre" placeholder="Nombre">
+
+                                            <label for="edit-cantidad"></label>
+                                            <input class="su" type="number" id="edit-cantidad" name="cantidad" placeholder="Cantidad">
+                                            
+                                            <label for="edit-precio"></label>
+                                            <input class="su" type="number" id="edit-precio" name="precio" placeholder="Precio">
+
+                                            <label for="edit-descripcion"></label>
+                                            <textarea class="su" id="edit-descripcion" name="descripcion" placeholder="Descripción"></textarea>
                                             
                                             <label for="edit-tipo">Tipo:</label>
-                                            <select id="edit-tipo" name="tipo">
+                                            <select class="su" id="edit-tipo" name="tipo">
                                                 <?php 
                                                 if ($tipo == "posters")
                                                     echo '<option value="posters">posters</option>';
                                                     echo '<option value="consolas">Consolas</option>';
                                                     echo '<option value="figuras">Figuras</option>';
-                                                
-                                                    
-                                                
-
+                                
                                                 ?>
 
                                             </select>
+                                            </div>
 
-                                            <label for="edit-imagen">Imagen</label>
-                                            <input type="file" id="edit-imagen" name="imagen" accept="image/*">
-                                            <br>
-                                            <button type="submit">Guardar Cambios</button>
-                                        
-                                            
+                                            <div class="column">
+                                                IMAGEN
+                                                <label for="edit-imagen" class="button">
+                                                  <span class="button__text">Agg Img</span>
+                                                  <span class="button__icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+                                                      <line y2="19" y1="5" x2="12" x1="12"></line>
+                                                      <line y2="12" y1="12" x2="19" x1="5"></line>
+                                                    </svg>
+                                                  </span>
+                                                </label>
+                                                <input class="button" type="file" id="edit-imagen" name="imagen" accept="image/*" style="display: none;">
+                                                <button class="btn4" type="submit">Guardar Producto</button>
+                                            </div>
                                             <?php
                                             mysqli_close($conexion);
                                             ?>
