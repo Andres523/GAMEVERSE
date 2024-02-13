@@ -136,13 +136,12 @@
 	margin-left: 20px;
 	margin-top: 20px;
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	gap: 10px;
   }
   .ti{
 	  margin-left: 27px;
 	  margin-top: 10px;
-	  color: black;
   }
   
 	  @media only screen and (max-width: 1200px) {

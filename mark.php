@@ -273,8 +273,6 @@
                                 
                                  <!-- MODAL editar-->
 
-
-
                                 <div id="modalEditar" class="modal">
                                     <div class="modal-content">
                                         <span class="close" onclick="cerrarModalEditar()">&times;</span>
@@ -282,14 +280,18 @@
                                             <h2>Editar Producto</h2>
                                             <form id="formEditarProducto" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
                                             <input type="hidden" id="edit-id" name="id">
-                                            <label for="edit-nombre">Nombre:</label>
-                                            <input type="text" id="edit-nombre" name="nombre">
-                                            <label for="edit-descripcion">Descripción:</label>
-                                            <textarea id="edit-descripcion" name="descripcion"></textarea>
-                                            <label for="edit-cantidad">Cantidad:</label>
-                                            <input type="number" id="edit-cantidad" name="cantidad">
-                                            <label for="edit-precio">Precio:</label>
-                                            <input type="number" id="edit-precio" name="precio">
+
+                                            <label for="edit-nombre"></label>
+                                            <input type="text" id="edit-nombre" name="nombre" placeholder="Nombre">
+
+                                            <label for="edit-descripcion"></label>
+                                            <textarea id="edit-descripcion" name="descripcion" placeholder="Descripción"></textarea>
+
+                                            <label for="edit-cantidad"></label>
+                                            <input type="number" id="edit-cantidad" name="cantidad" placeholder="Cantidad" >
+                                            
+                                            <label for="edit-precio"></label>
+                                            <input type="number" id="edit-precio" name="precio" placeholder="Precio">
                                             
                                             <label for="edit-tipo">Tipo:</label>
                                             <select id="edit-tipo" name="tipo">
@@ -434,17 +436,19 @@
                                                 <span class="close" onclick="cerrarModalEliminar()">&times;</span>
                                                 <div class="modal-content">
                                                     <div class="modal-body">
-                                                        <h3 class="title">¡CUIDADO!</h3>
+                                                        <center><h3 class="title">¡CUIDADO!</h3>
                                                         <p class="description"><h2>¿Estás seguro de eliminar este juego?</h2></p>
                                                         <div class="modal-icon">
-                                                            <img src="./iconos/block-user.png" alt="icono" style="width: 110px; height: 110px;">
+                                                            <img src="./iconos/block-user.png" alt="icono" style="width: 110px; height: 110px;"></center>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        
+                                        <center>
                                         <button class="btn4" id="confirmarEliminarBtn" onclick="eliminarProductoAJAX()"><span class="button-content">Sí</span></button>
-                                        <button class="btn4" onclick="cerrarModalEliminar()"><span class="button-content">No</span></button>
+                                        <button class="btn4" onclick="cerrarModalEliminar()"><span class="button-content">No</span></button></center>
+                                        </div>
                                     </div>
                                     <script>
     function abrirModalEliminar(id) {
@@ -497,43 +501,38 @@
                                     <div class="modal-content">
                                         <span class="close" id="closeProductModalBtn">&times;</span>
                                         <form id="productForm" action="procesar_productoM.php" method="post"     enctype="multipart/form-data" >
+                                            <br>
+                                        <h1 class="ti">AGREGAR PRODUCTO</h1>
                                             <div class="form-container">
                                                 <div class="form-column">
                                                 <div class="column">
                                                     <label for="nombre"></label>
-                                                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" required="Complete este campo">
+                                                    <input class="su" type="text" id="nombre" name="nombre" placeholder="Nombre" required="Complete este campo">
 
                                                     <label for="descripcion"></label>
-                                                    <input type="text" id="descripcion" name="descripcion" placeholder="Descripción" required="Complete este campo">
+                                                    <input class="su" type="text" id="descripcion" name="descripcion" placeholder="Descripción" required="Complete este campo">
 
                                                 
                                                     <label for="cantidad"></label>
-                                                    <input type="number" id="cantidad" name="cantidad" placeholder="Cantidad" required="Complete este campo">
+                                                    <input class="su" type="number" id="cantidad" name="cantidad" placeholder="Cantidad" required="Complete este campo">
                                                     
                                                     <label for="precio"></label>
-                                                    <input type="number" id="precio" name="precio" placeholder="Precio" required="Complete este campo">
+                                                    <input class="su" type="number" id="precio" name="precio" placeholder="Precio" required="Complete este campo">
                                                     <br>
 
                                                     
 
                                                     <label for="tipo"></label>
-                                                    <select id="tipo" name="tipo" required="required">
+                                                    <select class="su" id="tipo" name="tipo" required="required">
                                                         <option value="">Tipo</option>
                                                         <option value="posters">Posters</option>
                                                         <option value="consolas">Consolas</option>
                                                         <option value="figuras">Figuras</option>
                                                     </select>
-
-                                                    <label for="edit-imagen">Imagen</label>
-                                                    <input type="file" id="edit-imagen" name="imagen" accept="image/*">
                                                 </div>
-                                                <!---
                                                 <div class="column">
-                                                    
-                                                   
-
                                                     IMAGEN
-                                                    <label for="edit-imagen" class="button">
+                                                    <label for="imagen" class="button">
                                                       <span class="button__text">Agg Img</span>
                                                       <span class="button__icon">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
@@ -542,15 +541,10 @@
                                                         </svg>
                                                       </span>
                                                     </label>
-                                                    <input class="button" type="file" id="edit-imagen" name="imagen" accept="image/*" >
+                                                    <input class="button" type="file" id="imagen" name="imagen" accept="image/*" style="display: none;">
+                                                    <button class="btn4" type="submit" name="guardarProducto">Guardar Producto</button>
                                                 </div>    
-                                               
                                             </div>
-                                            ---> 
-
-
-                                                <button class="btn4" type="submit" name="guardarProducto">Guardar Producto</button>
-                                                </center>
                                             </form>
 
 
@@ -588,9 +582,6 @@
 
     </main>
 </body>
-<style>
-  
-</style>
 </html>
 
 
