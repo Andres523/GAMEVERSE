@@ -89,7 +89,7 @@
 	display: inline-block;
 	position: relative;
 	cursor: pointer;
-  }
+  } 
   
   .checkbox__input {
 	position: absolute;
@@ -514,7 +514,7 @@
   .login-box .user-box label {
 	  font-size: 16px;
 	  pointer-events: none;
-	  color: #8803f4;
+	  color: #5a03a1;
   }
   .login-box .user-box input:focus ~ label,
   .login-box .user-box input:valid ~ label {
@@ -705,4 +705,10 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+	.profile-picture {
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		border: 2px solid #ccc;
 	}

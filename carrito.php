@@ -51,11 +51,11 @@ if(isset($_SESSION['nombreUsuario'])) {
         <table id="cart">
             <thead>
                 <tr>
-                    <th class="first">imagen</th>
-                    <th class="second">cantidad</th>
-                    <th class="third">nombre</th>
-                    <th class="fourth">precio </th>
-                    <th class="fifth">&nbsp;</th>
+                    <th>imagen</th>
+                    <th>cantidad</th>
+                    <th>nombre</th>
+                    <th>precio </th>
+                    <th>&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,7 +63,7 @@ if(isset($_SESSION['nombreUsuario'])) {
             <tbody>
               <form action="comprar_carrito.php" method="post">
                   <?php
-                  $totalInicial = 0; // Inicializar el total inicial
+                  $totalInicial = 0;
 
                   if ($resultado_carrito && mysqli_num_rows($resultado_carrito) > 0) {
                       while ($fila = mysqli_fetch_assoc($resultado_carrito)) {
@@ -73,13 +73,13 @@ if(isset($_SESSION['nombreUsuario'])) {
                         <tr class="productitm">
                             <td><img src="<?php echo $fila['imagen']; ?>" class="thumb"></td>
                             <td>
-                            <input type="number" value="1" min="1" max="<?php echo $fila['cantidad']; ?>" class="qtyinput" id="qty_<?php echo $fila['id']; ?>" name="cantidad[]" onchange="actualizarPrecio(<?php echo $fila['id']; ?>)">
+                            <input class="su" type="number" value="1" min="1" max="<?php echo $fila['cantidad']; ?>" id="qty_<?php echo $fila['id']; ?>" name="cantidad[]" onchange="actualizarPrecio(<?php echo $fila['id']; ?>)">
 
                             </td>
                             <td><?php echo $fila['nombre']; ?></td>
                             <td id="precio_unitario_<?php echo $fila['id']; ?>" style="display:none"><?php echo $fila['precio']; ?></td>
                             <td id="precio_total_<?php echo $fila['id']; ?>"><?php echo $fila['precio']; ?></td>
-                            <td>    <span class="remove"><a href="eliminar_carrito.php?id=<?php echo $fila['id']; ?>"><img src="https://i.imgur.com/h1ldGRr.png" alt="X"></a></span></td>
+                            <td><span><a href="eliminar_carrito.php?id=<?php echo $fila['id']; ?>"><img src="https://i.imgur.com/h1ldGRr.png" alt="X"></a></span></td>
                         </tr>  
                         <input type="hidden" name="id_juego[]" value="<?php echo $fila['id']; ?>">
                         <input type="hidden" name="nombre_juego[]" value="<?php echo $fila['nombre']; ?>">
@@ -91,8 +91,8 @@ if(isset($_SESSION['nombreUsuario'])) {
     ?>
     <?php
                           echo '<tr class="totalprice">
-                                <td class="light" colspan="3">Total:</td>
-                                <td colspan="2" id="total">$' . number_format($totalInicial, 2) . '</td>
+                                <th colspan="3">Total:</th>
+                                <th colspan="2" id="total">$' . number_format($totalInicial, 2) . '</th>
                             </tr>';
                             ?>
                             <?php
@@ -127,26 +127,20 @@ if(isset($_SESSION['nombreUsuario'])) {
                             
 
                           <tr class="userlocation">
-                              <td colspan="2"><input type="text" name="ubicacion" placeholder="Ubicación" value="<?php echo htmlspecialchars($ubicacionUsuario); ?> " required></td>
-                              <td colspan="3"><input type="text" name="direccion" placeholder="Dirección" value="<?php echo htmlspecialchars($direccionUsuario); ?>" required></td>
+                              <td colspan="2"><input class="su" type="text" name="ubicacion" placeholder="Ubicación" value="<?php echo htmlspecialchars($ubicacionUsuario); ?> " required></td>
+                              <td colspan="3"><input class="su" type="text" name="direccion" placeholder="Dirección" value="<?php echo htmlspecialchars($direccionUsuario); ?>" required></td>
+                              <tr class="acceptterms">
+                              <td colspan="5">
+                              <center><label class="container" >
+                                  <input checked="checked" type="checkbox" name="confirmar" value="1" required>
+                                  <div class="checkmark"></div><label for="confirmar">Acepto los términos y condiciones</label>
+                                  </label></center>
+                              </td>
+                          </tr>
                           </tr>
                           <?php
                           mysqli_close($conexion);
                           ?>
-
-
-
-                          <tr class="acceptterms">
-                              <td colspan="5">
-                                  <label>
-                                     
-                                  <input type="checkbox" name="confirmar" value="1" required>
-                                    <label for="confirmar"> Acepto los términos y condiciones</label>
-                                     
-                                  </label>
-                              </td>
-                          </tr>
-
 
                           <tr class="checkoutrow">
                               <td colspan="5" class="checkout"><button id="submitbtn" name="comprar">Comprar</button></td>
@@ -179,257 +173,148 @@ function actualizarTotal() {
     }
 </script>
 
-
-
-
-
-
 </body>
 </html>
 
 
 <style>
-    @import url(https://fonts.googleapis.com/css?family=Fredoka+One);
-
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-  outline: none;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-html { overflow-y: scroll; }
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 62.5%;
-  line-height: 1;
-  color: #414141;
-  background: #caccf7 url('https://i.imgur.com/Syv2IVk.png'); /* https://subtlepatterns.com/old-map/ */
-  padding: 25px 0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 100px;
+    background: #2d2f33;
 }
 
-::selection { background: #bdc0e8; }
-::-moz-selection { background: #bdc0e8; }
-::-webkit-selection { background: #bdc0e8; }
-
-br { display: block; line-height: 1.6em; } 
-
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
-ol, ul { list-style: none; }
-
-input, textarea { 
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  outline: none; 
+.thumb{
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px solid black;
 }
-.userlocation input[type="text"] {
-    width: 60%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 16px;
-}
-
-
-blockquote, q { quotes: none; }
-blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
-strong, b { font-weight: bold; }
-em, i { font-style: italic; }
-
-table { border-collapse: collapse; border-spacing: 0; }
-img { border: 0; max-width: 100%; }
-
-h1 {
-  font-family: 'Fredoka One', Helvetica, Tahoma, sans-serif;
-  color: #fff;
-  text-shadow: 1px 2px 0 #7184d8;
-  font-size: 3.5em;
-  line-height: 1.1em;
-  padding: 6px 0;
-  font-weight: normal;
-  text-align: center;
-}
-
-
-/* page structure */
+.su{
+	font-weight: 500;
+	font-size: 11px;
+	color: #fff;
+	background-color: rgb(28, 28, 30);
+	border-radius: 4px;
+	border: none;
+	outline: none;
+	padding: 8px;
+	transition: 0.4s;
+  }
+  
+  .su:hover {
+	box-shadow: 0 0 0 2px rgba(135, 207, 235, 0.200);
+  }
+  
+  .su:focus {
+	box-shadow: 0 0 0 2px skyblue;
+  }
 #w {
-  display: block;
-  width: 600px;
-  margin: 0 auto;
+    width: 80%;
+    margin: 0 auto;
+    background-color: #222528;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #title {
-  display: block;
-  width: 100%;
-  background: #95a6d6;
-  padding: 10px 0;
-  -webkit-border-top-right-radius: 6px;
-  -webkit-border-top-left-radius: 6px;
-  -moz-border-radius-topright: 6px;
-  -moz-border-radius-topleft: 6px;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
+    text-align: center;
+    margin-bottom: 20px;
+    background: #5a03a1;
+    padding: 1px;
+    color: white;
 }
 
-#page {
-  display: block;
-  background: #fff;
-  padding: 15px 0;
-  -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-  -moz-box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-}
-
-/** cart table **/
 #cart {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#cart th {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    color: white;
+}
+#cart td {
+    padding: 10px;
+    text-align: center; /* Añadido para centrar el contenido */
+    color: white; /* Color de texto blanco */
+}
+
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.container {
   display: block;
-  border-collapse: collapse;
-  margin: 0;
-  width: 100%;
-  font-size: 1.2em;
-  color: #444;
-}
-#cart thead th {
-  padding: 8px 0;
-  font-weight: bold;
-}
-
-#cart thead th.first {
-  width: 175px;
-}
-
-#cart thead th.third {
-  width: 230px;
-}
-#cart thead th.fourth {
-  width: 130px;
-}
-#cart thead th.fifth {
-  width: 20px;
-}
-
-#cart tbody td {
-  text-align: center;
-  margin-top: 4px;
-}
-
-tr.productitm {
-  height: 65px;
-  line-height: 65px;
-  border-bottom: 1px solid #d7dbe0;
-}
-
-
-#cart tbody td img.thumb {
-  vertical-align: bottom;
-  border: 1px solid #ddd;
-  margin-bottom: 4px;
-}
-
-.qtyinput {
-  width: 33px;
-  height: 22px;
-  border: 1px solid #a3b8d3;
-  background: #dae4eb;
-  color: #616161;
-  text-align: center;
-}
-
-tr.totalprice, tr.extracosts {
-  height: 35px;
-  line-height: 35px;
-}
-tr.extracosts {
-  background: #e4edf4;
-}
-
-.remove {
-  /* http://findicons.com/icon/261449/trash_can?id=397422 */
-  cursor: pointer;
   position: relative;
-  right: 12px;
-  top: 5px;
-}
-
-
-.light {
-  color: #888b8d;
-  text-shadow: 1px 1px 0 rgba(255,255,255,0.45);
-  font-size: 1.1em;
-  font-weight: normal;
-}
-.thick {
-  color: #272727;
-  font-size: 1.7em;
-  font-weight: bold;
-}
-
-
-/** submit btn **/
-tr.checkoutrow {
-  background: #cfdae8;
-  border-top: 1px solid #abc0db;
-  border-bottom: 1px solid #abc0db;
-}
-td.checkout {
-  padding: 12px 0;
-  padding-top: 20px;
-  width: 100%;
-  text-align: right;
-}
-
-
-/* https://codepen.io/guvootes/pen/eyDAb */
-#submitbtn {
-  width: 150px;
-  height: 35px;
-  outline: none;
-  border: none;
-  border-radius: 5px;
-  margin: 0 0 10px 0;
-  font-size: 1.3em;
-  letter-spacing: 0.05em;
-  font-family: Arial, Tahoma, sans-serif;
-  color: #fff;
-  text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
   cursor: pointer;
-  overflow: hidden;
-  border-bottom: 1px solid #0071ff;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #66aaff), color-stop(100%, #4d9cff));
-  background-image: -webkit-linear-gradient(#66aaff, #4d9cff);
-  background-image: -moz-linear-gradient(#66aaff, #4d9cff);
-  background-image: -o-linear-gradient(#66aaff, #4d9cff);
-  background-image: linear-gradient(#66aaff, #4d9cff);
+  font-size: 20px;
+  user-select: none;
 }
-#submitbtn:hover {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d9cff), color-stop(100%, #338eff));
-  background-image: -webkit-linear-gradient(#4d9cff, #338eff);
-  background-image: -moz-linear-gradient(#4d9cff, #338eff);
-  background-image: -o-linear-gradient(#4d9cff, #338eff);
-  background-image: linear-gradient(#4d9cff, #338eff);
+
+.checkmark {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 1.3em;
+  width: 1.3em;
+  border: 2px solid #414141;
+  border-radius: 5px;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
 }
-#submitbtn:active {
-  border-bottom: 0;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #338eff), color-stop(100%, #4d9cff));
-  background-image: -webkit-linear-gradient(#338eff, #4d9cff);
-  background-image: -moz-linear-gradient(#338eff, #4d9cff);
-  background-image: -o-linear-gradient(#338eff, #4d9cff);
-  background-image: linear-gradient(#338eff, #4d9cff);
-  -webkit-box-shadow: inset 0 1px 3px 1px rgba(0,0,0,0.25);
-  -moz-box-shadow: inset 0 1px 3px 1px rgba(0,0,0,0.25);
-  box-shadow: inset 0 1px 3px 1px rgba(0,0,0,0.25);
+
+.container input:hover ~ .checkmark {
+  border: 2px solid #0974f1;
 }
+
+.container input:checked ~ .checkmark {
+  box-shadow: 0 0 20px rgba(9, 117, 241, 0.8);
+  border: 2px solid #0974f1;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+  left: 0.45em;
+  top: 0.25em;
+  width: 0.25em;
+  height: 0.5em;
+  border: solid white;
+  border-width: 0 0.15em 0.15em 0;
+  transform: rotate(45deg);
+}
+
+.checkoutrow {
+    text-align: center;
+}
+
+.checkout button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.checkout button:hover {
+    background-color: #45a049;
+}
+
 </style>

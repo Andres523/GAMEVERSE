@@ -216,11 +216,14 @@
                                                 <th>tipo: </th>
                                                 <th>Acciones: </th>
                                               </tr> ';
-                                    
+
                                         while ($fila = mysqli_fetch_assoc($resultado)) {
                                             echo '<tr>';
                                             echo '<td>' . $fila['id'] . '</td>';
-                                            echo '<td><img src="' . $fila['imagen'] . '" alt="' . $fila['nombre'] . '" height="50"></td>';
+                                            echo '<td><img src="' . $fila['imagen'] . '" alt="' . $fila['nombre'] . '" style="width: 90px;
+                                            height: 90px;
+                                            border-radius: 50%;
+                                            border: 2px solid #ccc;"></td>';
                                             echo '<td>' . $fila['nombre'] . '</td>';
                                             echo '<td>' . $fila['descripcion'] . '</td>';
                                             echo '<td>';
