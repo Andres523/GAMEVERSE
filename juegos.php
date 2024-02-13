@@ -274,25 +274,55 @@
                                     <div class="modal-content">
                                         <span class="close" onclick="cerrarModalEditar()">&times;</span>
                                         <div class="container">
-                                            <h2>Editar Producto</h2>
-                                            <form id="formEditarProducto" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
-                                            <input type="hidden" id="edit-id" name="id">
-                                            <label for="edit-nombre">Nombre:</label>
-                                            <input type="text" id="edit-nombre" name="nombre">
-                                            <label for="edit-descripcion">Descripción:</label>
-                                            <textarea id="edit-descripcion" name="descripcion"></textarea>
-                                            <label for="edit-requisitos">Requisitos:</label>
-                                            <input type="text" id="edit-requisitos" name="requisitos">
-                                            <label for="edit-cantidad">Cantidad:</label>
-                                            <input type="number" id="edit-cantidad" name="cantidad">
-                                            <label for="edit-precio">Precio:</label>
-                                            <input type="number" id="edit-precio" name="precio">
-                                            <label for="edit-imagen">Imagen</label>
-                                            <input type="file" id="edit-imagen" name="imagen" accept="image/*">
                                             <br>
-                                            <label for="edit-video">Video MP4</label>
-                                            <input type="file" id="edit-video" name="video_mp4" accept="video/mp4">
-                                            <button type="submit">Guardar Cambios</button>
+                                        <h1 style="margin-left: 30px">EDITAR PRODUCTO</h1>
+                                            
+                                            <form id="formEditarProducto" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
+                                            <input class="su" type="hidden" id="edit-id" name="id">
+                                            
+                                            <div class="column">
+                                            <label for="edit-nombre"></label>
+                                            <input class="su" type="text" id="edit-nombre" name="nombre" placeholder=Nombre>
+                                            
+                                            <label for="edit-requisitos"></label>
+                                            <input class="su" type="text" id="edit-requisitos" name="requisitos" placeholder=Requisitos>
+
+                                            <label for="edit-cantidad"></label>
+                                            <input class="su" type="number" id="edit-cantidad" name="cantidad" placeholder=Cantidad>
+
+                                            <label for="edit-precio"></label>
+                                            <input class="su" type="number" id="edit-precio" name="precio" placeholder=Precio >
+
+                                            <label for="edit-descripcion"></label>
+                                            <textarea id="edit-descripcion" name="descripcion" placeholder=Descripción ></textarea>
+
+                                            </div>
+                                            <div class="column">
+                                            IMAGEN
+                                                <label for="edit-imagen" class="button">
+                                                  <span class="button__text">Agg Img</span>
+                                                  <span class="button__icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+                                                      <line y2="19" y1="5" x2="12" x1="12"></line>
+                                                      <line y2="12" y1="12" x2="19" x1="5"></line>
+                                                    </svg>
+                                                  </span>
+                                                </label>
+                                                <input class="button" type="file" id="edit-imagen" name="imagen" accept="image/*" style="display: none;">
+                                                VIDEO                                
+                                                <label for="edit-video" class="button">
+                                                  <span class="button__text">Agg Video</span>
+                                                  <span class="button__icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+                                                      <line y2="19" y1="5" x2="12" x1="12"></line>
+                                                      <line y2="12" y1="12" x2="19" x1="5"></line>
+                                                    </svg>
+                                                  </span>
+                                                </label>
+                                                <input class="button" type="file" id="edit-video" name="video_mp4" accept="video/mp4" style="display: none;">
+                                                <button class="btn4" type="submit">Guardar Cambios</button>
+                                            </div>
+                                        </div>
                                         
                                             
                                             <?php
@@ -422,19 +452,22 @@
                                         <div class="container">
                                             <div class="modal-box">
                                                 <span class="close" onclick="cerrarModalEliminar()">&times;</span>
+
                                                 <div class="modal-content">
                                                     <div class="modal-body">
                                                         <h3 class="title">¡CUIDADO!</h3>
-                                                        <p class="description"><h2>¿Estás seguro de eliminar este juego?</h2></p>
+                                                        <center><p><h2>¿Estás seguro de eliminar este juego?</h2></p></center>
                                                         <div class="modal-icon">
-                                                            <img src="./iconos/block-user.png" alt="icono" style="width: 110px; height: 110px;">
+                                                        <center><img src="./iconos/block-user.png" alt="icono" style="width: 110px; height: 110px;"></center>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="btn4" id="confirmarEliminarBtn" onclick="eliminarProductoAJAX()"><span class="button-content">Sí</span></button>
-                                        <button class="btn4" onclick="cerrarModalEliminar()"><span class="button-content">No</span></button>
+                                        
+                                        <center><button class="btn4" id="confirmarEliminarBtn" onclick="eliminarProductoAJAX()"><span class="button-content">Sí</span></button>
+                                        <button class="btn4" onclick="cerrarModalEliminar()"><span class="button-content">No</span></button></center>
+                                        
                                     </div>
                                     <script>
     function abrirModalEliminar(id) {
@@ -531,6 +564,7 @@
                                                     </label>
                                                     <input class="button" type="file" id="edit-video" name="video_mp4" accept="video/mp4" style="display: none;">
                                                 </div>
+                                                
                                                 <div class="column">
                                                 <a href="./categorias.php" class="button">
                                                   <span class="button__text">Agg Cate</span>
@@ -693,26 +727,30 @@
   transform: translate(3px, 3px);
   box-shadow: 0px 0px var(--main-color);
 }
-input,
-textarea {
-  font-weight: 500;
-  font-size: 11px;
-  color: #fff;
-  background-color: rgb(28, 28, 30);
-  border-radius: 4px;
-  border: none;
-  outline: none;
-  padding: 8px;
-  transition: 0.4s;
-}
+.su,
+  textarea {
+    font-weight: 500;
+    font-size: 11px;
+    color: #fff;
+    background-color: rgb(28, 28, 30);
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    padding: 8px;
+    transition: 0.4s;
+  }
 
-input:hover {
-  box-shadow: 0 0 0 2px rgba(135, 207, 235, 0.200);
-}
+  .su:hover {
+    box-shadow: 0 0 0 2px rgba(135, 207, 235, 0.200);
+  }
 
-input:focus {
-  box-shadow: 0 0 0 2px skyblue;
-}
+  .su:focus {
+    box-shadow: 0 0 0 2px skyblue;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
 
 .checkbox {
   display: inline-block;
@@ -763,7 +801,6 @@ input:focus {
 
 .column {
   margin-left: 20px;
-  margin-top: 20px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1331,6 +1368,9 @@ footer {
     li {
         margin-right: 10px;
     }
+  h1 {
+  color: black;
+}
 
 </style>
 </html>
