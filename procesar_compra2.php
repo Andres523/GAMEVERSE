@@ -71,7 +71,7 @@ if(isset($_SESSION['nombreUsuario'])) {
         $correo_usuario = $fila_usuario['correo'];
 
         // Obtener el precio del juego
-        $consulta_precio_juego = "SELECT precio FROM productos WHERE id = ?";
+        $consulta_precio_juego = "SELECT precio FROM marketplace WHERE id = ?";
         $stmt_precio_juego = mysqli_prepare($conexion, $consulta_precio_juego);
         mysqli_stmt_bind_param($stmt_precio_juego, "i", $id_juego);
         mysqli_stmt_execute($stmt_precio_juego);
@@ -80,7 +80,7 @@ if(isset($_SESSION['nombreUsuario'])) {
         $precio_juego = $fila_precio_juego['precio'];
 
         // Obtener la cantidad disponible del producto
-        $consulta_cantidad_producto = "SELECT cantidad FROM productos WHERE id = ?";
+        $consulta_cantidad_producto = "SELECT cantidad FROM marketplace WHERE id = ?";
         $stmt_cantidad_producto = mysqli_prepare($conexion, $consulta_cantidad_producto);
         mysqli_stmt_bind_param($stmt_cantidad_producto, "i", $id_juego);
         mysqli_stmt_execute($stmt_cantidad_producto);
@@ -104,7 +104,7 @@ if(isset($_SESSION['nombreUsuario'])) {
                
 
                 // Actualizar la cantidad de juegos disponibles
-                $consulta_actualizar_cantidad = "UPDATE productos SET cantidad = cantidad - ? WHERE id = ?";
+                $consulta_actualizar_cantidad = "UPDATE marketplace SET cantidad = cantidad - ? WHERE id = ?";
                 $stmt_actualizar_cantidad = mysqli_prepare($conexion, $consulta_actualizar_cantidad);
 
                 if (!$stmt_actualizar_cantidad) {
@@ -136,7 +136,7 @@ if(isset($_SESSION['nombreUsuario'])) {
                 $message .= "Precio: $precio_juego\n";
                 $message .= "Cantidad: $cantidad\n\n";
                 $total = $precio_juego * $cantidad;
-                $message .= "Total : $total \n\n";
+                $message .= "Total : $total .00 COP\n\n";
                 $message .= "Gracias por comprar en GameVerse. Si el juego no te llega en 3 días, haz un reporte.";
 
                 // Cabeceras del correo electrónico
@@ -164,7 +164,7 @@ if(isset($_SESSION['nombreUsuario'])) {
                         segundos--;
                         document.getElementById('contador').innerText = segundos;
                         if(segundos == 0) {
-                            window.location.href = 'tienda.php';
+                            window.location.href = 'marketplace.php';
                         }
                     }, 1000);
                     </script>";

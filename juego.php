@@ -616,18 +616,6 @@ mysqli_close($conexion);
                         }
                         ?>
 
-                    </section>
-                </main>
-
-                <footer class="main-content">
-                    <ul>
-                        <li><a href="#privacy">Política de Privacidad</a></li>
-                        <li><a href="#terms">Términos de Uso</a></li>
-                        <li><a href="#contact">Contacto</a></li>
-                    </ul>
-                </footer>
-                </body>
-                </html>
                 <?php
             } else {
                 echo '<p>No se proporcionó un ID de juego válido.</p>';
@@ -642,8 +630,23 @@ mysqli_close($conexion);
     exit(); 
 }
 ?>
+
+</section>
+                </main>
+
+                <footer class="main-content">
+                    <ul>
+
+                    </ul>
+                </footer>
+                </body>
+                </html>
 <style>
 /* Estilos para los botones */
+
+
+.footer {background-color: #333;color: white;text-align: center;padding: 10px 0;}
+
 .Btn {
   width: 140px;
   height: 40px;
