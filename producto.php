@@ -13,6 +13,18 @@ if(isset($_SESSION['nombreUsuario'])) {
     $loggedIn = true;
     $id_juego = isset($_GET['id']) ? $_GET['id'] : null;
 
+    $consultaDatos = "SELECT color, fondo FROM usuarios WHERE nombre = '$nombreUsuario'";
+    $resultadoDatos = mysqli_query($conexion, $consultaDatos);
+
+    if ($resultadoDatos && $fila = mysqli_fetch_assoc($resultadoDatos)) {
+      $colorFondo = $fila['color'];
+      $fondo =  $fila['fondo'];
+    } else {
+    
+      $fondo = 'linear-gradient(#141e30, #243b55)';
+      $colorFondo = '#fcf9f4';
+    }
+
     if ($loggedIn && $id_juego) {
         $consulta = "SELECT p.id, p.nombre, p.descripcion, p.cantidad, p.precio, p.imagen
                     FROM marketplace p
@@ -88,7 +100,8 @@ if(isset($_SESSION['nombreUsuario'])) {
     }
     </script>
 </head>
-<body>
+
+<body id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size: cover; background-position: center top;background-attachment: fixed;">
 <div class="spinner-overlay">
     <div class="spinner">
         <script>

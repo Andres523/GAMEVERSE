@@ -190,8 +190,7 @@
 
     </div>
 </div>
-<body 
-id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size:cover; object-fit: cover;">
+<body id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size: cover; background-position: center top;background-attachment: fixed; ">
 <div class="spinner-overlay">
     <div class="spinner">
 
@@ -386,8 +385,8 @@ id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; backgro
                                      <h3>Imágenes predeterminadas :</h3>
                                     <div class="image-selection">
                                         <label for="image1">
-                                            <img src="./img/fondo/1.jpg" alt="Imagen 1" class="img-preview">
-                                            <input type="radio" id="image1" name="selectedImage" value="./img/fondo/1.jpg">
+                                            <img src="./img/fondo/esta.jpg" alt="Imagen 1" class="img-preview">
+                                            <input type="radio" id="image1" name="selectedImage" value="./img/fondo/esta.jpg">
                                         </label>
 
                                         <label for="image2">

@@ -13,6 +13,23 @@ if(isset($_SESSION['nombreUsuario'])) {
     $loggedIn = true;
     $id_juego = isset($_GET['id']) ? $_GET['id'] : null;
 
+
+
+    $nombreUsuario = $_SESSION['nombreUsuario'];
+
+    $consultaDatos = "SELECT color, fondo FROM usuarios WHERE nombre = '$nombreUsuario'";
+    $resultadoDatos = mysqli_query($conexion, $consultaDatos);
+
+    if ($resultadoDatos && $fila = mysqli_fetch_assoc($resultadoDatos)) {
+      $colorFondo = $fila['color'];
+      $fondo =  $fila['fondo'];
+    } else {
+    
+      $fondo = 'linear-gradient(#141e30, #243b55)';
+      $colorFondo = '#fcf9f4';
+    }
+
+
     if ($loggedIn && $id_juego) {
         $consulta = "SELECT p.id, p.nombre, p.descripcion, p.requisitos, p.cantidad, p.precio, p.imagen, p.video_mp4, c.id as categoria_id, c.nombre as categoria_nombre
                     FROM productos p
@@ -88,7 +105,11 @@ if(isset($_SESSION['nombreUsuario'])) {
     }
     </script>
 </head>
-<body>
+<?php
+
+?>
+<body id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size: cover; background-position: center top;background-attachment: fixed;">
+
 <div class="spinner-overlay">
     <div class="spinner">
 
@@ -110,6 +131,7 @@ if(isset($_SESSION['nombreUsuario'])) {
     <h2 class="h1"><center>Confirmar Compra</center></h2>
     <br>
     </div>
+    <a class="btn4" href="tienda.php" style="text-decoration: none;">Volver</a>
     <br><br>
     <div class="borde">
         <img class="imagen"src="<?php echo $fila['imagen']; ?>" alt="<?php echo $fila['nombre']; ?>">
