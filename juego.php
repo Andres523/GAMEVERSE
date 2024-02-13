@@ -678,7 +678,7 @@ mysqli_close($conexion);
 
 </style>
                                     <br>
-                                    <label for="comentario">Comentario:</label>
+                                    <label for="comentario"></label>
                                     <textarea name="comentario" id="comentario" rows="4" cols="50"></textarea>
                                     <br>
                                     <!-- Dentro del formulario HTML -->

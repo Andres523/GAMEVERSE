@@ -28,7 +28,8 @@ function imprimirEstrellas($calificacion) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/tienda.css">
+    <link rel="stylesheet" href="./styles/tienda2.css">
+    <link rel="stylesheet" href="./styles/tienda.css">  
     <link rel="shortcut icon" href="./img/logo.png">
     <title>Tienda de Juegos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
