@@ -51,7 +51,7 @@ if ($resultadoDatos && $fila = mysqli_fetch_assoc($resultadoDatos)) {
 } else {
  
   $fondo = 'linear-gradient(#141e30, #243b55)';
-  $colorFondo = '#fcf9f4';
+  
 }
 ?>
 <body id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size: cover; background-position: center top;background-attachment: fixed;">

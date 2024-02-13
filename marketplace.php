@@ -32,7 +32,7 @@ $resultado = mysqli_query($conexion, $consulta);
 
 
 $conexion = mysqli_connect("127.0.0.1", "root", "", "gameverse");
-
+error_reporting(0);
 $nombreUsuario = $_SESSION['nombreUsuario'];
 
 $consultaDatos = "SELECT color, fondo FROM usuarios WHERE nombre = '$nombreUsuario'";
@@ -44,7 +44,7 @@ if ($resultadoDatos && $fila = mysqli_fetch_assoc($resultadoDatos)) {
 } else {
  
   $fondo = 'linear-gradient(#141e30, #243b55)';
-  $colorFondo = '#fcf9f4';
+
 }
 ?>
 <body id="bodyBackground" style="background-color: <?php echo $colorFondo; ?>; background-image: url('<?php echo $fondo; ?>'); background-repeat: no-repeat; background-size: cover; background-position: center top;background-attachment: fixed;">
