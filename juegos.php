@@ -267,63 +267,59 @@
                                 </div>
                                 
                                 <!-- MODAL editar-->
-
-
-
                                 <div id="modalEditar" class="modal">
                                     <div class="modal-content">
                                         <span class="close" onclick="cerrarModalEditar()">&times;</span>
                                         <div class="container">
                                             <br>
-                                        <h1 style="margin-left: 30px">EDITAR PRODUCTO</h1>
-                                            
+                                            <h2 style="margin-left: 30px">EDITAR PRODUCTO</h2>
                                             <form id="formEditarProducto" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
-                                            <input class="su" type="hidden" id="edit-id" name="id">
-                                            
+                                            <input type="hidden" id="edit-id" name="id">
+
                                             <div class="column">
                                             <label for="edit-nombre"></label>
-                                            <input class="su" type="text" id="edit-nombre" name="nombre" placeholder=Nombre>
-                                            
+                                            <input class="su" type="text" id="edit-nombre" name="nombre" placeholder="Nombre">
+
                                             <label for="edit-requisitos"></label>
-                                            <input class="su" type="text" id="edit-requisitos" name="requisitos" placeholder=Requisitos>
+                                            <input class="su" type="text" id="edit-requisitos" name="requisitos" placeholder="Requisitos">
 
                                             <label for="edit-cantidad"></label>
-                                            <input class="su" type="number" id="edit-cantidad" name="cantidad" placeholder=Cantidad>
+                                            <input class="su" type="number" id="edit-cantidad" name="cantidad" placeholder="Cantidad">
 
                                             <label for="edit-precio"></label>
-                                            <input class="su" type="number" id="edit-precio" name="precio" placeholder=Precio >
+                                            <input class="su" type="number" id="edit-precio" name="precio" placeholder="Precio">
 
                                             <label for="edit-descripcion"></label>
-                                            <textarea id="edit-descripcion" name="descripcion" placeholder=Descripción ></textarea>
-
+                                            <textarea id="edit-descripcion" name="descripcion" placeholder="Descripción" ></textarea>
                                             </div>
+
                                             <div class="column">
                                             IMAGEN
-                                                <label for="edit-imagen" class="button">
-                                                  <span class="button__text">Agg Img</span>
-                                                  <span class="button__icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
-                                                      <line y2="19" y1="5" x2="12" x1="12"></line>
-                                                      <line y2="12" y1="12" x2="19" x1="5"></line>
-                                                    </svg>
-                                                  </span>
-                                                </label>
-                                                <input class="button" type="file" id="edit-imagen" name="imagen" accept="image/*" style="display: none;">
-                                                VIDEO                                
-                                                <label for="edit-video" class="button">
-                                                  <span class="button__text">Agg Video</span>
-                                                  <span class="button__icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
-                                                      <line y2="19" y1="5" x2="12" x1="12"></line>
-                                                      <line y2="12" y1="12" x2="19" x1="5"></line>
-                                                    </svg>
-                                                  </span>
-                                                </label>
-                                                <input class="button" type="file" id="edit-video" name="video_mp4" accept="video/mp4" style="display: none;">
-                                                <button class="btn4" type="submit">Guardar Cambios</button>
+                                            <label for="edit-imagen" class="button">
+                                              <span class="button__text">Agg Img</span>
+                                              <span class="button__icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+                                                  <line y2="19" y1="5" x2="12" x1="12"></line>
+                                                  <line y2="12" y1="12" x2="19" x1="5"></line>
+                                                </svg>
+                                              </span>
+                                            </label>
+                                            <input class="button" type="file" id="edit-imagen" name="imagen" accept="image/*" style="display: none;">
+                                            VIDEO                                
+                                            <label for="edit-video" class="button">
+                                              <span class="button__text">Agg Video</span>
+                                              <span class="button__icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+                                                  <line y2="19" y1="5" x2="12" x1="12"></line>
+                                                  <line y2="12" y1="12" x2="19" x1="5"></line>
+                                                </svg>
+                                              </span>
+                                            </label>
+                                            <input class="button" type="file" id="edit-video" name="video_mp4" accept="video/mp4" style="display: none;">
+
+
+                                            <button class="btn4" type="submit">Guardar Cambios</button>
                                             </div>
-                                        </div>
-                                        
                                             
                                             <?php
                                             mysqli_close($conexion);
@@ -452,22 +448,19 @@
                                         <div class="container">
                                             <div class="modal-box">
                                                 <span class="close" onclick="cerrarModalEliminar()">&times;</span>
-
                                                 <div class="modal-content">
                                                     <div class="modal-body">
-                                                        <h3 class="title">¡CUIDADO!</h3>
-                                                        <center><p><h2>¿Estás seguro de eliminar este juego?</h2></p></center>
+                                                        <center><h3 class="title">¡CUIDADO!</h3>
+                                                        <p class="description"><h2>¿Estás seguro de eliminar este juego?</h2></p>
                                                         <div class="modal-icon">
-                                                        <center><img src="./iconos/block-user.png" alt="icono" style="width: 110px; height: 110px;"></center>
-                                                        </div>
+                                                            <img src="./iconos/block-user.png" alt="icono" style="width: 110px; height: 110px;">
+                                                        </div></center>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        
                                         <center><button class="btn4" id="confirmarEliminarBtn" onclick="eliminarProductoAJAX()"><span class="button-content">Sí</span></button>
                                         <button class="btn4" onclick="cerrarModalEliminar()"><span class="button-content">No</span></button></center>
-                                        
                                     </div>
                                     <script>
     function abrirModalEliminar(id) {
@@ -504,44 +497,41 @@
 </script>
 
                                 </div>
-
-
-
-
-
-
-
-                              
                             </div>
 
 
                                 <!-- PRODUCTOS -->
+
                                 <div id="productModal" class="modal">
                                     <div class="modal-content">
                                         <span class="close" id="closeProductModalBtn">&times;</span>
-                                        <form id="productForm" action="procesar_producto.php" method="post"     enctype="multipart/form-data">
+                                        <form id="productForm" action="procesar_producto.php" method="post" enctype="multipart/form-data">
+                                        <br>
+                                            <h2 style="margin-left: 30px">AGREGAR PRODUCTO</h2>
                                             <div class="form-container">
                                                 <div class="form-column">
+                                                    <h1></h1>
                                                 <div class="column">
-                                                    <label for="edit-nombre"></label>
-                                                    <input type="text" id="edit-nombre" name="nombre" placeholder="Nombre:">
+                                                    <label for="nombre"></label>
+                                                    <input class="su" type="text" id="nombre" name="nombre" placeholder="Nombre:">
 
-                                                    <label for="edit-requisitos"></label>
-                                                    <input type="text" id="edit-requisitos" name="requisitos" placeholder="Requisitos:">
+                                                    <label for="requisitos"></label>
+                                                    <input class="su" type="text" id="requisitos" name="requisitos" placeholder="Requisitos:">
 
-                                                    <label for="edit-cantidad"></label>
-                                                    <input type="number" id="edit-cantidad" name="cantidad" placeholder="Cantidad:">
+                                                    <label for="cantidad"></label>
+                                                    <input class="su" type="number" id="cantidad" name="cantidad" placeholder="Cantidad:">
 
-                                                    <label for="edit-descripcion"></label>
-                                                    <textarea class="input" id="edit-descripcion" name="descripcion" placeholder="Descripción:"></textarea>
+                                                    <label for="descripcion"></label>
+                                                    <textarea id="descripcion" name="descripcion" placeholder="Descripción:"></textarea>
 
                                                 </div>
                                                 <br>
                                                 <div class="column">
-                                                    <label for="edit-precio"></label>
-                                                    <input type="number" id="edit-precio" name="precio" placeholder="Precio:">
+                                                    <label for="precio"></label>
+                                                    <input class="su" type="number" id="precio" name="precio" placeholder="Precio:">
+
                                                     IMAGEN
-                                                    <label for="edit-imagen" class="button">
+                                                    <label for="imagen" class="button">
                                                       <span class="button__text">Agg Img</span>
                                                       <span class="button__icon">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
@@ -550,10 +540,9 @@
                                                         </svg>
                                                       </span>
                                                     </label>
-                                                    <input class="button" type="file" id="edit-imagen" name="imagen" accept="image/*" style="display: none;">
-
+                                                    <input class="button" type="file" id="imagen" name="imagen" accept="image/*" style="display: none;">
                                                     VIDEO                                
-                                                    <label for="edit-video" class="button">
+                                                    <label for="video" class="button">
                                                       <span class="button__text">Agg Video</span>
                                                       <span class="button__icon">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
@@ -562,9 +551,9 @@
                                                         </svg>
                                                       </span>
                                                     </label>
-                                                    <input class="button" type="file" id="edit-video" name="video_mp4" accept="video/mp4" style="display: none;">
+                                                    <input class="button" type="file" id="video" name="video_mp4" accept="video/mp4" style="display: none;">
+                                                    
                                                 </div>
-                                                
                                                 <div class="column">
                                                 <a href="./categorias.php" class="button">
                                                   <span class="button__text">Agg Cate</span>
@@ -660,720 +649,5 @@
 
     </main>
 </body>
-<style> 
 
-.button {
-  --main-focus: #2d8cf0;
-  --font-color: #dedede;
-  --bg-color-sub: #222;
-  --bg-color: #323232;
-  --main-color: #dedede;
-  position: relative;
-  width: 150px;
-  height: 30px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  border: 2px solid var(--main-color);
-  box-shadow: 3px 3px var(--main-color);
-  background-color: var(--bg-color);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-right: 10px;
-  margin-bottom: 20px;
-}
-
-
-.button, .button__icon, .button__text {
-  transition: all 0.3s;
-}
-
-.button .button__text {
-  transform: translateX(25px);
-  color: var(--font-color);
-  font-weight: 600;
-}
-
-.button .button__icon {
-  position: absolute;
-  transform: translateX(109px);
-  height: 100%;
-  width: 39px;
-  background-color: var(--bg-color-sub);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.button .svg {
-  width: 20px;
-  stroke: var(--main-color);
-}
-
-.button:hover {
-  background: var(--bg-color);
-}
-
-.button:hover .button__text {
-  color: transparent;
-}
-
-.button:hover .button__icon {
-  width: 148px;
-  transform: translateX(0);
-}
-
-.button:active {
-  transform: translate(3px, 3px);
-  box-shadow: 0px 0px var(--main-color);
-}
-.su,
-  textarea {
-    font-weight: 500;
-    font-size: 11px;
-    color: #fff;
-    background-color: rgb(28, 28, 30);
-    border-radius: 4px;
-    border: none;
-    outline: none;
-    padding: 8px;
-    transition: 0.4s;
-  }
-
-  .su:hover {
-    box-shadow: 0 0 0 2px rgba(135, 207, 235, 0.200);
-  }
-
-  .su:focus {
-    box-shadow: 0 0 0 2px skyblue;
-  }
-
-  input[type="file"] {
-    display: none;
-  }
-
-.checkbox {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-}
-
-.checkbox__input {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.checkbox__label {
-  display: inline-block;
-  padding-left: 30px;
-  margin-bottom: 10px;
-  position: relative;
-  font-size: 16px;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-}
-
-.checkbox__custom {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 20px;
-  background: linear-gradient(#212121, #212121) padding-box,
-              linear-gradient(145deg,#e81cff, #40c9ff) border-box;
-  border: 2px solid transparent;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-}
-
-.checkbox__input:checked ~ .checkbox__label .checkbox__custom {
-  background-image: linear-gradient(145deg,#e81cff, #40c9ff);
-  transform: rotate(45deg) scale(0.8);
-}
-
-
-.checkbox__label:hover .checkbox__custom {
-  transform: scale(1.2);
-}
-
-
-.column {
-  margin-left: 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.ti{
-    margin-left: 27px;
-    margin-top: 10px;
-    color: black;
-}
-
-    @media only screen and (max-width: 1200px) {
-.i{
-    width: 100%; 
-    margin: 5px; 
-    text-align: center;
-}
-
-}
-
-    .tab table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .tab td {
-        padding: 10px; 
-    }
-
-    .tab tr {
-        height: 10px; 
-    }
-
-body {
-	background-color: #383c41;
-	color: #fcf9f4;
-}
-
-main {
-	max-width: 1000px;
-	height: 600px;
-	margin: 30px auto;
-	background: #2d2f33;
-	padding: 30px;
-	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-}	
-
-input[name="css-tabs"] {
-	display: none;
-}
-
-#tabs {
-	padding: 0 0 0 50px;
-	width: calc(100% + 50px);
-	margin-left: -50px;
-	background: #2b2a28;
-	height: 80px;
-	border-bottom: 5px solid #8201eb;
-	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2); 
-}
-#tabs::before {
-	content: "";
-	display: block;
-	position: absolute;
-	z-index: -100;
-	width: 100%;
-	left: 0;
-	margin-top: 16px;
-	height: 80px;
-	background: #2b2a28;
-	border-bottom: 5px solid #8201eb;
-}
-#tabs::after {
-	content: "";
-	display: block;
-	position: absolute;
-	z-index: 0;
-	height: 80px;
-	width: 102px;
-	background: #8201eb;
-	transition: transform 400ms;
-}
-#tabs label {
-	position: relative;
-	z-index: 100;
-	display: block;
-	float: left;
-	font-size: 11px;
-	text-transform: uppercase;
-	text-align: center;
-	width: 92px;
-	height: 100%;
-	border-left: 10px dotted rgb(84, 20, 148);
-	cursor: pointer;
-}
-#tabs label:first-child {
-	border-left: 10px dotted rgb(84, 20, 148);
-}
-#tabs label::before {
-	content: "";
-	display: block;
-	height: 30px;
-	width: 30px;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	filter: invert(40%);
-	margin: 10px auto;
-}
-#tab1::before {
-	background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/106891/paper-plane.png);
-}
-#tab2::before {
-	background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/106891/big-cloud.png);
-}
-#tab3::before {
-	background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/106891/folding-brochure.png);
-}
-#tab4::before {
-	background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/106891/mans-silhouette.png);
-}
-#radio1:checked ~ #tabs #tab1::before,
-#radio2:checked ~ #tabs #tab2::before,
-#radio3:checked ~ #tabs #tab3::before,
-#radio4:checked ~ #tabs #tab4::before {
-	filter: invert(100%);
-}
-#radio1:checked ~ #tabs::after {
-	transform: translateX(0);
-}
-#radio2:checked ~ #tabs::after {
-	transform: translateX(101px);
-}
-#radio3:checked ~ #tabs::after {
-	transform: translateX(202px);
-}
-#radio4:checked ~ #tabs::after {
-	transform: translateX(303px);
-}
-#content {
-	position: relative;
-	height: 125px;
-}
-#content::before {
-	content: "";
-	display: block;
-	position: absolute;
-	width: 0;
-	height: 0;
-	margin-left: -50px;
-	border-top: 8px solid #000;
-	border-right: 10px solid #000;
-	border-left: 10px solid transparent;
-	border-bottom: 8px solid transparent;
-}
-#content::after {
-	content: "";
-	display: block;
-	position: absolute;
-	width: 0;
-	height: 0;
-	margin-left: calc(100% + 30px);
-	border-top: 8px solid #000;
-	border-left: 10px solid #000;
-	border-right: 10px solid transparent;
-	border-bottom: 8px solid transparent;
-}
-#content section {
-	position: absolute;
-	transform: translateY(50px);
-	opacity: 0;
-	transition: transform 500ms, opacity 500ms;
-}
-#radio1:checked ~ #content #content1,
-#radio2:checked ~ #content #content2,
-#radio3:checked ~ #content #content3,
-#radio4:checked ~ #content #content4 {
-	transform: translateY(0);
-	opacity: 1;
-}
-footer {
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	font-size: 13px;
-	background: #f81919;
-	padding: 5px 10px;
-	margin: 5px;
-}
-
-/*confirmacion eliminacion de usuarios*/
-.modal-content{
-    background: -webkit-linear-gradient(#E100FF, #7F00FF);
-    background: linear-gradient(#E100FF, #7F00FF);
-    border: none;
-    border-radius: 20px;
-}
-
-
-.title{
-    color: #000000;
-    font-size: 30px;
-    font-weight: 700;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    margin: 0 0 10px;
-    text-align: center;
-}
-
-.close {
-	color: rgb(243, 9, 9);
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-	color: black;
-	text-decoration: none;
-	cursor: pointer;
-}
-.modal {
-	display: none;
-	position: fixed;
-	z-index: 99;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.4);
-}
-
-.close {
-	color: rgb(0, 0, 0);
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-	color: black;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-/* mari */
-.profile-picture {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 2px solid #ccc;
-}
-
-
-.btn4 {
-    --border-color: linear-gradient(-45deg, #ffae00, #7e03aa, #00fffb);
-    --border-width: .125em;
-    --curve-size: .5em;
-    --blur: 30px;
-    --bg: #080312;
-    --color: #afffff;
-    color: var(--color);
-    position: relative;
-    isolation: isolate;
-    display: inline-grid;
-    place-content: center;
-    padding: .5em 1.5em;
-    font-size: 17px;
-    border: 0;
-    text-transform: uppercase;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, .6);
-    clip-path: polygon(
-              /* Top-left */
-              0% var(--curve-size), 
-              var(--curve-size) 0,
-              /* top-right */
-              100% 0,
-              100% calc(100% - var(--curve-size)),  
-              /* bottom-right 1 */
-              calc(100% - var(--curve-size)) 100%,
-              /* bottom-right 2 */
-              0 100%);
-    transition: color 250ms;
-}
-      
-.btn4::after,
-.btn4::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-}
-      
-.btn4::before {
-    background: var(--border-color);
-    background-size: 300% 300%;
-    animation: move-bg7234 5s ease infinite;
-    z-index: -2;
-}
-      
-@keyframes move-bg7234 {
-    0% {
-      background-position: 31% 0%
-    }
-
-    50% {
-      background-position: 70% 100%
-    }
-
-    100% {
-      background-position: 31% 0%
-    }
-}
- 
-.btn4::after {
-    background: var(--bg);
-    z-index: -1;
-    clip-path: polygon(
-              /* Top-left */
-              var(--border-width) 
-              calc(var(--curve-size) + var(--border-width) * .5),
-
-              calc(var(--curve-size) + var(--border-width) * .5) var(--border-width),
-
-              /* top-right */
-              calc(100% - var(--border-width)) 
-              var(--border-width),
-
-              calc(100% - var(--border-width)) 
-              calc(100% - calc(var(--curve-size) + var(--border-width) * .5)),
-
-              /* bottom-right 1 */
-              calc(100% - calc(var(--curve-size) + var(--border-width) * .5)) calc(100% - var(--border-width)),
-              /* bottom-right 2 */
-              var(--border-width) calc(100% - var(--border-width)));
-    transition: clip-path 500ms;
-}
-      
-.btn4:where(:hover, :focus)::after {
-    clip-path: polygon(
-                  /* Top-left */
-                  calc(100% - var(--border-width)) 
-
-                  calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
-      
-                  calc(100% - var(--border-width))
-
-                  var(--border-width),
-      
-                  /* top-right */
-                  calc(100% - var(--border-width))
-
-                   var(--border-width),
-      
-                  calc(100% - var(--border-width)) 
-
-                  calc(100% - calc(var(--curve-size) + var(--border-width) * .5)),
-      
-                  /* bottom-right 1 */
-                  calc(100% - calc(var(--curve-size) + var(--border-width) * .5)) 
-                  calc(100% - var(--border-width)),
-
-                  /* bottom-right 2 */
-                  calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
-                  calc(100% - var(--border-width)));
-    transition: 200ms;
-}
-      
-.btn4:where(:hover, :focus) {
-    color: #fff;
-}
-
-
-.login-box .user-box input {
-	background: transparent;
-	color: #fff;	
-}
-.login-box .user-box label {
-	font-size: 16px;
-	pointer-events: none;
-	color: #8803f4;
-}
-.login-box .user-box input:focus ~ label,
-.login-box .user-box input:valid ~ label {
-	color: #8803f4;
-	font-size: 17px;
-}
-.tab{
-	border-color: #000000;
-	width: 1000px;
-	height: 325px;
-	text-shadow: #040f16;
-	opacity:0.9;
-	color:#ffffff;
-	background-color: #222528;
-	overflow: auto;
-    padding-left: 20px;
-}
-.tab::-webkit-scrollbar {
-	  width: 12px;
-}
-.tab::-webkit-scrollbar-thumb {
-	border-radius: 6px;
-}
-.tabla{
-	border-color: #000000;
-	width: 780px;
-	height: 250px;
-	text-shadow: #040f16;
-	opacity:0.9;
-	color:#ffffff;
-	background-color: #2b2e31;
-	overflow: auto;
-	padding-left: 20px;
-}
-.tabla::-webkit-scrollbar {
-	  width: 12px;
-}
-.tabla::-webkit-scrollbar-thumb {
-	border-radius: 6px;
-}
-
-	.delete-button {
-		width: 40px;
-		height: 40px;
-		border-radius: 50%;
-		background-color: rgb(255, 69, 69);
-		border: none;
-		font-weight: 600;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		cursor: pointer;
-		transition-duration: 0.3s;
-		overflow: hidden;
-		position: relative;
-	  }
-	  
-	  .delete-svgIcon {
-		width: 15px;
-		transition-duration: 0.3s;
-	  }
-	  
-	  .delete-svgIcon path {
-		fill: white;
-	  }
-	  
-	  .delete-button:hover {
-		width: 90px;
-		border-radius: 50px;
-		transition-duration: 0.3s;
-		background-color: rgb(255, 69, 69);
-		align-items: center;
-	  }
-	  
-	  .delete-button:hover .delete-svgIcon {
-		width: 20px;
-		transition-duration: 0.3s;
-		transform: translateY(60%);
-		-webkit-transform: rotate(360deg);
-		-moz-transform: rotate(360deg);
-		-o-transform: rotate(360deg);
-		-ms-transform: rotate(360deg);
-		transform: rotate(360deg);
-	  }
-	  
-	  .delete-button::before {
-		display: none;
-		content: "Delete";
-		color: white;
-		transition-duration: 0.3s;
-		font-size: 2px;
-	  }
-	  
-	  .delete-button:hover::before {
-		display: block;
-		padding-right: 10px;
-		font-size: 13px;
-		opacity: 1;
-		transform: translateY(0px);
-		transition-duration: 0.3s;
-	  }
-	  
-
-      .edit-button {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color:#00ff00;
-        border: none;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition-duration: 0.3s;
-        overflow: hidden;
-        position: relative;
-        text-decoration: none !important;
-  }
-	  
-	  .edit-svgIcon {
-		width: 17px;
-		transition-duration: 0.3s;
-	  }
-	  
-	  .edit-svgIcon path {
-		fill: white;
-	  }
-	  
-	  .edit-button:hover {
-		width: 120px;
-		border-radius: 50px;
-		transition-duration: 0.3s;
-		background-color: #00ff00;
-		align-items: center;
-	  }
-	  
-	  .edit-button:hover .edit-svgIcon {
-		width: 20px;
-		transition-duration: 0.3s;
-		transform: translateY(60%);
-		-webkit-transform: rotate(360deg);
-		-moz-transform: rotate(360deg);
-		-o-transform: rotate(360deg);
-		-ms-transform: rotate(360deg);
-		transform: rotate(360deg);
-	  }
-	  
-	  .edit-button::before {
-		display: none;
-		content: "Edit";
-		color: white;
-		transition-duration: 0.3s;
-		font-size: 2px;
-	  }
-	  
-	  .edit-button:hover::before {
-		display: block;
-		padding-right: 10px;
-		font-size: 13px;
-		opacity: 1;
-		transform: translateY(0px);
-		transition-duration: 0.3s;
-	  }
-
-    .modal-content {
-        width: 100%;
-        flex-direction: column;
-    }
-
-    .form-container {
-        display: flex;
-        gap: 70px;
-    }
-    .form-column {
-        display: block;
-    }
-
-    ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    li {
-        margin-right: 10px;
-    }
-  h1 {
-  color: black;
-}
-
-</style>
 </html>
-
-
-
