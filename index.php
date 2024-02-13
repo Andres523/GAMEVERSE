@@ -192,7 +192,7 @@ function imprimirEstrellas($calificacion) {
             <ul class="navigation">
                 <li><a href="./index.php">HOME</a></li>
                 <li><a href="tienda.php">TIENDA</a></li>
-                <li><a href="./marketplace.html">MARKETPLACE</a></li>
+                <li><a href="./marketplace.php">MARKETPLACE</a></li>
             </ul>
             <br>
             <br>
