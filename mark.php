@@ -273,6 +273,8 @@
                                 
                                  <!-- MODAL editar-->
 
+
+
                                 <div id="modalEditar" class="modal">
                                     <div class="modal-content">
                                         <span class="close" onclick="cerrarModalEditar()">&times;</span>
@@ -280,18 +282,14 @@
                                             <h2>Editar Producto</h2>
                                             <form id="formEditarProducto" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
                                             <input type="hidden" id="edit-id" name="id">
-
-                                            <label for="edit-nombre"></label>
-                                            <input type="text" id="edit-nombre" name="nombre" placeholder="Nombre">
-
-                                            <label for="edit-descripcion"></label>
-                                            <textarea id="edit-descripcion" name="descripcion" placeholder="Descripción"></textarea>
-
-                                            <label for="edit-cantidad"></label>
-                                            <input type="number" id="edit-cantidad" name="cantidad" placeholder="Cantidad" >
-                                            
-                                            <label for="edit-precio"></label>
-                                            <input type="number" id="edit-precio" name="precio" placeholder="Precio">
+                                            <label for="edit-nombre">Nombre:</label>
+                                            <input type="text" id="edit-nombre" name="nombre">
+                                            <label for="edit-descripcion">Descripción:</label>
+                                            <textarea id="edit-descripcion" name="descripcion"></textarea>
+                                            <label for="edit-cantidad">Cantidad:</label>
+                                            <input type="number" id="edit-cantidad" name="cantidad">
+                                            <label for="edit-precio">Precio:</label>
+                                            <input type="number" id="edit-precio" name="precio">
                                             
                                             <label for="edit-tipo">Tipo:</label>
                                             <select id="edit-tipo" name="tipo">
@@ -436,19 +434,17 @@
                                                 <span class="close" onclick="cerrarModalEliminar()">&times;</span>
                                                 <div class="modal-content">
                                                     <div class="modal-body">
-                                                        <center><h3 class="title">¡CUIDADO!</h3>
+                                                        <h3 class="title">¡CUIDADO!</h3>
                                                         <p class="description"><h2>¿Estás seguro de eliminar este juego?</h2></p>
                                                         <div class="modal-icon">
-                                                            <img src="./iconos/block-user.png" alt="icono" style="width: 110px; height: 110px;"></center>
+                                                            <img src="./iconos/block-user.png" alt="icono" style="width: 110px; height: 110px;">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        
-                                        <center>
-                                        <button class="btn4" id="confirmarEliminarBtn" onclick="eliminarProductoAJAX()"><span class="button-content">Sí</span></button>
-                                        <button class="btn4" onclick="cerrarModalEliminar()"><span class="button-content">No</span></button></center>
                                         </div>
+                                        <button class="btn4" id="confirmarEliminarBtn" onclick="eliminarProductoAJAX()"><span class="button-content">Sí</span></button>
+                                        <button class="btn4" onclick="cerrarModalEliminar()"><span class="button-content">No</span></button>
                                     </div>
                                     <script>
     function abrirModalEliminar(id) {
@@ -502,10 +498,11 @@
                                         <span class="close" id="closeProductModalBtn">&times;</span>
                                         <form id="productForm" action="procesar_productoM.php" method="post"     enctype="multipart/form-data" >
                                             <br>
-                                        <h1 class="ti">AGREGAR PRODUCTO</h1>
+                                        <h1 class="ti" >AGREGAR PRODUCTOS</h1>
                                             <div class="form-container">
                                                 <div class="form-column">
                                                 <div class="column">
+
                                                     <label for="nombre"></label>
                                                     <input class="su" type="text" id="nombre" name="nombre" placeholder="Nombre" required="Complete este campo">
 
@@ -519,8 +516,6 @@
                                                     <label for="precio"></label>
                                                     <input class="su" type="number" id="precio" name="precio" placeholder="Precio" required="Complete este campo">
                                                     <br>
-
-                                                    
 
                                                     <label for="tipo"></label>
                                                     <select class="su" id="tipo" name="tipo" required="required">
@@ -543,7 +538,7 @@
                                                     </label>
                                                     <input class="button" type="file" id="imagen" name="imagen" accept="image/*" style="display: none;">
                                                     <button class="btn4" type="submit" name="guardarProducto">Guardar Producto</button>
-                                                </div>    
+                                                </div>
                                             </div>
                                             </form>
 
