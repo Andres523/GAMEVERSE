@@ -567,14 +567,116 @@ mysqli_close($conexion);
                             <div class="calificacion-comentario-form">
                                 <h3>Califica y comenta sobre este juego</h3>
                                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?id=$id_juego"; ?>" method="post">
-                                    <label for="calificacion">Calificación:</label>
-                                    <select name="calificacion" id="calificacion">
-                                        <option value="1">1 estrella</option>
-                                        <option value="2">2 estrellas</option>
-                                        <option value="3">3 estrellas</option>
-                                        <option value="4">4 estrellas</option>
-                                        <option value="5">5 estrellas</option>
-                                    </select>
+
+                                <div class="rating">
+                                    <input type="radio" id="star-1" name="calificacion" value="5">
+                                    <label for="star-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                                    </label>
+                                    <input type="radio" id="star-2" name="calificacion" value="4">
+                                    <label for="star-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                                    </label>
+                                    <input type="radio" id="star-3" name="calificacion" value="3">
+                                    <label for="star-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                                    </label>
+                                    <input type="radio" id="star-4" name="calificacion" value="2">
+                                    <label for="star-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                                    </label>
+                                    <input type="radio" id="star-5" name="calificacion" value="1">
+                                    <label for="star-5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                                    </label>
+                                </div>
+<style>
+
+.rating {
+  gap: 0.3rem;
+  --stroke: #666;
+  --fill: #ffc73a;
+  direction: rtl; /* Establece la dirección de derecha a izquierda */
+}
+
+.rating input {
+  appearance: unset;
+}
+
+.rating label {
+  cursor: pointer;
+}
+
+.rating svg {
+  width: 2rem;
+  height: 2rem;
+  overflow: visible;
+  fill: transparent;
+  stroke: var(--stroke);
+  stroke-linejoin: bevel;
+  stroke-dasharray: 12;
+  animation: idle 4s linear infinite;
+  transition: stroke 0.2s, fill 0.5s;
+}
+
+@keyframes idle {
+  from {
+    stroke-dashoffset: 24;
+  }
+}
+
+.rating label:hover svg {
+  stroke: var(--fill);
+}
+
+.rating input:checked ~ label svg {
+  transition: 0s;
+  animation: idle 4s linear infinite, yippee 0.75s backwards;
+  fill: var(--fill);
+  stroke: var(--fill);
+  stroke-opacity: 0;
+  stroke-dasharray: 0;
+  stroke-linejoin: miter;
+  stroke-width: 8px;
+}
+
+@keyframes yippee {
+  0% {
+    transform: scale(1);
+    fill: var(--fill);
+    fill-opacity: 0;
+    stroke-opacity: 1;
+    stroke: var(--stroke);
+    stroke-dasharray: 10;
+    stroke-width: 1px;
+    stroke-linejoin: bevel;
+  }
+
+  30% {
+    transform: scale(0);
+    fill: var(--fill);
+    fill-opacity: 0;
+    stroke-opacity: 1;
+    stroke: var(--stroke);
+    stroke-dasharray: 10;
+    stroke-width: 1px;
+    stroke-linejoin: bevel;
+  }
+
+  30.1% {
+    stroke: var(--fill);
+    stroke-dasharray: 0;
+    stroke-linejoin: miter;
+    stroke-width: 8px;
+  }
+
+  60% {
+    transform: scale(1.2);
+    fill: var(--fill);
+  }
+}
+
+</style>
                                     <br>
                                     <label for="comentario">Comentario:</label>
                                     <textarea name="comentario" id="comentario" rows="4" cols="50"></textarea>
